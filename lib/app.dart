@@ -1,57 +1,65 @@
-import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
-import 'components/header.dart';
-import 'pages/about.dart';
-import 'pages/home.dart';
+import 'features/auth/presentation/pages/account_handoff.dart';
+import 'features/auth/presentation/pages/forgot_password.dart';
+import 'features/auth/presentation/pages/sign_in.dart';
+import 'features/auth/presentation/pages/sign_up.dart';
+import 'features/auth/presentation/pages/verify_email.dart';
 
-// The main component of your application.
 class App extends StatelessComponent {
   const App({super.key});
 
   @override
-  Component build(BuildContext context) {
-    // This method is rerun every time the component is rebuilt.
-    
-    // Renders a <div class="main"> html element with children.
-    return div(classes: 'main', [
-      Router(routes: [
-        ShellRoute(
-          builder: (context, state, child) => .fragment([
-            const Header(),
-            child,
-          ]),
-          routes: [
-            Route(path: '/', title: 'Home', builder: (context, state) => const Home()),
-            Route(path: '/about', title: 'About', builder: (context, state) => const About()),
-          ],
+  Component build(BuildContext context) => Router(
+    routes: [
+      Route(
+        path: '/',
+        title: 'Sign in to Eduma',
+        builder: (context, state) => SignInPage(email: state.queryParams['email'] ?? ''),
+      ),
+      Route(
+        path: '/sign-in',
+        title: 'Sign in to Eduma',
+        builder: (context, state) => SignInPage(email: state.queryParams['email'] ?? ''),
+      ),
+      Route(
+        path: '/sign-up',
+        title: 'Create an Eduma account',
+        builder: (context, state) => SignUpPage(
+          referralCode: state.queryParams['ref'] ?? state.queryParams['referral'] ?? '',
         ),
-      ]),
-    ]);
-  }
-
-  // Defines the CSS styles for this component.
-  //
-  // By using the @css annotation, these will be rendered automatically to CSS and included in your page.
-  // Must be a variable or getter of type [List<StyleRule>].
-  @css
-  static List<StyleRule> get styles => [
-    css('.main', [
-      // The '&' refers to the parent selector of a nested style rules.
-      css('&').styles(
-        display: .flex,
-        height: 100.vh,
-        flexDirection: .column,
-        flexWrap: .wrap,
       ),
-      css('section').styles(
-        display: .flex,
-        flexDirection: .column,
-        justifyContent: .center,
-        alignItems: .center,
-        flex: Flex(grow: 1),
+      Route(
+        path: '/forgot-password',
+        title: 'Reset your Eduma password',
+        builder: (context, state) => ForgotPasswordPage(
+          email: state.queryParams['email'] ?? '',
+          token: state.queryParams['token'] ?? '',
+        ),
       ),
-    ]),
-  ];
+      Route(
+        path: '/reset-password',
+        title: 'Reset your Eduma password',
+        builder: (context, state) => ForgotPasswordPage(
+          email: state.queryParams['email'] ?? '',
+          token: state.queryParams['token'] ?? '',
+        ),
+      ),
+      Route(
+        path: '/verify-email',
+        title: 'Verify your Eduma email',
+        builder: (context, state) => VerifyEmailPage(
+          email: state.queryParams['email'] ?? '',
+          token: state.queryParams['token'] ?? '',
+          codeJustSent: state.queryParams['sent'] == 'true',
+        ),
+      ),
+      Route(
+        path: '/account',
+        title: 'Continue to Eduma',
+        builder: (context, state) => const AccountHandoffPage(),
+      ),
+    ],
+  );
 }
