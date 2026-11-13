@@ -52,6 +52,16 @@ web/
 Do not introduce Riverpod, Flutter widgets, Material APIs, or Flutter-only
 plugins into this project merely to mirror the source structure.
 
+### Package-first browser ports
+
+- Before recreating behavior or visual assets supplied by a Flutter package,
+  inspect the source package and check for a browser-compatible equivalent.
+- When a useful package is Flutter-bound, prefer a local Jaspr/browser port in
+  `packages/` when feasible. Preserve the source API names, glyph mappings, and
+  required licenses while adapting only the platform-specific boundary.
+- Do not draw replacement icons or approximate package assets by hand when the
+  source package already provides them.
+
 ## 3. Browser and Network Boundaries
 
 - Browser code must use browser-compatible packages. `kickin_network` is not a
@@ -95,18 +105,38 @@ plugins into this project merely to mirror the source structure.
 - The static host must rewrite public Jaspr routes to `index.html` for direct
   visits/reloads. Exclude the Flutter workspace path from that rewrite.
 
-## 5. Naming and Documentation
+## 5. End-to-End Task Completion
+
+- Treat a request as an expected outcome, not a request for the smallest
+  plausible code edit. Inspect the source implementation and all relevant
+  routes, shared wrappers, states, and platform-specific variants before
+  deciding what the complete change requires.
+- For Flutter-to-Jaspr work, translate the full user-visible behavior and
+  responsive layouts, including source desktop/tablet frames and assets where
+  they apply. A phone-sized page alone is not a completed migration when the
+  source also has desktop behavior.
+- Verify the actual outcome at relevant viewport sizes and interaction states,
+  not just that code compiles. Run the project checks, inspect rendered routes,
+  and fix issues that those checks reveal before reporting completion.
+- For work spanning multiple sessions, keep `.rules/cache/cache_progress.md`
+  current with completed scope, concrete validation results, known gaps, and
+  the next source-backed slice. Do not describe pending or unverified work as
+  complete.
+
+## 6. Naming and Documentation
 
 - Dart files use `snake_case`; types use `PascalCase`; private members use `_`.
 - Use `Page` for Jaspr page components, `Actions` for feature workflows,
   `Api`/`Store` for data adapters, and `Model` only for intentional domain or
   presentation types.
+- Use enums for finite internal value sets instead of stringly typed values;
+  prefer Dart dot shorthands when the type is clear from context.
 - Keep comments for non-obvious platform or product constraints; do not
   narrate straightforward code.
 - Record endpoint assumptions and deployment requirements in the README or a
   focused hand-off note when they affect integration with the Flutter app.
 
-## 6. Validation
+## 7. Validation
 
 - After changing Dart code, run `dart analyze` and `jaspr build`; run focused
   tests when tests cover the changed behavior.

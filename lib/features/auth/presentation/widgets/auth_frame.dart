@@ -26,6 +26,60 @@ class AuthFrame extends StatelessComponent {
   ]);
 }
 
+Component authDesktopFrame(Component child, {bool signUp = false}) => div(
+  classes: signUp ? 'auth-desktop-frame auth-desktop-frame--signup' : 'auth-desktop-frame',
+  [
+    aside(
+      classes: 'auth-brand-panel',
+      attributes: {'aria-label': 'About Eduma'},
+      [
+        div(classes: 'auth-brand-art', attributes: {'aria-hidden': 'true'}, []),
+        div(classes: 'auth-brand-content', [
+          div(classes: 'auth-brand-logo', [
+            img(src: 'assets/logo/logo.png', alt: ''),
+            strong([.text('Eduma')]),
+          ]),
+          div(classes: 'auth-brand-message', [
+            h2([.text('Learn, plan and'), br(), .text('study together.')]),
+            p([
+              .text('Your notebooks, study spaces and schedule in one calm place, on every device.'),
+            ]),
+            div(classes: 'auth-brand-features', [
+              _authBrandFeature(
+                'book',
+                'Curated notebooks',
+                'Modular lessons with progress that follows you.',
+              ),
+              _authBrandFeature(
+                'people',
+                'Interactive spaces',
+                'Pages, files and events shared with your group.',
+              ),
+              _authBrandFeature(
+                'calendar',
+                'Smart scheduling',
+                'Focus blocks and reminders synced to your calendar.',
+              ),
+            ]),
+          ]),
+        ]),
+      ],
+    ),
+    div(classes: 'auth-desktop-form-pane', [child]),
+  ],
+);
+
+Component _authBrandFeature(String icon, String title, String subtitle) => div(
+  classes: 'auth-brand-feature',
+  [
+    span(classes: 'auth-brand-feature-icon', [authIcon(icon, size: 20)]),
+    div([
+      strong([.text(title)]),
+      p([.text(subtitle)]),
+    ]),
+  ],
+);
+
 Component authHeader({required String title, required String subtitle}) => div(classes: 'auth-header', [
   h1(classes: 'auth-title', [.text(title)]),
   p(classes: 'auth-subtitle', [.text(subtitle)]),
@@ -147,17 +201,20 @@ Component authConsent({
       'aria-labelledby': 'auth-consent-copy',
     },
   ),
-  p(attributes: {'id': 'auth-consent-copy'}, [
-    .text('I have read and agree to the '),
-    a(href: _legalDocumentUrl('terms'), [
-      .text('Terms of Service'),
-    ]),
-    .text(' and acknowledge the '),
-    a(href: _legalDocumentUrl('privacy'), [
-      .text('Privacy Policy'),
-    ]),
-    .text('.'),
-  ]),
+  p(
+    attributes: {'id': 'auth-consent-copy'},
+    [
+      .text('I have read and agree to the '),
+      a(href: _legalDocumentUrl('terms'), [
+        .text('Terms of Service'),
+      ]),
+      .text(' and acknowledge the '),
+      a(href: _legalDocumentUrl('privacy'), [
+        .text('Privacy Policy'),
+      ]),
+      .text('.'),
+    ],
+  ),
 ]);
 
 Component authDivider({String text = 'Or continue with'}) => div(
@@ -227,6 +284,29 @@ Component authIcon(String name, {int size = 20}) {
     'arrow' => ['M5 12h14', 'm12 5 7 7-7 7'],
     'info' => ['M12 11v5', 'M12 8h.01', 'M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0z'],
     'check' => ['m5 12 4 4L19 6'],
+    'book' => [
+      'M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22z',
+      'M4 5.5v14A2.5 2.5 0 0 1 6.5 17H20',
+      'M8 7h8',
+      'M8 10h8',
+    ],
+    'people' => [
+      'M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2',
+      'M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8',
+      'M20 21v-2a4 4 0 0 0-3-3.87',
+      'M16 3.13a4 4 0 0 1 0 7.75',
+    ],
+    'calendar' => [
+      'M8 2v4',
+      'M16 2v4',
+      'M3 10h18',
+      'M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2z',
+      'M8 14h.01',
+      'M12 14h.01',
+      'M16 14h.01',
+      'M8 18h.01',
+      'M12 18h.01',
+    ],
     _ => const <String>[],
   };
 

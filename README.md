@@ -1,8 +1,8 @@
 # Eduma web
 
-Jaspr account-access frontend for Eduma. The current migration slice includes
-sign-in, registration, email verification, password recovery, and a handoff to
-the existing Flutter workspace.
+Jaspr frontend for Eduma. The current migration includes account access and
+the initial authenticated Main/Home slice, with unmigrated workflows handed
+off to the existing Flutter workspace.
 
 Project conventions and the Flutter-to-Jaspr mapping are documented in
 [`.rules/rules.md`](.rules/rules.md).
@@ -50,6 +50,25 @@ requests. Configure the static host to rewrite the Jaspr routes (for example
 excluding `/workspace/` from that rewrite. Local development uses a different
 origin from the Flutter app, so the account page reports that handoff as
 unavailable locally.
+
+## Main icons
+
+The local `iconsax_flutter` and `hugeicons_pro` packages under `packages/` are
+Jaspr ports of the source icon packages. Their complete glyph definitions and
+font files are retained there; the browser assets are WOFF2 subsets containing
+only glyphs referenced by the Main page. After changing Main icon references,
+regenerate the browser subsets with:
+
+```sh
+python3 -m pip install fonttools brotli
+python3 tool/subset_icon_fonts.py
+```
+
+Iconsax was cloned from
+[PersianFlutter/iconsax_flutter](https://github.com/PersianFlutter/iconsax_flutter)
+at version 1.0.1 (BSD 3-Clause). HugeIcons Pro 0.0.3 was adapted from the
+published package source available in the local Pub cache (MIT). Both license
+texts are retained in the package directories and `web/assets/licenses/`.
 
 ## Output
 

@@ -207,6 +207,27 @@ class EdumaAuthApi {
     Uri.parse('$_baseUrl/referrals/${Uri.encodeComponent(code)}'),
   );
 
+  Future<Map<String, dynamic>> getAuthenticated(
+    String path, {
+    Map<String, String> queryParameters = const {},
+  }) {
+    if (!path.startsWith('/') || path.startsWith('//')) {
+      throw const AuthApiException(
+        message: 'Eduma received an invalid API path.',
+      );
+    }
+    if (_accessToken == null || _accessToken!.isEmpty) {
+      throw const AuthApiException(
+        message: 'Your session has expired. Please sign in again.',
+        statusCode: 401,
+      );
+    }
+    final uri = Uri.parse('$_baseUrl$path').replace(
+      queryParameters: queryParameters.isEmpty ? null : queryParameters,
+    );
+    return _send('GET', uri, authenticated: true);
+  }
+
   Future<void> requestPasswordReset(String email) async {
     await _post('/auth/forgot-password', {'email': email.trim()});
   }

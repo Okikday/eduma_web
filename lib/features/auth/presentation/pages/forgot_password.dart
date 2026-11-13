@@ -38,10 +38,20 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
     if (_resetStep) AuthActions.scrubTokenFromAddressBar();
   }
 
+  void _showValidationError(String message, String targetId) {
+    setState(() => _error = message);
+    unawaited(
+      Future<void>.delayed(Duration.zero, () {
+        if (!mounted) return;
+        (web.document.getElementById(targetId) as web.HTMLElement?)?.focus();
+      }),
+    );
+  }
+
   Future<void> _requestCode() async {
     final email = _email.trim();
     if (!SignUpLogic.validEmail(email)) {
-      setState(() => _error = 'Enter a valid email address.');
+      _showValidationError('Enter a valid email address.', 'auth-email');
       return;
     }
 
@@ -66,12 +76,13 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   Future<void> _resetPassword() async {
     if (_token.trim().isEmpty) {
-      setState(() => _error = 'Enter the code or link from your email.');
+      _showValidationError('Enter the code or link from your email.', 'auth-resetToken');
       return;
     }
     if (_newPassword.length < 8) {
-      setState(
-        () => _error = 'Your new password must be at least 8 characters.',
+      _showValidationError(
+        'Your new password must be at least 8 characters.',
+        'auth-newPassword',
       );
       return;
     }
@@ -118,91 +129,98 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
         ? 'Enter the 6-digit code from the email we sent you (or paste its link), then choose a new password'
         : 'Enter your email address and we will send you a 6-digit code (and a link)';
 
-    return main_(classes: 'auth-page auth-page--route', [
-      authRouteTopBar(
-        label: _resetStep ? 'Back to email' : 'Back',
-        onBack: _back,
-      ),
-      section(classes: 'auth-route-content', [
-        authHeader(title: title, subtitle: subtitle),
-        form(
-          classes: 'auth-route-form',
-          noValidate: true,
-          events: {
-            'submit': (event) {
-              event.preventDefault();
-              if (_loading) return;
-              unawaited(_resetStep ? _resetPassword() : _requestCode());
-            },
-          },
-          [
-            if (_error case final message?) authError(message),
-            if (!_resetStep) ...[
-              authField(
-                labelText: 'Email Address',
-                name: 'email',
-                value: _email,
-                type: InputType.email,
-                autocomplete: 'email',
-                placeholder: 'alex@eduma.com.ng',
-                icon: 'mail',
-                onInput: (value) => setState(() {
-                  _email = value;
-                  _error = null;
-                }),
-              ),
-              authSubmitButton('Send Code', loading: _loading),
-            ] else ...[
-              if (_requestSent)
-                authSuccess(
-                  'If an account exists for this address, a reset code and link are on their way.',
-                ),
-              authField(
-                labelText: 'Code from the email',
-                name: 'resetToken',
-                value: _token,
-                type: InputType.text,
-                autocomplete: 'one-time-code',
-                placeholder: '6-digit code, or paste the link',
-                icon: 'ticket',
-                onInput: (value) => setState(() {
-                  _token = value;
-                  _error = null;
-                }),
-              ),
-              authField(
-                labelText: 'New Password (min. 8 characters)',
-                name: 'newPassword',
-                value: _newPassword,
-                type: _passwordVisible ? InputType.text : InputType.password,
-                autocomplete: 'new-password',
-                placeholder: '••••••••',
-                icon: 'lock',
-                onInput: (value) => setState(() {
-                  _newPassword = value;
-                  _error = null;
-                }),
-                suffix: button(
-                  classes: 'auth-field-suffix',
-                  type: ButtonType.button,
-                  onClick: () => setState(() => _passwordVisible = !_passwordVisible),
-                  attributes: {
-                    'aria-label': _passwordVisible ? 'Hide password' : 'Show password',
-                  },
-                  [authIcon(_passwordVisible ? 'eye' : 'eye-off')],
-                ),
-              ),
-              authSubmitButton('Update Password', loading: _loading),
-            ],
-          ],
+    return authDesktopFrame(
+      main_(classes: 'auth-page auth-page--route', [
+        authRouteTopBar(
+          label: _resetStep ? 'Back to email' : 'Back',
+          onBack: _back,
         ),
-        div(classes: 'auth-back-to-sign-in', [
-          Link(
-            to: '/sign-in',
-            child: span([.text('Back to Sign In')]),
+        section(classes: 'auth-route-content', [
+          authHeader(title: title, subtitle: subtitle),
+          form(
+            classes: 'auth-route-form',
+            noValidate: true,
+            events: {
+              'submit': (event) {
+                event.preventDefault();
+                if (_loading) return;
+                unawaited(_resetStep ? _resetPassword() : _requestCode());
+              },
+            },
+            [
+              if (_error case final message?) authError(message),
+              if (!_resetStep) ...[
+                authField(
+                  labelText: 'Email Address',
+                  name: 'email',
+                  value: _email,
+                  type: InputType.email,
+                  autocomplete: 'email',
+                  identifier: true,
+                  placeholder: 'alex@eduma.com.ng',
+                  icon: 'mail',
+                  enterKeyHint: 'done',
+                  onInput: (value) => setState(() {
+                    _email = value;
+                    _error = null;
+                  }),
+                ),
+                authSubmitButton('Send Code', loading: _loading),
+              ] else ...[
+                if (_requestSent)
+                  authSuccess(
+                    'If an account exists for this address, a reset code and link are on their way.',
+                  ),
+                authField(
+                  labelText: 'Code from the email',
+                  name: 'resetToken',
+                  value: _token,
+                  type: InputType.text,
+                  autocomplete: 'one-time-code',
+                  identifier: true,
+                  placeholder: '6-digit code, or paste the link',
+                  icon: 'ticket',
+                  enterKeyHint: 'next',
+                  onInput: (value) => setState(() {
+                    _token = value;
+                    _error = null;
+                  }),
+                ),
+                authField(
+                  labelText: 'New Password (min. 8 characters)',
+                  name: 'newPassword',
+                  value: _newPassword,
+                  type: _passwordVisible ? InputType.text : InputType.password,
+                  autocomplete: 'new-password',
+                  placeholder: '••••••••',
+                  icon: 'lock',
+                  enterKeyHint: 'done',
+                  onInput: (value) => setState(() {
+                    _newPassword = value;
+                    _error = null;
+                  }),
+                  suffix: button(
+                    classes: 'auth-field-suffix',
+                    type: ButtonType.button,
+                    onClick: () => setState(() => _passwordVisible = !_passwordVisible),
+                    attributes: {
+                      'aria-label': _passwordVisible ? 'Hide password' : 'Show password',
+                    },
+                    [authIcon(_passwordVisible ? 'eye' : 'eye-off')],
+                  ),
+                ),
+                authSubmitButton('Update Password', loading: _loading),
+              ],
+            ],
           ),
+          div(classes: 'auth-back-to-sign-in', [
+            Link(
+              to: '/sign-in',
+              child: span([.text('Back to Sign In')]),
+            ),
+          ]),
         ]),
       ]),
-    ]);
+    );
   }
 }

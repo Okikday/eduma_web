@@ -28,7 +28,29 @@ body {
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   background: #efeef4;
+  font-family: "Raleway", sans-serif;
+}
+
+.auth-desktop-frame {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #efeef4;
+}
+
+.auth-desktop-form-pane {
+  display: flex;
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.auth-brand-panel {
+  display: none;
 }
 
 button,
@@ -47,13 +69,17 @@ a {
 
 .auth-page {
   display: flex;
+  width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   flex-direction: column;
   padding: 20px 24px;
 }
 
 .auth-page--sign-in {
   overflow: auto;
+  max-width: 480px;
+  margin-inline: auto;
 }
 
 .auth-page--route {
@@ -436,6 +462,7 @@ a {
 .auth-signup-page {
   display: flex;
   min-height: 100vh;
+  min-height: 100dvh;
   flex-direction: column;
   background: #efeef4;
 }
@@ -678,6 +705,9 @@ a {
 }
 
 .auth-route-content {
+  width: 100%;
+  max-width: 480px;
+  margin-inline: auto;
   padding: 8px 24px 24px;
 }
 
@@ -975,6 +1005,137 @@ a {
   .auth-bottom-bar {
     padding-right: 20px;
     padding-left: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .auth-desktop-form-pane {
+    flex: 0 0 clamp(520px, 40vw, 680px);
+  }
+
+  .auth-brand-panel {
+    position: relative;
+    display: block;
+    min-width: 0;
+    flex: 1 1 auto;
+    margin: 14px;
+    overflow: clip;
+    border-radius: 28px;
+    background: linear-gradient(135deg, #3f3d82 0%, #5375f6 45%, #14143e 100%);
+    color: #fff;
+  }
+
+  .auth-brand-art {
+    position: absolute;
+    inset-block-start: -24px;
+    inset-inline-end: -36px;
+    width: min(420px, 52%);
+    aspect-ratio: 1;
+    background: url("assets/images/book_sparkle_bg.webp") center / contain no-repeat;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .auth-brand-content {
+    position: relative;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    padding: 40px 44px 44px;
+  }
+
+  .auth-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 21px;
+    font-weight: 700;
+  }
+
+  .auth-brand-logo img {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border-radius: 50%;
+    background: #fff;
+    object-fit: contain;
+  }
+
+  .auth-brand-message {
+    width: min(100%, 460px);
+    margin-block: auto;
+    padding-block: 32px;
+  }
+
+  .auth-brand-message h2 {
+    margin: 0;
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  .auth-brand-message > p {
+    margin: 14px 0 36px;
+    color: rgb(255 255 255 / 78%);
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .auth-brand-features {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .auth-brand-feature {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .auth-brand-feature-icon {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(255 255 255 / 22%);
+    border-radius: 50%;
+    background: rgb(255 255 255 / 12%);
+    color: #fff;
+  }
+
+  .auth-brand-feature strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .auth-brand-feature p {
+    margin: 2px 0 0;
+    color: rgb(255 255 255 / 72%);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+}
+
+@media (min-width: 600px) {
+  .auth-signup-page {
+    max-width: 480px;
+    height: min(100dvh, 752px);
+    min-height: 0;
+    margin-inline: auto;
+    padding-block: 16px;
+    background:
+      radial-gradient(ellipse at 82% 16%, rgb(99 102 241 / 14%), transparent 48%),
+      radial-gradient(ellipse at 15% 82%, rgb(139 92 246 / 12%), transparent 46%),
+      #efeef4;
+  }
+
+  .auth-desktop-frame--signup .auth-desktop-form-pane {
+    align-items: center;
   }
 }
 

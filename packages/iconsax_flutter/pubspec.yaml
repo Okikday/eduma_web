@@ -1,0 +1,9 @@
+name: iconsax_flutter
+description: Jaspr port of Iconsax glyphs used by Eduma.
+version: 1.0.1
+
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+
+dependencies:
+  jaspr: ^0.23.5

@@ -6,6 +6,7 @@ import 'features/auth/presentation/pages/forgot_password.dart';
 import 'features/auth/presentation/pages/sign_in.dart';
 import 'features/auth/presentation/pages/sign_up.dart';
 import 'features/auth/presentation/pages/verify_email.dart';
+import 'features/main/presentation/pages/main_home.dart';
 
 class App extends StatelessComponent {
   const App({super.key});
@@ -59,6 +60,11 @@ class App extends StatelessComponent {
         path: '/account',
         title: 'Continue to Eduma',
         builder: (context, state) => const AccountHandoffPage(),
+      ),
+      Route(
+        path: '/main',
+        title: 'Eduma Home',
+        builder: (context, state) => const MainHomePage(),
       ),
     ],
   );

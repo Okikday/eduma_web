@@ -124,131 +124,133 @@ class SignInPageState extends State<SignInPage> {
   }
 
   @override
-  Component build(BuildContext context) => main_(
-    classes: 'auth-page auth-page--sign-in',
-    [
-      input<String>(
-        id: 'google-id-token',
-        classes: 'auth-hidden-input',
-        type: InputType.hidden,
-        value: '',
-        onInput: (token) => unawaited(_completeGoogleSignIn(token)),
-        attributes: {'aria-hidden': 'true', 'tabindex': '-1'},
-      ),
-      div(classes: 'auth-header auth-header--sign-in', [
-        h1(classes: 'auth-title', [
-          .text('Welcome to Eduma'),
+  Component build(BuildContext context) => authDesktopFrame(
+    main_(
+      classes: 'auth-page auth-page--sign-in',
+      [
+        input<String>(
+          id: 'google-id-token',
+          classes: 'auth-hidden-input',
+          type: InputType.hidden,
+          value: '',
+          onInput: (token) => unawaited(_completeGoogleSignIn(token)),
+          attributes: {'aria-hidden': 'true', 'tabindex': '-1'},
+        ),
+        div(classes: 'auth-header auth-header--sign-in', [
+          h1(classes: 'auth-title', [
+            .text('Welcome to Eduma'),
+          ]),
+          p(classes: 'auth-subtitle', [
+            .text('Sign in, or create an account to get started'),
+          ]),
         ]),
-        p(classes: 'auth-subtitle', [
-          .text('Sign in, or create an account to get started'),
-        ]),
-      ]),
-      form(
-        classes: 'auth-form auth-form--sign-in',
-        noValidate: true,
-        events: {
-          'submit': (event) {
-            event.preventDefault();
-            if (!_loading) unawaited(_submit());
+        form(
+          classes: 'auth-form auth-form--sign-in',
+          noValidate: true,
+          events: {
+            'submit': (event) {
+              event.preventDefault();
+              if (!_loading) unawaited(_submit());
+            },
           },
-        },
-        [
-          if (_error case final message?) authError(message),
-          authField(
-            labelText: 'Email Address',
-            name: 'email',
-            value: _email,
-            type: InputType.email,
-            autocomplete: 'username',
-            identifier: true,
-            placeholder: 'Enter your email address',
-            icon: 'mail',
-            onInput: (value) => setState(() {
-              _email = value;
-              _error = null;
-            }),
-            suffix: _email.isEmpty
-                ? null
-                : button(
-                    classes: 'auth-field-suffix',
-                    type: ButtonType.button,
-                    onClick: () => setState(() {
-                      _email = '';
-                      _error = null;
-                    }),
-                    attributes: {'aria-label': 'Clear email address'},
-                    [authIcon('close', size: 18)],
-                  ),
-          ),
-          authField(
-            labelText: 'Password',
-            name: 'password',
-            value: _password,
-            type: _passwordVisible ? InputType.text : InputType.password,
-            autocomplete: 'current-password',
-            placeholder: '••••••••',
-            icon: 'lock',
-            onInput: (value) => setState(() {
-              _password = value;
-              _error = null;
-            }),
-            suffix: button(
-              classes: 'auth-field-suffix',
-              type: ButtonType.button,
-              onClick: () => setState(() => _passwordVisible = !_passwordVisible),
-              attributes: {
-                'aria-label': _passwordVisible ? 'Hide password' : 'Show password',
-              },
-              [authIcon(_passwordVisible ? 'eye' : 'eye-off')],
+          [
+            if (_error case final message?) authError(message),
+            authField(
+              labelText: 'Email Address',
+              name: 'email',
+              value: _email,
+              type: InputType.email,
+              autocomplete: 'username',
+              identifier: true,
+              placeholder: 'Enter your email address',
+              icon: 'mail',
+              onInput: (value) => setState(() {
+                _email = value;
+                _error = null;
+              }),
+              suffix: _email.isEmpty
+                  ? null
+                  : button(
+                      classes: 'auth-field-suffix',
+                      type: ButtonType.button,
+                      onClick: () => setState(() {
+                        _email = '';
+                        _error = null;
+                      }),
+                      attributes: {'aria-label': 'Clear email address'},
+                      [authIcon('close', size: 18)],
+                    ),
             ),
-          ),
-          div(classes: 'auth-row--end', [
-            Link(
-              to: Uri(
-                path: '/forgot-password',
-                queryParameters: {
-                  if (_email.trim().isNotEmpty) 'email': _email.trim(),
+            authField(
+              labelText: 'Password',
+              name: 'password',
+              value: _password,
+              type: _passwordVisible ? InputType.text : InputType.password,
+              autocomplete: 'current-password',
+              placeholder: '••••••••',
+              icon: 'lock',
+              onInput: (value) => setState(() {
+                _password = value;
+                _error = null;
+              }),
+              suffix: button(
+                classes: 'auth-field-suffix',
+                type: ButtonType.button,
+                onClick: () => setState(() => _passwordVisible = !_passwordVisible),
+                attributes: {
+                  'aria-label': _passwordVisible ? 'Hide password' : 'Show password',
                 },
-              ).toString(),
-              child: span(classes: 'auth-link auth-link-button', [
-                .text('Forgot password?'),
+                [authIcon(_passwordVisible ? 'eye' : 'eye-off')],
+              ),
+            ),
+            div(classes: 'auth-row--end', [
+              Link(
+                to: Uri(
+                  path: '/forgot-password',
+                  queryParameters: {
+                    if (_email.trim().isNotEmpty) 'email': _email.trim(),
+                  },
+                ).toString(),
+                child: span(classes: 'auth-link auth-link-button', [
+                  .text('Forgot password?'),
+                ]),
+              ),
+            ]),
+            authConsent(
+              value: _termsAccepted,
+              disabled: _loading,
+              onChanged: (value) => setState(() {
+                _termsAccepted = value;
+                _error = null;
+              }),
+            ),
+            authSubmitButton(
+              'Sign In',
+              loading: _loading,
+            ),
+          ],
+        ),
+        div(classes: 'auth-social-section', [
+          authDivider(),
+          div(classes: 'auth-google-row', [
+            authGoogleButton(
+              termsAccepted: _termsAccepted,
+              onUnavailable: _googleButtonPressed,
+            ),
+          ]),
+        ]),
+        div(classes: 'auth-sign-in-footer', [
+          p(classes: 'auth-switch', [
+            .text('New to Eduma? '),
+            Link(
+              to: '/sign-up',
+              child: span(classes: 'auth-link', [
+                .text('Create an account'),
               ]),
             ),
           ]),
-          authConsent(
-            value: _termsAccepted,
-            disabled: _loading,
-            onChanged: (value) => setState(() {
-              _termsAccepted = value;
-              _error = null;
-            }),
-          ),
-          authSubmitButton(
-            'Sign In',
-            loading: _loading,
-          ),
-        ],
-      ),
-      div(classes: 'auth-social-section', [
-        authDivider(),
-        div(classes: 'auth-google-row', [
-          authGoogleButton(
-            termsAccepted: _termsAccepted,
-            onUnavailable: _googleButtonPressed,
-          ),
         ]),
-      ]),
-      div(classes: 'auth-sign-in-footer', [
-        p(classes: 'auth-switch', [
-          .text('New to Eduma? '),
-          Link(
-            to: '/sign-up',
-            child: span(classes: 'auth-link', [
-              .text('Create an account'),
-            ]),
-          ),
-        ]),
-      ]),
-    ],
+      ],
+    ),
   );
 }

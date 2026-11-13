@@ -183,122 +183,133 @@ class VerifyEmailPageState extends State<VerifyEmailPage> {
       : 'Resend code';
 
   @override
-  Component build(BuildContext context) => main_(
-    classes: 'auth-page auth-page--route',
-    [
-      authRouteTopBar(
-        label: 'Back to sign in',
-        onBack: () => web.window.location.assign('/sign-in'),
-      ),
-      div(classes: 'auth-verify-scroll', [
-        section(
-          classes: _verified ? 'auth-verify-content auth-empty-state' : 'auth-verify-content',
-          [
-            div(classes: 'auth-icon-tile', [
-              authIcon(_verified ? 'check' : 'mail', size: 22),
-            ]),
-            h1(classes: 'auth-verify-title', [
-              .text(_verified ? 'Email verified' : 'Verify your email'),
-            ]),
-            p(classes: 'auth-verify-copy', [
-              .text(
-                _verified ? 'Thanks for confirming your email address. Sign in to continue.' : _subtitle,
-              ),
-            ]),
-            if (_verified) ...[
-              a(href: '/sign-in', classes: 'auth-submit', [
-                .text('Sign in'),
+  Component build(BuildContext context) => authDesktopFrame(
+    main_(
+      classes: 'auth-page auth-page--route',
+      [
+        authRouteTopBar(
+          label: 'Back to sign in',
+          onBack: () => web.window.location.assign('/sign-in'),
+        ),
+        div(classes: 'auth-verify-scroll', [
+          section(
+            classes: _verified ? 'auth-verify-content auth-empty-state' : 'auth-verify-content',
+            [
+              div(classes: 'auth-icon-tile', [
+                authIcon(_verified ? 'check' : 'mail', size: 22),
               ]),
-            ] else ...[
-              if (component.token.isNotEmpty && _loading)
-                p(classes: 'auth-verify-status', [
-                  .text('Confirming your email…'),
-                ])
-              else ...[
-                div(
-                  classes: _codeFocused ? 'auth-otp auth-otp--focused' : 'auth-otp',
-                  [
-                    for (var index = 0; index < _codeLength; index++)
-                      span(
-                        classes: [
-                          'auth-otp-digit',
-                          if (_codeFocused && index == _code.length.clamp(0, _codeLength - 1)) 'auth-otp-digit--active',
-                          if (_error != null) 'auth-otp-digit--error',
-                          if (_loading || _lockSecondsRemaining > 0) 'auth-otp-digit--disabled',
-                        ].join(' '),
+              h1(classes: 'auth-verify-title', [
+                .text(_verified ? 'Email verified' : 'Verify your email'),
+              ]),
+              p(classes: 'auth-verify-copy', [
+                .text(
+                  _verified ? 'Thanks for confirming your email address. Sign in to continue.' : _subtitle,
+                ),
+              ]),
+              if (_verified) ...[
+                a(href: '/sign-in', classes: 'auth-submit', [
+                  .text('Sign in'),
+                ]),
+              ] else ...[
+                if (component.token.isNotEmpty && _loading)
+                  p(classes: 'auth-verify-status', [
+                    .text('Confirming your email…'),
+                  ])
+                else ...[
+                  form(
+                    classes: 'auth-verify-form',
+                    noValidate: true,
+                    events: {
+                      'submit': (event) {
+                        event.preventDefault();
+                        if (!_loading) unawaited(_verify());
+                      },
+                    },
+                    [
+                      div(
+                        classes: _codeFocused ? 'auth-otp auth-otp--focused' : 'auth-otp',
                         [
-                          .text(index < _code.length ? _code[index] : ''),
+                          for (var index = 0; index < _codeLength; index++)
+                            span(
+                              classes: [
+                                'auth-otp-digit',
+                                if (_codeFocused && index == _code.length.clamp(0, _codeLength - 1))
+                                  'auth-otp-digit--active',
+                                if (_error != null) 'auth-otp-digit--error',
+                                if (_loading || _lockSecondsRemaining > 0) 'auth-otp-digit--disabled',
+                              ].join(' '),
+                              [
+                                .text(index < _code.length ? _code[index] : ''),
+                              ],
+                            ),
+                          input<String>(
+                            id: 'verify-code',
+                            classes: 'auth-otp-input',
+                            type: InputType.text,
+                            name: 'verificationCode',
+                            value: _code,
+                            disabled: _loading || _lockSecondsRemaining > 0,
+                            onInput: _onCodeChanged,
+                            events: {
+                              'focus': (_) => setState(() => _codeFocused = true),
+                              'blur': (_) => setState(() => _codeFocused = false),
+                            },
+                            attributes: {
+                              'aria-label': 'Six-digit verification code',
+                              'aria-describedby': 'verify-code-status',
+                              if (_error != null) 'aria-invalid': 'true',
+                              'autocomplete': 'one-time-code',
+                              'autofocus': '',
+                              'inputmode': 'numeric',
+                              'maxlength': '6',
+                              'pattern': '[0-9]*',
+                              'required': '',
+                              'spellcheck': 'false',
+                              'enterkeyhint': 'done',
+                            },
+                          ),
                         ],
                       ),
-                    input<String>(
-                      id: 'verify-code',
-                      classes: 'auth-otp-input',
-                      type: InputType.text,
-                      value: _code,
-                      disabled: _loading || _lockSecondsRemaining > 0,
-                      onInput: _onCodeChanged,
-                      events: {
-                        'focus': (_) => setState(() => _codeFocused = true),
-                        'blur': (_) => setState(() => _codeFocused = false),
-                      },
-                      attributes: {
-                        'aria-label': 'Six-digit verification code',
-                        'autocomplete': 'one-time-code',
-                        'autofocus': '',
-                        'inputmode': 'numeric',
-                        'maxlength': '6',
-                        'pattern': '[0-9]*',
-                      },
-                    ),
-                  ],
-                ),
-                div(
-                  classes: 'auth-verify-status',
-                  attributes: {'role': 'status', if (_error != null) 'aria-live': 'polite'},
-                  [
-                    if (_lockSecondsRemaining > 0)
-                      .text(
-                        'Too many attempts. Try again in ${_lockSecondsRemaining}s.',
-                      )
-                    else if (_error case final message?)
-                      .text(message),
-                  ],
-                ),
-                form(
-                  noValidate: true,
-                  events: {
-                    'submit': (event) {
-                      event.preventDefault();
-                      if (!_loading) unawaited(_verify());
-                    },
-                  },
-                  [
-                    button(
-                      classes: 'auth-submit auth-verify-button',
-                      type: ButtonType.submit,
-                      disabled: _loading || _lockSecondsRemaining > 0 || _code.length != _codeLength,
-                      [
-                        .text('Verify'),
-                        if (_loading) span(classes: 'auth-spinner', []),
-                      ],
-                    ),
-                  ],
-                ),
-                div(classes: 'auth-resend-row', [
-                  span([.text("Didn't get it? Check spam, or")]),
-                  button(
-                    classes: 'auth-text-button',
-                    type: ButtonType.button,
-                    disabled: _resending || _resendSecondsRemaining > 0,
-                    onClick: _resend,
-                    [.text(_resendLabel)],
+                      div(
+                        id: 'verify-code-status',
+                        classes: 'auth-verify-status',
+                        attributes: {'role': 'status', 'aria-live': 'polite'},
+                        [
+                          if (_lockSecondsRemaining > 0)
+                            .text(
+                              'Too many attempts. Try again in ${_lockSecondsRemaining}s.',
+                            )
+                          else if (_error case final message?)
+                            .text(message),
+                        ],
+                      ),
+                      button(
+                        classes: 'auth-submit auth-verify-button',
+                        type: ButtonType.submit,
+                        disabled: _loading || _lockSecondsRemaining > 0 || _code.length != _codeLength,
+                        [
+                          .text('Verify'),
+                          if (_loading) span(classes: 'auth-spinner', []),
+                        ],
+                      ),
+                    ],
                   ),
-                ]),
+                  div(classes: 'auth-resend-row', [
+                    span([.text("Didn't get it? Check spam, or")]),
+                    button(
+                      classes: 'auth-text-button',
+                      type: ButtonType.button,
+                      disabled: _resending || _resendSecondsRemaining > 0,
+                      onClick: _resend,
+                      [.text(_resendLabel)],
+                    ),
+                  ]),
+                ],
               ],
             ],
-          ],
-        ),
-      ]),
-    ],
+          ),
+        ]),
+      ],
+    ),
   );
 }

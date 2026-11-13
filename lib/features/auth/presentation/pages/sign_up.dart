@@ -231,10 +231,10 @@ class SignUpPageState extends State<SignUpPage> {
     if (_loading) return;
     if (!_canContinue) {
       final message = switch (_step) {
-          0 => 'Add your name and choose an available username to continue.',
-          1 => 'Add a valid email and a password of at least 8 characters.',
-          _ => 'Please read and agree to the Terms of Service to create your account.',
-        };
+        0 => 'Add your name and choose an available username to continue.',
+        1 => 'Add a valid email and a password of at least 8 characters.',
+        _ => 'Please read and agree to the Terms of Service to create your account.',
+      };
       final targetId = switch (_step) {
         0 => _name.trim().length < 2 ? 'auth-name' : 'auth-username',
         1 => SignUpLogic.validEmail(_email) ? 'auth-password' : 'auth-email',
@@ -633,96 +633,109 @@ class SignUpPageState extends State<SignUpPage> {
   };
 
   @override
-  Component build(BuildContext context) => main_(
-    classes: 'auth-signup-page',
-    [
-      input<String>(
-        id: 'google-id-token',
-        classes: 'auth-hidden-input',
-        type: InputType.hidden,
-        value: '',
-        onInput: (token) => unawaited(_completeGoogleSignIn(token)),
-        attributes: {'aria-hidden': 'true', 'tabindex': '-1'},
-      ),
-      header(classes: 'auth-signup-topbar', [
-        Link(
-          to: '/sign-in',
-          child: span(
-            classes: 'auth-topbar-button',
-            attributes: {'aria-label': 'Close sign up'},
-            [authIcon('close', size: 18)],
-          ),
+  Component build(BuildContext context) => authDesktopFrame(
+    main_(
+      classes: 'auth-signup-page',
+      [
+        input<String>(
+          id: 'google-id-token',
+          classes: 'auth-hidden-input',
+          type: InputType.hidden,
+          value: '',
+          onInput: (token) => unawaited(_completeGoogleSignIn(token)),
+          attributes: {'aria-hidden': 'true', 'tabindex': '-1'},
         ),
-        div(classes: 'auth-step-progress', [
-          for (var index = 0; index < 3; index++)
-            span(
-              classes: index <= _step
-                  ? 'auth-step-progress__segment auth-step-progress__segment--filled'
-                  : 'auth-step-progress__segment',
-              attributes: {'aria-hidden': 'true'},
-              [],
+        header(classes: 'auth-signup-topbar', [
+          Link(
+            to: '/sign-in',
+            child: span(
+              classes: 'auth-topbar-button',
+              attributes: {'aria-label': 'Close sign up'},
+              [authIcon('close', size: 18)],
             ),
-        ]),
-        if (_step == 2 && _referralCode.isEmpty && !_loading)
-          button(
-            classes: 'auth-skip',
-            type: ButtonType.button,
-            onClick: _primary,
-            [.text('Skip')],
-          )
-        else
-          button(
-            classes: 'auth-skip auth-skip--hidden',
-            type: ButtonType.button,
-            disabled: true,
-            [.text('Skip')],
           ),
-      ]),
-      section(classes: 'auth-step-body', [
-        div(classes: 'auth-step-header', [
-          h1(
-            id: 'auth-step-heading',
-            classes: 'auth-title',
-            attributes: {'tabindex': '-1'},
-            [.text(_stepTitle)],
-          ),
-          p(classes: 'auth-subtitle', [.text(_stepHelper)]),
-        ]),
-        _stepFields(),
-      ]),
-      footer(classes: 'auth-bottom-bar', [
-        authConsent(
-          value: _termsAccepted,
-          disabled: _loading,
-          onChanged: (value) => setState(() {
-            _termsAccepted = value;
-            _error = null;
-          }),
-        ),
-        div(classes: 'auth-step-actions', [
-          if (_step > 0)
-            button(
-              classes: 'auth-secondary-button',
-              type: ButtonType.button,
-              disabled: _loading,
-              onClick: _back,
-              [.text('Back')],
-            ),
-          button(
-            classes: 'auth-submit',
-            type: ButtonType.button,
-            disabled: _loading,
-            onClick: _primary,
+          div(
+            classes: 'auth-step-progress',
+            attributes: {
+              'role': 'progressbar',
+              'aria-label': 'Sign-up progress',
+              'aria-valuemin': '1',
+              'aria-valuemax': '3',
+              'aria-valuenow': '${_step + 1}',
+            },
             [
-              .text(_step == 2 ? 'Create account' : 'Continue'),
-              if (_loading)
-                span(classes: 'auth-spinner', [])
-              else if (_step < 2)
-                span(classes: 'auth-button-trailing', [authIcon('arrow', size: 18)]),
+              for (var index = 0; index < 3; index++)
+                span(
+                  classes: index <= _step
+                      ? 'auth-step-progress__segment auth-step-progress__segment--filled'
+                      : 'auth-step-progress__segment',
+                  attributes: {'aria-hidden': 'true'},
+                  [],
+                ),
             ],
           ),
+          if (_step == 2 && _referralCode.isEmpty && !_loading)
+            button(
+              classes: 'auth-skip',
+              type: ButtonType.button,
+              onClick: _primary,
+              [.text('Skip')],
+            )
+          else
+            button(
+              classes: 'auth-skip auth-skip--hidden',
+              type: ButtonType.button,
+              disabled: true,
+              [.text('Skip')],
+            ),
         ]),
-      ]),
-    ],
+        section(classes: 'auth-step-body', [
+          div(classes: 'auth-step-header', [
+            h1(
+              id: 'auth-step-heading',
+              classes: 'auth-title',
+              attributes: {'tabindex': '-1'},
+              [.text(_stepTitle)],
+            ),
+            p(classes: 'auth-subtitle', [.text(_stepHelper)]),
+          ]),
+          _stepFields(),
+        ]),
+        footer(classes: 'auth-bottom-bar', [
+          authConsent(
+            value: _termsAccepted,
+            disabled: _loading,
+            onChanged: (value) => setState(() {
+              _termsAccepted = value;
+              _error = null;
+            }),
+          ),
+          div(classes: 'auth-step-actions', [
+            if (_step > 0)
+              button(
+                classes: 'auth-secondary-button',
+                type: ButtonType.button,
+                disabled: _loading,
+                onClick: _back,
+                [.text('Back')],
+              ),
+            button(
+              classes: 'auth-submit',
+              type: ButtonType.button,
+              disabled: _loading,
+              onClick: _primary,
+              [
+                .text(_step == 2 ? 'Create account' : 'Continue'),
+                if (_loading)
+                  span(classes: 'auth-spinner', [])
+                else if (_step < 2)
+                  span(classes: 'auth-button-trailing', [authIcon('arrow', size: 18)]),
+              ],
+            ),
+          ]),
+        ]),
+      ],
+    ),
+    signUp: true,
   );
 }
