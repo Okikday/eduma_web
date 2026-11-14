@@ -13,7 +13,7 @@ const edumaApiBaseUrl = String.fromEnvironment(
 
 const edumaFlutterAppUrl = String.fromEnvironment(
   'EDUMA_FLUTTER_APP_URL',
-  defaultValue: '',
+  defaultValue: 'https://app.eduma.com.ng',
 );
 
 const edumaGoogleWebClientId = String.fromEnvironment(
@@ -102,12 +102,8 @@ class EdumaAuthApi {
   String? _accessToken;
 
   bool get canOpenFlutterApp {
-    final legacy = Uri.tryParse(edumaFlutterAppUrl);
-    return legacy != null &&
-        (legacy.scheme == 'http' || legacy.scheme == 'https') &&
-        legacy.hasAuthority &&
-        legacy.path != '/' &&
-        legacy.origin == Uri.base.origin;
+    final app = Uri.tryParse(edumaFlutterAppUrl);
+    return app != null && (app.scheme == 'http' || app.scheme == 'https') && app.hasAuthority;
   }
 
   Future<EdumaSession> signIn({

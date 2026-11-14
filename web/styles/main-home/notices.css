@@ -1,0 +1,115 @@
+.main-home__notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  margin: 16px 0 0;
+  border: 1px solid rgb(75 36 210 / 15%);
+  border-radius: 14px;
+  background: rgb(255 255 255 / 76%);
+  color: #55576a;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.main-home__notice p {
+  margin: 0;
+}
+
+.main-home__notice--verify {
+  margin-top: 16px;
+  max-width: 720px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-color: rgb(75 36 210 / 22%);
+  background: rgb(75 36 210 / 8%);
+}
+
+.main-home__notice--verify strong {
+  color: #242333;
+}
+
+.main-home__notice--verify p {
+  margin-top: 4px;
+  color: #55576a;
+}
+
+.main-home__verification-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.main-home__notice--verify > .eduma-icon {
+  color: var(--main-primary);
+}
+
+.main-home__verification-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 10px;
+}
+
+.main-home__verification-primary,
+.main-home__verification-resend {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 12px;
+  border: 1px solid rgb(75 36 210 / 20%);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--main-primary);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.main-home__verification-primary {
+  border-color: var(--main-primary);
+  background: var(--main-primary);
+  color: #fff;
+}
+
+.main-home__verification-resend:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.main-home__verification-dismiss {
+  display: inline-flex;
+  min-width: 32px;
+  min-height: 32px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #777989;
+  cursor: pointer;
+}
+
+.main-home__retry {
+  flex: 0 0 auto;
+  border: 0;
+  background: transparent;
+  color: #4b24d2;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.main-home__notice--error {
+  border-color: rgb(229 72 77 / 22%);
+  background: #fff4f3;
+  color: #a52c31;
+}
+

@@ -31,25 +31,23 @@ rendered web sign-in button. Google sign-in is unavailable when it is omitted.
 
 ## Flutter workspace handoff
 
-The existing Flutter app and this Jaspr app must use the same origin for their
-Hive browser storage to be shared. Serve Jaspr at `/` and move/proxy the
-existing Flutter workspace to a separate path such as `/workspace/` on that
-same origin. The Jaspr app must not replace the Flutter workspace at the URL
-used for the handoff. Set `EDUMA_FLUTTER_APP_URL` to that same-origin path when
-building:
+Routes that are not migrated yet link to the existing Flutter app at
+`https://app.eduma.com.ng` and use its real named-route paths and query
+parameters. This is the default; set `EDUMA_FLUTTER_APP_URL` only when the
+Flutter app is deployed at a different base URL:
 
 ```sh
 jaspr build \
   --dart-define=EDUMA_API_BASE_URL=https://your-api.example/api/v1 \
-  --dart-define=EDUMA_FLUTTER_APP_URL=https://your-domain.example/workspace/
+  --dart-define=EDUMA_FLUTTER_APP_URL=https://your-flutter-app.example/
 ```
 
-The API must allow the deployed Jaspr origin through CORS and permit credentialed
-requests. Configure the static host to rewrite the Jaspr routes (for example
-`/sign-in`, `/verify-email`, and `/reset-password`) to `index.html`, while
-excluding `/workspace/` from that rewrite. Local development uses a different
-origin from the Flutter app, so the account page reports that handoff as
-unavailable locally.
+Browser storage is origin-scoped. When Jaspr and Flutter are on different
+origins, signing in to Jaspr does not transfer its saved session to Flutter;
+the Flutter app may ask the user to sign in there as well. The API must allow
+the deployed Jaspr origin through CORS and permit credentialed requests.
+Configure the static host to rewrite Jaspr routes (for example `/sign-in`,
+`/verify-email`, and `/reset-password`) to `index.html`.
 
 ## Main icons
 

@@ -1,0 +1,145 @@
+.main-home__mobile-nav {
+  position: fixed;
+  z-index: 10;
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  display: flex;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  align-items: center;
+  gap: 20px;
+  transform: translateX(-50%);
+}
+
+.main-home__mobile-tab-bar {
+  display: flex;
+  width: 216px;
+  height: 68px;
+  flex: 0 0 216px;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border: 1px solid rgb(20 21 34 / 9%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 97%);
+  box-shadow: 0 8px 28px rgb(23 24 47 / 13%);
+  backdrop-filter: blur(14px);
+}
+
+.main-home__mobile-nav-item {
+  display: flex;
+  width: 68px;
+  height: 62px;
+  flex: 0 0 68px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 999px;
+  color: #737586;
+  font-size: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.main-home__mobile-nav-icon {
+  display: inline-flex;
+  width: 52px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  transition: background-color 220ms ease;
+}
+
+.main-home__mobile-nav-item.is-active {
+  color: #4b24d2;
+}
+
+.main-home__mobile-nav-item.is-active .main-home__mobile-nav-icon {
+  background: rgb(75 36 210 / 11%);
+}
+
+.main-home__mobile-nav-item.is-disabled {
+  cursor: default;
+  opacity: 0.62;
+}
+
+.main-home__mobile-actions {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.main-home__mobile-action-trigger {
+  display: flex;
+  width: 56px;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--main-primary);
+  box-shadow: 0 6px 18px rgb(75 36 210 / 28%);
+  color: #fff;
+  cursor: pointer;
+  list-style: none;
+}
+
+.main-home__mobile-action-trigger::-webkit-details-marker {
+  display: none;
+}
+
+.main-home__mobile-actions[open] .main-home__mobile-action-trigger {
+  background: #3820a6;
+}
+
+.main-home__mobile-action-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 12px);
+  display: flex;
+  width: min(320px, calc(100vw - 24px));
+  max-height: min(70dvh, 480px);
+  flex-direction: column;
+  gap: 4px;
+  overflow: auto;
+  padding: 10px;
+  border: 1px solid rgb(20 21 34 / 10%);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 36px rgb(23 24 47 / 18%);
+}
+
+.main-home__mobile-action-item {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  color: #343344;
+  text-decoration: none;
+}
+
+.main-home__mobile-action-item > .eduma-icon {
+  color: var(--main-primary);
+}
+
+.main-home__mobile-action-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.main-home__mobile-action-copy strong {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.main-home__mobile-action-copy > span {
+  color: #777989;
+  font-size: 11px;
+}
+

@@ -1,7 +1,6 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
-import 'features/auth/presentation/pages/account_handoff.dart';
 import 'features/auth/presentation/pages/forgot_password.dart';
 import 'features/auth/presentation/pages/sign_in.dart';
 import 'features/auth/presentation/pages/sign_up.dart';
@@ -16,8 +15,13 @@ class App extends StatelessComponent {
     routes: [
       Route(
         path: '/',
-        title: 'Sign in to Eduma',
-        builder: (context, state) => SignInPage(email: state.queryParams['email'] ?? ''),
+        title: 'Eduma Home',
+        builder: (context, state) => const MainHomePage(),
+      ),
+      Route(
+        path: '/home',
+        title: 'Eduma Home',
+        builder: (context, state) => const MainHomePage(),
       ),
       Route(
         path: '/sign-in',
@@ -58,8 +62,8 @@ class App extends StatelessComponent {
       ),
       Route(
         path: '/account',
-        title: 'Continue to Eduma',
-        builder: (context, state) => const AccountHandoffPage(),
+        title: 'Eduma Home',
+        builder: (context, state) => const MainHomePage(),
       ),
       Route(
         path: '/main',

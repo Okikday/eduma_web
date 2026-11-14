@@ -66,7 +66,7 @@ class SignInPageState extends State<SignInPage> {
     });
     try {
       await AuthActions.signIn(email: email, password: _password);
-      if (mounted) web.window.location.assign('/account');
+      if (mounted) web.window.location.assign('/main');
     } on AuthApiException catch (error) {
       if (error.isEmailNotVerified) {
         await AuthActions.acceptPendingSession(error);
@@ -107,7 +107,7 @@ class SignInPageState extends State<SignInPage> {
     });
     try {
       await AuthActions.googleSignIn(idToken);
-      if (mounted) web.window.location.assign('/account');
+      if (mounted) web.window.location.assign('/main');
     } on AuthApiException catch (error) {
       if (mounted) setState(() => _error = error.message);
     } finally {

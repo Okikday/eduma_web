@@ -21,7 +21,10 @@ lib/
             └── widgets/
 web/
 ├── index.html
-└── <feature>.css
+└── styles/
+    └── <feature>/
+        ├── base.css
+        └── ...
 ```
 
 - Keep each migrated feature self-contained. Put a component in a shared
@@ -96,9 +99,11 @@ plugins into this project merely to mirror the source structure.
   the real Flutter surface instead.
 - Keep route query parameters small and non-sensitive. Support direct reloads
   and deep links for every public route.
-- Keep CSS responsive and scoped by feature classes. Prefer the existing
-  design system over adding a framework; avoid fixed-width layouts that break
-  at mobile sizes.
+- Keep CSS responsive and scoped by feature classes. A small feature may use
+  one stylesheet; split larger feature styles into focused files under
+  `web/styles/<feature>/` and load them in cascade order from `index.html`.
+  Prefer the existing design system over adding a framework; avoid fixed-width
+  layouts that break at mobile sizes.
 - Static assets belong under `web/`. The current deployment expects Jaspr at
   `/`; use an explicit base URL so direct route reloads resolve CSS and JS
   assets correctly.

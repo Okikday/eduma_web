@@ -9,5 +9,10 @@ abstract final class MainActions {
   static Future<MainSpacesPage> loadSpaces({
     required int page,
     String query = '',
-  }) => MainApi.instance.loadSpaces(page: page, query: query);
+    String currentUserId = '',
+  }) => MainApi.instance.loadSpaces(
+    page: page,
+    query: query,
+    currentUserId: currentUserId,
+  );
 }

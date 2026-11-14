@@ -369,7 +369,7 @@ class SignUpPageState extends State<SignUpPage> {
     });
     try {
       await AuthActions.googleSignIn(idToken, referralCode: code);
-      if (mounted) web.window.location.assign('/account');
+      if (mounted) web.window.location.assign('/main');
     } on AuthApiException catch (error) {
       if (mounted) setState(() => _error = error.message);
     } finally {

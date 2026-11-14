@@ -118,7 +118,7 @@ class VerifyEmailPageState extends State<VerifyEmailPage> {
       );
       if (!mounted) return;
       if (session != null) {
-        web.window.location.assign('/account');
+        web.window.location.assign('/main');
       } else {
         setState(() => _verified = true);
       }
