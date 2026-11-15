@@ -5,7 +5,9 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:web/web.dart' as web;
 
+import '../../../../core/presentation/eduma_link.dart';
 import '../../logic/auth_actions.dart';
+import '../../logic/auth_link_logic.dart';
 import '../../logic/sign_up_logic.dart';
 import '../widgets/auth_frame.dart';
 
@@ -75,8 +77,17 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
   }
 
   Future<void> _resetPassword() async {
-    if (_token.trim().isEmpty) {
-      _showValidationError('Enter the code or link from your email.', 'auth-resetToken');
+    final parsedToken = AuthLinkLogic.tokenFrom(
+      _token,
+      expect: AuthLinkKind.resetPassword,
+    );
+    if (parsedToken == null) {
+      _showValidationError(
+        _token.trim().isEmpty
+            ? 'Enter the code or link from your email.'
+            : 'Paste the full reset link or code from your email.',
+        'auth-resetToken',
+      );
       return;
     }
     if (_newPassword.length < 8) {
@@ -93,10 +104,10 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
     });
     try {
       await AuthActions.resetPassword(
-        token: _token,
+        token: parsedToken,
         newPassword: _newPassword,
       );
-      if (mounted) web.window.location.assign('/sign-in');
+      if (mounted) edumaNavigate(context, '/sign-in', replace: true);
     } on AuthApiException catch (error) {
       if (mounted) {
         setState(
@@ -118,7 +129,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
         _error = null;
       });
     } else {
-      web.window.location.assign('/sign-in');
+      edumaNavigate(context, '/sign-in');
     }
   }
 
@@ -165,7 +176,10 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     _error = null;
                   }),
                 ),
-                authSubmitButton('Send Code', loading: _loading),
+                authSubmitButton(
+  'Send Code',
+  loading: _loading,
+),
               ] else ...[
                 if (_requestSent)
                   authSuccess(
@@ -179,7 +193,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   autocomplete: 'one-time-code',
                   identifier: true,
                   placeholder: '6-digit code, or paste the link',
-                  icon: 'ticket',
+                  icon: 'key',
                   enterKeyHint: 'next',
                   onInput: (value) => setState(() {
                     _token = value;
@@ -209,7 +223,11 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     [authIcon(_passwordVisible ? 'eye' : 'eye-off')],
                   ),
                 ),
-                authSubmitButton('Update Password', loading: _loading),
+                authSubmitButton(
+  'Update Password',
+  loading: _loading,
+  enabled: AuthLinkLogic.tokenFrom(_token, expect: AuthLinkKind.resetPassword) != null && _newPassword.length >= 8,
+),
               ],
             ],
           ),

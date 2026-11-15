@@ -12,7 +12,7 @@ except ImportError as error:
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGE = ROOT / "lib/features/main/presentation/pages/main_home.dart"
+LIB_DIR = ROOT / "lib"
 ICON_SOURCE = ROOT / "packages/iconsax_flutter/lib/iconsax_flutter.dart"
 ICON_FONT = ROOT / "packages/iconsax_flutter/fonts/FlutterIconsax.ttf"
 HUGE_SOURCE = ROOT / "packages/hugeicons_pro/lib/src"
@@ -20,11 +20,44 @@ HUGE_FONTS = ROOT / "packages/hugeicons_pro/fonts"
 OUTPUT = ROOT / "web/assets/fonts/icons"
 
 
+def _all_dart_sources() -> str:
+    return "\n".join(
+        path.read_text(encoding="utf-8")
+        for path in sorted(LIB_DIR.rglob("*.dart"))
+    )
+
+
+_CLASS_TO_FONT_FAMILY = {
+    "Iconsax": "FlutterIconsax",
+    "HugeIconsSolid": "HugeIconsSolid",
+    "HugeIconsStroke": "HugeIconsStroke",
+}
+
+
+def _inlined_codepoints(class_name: str) -> set[int]:
+    font_family = _CLASS_TO_FONT_FAMILY.get(class_name, class_name)
+    all_source = _all_dart_sources()
+    return {
+        int(hex_cp, 16)
+        for hex_cp in re.findall(
+            rf"EdumaIconData\(\s*0x([0-9a-fA-F]+)\s*,\s*fontFamily:\s*['\"]{re.escape(font_family)}['\"]",
+            all_source,
+        )
+    }
+
+
 def referenced_codepoints(class_name: str, definitions: Path) -> set[int]:
-    page_source = PAGE.read_text(encoding="utf-8")
-    names = set(re.findall(rf"\b{class_name}\.(\w+)\b", page_source))
+    combined = _class_codepoints(class_name, definitions) | _inlined_codepoints(class_name)
+    if not combined:
+        raise ValueError(f"No {class_name} glyphs referenced under {LIB_DIR}")
+    return combined
+
+
+def _class_codepoints(class_name: str, definitions: Path) -> set[int]:
+    all_source = _all_dart_sources()
+    names = set(re.findall(rf"\b{class_name}\.(\w+)\b", all_source))
     if not names:
-        raise ValueError(f"No {class_name} glyphs referenced in {PAGE}")
+        return set()
 
     definitions_text = definitions.read_text(encoding="utf-8")
     codepoints = set()

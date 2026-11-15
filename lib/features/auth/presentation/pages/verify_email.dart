@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-import 'package:web/web.dart' as web;
 
+import '../../../../core/presentation/eduma_link.dart';
 import '../../logic/auth_actions.dart';
 import '../widgets/auth_frame.dart';
 
@@ -28,6 +28,7 @@ class VerifyEmailPageState extends State<VerifyEmailPage> {
 
   String _email = '';
   String _code = '';
+  String _pendingToken = '';
   bool _loading = false;
   bool _resending = false;
   bool _verified = false;
@@ -55,7 +56,8 @@ class VerifyEmailPageState extends State<VerifyEmailPage> {
   void initState() {
     super.initState();
     _email = component.email;
-    if (component.token.isNotEmpty) {
+    _pendingToken = component.token;
+    if (_pendingToken.isNotEmpty) {
       AuthActions.scrubTokenFromAddressBar();
       Future<void>.microtask(_verify);
     } else if (component.codeJustSent) {
@@ -94,7 +96,7 @@ class VerifyEmailPageState extends State<VerifyEmailPage> {
   }
 
   Future<void> _verify() async {
-    final token = component.token;
+    final token = _pendingToken;
     final code = token.isNotEmpty ? '' : _code.replaceAll(RegExp(r'\D'), '');
     if (token.isEmpty && code.length != _codeLength) {
       setState(() => _error = 'Enter the six-digit code from your email.');
@@ -109,6 +111,8 @@ class VerifyEmailPageState extends State<VerifyEmailPage> {
     setState(() {
       _loading = true;
       _error = null;
+      // Consume any URL link token so a failed/expired link does not block manual OTP entry.
+      _pendingToken = '';
     });
     try {
       final session = await AuthActions.verifyEmail(
@@ -118,7 +122,7 @@ class VerifyEmailPageState extends State<VerifyEmailPage> {
       );
       if (!mounted) return;
       if (session != null) {
-        web.window.location.assign('/main');
+        edumaNavigate(context, '/main', replace: true);
       } else {
         setState(() => _verified = true);
       }
@@ -166,6 +170,7 @@ class VerifyEmailPageState extends State<VerifyEmailPage> {
     final digits = value.replaceAll(RegExp(r'\D'), '');
     final code = digits.length <= _codeLength ? digits : digits.substring(0, _codeLength);
     setState(() {
+      _pendingToken = '';
       _code = code;
       _error = null;
     });
@@ -189,14 +194,14 @@ class VerifyEmailPageState extends State<VerifyEmailPage> {
       [
         authRouteTopBar(
           label: 'Back to sign in',
-          onBack: () => web.window.location.assign('/sign-in'),
+          onBack: () => edumaNavigate(context, '/sign-in'),
         ),
         div(classes: 'auth-verify-scroll', [
           section(
             classes: _verified ? 'auth-verify-content auth-empty-state' : 'auth-verify-content',
             [
               div(classes: 'auth-icon-tile', [
-                authIcon(_verified ? 'check' : 'mail', size: 22),
+                authIcon(_verified ? 'check' : 'sms-tracking', size: 22),
               ]),
               h1(classes: 'auth-verify-title', [
                 .text(_verified ? 'Email verified' : 'Verify your email'),
@@ -207,11 +212,13 @@ class VerifyEmailPageState extends State<VerifyEmailPage> {
                 ),
               ]),
               if (_verified) ...[
-                a(href: '/sign-in', classes: 'auth-submit', [
-                  .text('Sign in'),
-                ]),
+                edumaLink(
+                  to: '/sign-in',
+                  classes: 'auth-submit',
+                  children: [.text('Sign in')],
+                ),
               ] else ...[
-                if (component.token.isNotEmpty && _loading)
+                if (_pendingToken.isNotEmpty && _loading)
                   p(classes: 'auth-verify-status', [
                     .text('Confirming your email…'),
                   ])

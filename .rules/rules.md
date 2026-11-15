@@ -30,6 +30,9 @@ web/
 - Keep each migrated feature self-contained. Put a component in a shared
   location only after at least two features use it and it has no feature
   knowledge.
+- Keep presentation files modular and focused: target a soft cap of ~250–300
+  lines per Dart component file. Extract distinct sections, cards, bars, forms,
+  or dialogs into dedicated files under `presentation/widgets/`.
 - `app.dart` owns application bootstrap and route registration; feature pages
   own their presentation. Do not put feature implementations in `app.dart`.
 - Keep API, browser storage, and session details out of presentation
@@ -63,7 +66,12 @@ plugins into this project merely to mirror the source structure.
   `packages/` when feasible. Preserve the source API names, glyph mappings, and
   required licenses while adapting only the platform-specific boundary.
 - Do not draw replacement icons or approximate package assets by hand when the
-  source package already provides them.
+  source package already provides them. Use `IconsaxIcon` (`packages/iconsax_flutter`)
+  or `HugeIcon` (`packages/hugeicons_pro`), never hand-drawn `<svg>` `<path>` icons.
+- Icon fonts in `web/assets/fonts/` are subsetted with `python3 tool/subset_icon_fonts.py`,
+  which scans all `lib/**/*.dart` files for `Iconsax.*`, `HugeIconsStroke.*`, and
+  `HugeIconsSolid.*` references. Re-run `python3 tool/subset_icon_fonts.py`
+  whenever icons are added or changed in any Dart file under `lib/`.
 
 ## 3. Browser and Network Boundaries
 
@@ -98,12 +106,22 @@ plugins into this project merely to mirror the source structure.
   placeholder pages for features that have not been migrated; link to or embed
   the real Flutter surface instead.
 - Keep route query parameters small and non-sensitive. Support direct reloads
-  and deep links for every public route.
+  and deep links for every public route. Never invent Flutter handoff paths;
+  use the exact verified routes in `.rules/routing.md`.
+- Keep visual design tokens (palette, surfaces, Raleway typography scale,
+  radii, shadows) and `@font-face` declarations centralized in `web/styles/tokens.css`
+  per `.rules/design_tokens.md`, linked before feature stylesheets in
+  `web/index.html`. Do not duplicate `@font-face` blocks or scatter unverified
+  brand colors across feature stylesheets.
 - Keep CSS responsive and scoped by feature classes. A small feature may use
   one stylesheet; split larger feature styles into focused files under
   `web/styles/<feature>/` and load them in cascade order from `index.html`.
   Prefer the existing design system over adding a framework; avoid fixed-width
   layouts that break at mobile sizes.
+- See companion specs for exact project contracts:
+  - `.rules/routing.md` (Jaspr routes + Flutter handoff routes)
+  - `.rules/design_tokens.md` (palette, theme tokens, typography, radii)
+  - `.rules/source_parity.md` (API endpoints, Hive schema, feature checklist)
 - Static assets belong under `web/`. The current deployment expects Jaspr at
   `/`; use an explicit base URL so direct route reloads resolve CSS and JS
   assets correctly.

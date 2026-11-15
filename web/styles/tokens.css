@@ -1,0 +1,223 @@
+@font-face {
+  font-family: "Raleway";
+  src: url("../assets/fonts/Raleway-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "eduma-huge-stroke";
+  src: url("../assets/fonts/icons/hugeicons-stroke.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "eduma-huge-solid";
+  src: url("../assets/fonts/icons/hugeicons-solid.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "eduma-iconsax";
+  src: url("../assets/fonts/icons/FlutterIconsax.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --eduma-primary: #4b24d2;
+  --eduma-primary-dark: #5375f6;
+  --eduma-secondary: #4a4d57;
+  --eduma-deep-blue: #14143e;
+  --eduma-bg: #efeef4;
+  --eduma-surface: #ffffff;
+  --eduma-surface-elevated: #ffffff;
+  --eduma-card: #e5e4ec;
+  --eduma-text: #141522;
+  --eduma-ink: #141522;
+  --eduma-ink-soft: #454957;
+  --eduma-text-secondary: #454957;
+  --eduma-text-muted: #666b7a;
+  --eduma-muted: #666b7a;
+  --eduma-white: #ffffff;
+  --eduma-surface-alt: #f4f3f8;
+  --eduma-surface-subtle: #f4f3f8;
+  --eduma-primary-hover: #3f1db8;
+  --eduma-primary-soft: rgb(75 36 210 / 10%);
+  --eduma-primary-focus: rgb(75 36 210 / 28%);
+  --eduma-space-circle-2: #5375f6;
+  --eduma-pinned-gradient: linear-gradient(135deg, #4b24d2 0%, #515deb 100%);
+  --eduma-border: rgb(16 24 40 / 9.4%);
+  --eduma-border-strong: rgb(16 24 40 / 16%);
+  --eduma-border-subtle: rgb(16 24 40 / 5.5%);
+  --eduma-card-border: rgb(16 24 40 / 7.8%);
+  --eduma-divider: rgb(16 24 40 / 5.9%);
+  --eduma-error: #e5484d;
+  --eduma-danger: #e5484d;
+  --eduma-danger-soft: rgb(229 72 77 / 12%);
+  --eduma-success: #30a46c;
+  --eduma-warning: #f5a524;
+  --eduma-info: #3b82f6;
+  --eduma-whatsapp: #25d366;
+  --eduma-gold: #e2a90f;
+  --eduma-font: "Raleway", sans-serif;
+
+  /* Categorical accents (never used for actions or validation state). */
+  --eduma-accent-violet: #7c3aed;
+  --eduma-accent-sky: #0284c7;
+  --eduma-accent-teal: #0f9488;
+  --eduma-accent-amber: #d97706;
+  --eduma-accent-rose: #e11d48;
+  --eduma-accent-green: #16a34a;
+
+  /* Radii & elevation tokens matching PureThemeExtension. */
+  --eduma-radius-md: 16px;
+  --eduma-radius-lg: 20px;
+  --eduma-radius-xl: 24px;
+  --eduma-radius-pill: 999px;
+  --eduma-card-shadow:
+    0 1px 3px rgb(16 24 40 / 4%),
+    0 4px 12px -2px rgb(16 24 40 / 7%);
+  --eduma-card-shadow-raised:
+    0 2px 4px rgb(16 24 40 / 5%),
+    0 8px 18px -2px rgb(16 24 40 / 11%);
+  --eduma-shadow-sm: var(--eduma-card-shadow);
+  --eduma-shadow-md: var(--eduma-card-shadow-raised);
+
+  /* Blur & barrier tokens matching AppBarrier, AppGlassSurface & AppSheetGlass in ../eduma. */
+  --eduma-barrier-bg: rgb(0 0 0 / 16%);
+  --eduma-barrier-blur: blur(3px);
+  --eduma-glass-dialog-bg: rgb(239 238 244 / 80%);
+  --eduma-glass-dialog-blur: blur(12px);
+  --eduma-glass-dialog-border: 0.5px solid rgb(16 24 40 / 8%);
+  --eduma-glass-dialog-shadow: 0 12px 32px rgb(0 0 0 / 14%);
+  --eduma-glass-sheet-blur: blur(4px);
+
+  font-family: "Raleway", sans-serif;
+  color: var(--eduma-text);
+  background: var(--eduma-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --eduma-primary: #5375f6;
+  --eduma-primary-hover: #6c89ff;
+  --eduma-bg: #131313;
+  --eduma-surface: #1f1f22;
+  --eduma-surface-elevated: #2b2b30;
+  --eduma-card: #28282d;
+  --eduma-text: #f7f8fa;
+  --eduma-ink: #f7f8fa;
+  --eduma-ink-soft: #d5d7e0;
+  --eduma-text-secondary: #d5d7e0;
+  --eduma-text-muted: #9e9fa8;
+  --eduma-muted: #9e9fa8;
+  --eduma-surface-alt: #242429;
+  --eduma-surface-subtle: #242429;
+  --eduma-primary-soft: rgb(83 117 246 / 18%);
+  --eduma-border: #3a3a40;
+  --eduma-border-strong: rgb(255 255 255 / 20%);
+  --eduma-border-subtle: #2e2e34;
+  --eduma-card-border: #3a3a40;
+  --eduma-divider: #2e2e34;
+  --eduma-error: #ff4d4f;
+  --eduma-danger: #ff4d4f;
+  --eduma-success: #52c41a;
+  --eduma-barrier-bg: rgb(0 0 0 / 32%);
+  --eduma-glass-dialog-bg: rgb(19 19 19 / 84%);
+  --eduma-glass-dialog-border: 0.5px solid #2e2e34;
+  --eduma-glass-dialog-shadow: 0 12px 32px rgb(0 0 0 / 30%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] {
+    color-scheme: dark;
+    --eduma-primary: #5375f6;
+    --eduma-primary-hover: #6c89ff;
+    --eduma-bg: #131313;
+    --eduma-surface: #1f1f22;
+    --eduma-surface-elevated: #2b2b30;
+    --eduma-card: #28282d;
+    --eduma-text: #f7f8fa;
+    --eduma-ink: #f7f8fa;
+    --eduma-ink-soft: #d5d7e0;
+    --eduma-text-secondary: #d5d7e0;
+    --eduma-text-muted: #9e9fa8;
+    --eduma-muted: #9e9fa8;
+    --eduma-surface-alt: #242429;
+    --eduma-surface-subtle: #242429;
+    --eduma-primary-soft: rgb(83 117 246 / 18%);
+    --eduma-border: #3a3a40;
+    --eduma-border-strong: rgb(255 255 255 / 20%);
+    --eduma-border-subtle: #2e2e34;
+    --eduma-card-border: #3a3a40;
+    --eduma-divider: #2e2e34;
+    --eduma-error: #ff4d4f;
+    --eduma-danger: #ff4d4f;
+    --eduma-success: #52c41a;
+    --eduma-barrier-bg: rgb(0 0 0 / 32%);
+    --eduma-glass-dialog-bg: rgb(19 19 19 / 84%);
+    --eduma-glass-dialog-border: 0.5px solid #2e2e34;
+    --eduma-glass-dialog-shadow: 0 12px 32px rgb(0 0 0 / 30%);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--eduma-bg);
+  color: var(--eduma-text);
+  font-family: "Raleway", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.eduma-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.eduma-huge-stroke {
+  font-family: "eduma-huge-stroke", sans-serif;
+}
+
+.eduma-huge-solid {
+  font-family: "eduma-huge-solid", sans-serif;
+}
+
+.eduma-iconsax {
+  font-family: "eduma-iconsax", sans-serif;
+}
+
+.eduma-huge-stroke,
+.eduma-huge-solid,
+.eduma-iconsax {
+  font-synthesis: none;
+}

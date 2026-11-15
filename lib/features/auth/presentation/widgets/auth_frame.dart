@@ -1,6 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
+import '../../../../core/presentation/eduma_icons.dart';
 import '../../logic/auth_actions.dart';
 
 class AuthFrame extends StatelessComponent {
@@ -250,82 +251,32 @@ Component authGoogleButton({
 }
 
 Component authIcon(String name, {int size = 20}) {
-  final paths = switch (name) {
-    'mail' => ['M3 5h18v14H3z', 'm3 6 9 7 9-7'],
-    'lock' => ['M5 10h14v11H5z', 'M8 10V7a4 4 0 0 1 8 0v3', 'M12 14v3'],
-    'user' => [
-      'M20 21a8 8 0 0 0-16 0',
-      'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8',
-    ],
-    'username' => [
-      'M4 20a8 8 0 0 1 13.7-5.7',
-      'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8',
-      'M16 19h6',
-      'M19 16v6',
-    ],
-    'ticket' => [
-      'M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7z',
-      'M13 5v2',
-      'M13 11v2',
-      'M13 17v2',
-    ],
-    'eye' => [
-      'M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z',
-      'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6',
-    ],
-    'eye-off' => [
-      'm3 3 18 18',
-      'M10.6 10.6a2 2 0 0 0 2.8 2.8',
-      'M9.9 5.2A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4.1',
-      'M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7a10.7 10.7 0 0 0 4-.8',
-    ],
-    'back' => ['m15 18-6-6 6-6', 'M9 12h12'],
-    'close' => ['m6 6 12 12', 'M18 6 6 18'],
-    'arrow' => ['M5 12h14', 'm12 5 7 7-7 7'],
-    'info' => ['M12 11v5', 'M12 8h.01', 'M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0z'],
-    'check' => ['m5 12 4 4L19 6'],
-    'book' => [
-      'M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22z',
-      'M4 5.5v14A2.5 2.5 0 0 1 6.5 17H20',
-      'M8 7h8',
-      'M8 10h8',
-    ],
-    'people' => [
-      'M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2',
-      'M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8',
-      'M20 21v-2a4 4 0 0 0-3-3.87',
-      'M16 3.13a4 4 0 0 1 0 7.75',
-    ],
-    'calendar' => [
-      'M8 2v4',
-      'M16 2v4',
-      'M3 10h18',
-      'M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2z',
-      'M8 14h.01',
-      'M12 14h.01',
-      'M16 14h.01',
-      'M8 18h.01',
-      'M12 18h.01',
-    ],
-    _ => const <String>[],
+  final icon = switch (name) {
+    'mail' => EdumaIcons.sms,
+    'mail01' => EdumaIcons.mail,
+    'lock' => EdumaIcons.lock,
+    'user' => EdumaIcons.user,
+    'username' => EdumaIcons.userTag,
+    'ticket' => EdumaIcons.ticket,
+    'key' => EdumaIcons.key,
+    'sms-tracking' => EdumaIcons.smsTracking,
+    'eye' => EdumaIcons.eye,
+    'eye-off' => EdumaIcons.eyeSlash,
+    'back' => EdumaIcons.back,
+    'close' => EdumaIcons.closeCircle,
+    'close-plain' => EdumaIcons.closePlain,
+    'cancel-circle' => EdumaIcons.cancelCircle,
+    'arrow' => EdumaIcons.chevronRight,
+    'info' => EdumaIcons.infoCircle,
+    'check' => EdumaIcons.tickCircle,
+    'book' => EdumaIcons.book1,
+    'people' => EdumaIcons.people,
+    'calendar' => EdumaIcons.calendar,
+    'camera' => EdumaIcons.camera,
+    'gallery-add' => EdumaIcons.galleryAdd,
+    _ => EdumaIcons.infoCircle,
   };
-
-  return svg(
-    [
-      for (final d in paths) path([], attributes: {'d': d}),
-    ],
-    viewBox: '0 0 24 24',
-    attributes: {
-      'width': '$size',
-      'height': '$size',
-      'fill': 'none',
-      'stroke': 'currentColor',
-      'stroke-width': '1.8',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round',
-      'aria-hidden': 'true',
-    },
-  );
+  return edumaIcon(icon, size: size);
 }
 
 String _legalDocumentUrl(String document) {

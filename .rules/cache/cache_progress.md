@@ -12,7 +12,8 @@
   where applicable.
 
 ## Completed: account access
-- Implemented source-derived routes for sign-in, three-step web sign-up,
+- Implemented source-derived routes for sign-in, four-step web sign-up (name,
+  account, optional profile photo, referral & terms),
   email verification, password recovery/reset, and `/account` workspace
   handoff.
 - Ported source validation for usernames/password strength and referral-code
@@ -36,45 +37,59 @@
   vertical insets) and centered from tablet widths upward; phone layout remains
   full-width and scrollable.
 
-## In progress: Main/Home initial slice
-- Added `/main` with session restoration, the source greeting/profile treatment,
-  email verification notice, pinned spaces, debounced space search, paging,
-  loading/error/empty states, and navigation handoff for Flutter-only routes.
-- Added a browser `/spaces` adapter with explicit response parsing and a
-  standalone space mapper covered by unit tests.
-- Added the recent-canvas endpoint and source route/query mapping for both
-  dynamic canvases and static notes. Recent-history failures are reported
-  independently so they do not block spaces from loading.
-- Added space role, member preview, personal/verified state, and activity/date
-  parsing. The Show filters and sort orders now use the source's membership,
-  personal-space-first, and stable-order rules.
-- Replaced the initial native selects with a source-like Show/Sort/View
-  disclosure and list/grid switch. Persisting the view preference and ordering
-  by recently opened on this device remain to be ported.
-- Cloned Iconsax Flutter 1.0.1 and adapted the published HugeIcons Pro 0.0.3
-  source into local Jaspr packages. Glyphs render through the packages'
-  original named constants and fonts, not hand-drawn SVG replacements.
-- Kept complete package font files in `packages/`; `tool/subset_icon_fonts.py`
-  generates app WOFF2 assets only for Main's referenced glyphs (12 Iconsax,
-  3 HugeIcons Solid, 5 HugeIcons Stroke). Package licenses are retained.
-- Main is not a complete migration yet. Pinned pages and their visibility
-  preference, online presence, AI-create jobs, create/join actions, page
-  content-search hits, and the Calendar/Library surfaces still need
-  source-backed implementation or handoff.
-- Successful sign-in now enters `/main`; `/` and `/account` also render Main
-  rather than the removed account-handoff placeholder. When the separate
-  Flutter workspace URL is not configured, Flutter-only destinations render
-  as non-interactive content instead of routing back into `/account`/Main.
-- Added the source bottom tab bar and floating Home actions menu. The Create
-  and Join entries currently hand off to `/main` rather than opening the
-  source's create/join sheets; this is a known behavior gap. Calendar and
-  Library are still Flutter handoffs and do not yet render inside a shared
-  Jaspr shell.
-- The source combines Profile and Settings in one `/profile` screen with tabs.
-  When that feature is ported, expose Settings in the shared navigation and move
-  the mobile navigation-layout preference into its Settings tab. Until then,
-  the existing layout switch in the mobile drawer is interim, not the final
-  Settings integration.
+## Completed: Main/Home, Space Detail, Calendar, Library, Notifications, Profile & Streak
+- Completed `.rules/` lock-down (`rules.md` modularity/LOC cap, `routing.md`, `design_tokens.md`, `source_parity.md`).
+- Completed codebase cleanup & bug fixes:
+  - Added `publish_to: none` in `pubspec.yaml`, removed broken `main.css` link in `web/index.html`, removed unused `packages/eduma_icons/`, `web/images/`, and `main_navigation_preferences.dart`.
+  - Updated `tool/subset_icon_fonts.py` to scan all `lib/**/*.dart` and re-generated `.woff2` icon font subsets (`FlutterIconsax.woff2` 42 glyphs / 6,612 B, `hugeicons-solid.woff2` 8 glyphs / 2,004 B, `hugeicons-stroke.woff2` 17 glyphs / 5,452 B).
+  - Extracted shared CSS `@font-face` + design tokens into `web/styles/tokens.css`, replaced hand-drawn SVG `authIcon()` glyphs in `auth_frame.dart` with `IconsaxIcon`, and switched `auth.css` & `web/styles/main-home/*.css` to CSS custom properties.
+  - Fixed `verify_email.dart` manual 6-digit OTP fallback after expired `?token=`, extracted `AuthLinkLogic` for `forgot_password.dart` pasted reset-URL parsing (+ 4 unit tests), fixed empty-name greeting `'Friend'` fallback, fixed `/calendarTab` & `/libraryTab` routes, un-gated the desktop Refresh button, preserved focus on `<details>` filter reset, and scoped the desktop pinned-card hiding rule to when `recentCanvases` is present.
+  - Modularized `sign_up.dart` (`sign_up_bars.dart` & `sign_up_steps.dart`) and `main_home.dart` across focused widgets under `lib/features/main/presentation/widgets/`.
+  - Added Hive `kickin_box` persistence (`eduma_pref_space_card_style`, `eduma_pref_space_sort`) via `MainPreferenceCodec` & `MainPreferences` and upgraded `SpaceGridCard` & `RecentCanvasCard` to match Flutter parity.
+- **Completed Create Space, Join Space & Pin/Unpin Spaces slice**:
+  - Generalized `EdumaAuthApi.requestAuthenticated(...)` with `postAuthenticated`, `patchAuthenticated`, and `deleteAuthenticated`, plus shared `extractResponseList` / `extractResponseMap` in `lib/core/data/json_envelope.dart`.
+  - Added `MainSpacePreview`, `MainSpaceJoinResult`, `MainSpace.copyWith`, `MainPinLimitException`, `SpaceInviteLink`, `/join/:code` & `?join=` deep links, optimistic Pin/Unpin toggles with rollback, and accessible native `<dialog>` modals (`WebDialogHelper`).
+- **Completed Space Detail (`/spaceDetail?id=...` & `/spaces/:id`)**:
+  - Added `lib/features/space/` (`space_detail_models.dart`, `space_detail_api.dart`, `space_detail_actions.dart`, `space_detail_page.dart`, `space_detail_hero.dart`, `space_detail_pages_tab.dart`, `space_detail_members_tab.dart`, `space_detail_dialogs.dart`, and `web/styles/space-detail.css` + 3 unit tests).
+  - Supports edit space title/description, invite link/code copy & renew, Pages tab with search/type/archived filters, create/archive/delete pages, Flutter canvas/notes handoff links, and Members tab with online indicators and admin/remove controls.
+- **Completed Shared Shell Navigation & Remaining Web Routes**:
+  - Parameterized `mainHomeDesktopRail` & `mainHomeMobileNavigation` with `MainNavTab` + shared `appTabShell` (`lib/features/main/presentation/widgets/app_tab_shell.dart`, `web/styles/app-shell.css`).
+  - **Calendar (`/calendarTab`, `/calendar`)**: interactive 42-cell Sunday-first month grid with inline desktop session preview chips, day agenda using pastel accent-bar `ScheduleEventCard` styling, upcoming list, search filter, repeat frequency, Create Event native `<dialog>` (`POST /events`), Delete Event (`DELETE /events/{id}`), + 4 unit tests.
+  - **Library (`/libraryTab`, `/library`)**: debounced catalog search (`GET /library/documents`), category filters, recently opened strip (`GET /library/recents`, `POST /library/recents/{id}`), FNV-1a category-tinted portrait `LibraryBookStage` book cards & direct PDF reader launch, Load More pagination, + 2 unit tests.
+  - **Notifications (`/notifications`)**: `all|unread|invites|schedule` filter pills, unread badge count, Mark Read/Unread, Mark All Read, Delete, inline Accept/Decline for space invites, `24px` white cards with squircle icons, + 1 unit test.
+  - **Profile & Settings (`/profile`)**: user card, pill `ProfileStatsRow` (`GET /users/me/stats`), Edit Profile dialog (`PATCH /users/me` + live `/users/check-username`), Password & Security reset dialog, Home Grid/List & Sort persistence, Sign Out, + 4 unit tests.
+  - **Study Streak (`/streak`)** & **See All Routes (`/pinnedSpacesSeeAll`, `/recentSpacesSeeAll`, `/recentCanvasesSeeAll`)**: `StreakHeroCard` with circular SVG progress ring, `StreakWeekStrip` flame dots, and activity calendar (`GET /streaks/me` + `/users/me/analytics` fallback) + 1 unit test, and dedicated See All pages reusing Home cards.
+- **Flutter 1:1 UI Parity & Separation-of-Concerns Pass**:
+  - Updated `web/styles/tokens.css` with `PureThemeExtension` tokens (`--eduma-card-border`, `--eduma-divider`, `--eduma-card-shadow`, `--eduma-card-shadow-raised`, `--eduma-space-circle-2`, `--eduma-pinned-gradient`) and semantic aliases; added shared cover fallback (`lib/core/presentation/eduma_cover_fallback.dart`), pure date/time formatters (`lib/core/utils/date_formatters.dart`), and shared primitives in `web/styles/app-shell.css` so no feature references another feature's CSS prefix (`eduma-calendar__*`, `eduma-profile__*`).
+  - Rebuilt Home `SpaceTile`, 3-sheet fanned `SpaceGridCard`, carousel `PinnedSpaceCard`, and desktop `>= 880px` `SpaceHighlightsSliver` (`PinnedBand`), plus `SpaceDetailHero` & `SpacePageCard` against the `../eduma` Flutter widgets.
+  - Exact icon, badge, and context-menu pass: switched Home chevrons (`Iconsax.arrow_right_3_copy` at `14px` / `11px` on `"See all"`), linear Iconsax icons (`people_copy`, `close_circle_copy`, `danger_copy`, `lock_copy`, `add_circle_copy`, `notification_status_copy`), and HugeIcons (`notification01` solid/stroke, `fire` solid/stroke, `clock01`, `flag03`, `pinOff`, `settings02`) via `main_home_icons.dart`; removed non-source inline pin buttons & role badges from `SpaceTile` / `SpaceGridCard` in favor of frosted right-click `MainHomeSpaceContextMenuDialog`; added `+N` member overflow circles, `PersonalSpaceBadge`, `StreakChip`, full-bleed mobile `PinnedBand`, desktop section order (`search -> highlights -> spaces`), and gold `.verified` styling in `space-detail.css`.
+  - Rebuilt subset icon fonts via `tool/subset_icon_fonts.py` (`FlutterIconsax.woff2` 41 glyphs / 6,332 B, `hugeicons-solid.woff2` 10 glyphs / 2,332 B, `hugeicons-stroke.woff2` 22 glyphs / 6,648 B).
+- **SPA Client-Side Routing, In-Memory Session Cache & Cross-Page 1:1 Flutter Parity**:
+  - Replaced full-page `<a href>` / `web.window.location.assign(...)` navigation on internal routes with `edumaLink(...)` & `edumaNavigate(...)` (`lib/core/presentation/eduma_link.dart`) backed by `jaspr_router`'s `Router.maybeOf(context)` so navigating across tabs and pages is instant without full browser reloads.
+  - Added in-memory `_currentSession` caching and `_restoringSession` in-flight request coalescing + transparent 401 refresh retry in `EdumaAuthApi` (`lib/features/auth/data/auth_api.dart`), seeded `_session` from `AuthActions.currentSession` / `MainActions.currentSession` / `SpaceDetailActions.currentSession` across all pages, and replaced `"Restoring your Eduma session…"` blocking copy in `mainHomeLoadingSessionState()` with a quiet spinner.
+  - Updated Streak (`StreakHeroCard`, unified `StreakStatsRow` card with 3 divided stats, and 7-day `StreakWeekStrip` with `moon_copy` / `medal_star_copy`), Notifications (all 11 Flutter `NotificationType` icons/accents/badges, `16px` `#card` squircles, unread dot, `"Accept & Join Space"` button), Profile (`VerifiedBadge`, `edit_2_copy`, pill `ProfileStatsRow` without inner icons in `'Notebooks' / 'Time studied' / 'Spaces'` order), Calendar (`calendar_add_copy` CTA, `cancel01` clear, `14px` month arrows), Library (`LibraryRecentsStrip` card strip, `edgeLayersOf` stacked book paper edges, `.lock` icon badge, `cancel01` clear), and Space Detail (`AppSegmentedControl` pill tabs, owner/admin/member role chip tones).
+  - Rebuilt subset icon fonts (`FlutterIconsax.woff2` 52 glyphs / 8,708 B, `hugeicons-solid.woff2` 10 glyphs / 2,332 B, `hugeicons-stroke.woff2` 22 glyphs / 6,648 B).
+- **Current Session Fixes (Blur/Barrier Parity, Dialog Top-Layer, Clean Loading & In-Memory Cache)**:
+  - **Exact `../eduma` Glass & Barrier Parity**: Added `--eduma-barrier-bg: rgb(0 0 0 / 16%)`, `--eduma-barrier-blur: blur(3px)` (`AppBarrier.sigma = 3.0`), `--eduma-glass-dialog-bg: rgb(239 238 244 / 80%)`, `--eduma-glass-dialog-blur: blur(12px)` (`AppGlassSurface.sigma = 12.0`), `--eduma-glass-dialog-border`, `--eduma-glass-dialog-shadow`, and `--eduma-glass-sheet-blur: blur(4px)` in `web/styles/tokens.css`; updated `modals.css`, `spaces.css` (`blur(20px)` on `.main-home__context-menu-card`), `space-detail.css`, `app-shell.css` (`blur(14px)` on `.eduma-desktop-header` & `.eduma-pure-appbar`), and `calendar.css`.
+  - **Desktop `<dialog>` Close Fix**: Updated `WebDialogHelper.syncOpen` (`lib/features/main/presentation/widgets/web_dialog_helper.dart`) to call `showModal(); close();` when `dialog.open == false` while `dialog.matches(':modal') == true`, preventing the page behind from staying inert.
+  - **Clean Loading State**: Added `.eduma-page-loading` in `web/styles/app-shell.css` and updated `SpaceDetailPage` and `StreakPage` to render only a centered spinner while loading uncached screens instead of a displaced `adaptivePageScaffold` app bar.
+  - **Session-Scoped Tab & Detail Caching**: Added `EdumaMemoryCache` (`lib/core/data/eduma_memory_cache.dart`, cleared in `EdumaAuthApi.signOut()`) and wired immediate hydration + background refresh into `MainHomePage`, `SpaceDetailPage`, `CalendarPage`, `CalendarAgendaPanel`, `LibraryPage`, `NotificationsPage`, `StreakPage`, and `ProfilePage`.
+  - **Calendar Tag Fix, Edit Event & Space Picker**: Removed the `'Space session'` fallback pill from `calendar_day_agenda.dart`; added `CalendarApi.updateEvent` (`PATCH /events/{id}`), `editingEvent` mode on `CalendarCreateDialog`, an **Edit** button on `calendarEventDetailModal`, and an optional **Space** selector (`spaceId`) populated from `EdumaMemoryCache.instance.home?.spaces` / `MainActions.loadSpaces(page: 1)`.
+  - **Profile Real Sub-Flows & Dark Mode**: Added `EdumaThemeController` (`lib/core/presentation/theme_controller.dart`) + `[data-theme="dark"]` & `system` tokens in `web/styles/tokens.css` matching `PureDarkThemeExtension` (`#131313` bg, `#1f1f22` surface, `#28282d` card); added `ProfileAboutYouDialog` (`PATCH /users/me`), `ProfileDeleteAccountDialog` (`DELETE /users/me`), and `ProfileApi.signOutAllDevices()` (`POST /auth/logout-all`) replacing those `onShowNotice(...)` stubs.
+  - **Library In-App Document Reader**: Added `libraryDocumentReaderModal` (`lib/features/library/presentation/widgets/library_reader_dialog.dart` + `.eduma-library-reader` in `web/styles/library.css`) so clicking a document opens an in-app PDF/document viewer modal with an "Open tab" link instead of forcing an immediate external tab jump.
+- **Icon Font Loading, Cross-Feature Parity & Visual Verification Pass**:
+  - **Icons & Logos**: Added `.woff2` `<link rel="preload" ... crossorigin>` for `FlutterIconsax.woff2`, `hugeicons-stroke.woff2`, and `hugeicons-solid.woff2` in `web/index.html`, switched icon `@font-face` rules in `web/styles/tokens.css` from `font-display: block` to `font-display: swap` (fixing FOIT where icons such as the Home streak flame stayed invisible on initial load), fixed the rail logo asset path in `lib/features/main/presentation/widgets/main_home_navigation.dart` (`assets/logo/logo.png`), and removed the duplicate inner active box rule `.main-home__rail-item.is-active .eduma-icon` in `web/styles/main-home/responsive.css`.
+  - **Shared UI Primitives & Overflow**: Defined `.eduma-circle-icon-btn`, `.main-home__see-all-btn`, flex `min-width: 0` on `.eduma-search-box` / `.main-home__center-wrap` / `.main-home__body` / `.eduma-library__section` (`web/styles/app-shell.css`, `web/styles/main-home/base.css`, `web/styles/library.css`), fixing unstyled icon/link buttons on Calendar/Library and eliminating mobile Library horizontal overflow (`scrollWidth == 390`).
+  - **Space Detail, Library, Notifications & Streak**: Fixed Space Detail hero backdrop in `space_detail_hero.dart` / `web/styles/space-detail.css` to render a deep indigo gradient with a soft top-right translucent watermark instead of an oversized solid logo block; switched Library fallback book covers (`library_document_card.dart`) to centered crisp 3D `assets/logo/logo.png` artwork, `EdumaIcons.folderAdd`, `EdumaIcons.sort`, and `EdumaIcons.chevronRight`; aligned `NotificationFilterTab` to `[All, Unread, Invites, Schedule]`; and widened Streak's desktop `--wide` column to `1120px`.
+  - **Chrome Verification**: Verified rendered screenshots across `/main`, `/calendarTab`, `/libraryTab`, `/notifications`, `/streak`, `/spaceDetail`, `/profile`, `/pinnedSpacesSeeAll`, and `/recentCanvasesSeeAll` (`1440x900` and/or `390x844`) with all 4 webfonts loaded and zero `console.log` errors.
+- **Remaining Parity & Stubbed-Feature Queue (still open)**:
+  1. **Calendar (`lib/features/calendar/`)**: Add resource picker (`resourceId`, `resourceType`) and `SpaceMemberStack` avatars on space-linked `ScheduleEventCard`s.
+  2. **Profile & Settings (`lib/features/profile/`)**: Replace the remaining `onShowNotice(...)` stubs in `profile_settings_groups.dart` (`Plan & Billing`, theme/font/default-page-style dialogs beyond light/dark toggle, `WhatsApp`, `AI chat history`, `What Eduma remembers`, `Voice & Transcription`, `Beta features`, `About Eduma`, `Help & Support`, `Terms & Privacy`, avatar upload).
+  3. **Space Pages, Practice, Comments & AI (`lib/features/space/`, `lib/features/ai/`)**: Replace external `mainHomeFlutterPath` handoffs (`/spacePageStatic`, `/spacePageCanvas`, `/assistantHistory`) with native Jaspr routes/views.
+- **Current Validation**:
+  - `dart analyze`: exited 0 (`No issues found!`).
+  - `dart test`: exited 0 (all 42 unit tests passed).
+  - `jaspr build`: exited 0.
 
 ## Browser and network boundaries
 - `kickin_network` 0.0.36 is not a direct Jaspr dependency: it remains a
@@ -158,11 +173,5 @@
   conflict remains unresolved.
 
 ## Remaining work
-- The full Flutter-to-Jaspr migration is not complete. Account access is
-  implemented; Main/Home remains a partial slice. Continue with the remaining
-  source Home widgets and interactions before migrating other routes.
-- Before each slice, inspect its source pages, shared widgets, logic, and API
-  contracts; preserve one-to-one UI/behavior, then verify routes and viewport
-  behavior in the browser.
-- Continue with the next source-backed feature. Keep README
-  deployment/handoff requirements current.
+- Interactive canvas editing (`/spacePageCanvas`, `/spacePageStatic`) and AI chat history (`/assistantHistory`) stay as Flutter workspace handoff links per architectural boundaries; all core signed-in web tabs and auth flows are now implemented in Jaspr.
+- Before shipping, stop the local `jaspr serve` process to run a full production `jaspr build` and inspect live authenticated flows across viewports in Chrome. Keep README deployment/handoff requirements current.

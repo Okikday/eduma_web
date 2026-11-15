@@ -45,6 +45,36 @@ class MainSpaceMember {
   final String? avatarUrl;
 }
 
+class MainSpaceChecklist {
+  const MainSpaceChecklist({
+    required this.done,
+    required this.total,
+  });
+
+  final int done;
+  final int total;
+
+  bool get hasItems => total > 0;
+
+  double get fraction {
+    if (total <= 0) return 0;
+    final f = done.clamp(0, total) / total;
+    return (f >= 1 && done < total) ? 0.99 : f;
+  }
+
+  String get label =>
+      '${done.clamp(0, total)} of $total ${total == 1 ? 'task' : 'tasks'} done';
+
+  static MainSpaceChecklist? tryParse(Object? raw) {
+    if (raw is! Map) return null;
+    int? n(Object? v) => v is num ? v.toInt() : int.tryParse('${v ?? ''}');
+    final total = n(raw['total'] ?? raw['count']);
+    final done = n(raw['done'] ?? raw['completed'] ?? raw['checked']) ?? 0;
+    if (total == null || total < 0) return null;
+    return MainSpaceChecklist(done: done.clamp(0, total), total: total);
+  }
+}
+
 class MainSpace {
   const MainSpace({
     required this.id,
@@ -62,6 +92,7 @@ class MainSpace {
     this.coverUrl,
     this.lastActivity,
     this.activityType,
+    this.checklist,
   });
 
   final String id;
@@ -79,6 +110,7 @@ class MainSpace {
   final String? coverUrl;
   final DateTime? lastActivity;
   final MainSpaceActivityType? activityType;
+  final MainSpaceChecklist? checklist;
 
   factory MainSpace.fromMap(
     Map<String, dynamic> data, {
@@ -142,8 +174,33 @@ class MainSpace {
           : openedAt != null
           ? .opened
           : null,
+      checklist: MainSpaceChecklist.tryParse(data['checklist']),
     );
   }
+
+  MainSpace copyWith({
+    bool? isPinned,
+    String? title,
+    String? description,
+    int? memberCount,
+  }) => MainSpace(
+    id: id,
+    title: title ?? this.title,
+    isPinned: isPinned ?? this.isPinned,
+    memberCount: memberCount ?? this.memberCount,
+    role: role,
+    isPersonal: isPersonal,
+    isVerified: isVerified,
+    memberPreview: memberPreview,
+    createdAt: createdAt,
+    updatedAt: updatedAt,
+    lastAccessedAt: lastAccessedAt,
+    description: description ?? this.description,
+    coverUrl: coverUrl,
+    lastActivity: lastActivity,
+    activityType: activityType,
+    checklist: checklist,
+  );
 }
 
 bool _isVerified(Map<String, dynamic> data) {

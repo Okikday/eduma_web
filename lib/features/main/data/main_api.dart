@@ -1,6 +1,17 @@
 import '../../auth/data/auth_api.dart';
+import '../logic/space_invite_link.dart';
 import 'main_canvas.dart';
 import 'main_space.dart';
+import 'main_space_mutations.dart';
+
+class MainPinLimitException implements Exception {
+  const MainPinLimitException();
+
+  String get message => 'You can pin up to ${SpaceInviteLink.maxPinnedSpaces} spaces.';
+
+  @override
+  String toString() => message;
+}
 
 class MainSpacesPage {
   const MainSpacesPage({required this.spaces, required this.hasMore});
@@ -142,5 +153,101 @@ class MainApi {
       );
     }
     return MainSpacesPage(spaces: spaces, hasMore: spaces.length >= pageSize);
+  }
+
+  Future<MainSpace?> createSpace({
+    required String title,
+    String? description,
+    String? clientRef,
+    String currentUserId = '',
+  }) async {
+    final trimmedTitle = title.trim();
+    if (trimmedTitle.isEmpty) {
+      throw const MainApiException('Enter a title for this space.');
+    }
+    final trimmedDescription = description?.trim() ?? '';
+    final payload = await _authApi.postAuthenticated(
+      '/spaces',
+      body: {
+        'title': trimmedTitle,
+        if (trimmedDescription.isNotEmpty) 'description': trimmedDescription,
+        if (clientRef != null && clientRef.trim().isNotEmpty) 'clientRef': clientRef.trim(),
+      },
+    );
+    final raw = payload['space'] ?? payload['data'] ?? payload;
+    if (raw is! Map) return null;
+    return tryParseMainSpace(
+      Map<String, dynamic>.from(raw),
+      currentUserId: currentUserId,
+    );
+  }
+
+  Future<MainSpacePreview> previewInvite(String input) async {
+    final code = SpaceInviteLink.extractCode(input);
+    if (code.isEmpty) {
+      throw const MainApiException('Enter an invite code or paste an invite link.');
+    }
+    try {
+      final payload = await _authApi.getAuthenticated(
+        '/spaces/invite/${Uri.encodeComponent(code)}',
+      );
+      final raw = payload['space'] ?? payload['preview'] ?? payload['data'] ?? payload;
+      if (raw is! Map) {
+        throw const MainApiException(
+          'Eduma returned an unexpected invite preview response.',
+        );
+      }
+      return MainSpacePreview.fromMap(Map<String, dynamic>.from(raw));
+    } on AuthApiException catch (error) {
+      final expired = SpaceInviteLink.expiredErrorMessage(
+        statusCode: error.statusCode,
+        code: error.code,
+      );
+      if (expired != null) throw MainApiException(expired);
+      rethrow;
+    }
+  }
+
+  Future<MainSpaceJoinResult> joinSpace(
+    String input, {
+    String currentUserId = '',
+  }) async {
+    final code = SpaceInviteLink.extractCode(input);
+    if (code.isEmpty) {
+      throw const MainApiException('Enter an invite code or paste an invite link.');
+    }
+    try {
+      final payload = await _authApi.postAuthenticated(
+        '/spaces/join',
+        body: {'inviteCode': code},
+      );
+      final raw = payload['data'] is Map
+          ? Map<String, dynamic>.from(payload['data'] as Map)
+          : payload;
+      return MainSpaceJoinResult.fromMap(raw, currentUserId: currentUserId);
+    } on AuthApiException catch (error) {
+      final expired = SpaceInviteLink.expiredErrorMessage(
+        statusCode: error.statusCode,
+        code: error.code,
+      );
+      if (expired != null) throw MainApiException(expired);
+      rethrow;
+    }
+  }
+
+  Future<void> setSpacePinned(String spaceId, {required bool pinned}) async {
+    final path = '/spaces/${Uri.encodeComponent(spaceId)}/pin';
+    try {
+      if (pinned) {
+        await _authApi.postAuthenticated(path);
+      } else {
+        await _authApi.deleteAuthenticated(path);
+      }
+    } on AuthApiException catch (error) {
+      if (pinned && error.statusCode == 409) {
+        throw const MainPinLimitException();
+      }
+      rethrow;
+    }
   }
 }

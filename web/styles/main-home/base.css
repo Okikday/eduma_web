@@ -1,65 +1,16 @@
 .main-home {
-  --main-primary: #4b24d2;
-}
-
-@font-face {
-  font-family: "eduma-huge-stroke";
-  src: url("../../assets/fonts/icons/hugeicons-stroke.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-}
-
-@font-face {
-  font-family: "eduma-huge-solid";
-  src: url("../../assets/fonts/icons/hugeicons-solid.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-}
-
-@font-face {
-  font-family: "eduma-iconsax";
-  src: url("../../assets/fonts/icons/FlutterIconsax.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-}
-
-.eduma-icon {
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1;
-}
-
-.eduma-huge-stroke {
-  font-family: "eduma-huge-stroke", sans-serif;
-}
-
-.eduma-huge-solid {
-  font-family: "eduma-huge-solid", sans-serif;
-}
-
-.eduma-iconsax {
-  font-family: "eduma-iconsax", sans-serif;
-}
-
-.eduma-huge-stroke,
-.eduma-huge-solid,
-.eduma-iconsax {
-  font-synthesis: none;
-}
-
-.main-home {
+  --main-primary: var(--eduma-primary);
   display: flex;
   min-height: 100vh;
   min-height: 100dvh;
-  color: #141522;
-  background: #efeef4;
+  color: var(--eduma-text);
+  background: var(--eduma-bg);
+}
+
+.main-home__center-wrap {
+  flex: 1 1 0;
+  width: 100%;
+  min-width: 0;
 }
 
 .main-home__content {
@@ -79,10 +30,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 8px 16px;
-  border-bottom: 1px solid rgb(20 21 34 / 5%);
-  background: rgb(239 238 244 / 90%);
-  backdrop-filter: blur(12px);
+  padding: 8px 12px;
+  border-bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--eduma-bg) 0%,
+    rgb(239 238 244 / 92%) 72%,
+    rgb(239 238 244 / 0%) 100%
+  );
 }
 
 .main-home__profile {
@@ -102,10 +57,10 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border: 2px solid rgb(75 36 210 / 16%);
+  border: 1.5px solid var(--eduma-border);
   border-radius: 50%;
-  background: #e2dcfa;
-  color: #4b24d2;
+  background: rgb(255 255 255 / 10%);
+  color: var(--eduma-text);
   object-fit: cover;
 }
 
@@ -151,15 +106,40 @@
 .main-home__icon-link,
 .main-home__refresh {
   display: inline-flex;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgb(20 21 34 / 9%);
+  border: 1px solid var(--eduma-card-border);
   border-radius: 50%;
-  background: rgb(255 255 255 / 82%);
-  color: #55576a;
+  background: var(--eduma-surface);
+  color: var(--eduma-text);
   text-decoration: none;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 4%);
+}
+
+.main-home__streak-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 10px;
+  border: 1.5px solid var(--eduma-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, rgb(255 255 255 / 40%) 82%, #ffc107 18%);
+  backdrop-filter: blur(2px);
+  color: var(--eduma-text);
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.main-home__streak-chip.is-active {
+  padding-right: 12px;
+}
+
+.main-home__streak-chip.is-active .eduma-icon {
+  color: var(--eduma-warning);
 }
 
 .main-home__workspace-link {
@@ -172,14 +152,17 @@
   border: 1px solid rgb(75 36 210 / 16%);
   border-radius: 999px;
   background: rgb(75 36 210 / 7%);
-  color: #4b24d2;
+  color: var(--eduma-primary);
   font-size: 13px;
   font-weight: 650;
   text-decoration: none;
 }
 
 .main-home__body {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  min-width: 0;
   max-width: 1480px;
   margin: 0 auto;
   padding: 0 16px 32px;

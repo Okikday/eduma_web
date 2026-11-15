@@ -2,14 +2,15 @@ import 'dart:async';
 
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-import 'package:jaspr_router/jaspr_router.dart';
 import 'package:web/web.dart' as web;
 
+import '../../../../core/presentation/eduma_link.dart';
 import '../../logic/auth_actions.dart';
 import '../../logic/sign_up_logic.dart';
 import '../widgets/auth_frame.dart';
-
-enum _ReferralCheck { idle, checking, valid, invalid, unknown }
+import '../widgets/sign_up_bars.dart';
+import '../widgets/sign_up_photo_step.dart';
+import '../widgets/sign_up_steps.dart';
 
 class SignUpPage extends StatefulComponent {
   const SignUpPage({super.key, this.referralCode = ''});
@@ -25,6 +26,7 @@ class SignUpPageState extends State<SignUpPage> {
   String _username = '';
   String _email = '';
   String _password = '';
+  String? _photoDataUrl;
   String _referralCode = '';
   bool _usernameEdited = false;
   bool _referralFromLink = false;
@@ -33,7 +35,7 @@ class SignUpPageState extends State<SignUpPage> {
   bool _loading = false;
   int _step = 0;
   UsernameCheck _usernameCheck = UsernameCheck.idle;
-  _ReferralCheck _referralCheck = _ReferralCheck.idle;
+  ReferralCheck _referralCheck = ReferralCheck.idle;
   String? _usernameCheckMessage;
   String? _referralMessage;
   String? _error;
@@ -48,6 +50,7 @@ class SignUpPageState extends State<SignUpPage> {
           _usernameCheck != UsernameCheck.taken &&
           _usernameCheck != UsernameCheck.invalid,
     1 => SignUpLogic.validEmail(_email) && SignUpLogic.strengthOf(_password).acceptable,
+    2 => true,
     _ => _termsAccepted,
   };
 
@@ -153,7 +156,7 @@ class SignUpPageState extends State<SignUpPage> {
     setState(() {
       _referralCode = parsed ?? value;
       _referralFromLink = false;
-      _referralCheck = _ReferralCheck.idle;
+      _referralCheck = ReferralCheck.idle;
       _referralMessage = null;
       _error = null;
     });
@@ -166,14 +169,14 @@ class SignUpPageState extends State<SignUpPage> {
     final revision = ++_referralRevision;
     if (code == null) {
       setState(() {
-        _referralCheck = _ReferralCheck.idle;
+        _referralCheck = ReferralCheck.idle;
         _referralMessage = null;
       });
       return;
     }
 
     setState(() {
-      _referralCheck = _ReferralCheck.checking;
+      _referralCheck = ReferralCheck.checking;
       _referralMessage = null;
     });
     _referralTimer = Timer(const Duration(milliseconds: 400), () async {
@@ -187,7 +190,7 @@ class SignUpPageState extends State<SignUpPage> {
         final valid = referral['valid'] != false && referral['isValid'] != false && referral['exists'] != false;
         final label = _inviterLabel(inviter);
         setState(() {
-          _referralCheck = valid ? _ReferralCheck.valid : _ReferralCheck.invalid;
+          _referralCheck = valid ? ReferralCheck.valid : ReferralCheck.invalid;
           _referralMessage = valid
               ? label == null
                     ? 'Invite code found$_referralLinkSuffix'
@@ -203,7 +206,7 @@ class SignUpPageState extends State<SignUpPage> {
         final invalid =
             !routeMissing && (error.statusCode == 404 || error.statusCode == 410 || error.statusCode == 422);
         setState(() {
-          _referralCheck = invalid ? _ReferralCheck.invalid : _ReferralCheck.unknown;
+          _referralCheck = invalid ? ReferralCheck.invalid : ReferralCheck.unknown;
           _referralMessage = invalid
               ? "We couldn't find that code, so it won't be used. Check it for typos."
               : "We couldn't check this code right now. We'll include it with your account.";
@@ -243,7 +246,7 @@ class SignUpPageState extends State<SignUpPage> {
       _showValidationError(message, targetId);
       return;
     }
-    if (_step == 2) {
+    if (_step == 3) {
       unawaited(_createAccount());
       return;
     }
@@ -253,13 +256,13 @@ class SignUpPageState extends State<SignUpPage> {
       _error = null;
     });
     _focusElement('auth-step-heading');
-    if (_step == 2) _scheduleReferralCheck();
+    if (_step == 3) _scheduleReferralCheck();
   }
 
   void _back() {
     if (_loading) return;
     if (_step == 0) {
-      web.window.location.assign('/sign-in');
+      edumaNavigate(context, '/sign-in');
       return;
     }
     setState(() {
@@ -273,7 +276,7 @@ class SignUpPageState extends State<SignUpPage> {
     final name = _name.trim();
     final username = _username.trim().toLowerCase();
     final email = _email.trim();
-    final code = _referralCheck == _ReferralCheck.invalid ? null : SignUpLogic.cleanReferralCode(_referralCode);
+    final code = _referralCheck == ReferralCheck.invalid ? null : SignUpLogic.cleanReferralCode(_referralCode);
     if (!_termsAccepted) {
       _showValidationError(
         'Please read and agree to the Terms of Service to create your account.',
@@ -339,7 +342,8 @@ class SignUpPageState extends State<SignUpPage> {
   }
 
   void _goToVerification(String email) {
-    web.window.location.assign(
+    edumaNavigate(
+      context,
       Uri(
         path: '/verify-email',
         queryParameters: {'email': email, 'sent': 'true'},
@@ -362,14 +366,14 @@ class SignUpPageState extends State<SignUpPage> {
       return;
     }
 
-    final code = _referralCheck == _ReferralCheck.invalid ? null : SignUpLogic.cleanReferralCode(_referralCode);
+    final code = _referralCheck == ReferralCheck.invalid ? null : SignUpLogic.cleanReferralCode(_referralCode);
     setState(() {
       _loading = true;
       _error = null;
     });
     try {
       await AuthActions.googleSignIn(idToken, referralCode: code);
-      if (mounted) web.window.location.assign('/main');
+      if (mounted) edumaNavigate(context, '/main', replace: true);
     } on AuthApiException catch (error) {
       if (mounted) setState(() => _error = error.message);
     } finally {
@@ -383,21 +387,6 @@ class SignUpPageState extends State<SignUpPage> {
           ? 'Please agree to the Terms of Service and acknowledge the Privacy Policy before continuing.'
           : 'Google sign-in is not configured. Please sign in with your email instead.';
     });
-  }
-
-  Component? _usernameSuffix() {
-    return switch (_usernameCheck) {
-      UsernameCheck.checking => span(classes: 'auth-mini-spinner', []),
-      UsernameCheck.available => span(
-        classes: 'auth-field-status auth-field-status--available',
-        [authIcon('check', size: 18)],
-      ),
-      UsernameCheck.taken || UsernameCheck.invalid => span(
-        classes: 'auth-field-status auth-field-status--error',
-        [authIcon('close', size: 18)],
-      ),
-      UsernameCheck.idle || UsernameCheck.unknown => null,
-    };
   }
 
   String get _usernameMessage =>
@@ -421,215 +410,18 @@ class SignUpPageState extends State<SignUpPage> {
       SignUpLogic.firstName(_name).isEmpty
           ? 'Your email and password'
           : 'Nice to meet you, ${SignUpLogic.firstName(_name)}',
+    2 => 'Add a profile photo',
     _ => _referralCode.isNotEmpty ? "You're invited" : 'Were you invited?',
   };
 
   String get _stepHelper => switch (_step) {
     0 => 'This is how friends and study groups will see you.',
     1 => "Add the email and password you'll sign in with. We'll send a code to confirm the email.",
+    2 => 'It helps friends recognise you. You can change it any time.',
     _ =>
       _referralCode.isNotEmpty
           ? "Your invite code is filled in from the link. Create your account when you're ready."
           : 'If a friend shared an invite code, add it here. You can skip this.',
-  };
-
-  Component _passwordStrength() {
-    final strength = SignUpLogic.strengthOf(_password);
-    final tone = switch (strength) {
-      PasswordStrength.empty => '',
-      PasswordStrength.tooShort || PasswordStrength.weak => 'auth-password-strength--weak',
-      PasswordStrength.fair => 'auth-password-strength--fair',
-      PasswordStrength.good || PasswordStrength.strong => 'auth-password-strength--good',
-    };
-    final label = strength == PasswordStrength.empty
-        ? 'Mix letters, numbers and symbols for a stronger password.'
-        : strength.label;
-    return div(
-      classes: tone.isEmpty ? 'auth-password-strength' : 'auth-password-strength $tone',
-      [
-        div(classes: 'auth-strength-bars', [
-          for (var index = 0; index < 4; index++)
-            span(
-              classes: index < strength.segments ? 'auth-strength-bar auth-strength-bar--filled' : 'auth-strength-bar',
-              [],
-            ),
-        ]),
-        p([.text(label)]),
-      ],
-    );
-  }
-
-  Component _stepFields() => switch (_step) {
-    0 => form(
-      classes: 'auth-step-form',
-      noValidate: true,
-      events: {
-        'submit': (event) {
-          event.preventDefault();
-          _primary();
-        },
-      },
-      [
-        if (_error case final message?) div(classes: 'auth-step-error', [authError(message)]),
-        div(classes: 'auth-step-content auth-name-step', [
-          div(classes: 'auth-field-stack', [
-            authField(
-              labelText: 'Full name',
-              name: 'name',
-              value: _name,
-              type: InputType.text,
-              autocomplete: 'name',
-              placeholder: 'Your first and last name',
-              icon: 'user',
-              enterKeyHint: 'next',
-              onInput: _onNameChanged,
-            ),
-            authField(
-              labelText: 'Username',
-              name: 'username',
-              value: _username,
-              type: InputType.text,
-              autocomplete: 'username',
-              identifier: true,
-              placeholder: 'yourname',
-              icon: 'username',
-              invalid: _usernameCheck == UsernameCheck.taken || _usernameCheck == UsernameCheck.invalid,
-              describedBy: 'auth-username-help',
-              enterKeyHint: 'next',
-              fieldClass: _usernameCheck == UsernameCheck.taken || _usernameCheck == UsernameCheck.invalid
-                  ? 'auth-field--error'
-                  : null,
-              onInput: _onUsernameChanged,
-              suffix: _usernameSuffix(),
-            ),
-          ]),
-          p(
-            classes: _usernameMessageClass.isEmpty ? 'auth-username-help' : 'auth-username-help $_usernameMessageClass',
-            attributes: {
-              'id': 'auth-username-help',
-              'role': 'status',
-              'aria-live': 'polite',
-            },
-            [
-              .text(_usernameMessage),
-            ],
-          ),
-          authDivider(text: 'Or'),
-          div(classes: 'auth-google-row', [
-            authGoogleButton(
-              termsAccepted: _termsAccepted,
-              onUnavailable: _googleButtonPressed,
-            ),
-          ]),
-          p(classes: 'auth-switch', [
-            .text('Already have an account? '),
-            Link(
-              to: '/sign-in',
-              child: span(classes: 'auth-link', [.text('Sign in')]),
-            ),
-          ]),
-        ]),
-      ],
-    ),
-    1 => form(
-      classes: 'auth-step-form',
-      noValidate: true,
-      events: {
-        'submit': (event) {
-          event.preventDefault();
-          _primary();
-        },
-      },
-      [
-        if (_error case final message?) div(classes: 'auth-step-error', [authError(message)]),
-        div(classes: 'auth-step-content', [
-          div(classes: 'auth-field-stack', [
-            authField(
-              labelText: 'Email',
-              name: 'email',
-              value: _email,
-              type: InputType.email,
-              autocomplete: 'email',
-              identifier: true,
-              placeholder: 'you@example.com',
-              icon: 'mail',
-              enterKeyHint: 'next',
-              onInput: (value) => setState(() {
-                _email = value;
-                _error = null;
-              }),
-            ),
-            authField(
-              labelText: 'Password',
-              name: 'password',
-              value: _password,
-              type: _passwordVisible ? InputType.text : InputType.password,
-              autocomplete: 'new-password',
-              placeholder: 'At least 8 characters',
-              icon: 'lock',
-              enterKeyHint: 'done',
-              onInput: (value) => setState(() {
-                _password = value;
-                _error = null;
-              }),
-              suffix: button(
-                classes: 'auth-field-suffix',
-                type: ButtonType.button,
-                onClick: () => setState(() => _passwordVisible = !_passwordVisible),
-                attributes: {
-                  'aria-label': _passwordVisible ? 'Hide password' : 'Show password',
-                },
-                [authIcon(_passwordVisible ? 'eye' : 'eye-off')],
-              ),
-            ),
-            _passwordStrength(),
-          ]),
-        ]),
-      ],
-    ),
-    _ => form(
-      classes: 'auth-step-form',
-      noValidate: true,
-      events: {
-        'submit': (event) {
-          event.preventDefault();
-          _primary();
-        },
-      },
-      [
-        if (_error case final message?) div(classes: 'auth-step-error', [authError(message)]),
-        div(classes: 'auth-step-content', [
-          authField(
-            labelText: 'Invite code',
-            name: 'referralCode',
-            value: _referralCode,
-            type: InputType.text,
-            autocomplete: 'off',
-            identifier: true,
-            requiredField: false,
-            placeholder: 'Paste a code or invite link',
-            icon: 'ticket',
-            onInput: _onReferralChanged,
-          ),
-          if (_referralMessage case final message?)
-            p(
-              classes: switch (_referralCheck) {
-                _ReferralCheck.invalid => 'auth-referral-status auth-referral-status--invalid',
-                _ReferralCheck.valid => 'auth-referral-status auth-referral-status--valid',
-                _ => 'auth-referral-status',
-              },
-              attributes: {'role': 'status', 'aria-live': 'polite'},
-              [.text(message)],
-            ),
-          if (_referralCheck == _ReferralCheck.checking)
-            p(
-              classes: 'auth-referral-status',
-              attributes: {'role': 'status', 'aria-live': 'polite'},
-              [.text('Checking the code…')],
-            ),
-        ]),
-      ],
-    ),
   };
 
   @override
@@ -645,50 +437,14 @@ class SignUpPageState extends State<SignUpPage> {
           onInput: (token) => unawaited(_completeGoogleSignIn(token)),
           attributes: {'aria-hidden': 'true', 'tabindex': '-1'},
         ),
-        header(classes: 'auth-signup-topbar', [
-          Link(
-            to: '/sign-in',
-            child: span(
-              classes: 'auth-topbar-button',
-              attributes: {'aria-label': 'Close sign up'},
-              [authIcon('close', size: 18)],
-            ),
-          ),
-          div(
-            classes: 'auth-step-progress',
-            attributes: {
-              'role': 'progressbar',
-              'aria-label': 'Sign-up progress',
-              'aria-valuemin': '1',
-              'aria-valuemax': '3',
-              'aria-valuenow': '${_step + 1}',
-            },
-            [
-              for (var index = 0; index < 3; index++)
-                span(
-                  classes: index <= _step
-                      ? 'auth-step-progress__segment auth-step-progress__segment--filled'
-                      : 'auth-step-progress__segment',
-                  attributes: {'aria-hidden': 'true'},
-                  [],
-                ),
-            ],
-          ),
-          if (_step == 2 && _referralCode.isEmpty && !_loading)
-            button(
-              classes: 'auth-skip',
-              type: ButtonType.button,
-              onClick: _primary,
-              [.text('Skip')],
-            )
-          else
-            button(
-              classes: 'auth-skip auth-skip--hidden',
-              type: ButtonType.button,
-              disabled: true,
-              [.text('Skip')],
-            ),
-        ]),
+        signUpTopBar(
+          step: _step,
+          showSkip:
+              !_loading &&
+              ((_step == 2 && (_photoDataUrl == null || _photoDataUrl!.isEmpty)) ||
+                  (_step == 3 && _referralCode.isEmpty)),
+          onSkip: _primary,
+        ),
         section(classes: 'auth-step-body', [
           div(classes: 'auth-step-header', [
             h1(
@@ -699,41 +455,69 @@ class SignUpPageState extends State<SignUpPage> {
             ),
             p(classes: 'auth-subtitle', [.text(_stepHelper)]),
           ]),
-          _stepFields(),
-        ]),
-        footer(classes: 'auth-bottom-bar', [
-          authConsent(
-            value: _termsAccepted,
-            disabled: _loading,
-            onChanged: (value) => setState(() {
-              _termsAccepted = value;
-              _error = null;
-            }),
-          ),
-          div(classes: 'auth-step-actions', [
-            if (_step > 0)
-              button(
-                classes: 'auth-secondary-button',
-                type: ButtonType.button,
-                disabled: _loading,
-                onClick: _back,
-                [.text('Back')],
-              ),
-            button(
-              classes: 'auth-submit',
-              type: ButtonType.button,
-              disabled: _loading,
-              onClick: _primary,
-              [
-                .text(_step == 2 ? 'Create account' : 'Continue'),
-                if (_loading)
-                  span(classes: 'auth-spinner', [])
-                else if (_step < 2)
-                  span(classes: 'auth-button-trailing', [authIcon('arrow', size: 18)]),
-              ],
+          switch (_step) {
+            0 => signUpNameStep(
+              name: _name,
+              username: _username,
+              usernameCheck: _usernameCheck,
+              usernameMessage: _usernameMessage,
+              usernameMessageClass: _usernameMessageClass,
+              termsAccepted: _termsAccepted,
+              error: _error,
+              onNameChanged: _onNameChanged,
+              onUsernameChanged: _onUsernameChanged,
+              onSubmit: _primary,
+              onGoogleUnavailable: _googleButtonPressed,
             ),
-          ]),
+            1 => signUpCredentialsStep(
+              email: _email,
+              password: _password,
+              passwordVisible: _passwordVisible,
+              error: _error,
+              onEmailChanged: (value) => setState(() {
+                _email = value;
+                _error = null;
+              }),
+              onPasswordChanged: (value) => setState(() {
+                _password = value;
+                _error = null;
+              }),
+              onTogglePassword: () => setState(() => _passwordVisible = !_passwordVisible),
+              onSubmit: _primary,
+            ),
+            2 => signUpPhotoStep(
+              name: _name,
+              photoDataUrl: _photoDataUrl,
+              busy: false,
+              error: _error,
+              onPhotoSelected: (dataUrl) => setState(() {
+                _photoDataUrl = dataUrl;
+                _error = null;
+              }),
+              onRemovePhoto: () => setState(() => _photoDataUrl = null),
+            ),
+            _ => signUpReferralStep(
+              referralCode: _referralCode,
+              referralCheck: _referralCheck,
+              referralMessage: _referralMessage,
+              error: _error,
+              onReferralChanged: _onReferralChanged,
+              onSubmit: _primary,
+            ),
+          },
         ]),
+        signUpBottomBar(
+          step: _step,
+          termsAccepted: _termsAccepted,
+          loading: _loading,
+          canContinue: _canContinue,
+          onTermsChanged: (value) => setState(() {
+            _termsAccepted = value;
+            _error = null;
+          }),
+          onBack: _back,
+          onPrimary: _primary,
+        ),
       ],
     ),
     signUp: true,

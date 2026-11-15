@@ -1,6 +1,8 @@
 // ignore_for_file: constant_identifier_names
 import 'package:iconsax_flutter/src/icon_data.dart';
 
+export 'src/icon_data.dart';
+
 class Iconsax {
   Iconsax._();
 

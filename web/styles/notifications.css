@@ -1,0 +1,285 @@
+.eduma-notifications__mark-all {
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--eduma-primary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  white-space: nowrap;
+}
+
+.eduma-notifications__mark-all.is-disabled,
+.eduma-notifications__mark-all:disabled {
+  color: rgb(75 36 210 / 40%);
+  cursor: default;
+}
+
+.eduma-notifications__filters {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.eduma-notifications__filters::-webkit-scrollbar {
+  display: none;
+}
+
+.eduma-notifications__chip {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  border: 1px solid var(--eduma-card-border);
+  border-radius: 999px;
+  background: var(--eduma-surface);
+  color: var(--eduma-text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.eduma-notifications__chip.is-active {
+  border-color: var(--eduma-primary);
+  background: var(--eduma-primary);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgb(75 36 210 / 24%);
+}
+
+.eduma-notifications__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eduma-notifications__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 20px;
+  text-align: center;
+}
+
+.eduma-notifications__empty-icon {
+  display: inline-flex;
+  width: 56px;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: var(--eduma-surface);
+  border: 1px solid var(--eduma-card-border);
+  color: var(--eduma-text-muted);
+}
+
+.eduma-notifications__empty strong {
+  color: var(--eduma-text);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.eduma-notifications__empty p {
+  max-width: 340px;
+  margin: 0;
+  color: var(--eduma-text-muted);
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+.eduma-notifications__item {
+  --notif-accent: var(--eduma-primary);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--eduma-card-border);
+  border-radius: var(--eduma-radius-xl);
+  background: var(--eduma-surface);
+}
+
+.eduma-notifications__item.is-unread {
+  box-shadow: var(--eduma-card-shadow);
+}
+
+.eduma-notifications__item--schedule {
+  --notif-accent: var(--eduma-info);
+}
+
+.eduma-notifications__item--milestone,
+.eduma-notifications__item--join-approved {
+  --notif-accent: var(--eduma-success);
+}
+
+.eduma-notifications__item--streak {
+  --notif-accent: var(--eduma-warning);
+}
+
+.eduma-notifications__item--whatsapp {
+  --notif-accent: var(--eduma-whatsapp);
+}
+
+.eduma-notifications__item--system,
+.eduma-notifications__item--join-declined {
+  --notif-accent: var(--eduma-text-muted);
+}
+
+.eduma-notifications__icon {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--notif-accent) 16%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--notif-accent) 10%, var(--eduma-surface));
+  color: var(--notif-accent);
+}
+
+.eduma-notifications__copy {
+  min-width: 0;
+}
+
+.eduma-notifications__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.eduma-notifications__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2.5px 7px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--notif-accent) 10%, transparent);
+  color: var(--notif-accent);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.eduma-notifications__unread-dot {
+  width: 8px;
+  height: 8px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: var(--eduma-primary);
+}
+
+.eduma-notifications__copy h3 {
+  margin: 6px 0 0;
+  color: var(--eduma-text);
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.eduma-notifications__item.is-unread h3 {
+  font-weight: 700;
+}
+
+.eduma-notifications__time {
+  margin-right: auto;
+  color: var(--eduma-text-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.eduma-notifications__copy p {
+  margin: 4px 0 0;
+  color: var(--eduma-text-muted);
+  font-size: 14px;
+  line-height: 1.38;
+  letter-spacing: -0.1px;
+}
+
+.eduma-notifications__item.is-unread p {
+  color: var(--eduma-text-secondary);
+}
+
+.eduma-notifications__outcome {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  color: var(--eduma-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.eduma-notifications__outcome.is-success {
+  color: var(--eduma-success);
+}
+
+.eduma-notifications__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.eduma-notifications__invite-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--eduma-primary);
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgb(75 36 210 / 28%);
+}
+
+.eduma-notifications__invite-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.eduma-notifications__decline-btn {
+  display: inline-flex;
+  height: 32px;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid var(--eduma-card-border);
+  border-radius: 12px;
+  background: var(--eduma-surface-subtle);
+  color: var(--eduma-text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.eduma-notifications__text-btn {
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--eduma-text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.eduma-notifications__text-btn:hover {
+  color: var(--eduma-primary);
+}
+
+.eduma-notifications__text-btn--danger:hover {
+  color: var(--eduma-danger);
+}

@@ -7,6 +7,7 @@ import 'package:web/web.dart' as web;
 
 import '../../logic/auth_actions.dart';
 import '../../logic/sign_up_logic.dart';
+import '../../../../core/presentation/eduma_link.dart';
 import '../widgets/auth_frame.dart';
 
 class SignInPage extends StatefulComponent {
@@ -66,16 +67,18 @@ class SignInPageState extends State<SignInPage> {
     });
     try {
       await AuthActions.signIn(email: email, password: _password);
-      if (mounted) web.window.location.assign('/main');
+      if (mounted) edumaNavigate(context, '/main', replace: true);
     } on AuthApiException catch (error) {
       if (error.isEmailNotVerified) {
         await AuthActions.acceptPendingSession(error);
         if (mounted) {
-          web.window.location.assign(
+          edumaNavigate(
+            context,
             Uri(
               path: '/verify-email',
               queryParameters: {'email': email},
             ).toString(),
+            replace: true,
           );
         }
       } else if (mounted) {
@@ -107,7 +110,7 @@ class SignInPageState extends State<SignInPage> {
     });
     try {
       await AuthActions.googleSignIn(idToken);
-      if (mounted) web.window.location.assign('/main');
+      if (mounted) edumaNavigate(context, '/main', replace: true);
     } on AuthApiException catch (error) {
       if (mounted) setState(() => _error = error.message);
     } finally {
@@ -163,7 +166,7 @@ class SignInPageState extends State<SignInPage> {
               autocomplete: 'username',
               identifier: true,
               placeholder: 'Enter your email address',
-              icon: 'mail',
+              icon: 'mail01',
               onInput: (value) => setState(() {
                 _email = value;
                 _error = null;
@@ -178,7 +181,7 @@ class SignInPageState extends State<SignInPage> {
                         _error = null;
                       }),
                       attributes: {'aria-label': 'Clear email address'},
-                      [authIcon('close', size: 18)],
+                      [authIcon('cancel-circle', size: 18)],
                     ),
             ),
             authField(
@@ -227,6 +230,7 @@ class SignInPageState extends State<SignInPage> {
             authSubmitButton(
               'Sign In',
               loading: _loading,
+              enabled: SignUpLogic.validEmail(_email.trim()) && _password.length >= 8 && _termsAccepted,
             ),
           ],
         ),

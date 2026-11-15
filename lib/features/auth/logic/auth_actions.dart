@@ -1,11 +1,19 @@
 import '../data/auth_api.dart';
 
-export '../data/auth_api.dart' show AuthApiException, EdumaSession, edumaFlutterAppUrl, edumaGoogleWebClientId;
+export '../data/auth_api.dart'
+    show
+        AuthApiException,
+        EdumaSession,
+        edumaApiBaseUrl,
+        edumaFlutterAppUrl,
+        edumaGoogleWebClientId;
 
 abstract final class AuthActions {
   static final _api = EdumaAuthApi.instance;
 
   static bool get canOpenFlutterApp => _api.canOpenFlutterApp;
+
+  static EdumaSession? get currentSession => _api.currentSession;
 
   static Future<EdumaSession> signIn({
     required String email,
@@ -52,7 +60,12 @@ abstract final class AuthActions {
 
   static Future<Map<String, dynamic>> lookupReferral(String code) => _api.lookupReferral(code);
 
-  static Future<EdumaSession?> restoreSession() => _api.restoreSession();
+  static Future<EdumaSession?> restoreSession({bool forceRefresh = false}) =>
+      _api.restoreSession(forceRefresh: forceRefresh);
+
+  static Future<Map<String, dynamic>> saveUpdatedUserProfile(
+    Map<String, dynamic> rawUser,
+  ) => _api.saveUpdatedUserProfile(rawUser);
 
   static Future<void> signOut() => _api.signOut();
 

@@ -16,6 +16,8 @@ enum PasswordStrength {
 
 enum UsernameCheck { idle, checking, available, taken, invalid, unknown }
 
+enum ReferralCheck { idle, checking, valid, invalid, unknown }
+
 abstract final class SignUpLogic {
   static final _notAllowed = RegExp(r'[^a-z0-9._]');
 

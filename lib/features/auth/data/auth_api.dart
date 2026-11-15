@@ -6,6 +6,8 @@ import 'package:http/browser_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:web/web.dart' as web;
 
+import '../../../core/data/eduma_memory_cache.dart';
+
 const edumaApiBaseUrl = String.fromEnvironment(
   'EDUMA_API_BASE_URL',
   defaultValue: 'https://eduma-backend1.onrender.com/api/v1',
@@ -98,8 +100,12 @@ class EdumaAuthApi {
 
   final BrowserClient _client = BrowserClient()..withCredentials = true;
   Future<LazyBox<dynamic>>? _openingBox;
+  Future<EdumaSession?>? _restoringSession;
   bool _hiveInitialized = false;
   String? _accessToken;
+  EdumaSession? _currentSession;
+
+  EdumaSession? get currentSession => _currentSession;
 
   bool get canOpenFlutterApp {
     final app = Uri.tryParse(edumaFlutterAppUrl);
@@ -206,11 +212,38 @@ class EdumaAuthApi {
   Future<Map<String, dynamic>> getAuthenticated(
     String path, {
     Map<String, String> queryParameters = const {},
-  }) {
+  }) => requestAuthenticated('GET', path, queryParameters: queryParameters);
+
+  Future<Map<String, dynamic>> postAuthenticated(
+    String path, {
+    Map<String, String> queryParameters = const {},
+    Map<String, Object?> body = const {},
+  }) => requestAuthenticated('POST', path, queryParameters: queryParameters, body: body);
+
+  Future<Map<String, dynamic>> patchAuthenticated(
+    String path, {
+    Map<String, String> queryParameters = const {},
+    Map<String, Object?> body = const {},
+  }) => requestAuthenticated('PATCH', path, queryParameters: queryParameters, body: body);
+
+  Future<Map<String, dynamic>> deleteAuthenticated(
+    String path, {
+    Map<String, String> queryParameters = const {},
+  }) => requestAuthenticated('DELETE', path, queryParameters: queryParameters);
+
+  Future<Map<String, dynamic>> requestAuthenticated(
+    String method,
+    String path, {
+    Map<String, String> queryParameters = const {},
+    Map<String, Object?>? body,
+  }) async {
     if (!path.startsWith('/') || path.startsWith('//')) {
       throw const AuthApiException(
         message: 'Eduma received an invalid API path.',
       );
+    }
+    if (_accessToken == null || _accessToken!.isEmpty) {
+      await restoreSession();
     }
     if (_accessToken == null || _accessToken!.isEmpty) {
       throw const AuthApiException(
@@ -221,7 +254,14 @@ class EdumaAuthApi {
     final uri = Uri.parse('$_baseUrl$path').replace(
       queryParameters: queryParameters.isEmpty ? null : queryParameters,
     );
-    return _send('GET', uri, authenticated: true);
+    try {
+      return await _send(method, uri, body: body, authenticated: true);
+    } on AuthApiException catch (error) {
+      if (error.statusCode != 401 || path.startsWith('/auth/')) rethrow;
+      final refreshed = await restoreSession(forceRefresh: true);
+      if (refreshed == null || refreshed.accessToken.isEmpty) rethrow;
+      return _send(method, uri, body: body, authenticated: true);
+    }
   }
 
   Future<void> requestPasswordReset(String email) async {
@@ -283,9 +323,30 @@ class EdumaAuthApi {
     }
   }
 
-  Future<EdumaSession?> restoreSession() async {
+  Future<EdumaSession?> restoreSession({bool forceRefresh = false}) {
+    final active = _currentSession;
+    if (!forceRefresh && active != null && (_accessToken?.isNotEmpty ?? false)) {
+      return Future<EdumaSession?>.value(active);
+    }
+    final inFlight = _restoringSession;
+    if (inFlight != null) return inFlight;
+
+    final future = _performRestore();
+    _restoringSession = future;
+    future.whenComplete(() {
+      if (identical(_restoringSession, future)) {
+        _restoringSession = null;
+      }
+    });
+    return future;
+  }
+
+  Future<EdumaSession?> _performRestore() async {
     final box = await _appBox();
-    if (await box.get('isUserSignedIn') != true) return null;
+    if (await box.get('isUserSignedIn') != true) {
+      _currentSession = null;
+      return null;
+    }
 
     final storedProfile = _asStringMap(await box.get('profile'));
     final refreshToken = '${await box.get('refreshToken') ?? ''}';
@@ -319,11 +380,13 @@ class EdumaAuthApi {
         );
       }
       await _saveProfile(user);
-      return EdumaSession(
+      final session = EdumaSession(
         user: user,
         accessToken: accessToken,
         refreshToken: nextRefreshToken,
       );
+      _currentSession = session;
+      return session;
     } on AuthApiException catch (error) {
       if (error.isDefinitiveRefusal) {
         await _clearSession(box);
@@ -349,6 +412,7 @@ class EdumaAuthApi {
         if (refreshToken.isNotEmpty) 'refreshToken': refreshToken,
       });
     } finally {
+      EdumaMemoryCache.instance.clear();
       await _clearSession(box);
     }
   }
@@ -427,6 +491,7 @@ class EdumaAuthApi {
     try {
       final decoded = jsonDecode(body);
       if (decoded is Map) return Map<String, dynamic>.from(decoded);
+      if (decoded is List) return <String, dynamic>{'data': decoded};
     } on FormatException {
       throw const AuthApiException(
         message: 'Eduma returned an unreadable response. Please try again.',
@@ -528,6 +593,7 @@ class EdumaAuthApi {
     }
     final box = await _appBox();
     _accessToken = session.accessToken;
+    _currentSession = session;
     await box.putAll({
       'profile': session.user,
       'userId': session.userId,
@@ -538,7 +604,26 @@ class EdumaAuthApi {
     await _saveRefreshToken(box, session.refreshToken);
   }
 
+  Future<LazyBox<dynamic>> openSharedBox() => _appBox();
+
+  Future<Map<String, dynamic>> saveUpdatedUserProfile(
+    Map<String, dynamic> rawUser,
+  ) async {
+    final normalized = _readUser({'user': rawUser}) ?? Map<String, dynamic>.from(rawUser);
+    await _saveProfile(normalized);
+    return normalized;
+  }
+
   Future<void> _saveProfile(Map<String, dynamic> user) async {
+    final active = _currentSession;
+    if (active != null) {
+      _currentSession = EdumaSession(
+        user: user,
+        accessToken: active.accessToken,
+        refreshToken: active.refreshToken,
+        warning: active.warning,
+      );
+    }
     final box = await _appBox();
     await box.putAll({
       'profile': user,
@@ -560,6 +645,7 @@ class EdumaAuthApi {
 
   Future<void> _clearSession(LazyBox<dynamic> box) async {
     _accessToken = null;
+    _currentSession = null;
     await box.deleteAll([
       'accessToken',
       'refreshToken',

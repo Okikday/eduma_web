@@ -1,0 +1,336 @@
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background: var(--eduma-barrier-bg);
+  backdrop-filter: var(--eduma-barrier-blur);
+  -webkit-backdrop-filter: var(--eduma-barrier-blur);
+}
+
+dialog.eduma-modal {
+  box-sizing: border-box;
+  width: min(480px, calc(100vw - 24px));
+  max-width: 100%;
+  max-height: min(680px, calc(100dvh - 32px));
+  margin: auto;
+  padding: 0;
+  border: var(--eduma-glass-dialog-border);
+  border-radius: var(--eduma-radius-xl);
+  background: var(--eduma-glass-dialog-bg);
+  backdrop-filter: var(--eduma-glass-dialog-blur);
+  -webkit-backdrop-filter: var(--eduma-glass-dialog-blur);
+  color: var(--eduma-ink);
+  box-shadow: var(--eduma-glass-dialog-shadow);
+  font-family: inherit;
+}
+
+dialog.eduma-modal[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.eduma-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 22px 14px;
+  border-bottom: 1px solid var(--eduma-border-subtle);
+}
+
+.eduma-modal__heading {
+  min-width: 0;
+}
+
+.eduma-modal__heading h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.eduma-modal__heading p {
+  margin: 4px 0 0;
+  color: var(--eduma-muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.eduma-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border: 0;
+  border-radius: 10px;
+  background: var(--eduma-surface-subtle);
+  color: var(--eduma-muted);
+  cursor: pointer;
+}
+
+.eduma-modal__close:hover {
+  color: var(--eduma-ink);
+  background: var(--eduma-surface-alt);
+}
+
+.eduma-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 22px;
+  overflow-y: auto;
+}
+
+.eduma-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.eduma-modal__field label {
+  color: var(--eduma-ink-soft);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.eduma-modal__input,
+.eduma-modal__textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--eduma-border);
+  border-radius: 12px;
+  background: var(--eduma-surface);
+  color: var(--eduma-ink);
+  font: inherit;
+  font-size: 0.9375rem;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.eduma-modal__input {
+  min-height: 46px;
+  padding: 0 14px;
+}
+
+.eduma-modal__textarea {
+  min-height: 88px;
+  padding: 12px 14px;
+  resize: vertical;
+}
+
+.eduma-modal__input:focus,
+.eduma-modal__textarea:focus {
+  outline: none;
+  border-color: var(--eduma-primary);
+  box-shadow: 0 0 0 3px var(--eduma-primary-focus);
+}
+
+.eduma-modal__inline-row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.eduma-modal__inline-row .eduma-modal__input-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+}
+
+.eduma-modal__input-wrap .eduma-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--eduma-muted);
+  pointer-events: none;
+}
+
+.eduma-modal__input-wrap .eduma-modal__input {
+  padding-left: 38px;
+}
+
+.eduma-modal__hint {
+  margin: 0;
+  color: var(--eduma-muted);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.eduma-modal__error {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--eduma-danger) 28%, transparent);
+  background: var(--eduma-danger-soft);
+  color: var(--eduma-danger);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.eduma-modal__preview {
+  overflow: hidden;
+  border: 1px solid var(--eduma-border);
+  border-radius: 18px;
+  background: var(--eduma-surface);
+}
+
+.eduma-modal__preview-cover {
+  height: 112px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--eduma-primary-soft) 0%, var(--eduma-surface-subtle) 100%);
+  color: var(--eduma-primary);
+}
+
+.eduma-modal__preview-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.eduma-modal__preview-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 16px 14px;
+}
+
+.eduma-modal__preview-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.eduma-modal__preview-desc {
+  margin: 0;
+  color: var(--eduma-muted);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.eduma-modal__preview-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 4px;
+  color: var(--eduma-ink-soft);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.eduma-modal__preview-fact {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.eduma-modal__pending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--eduma-border);
+  background: var(--eduma-surface-subtle);
+  text-align: center;
+}
+
+.eduma-modal__pending strong {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.eduma-modal__pending p {
+  margin: 0;
+  color: var(--eduma-muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.eduma-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 22px 20px;
+  border-top: 1px solid var(--eduma-border-subtle);
+}
+
+.eduma-modal__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 12px;
+  border: 1px solid var(--eduma-border);
+  background: var(--eduma-surface);
+  color: var(--eduma-ink);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.eduma-modal__btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.eduma-modal__btn--primary {
+  border-color: var(--eduma-primary);
+  background: var(--eduma-primary);
+  color: var(--eduma-white);
+}
+
+.eduma-modal__btn--primary:hover:not(:disabled) {
+  background: var(--eduma-primary-hover);
+}
+
+.eduma-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.eduma-modal-backdrop__scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: var(--eduma-barrier-bg);
+  backdrop-filter: var(--eduma-barrier-blur);
+  -webkit-backdrop-filter: var(--eduma-barrier-blur);
+  cursor: pointer;
+}
+
+.eduma-modal-sheet {
+  position: relative;
+  z-index: 1;
+  width: min(460px, calc(100vw - 24px));
+  max-height: min(680px, calc(100dvh - 32px));
+  overflow-y: auto;
+  padding: 20px;
+  border: var(--eduma-glass-dialog-border);
+  border-radius: var(--eduma-radius-xl);
+  background: var(--eduma-glass-dialog-bg);
+  backdrop-filter: var(--eduma-glass-dialog-blur);
+  -webkit-backdrop-filter: var(--eduma-glass-dialog-blur);
+  color: var(--eduma-ink);
+  box-shadow: var(--eduma-glass-dialog-shadow);
+}

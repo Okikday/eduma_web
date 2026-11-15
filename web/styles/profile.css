@@ -1,0 +1,773 @@
+.eduma-profile__desktop-only {
+  display: none;
+}
+
+.eduma-profile__mobile-only {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .eduma-profile__desktop-only {
+    display: block;
+  }
+
+  .eduma-profile__mobile-only {
+    display: none;
+  }
+}
+
+/* ── Desktop Hero (`ProfileDesktopHero`) ────────────────────────────────── */
+.eduma-profile__backdrop,
+.eduma-profile__monogram-bg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #3f3d82 0%, #4b24d2 50%, #14143e 100%);
+}
+
+.eduma-profile__monogram-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  background-image: radial-gradient(rgb(255 255 255 / 70%) 0.8px, transparent 0.8px);
+  background-size: 18px 18px;
+}
+
+.eduma-profile__glow-tr,
+.eduma-profile__glow-bl {
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.eduma-profile__glow-tr {
+  top: -120px;
+  right: -120px;
+  background: radial-gradient(circle, rgb(83 117 246 / 50%) 0%, transparent 70%);
+}
+
+.eduma-profile__glow-bl {
+  bottom: -140px;
+  left: -140px;
+  background: radial-gradient(circle, rgb(139 92 246 / 45%) 0%, transparent 70%);
+}
+
+.eduma-profile__monogram-ring {
+  position: absolute;
+  top: 31%;
+  left: 50%;
+  display: flex;
+  width: clamp(160px, 22vmin, 210px);
+  height: clamp(160px, 22vmin, 210px);
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgb(255 255 255 / 35%);
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgb(255 255 255 / 22%), rgb(255 255 255 / 6%));
+  box-shadow: 0 20px 48px rgb(0 0 0 / 25%);
+  transform: translate(-50%, -50%);
+}
+
+.eduma-profile__monogram-ring span {
+  color: #fff;
+  font-size: clamp(56px, 8vmin, 76px);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.eduma-profile__photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.eduma-profile__hero-corner {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eduma-profile__hero-details {
+  display: flex;
+  max-width: 520px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.eduma-profile__fact-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.eduma-profile__fact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border: 0.8px solid rgb(255 255 255 / 22%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 14%);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+}
+
+.eduma-profile__hero-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eduma-profile__hero-name {
+  margin: 0;
+  color: #fff;
+  font-size: 39px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  line-height: 1.1;
+}
+
+.eduma-profile__verified-gold {
+  display: inline-flex;
+  align-items: center;
+  color: var(--eduma-gold);
+}
+
+.eduma-profile__hero-handle {
+  margin: 8px 0 0;
+  color: rgb(255 255 255 / 78%);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.eduma-profile__hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+/* ── Desktop Right Panel (`ProfileDesktopPanel`) ────────────────────────── */
+.eduma-profile-panel {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.eduma-profile-panel__sticky {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  padding: 16px 20px 12px;
+  border-bottom: 0.5px solid rgb(16 24 40 / 8%);
+  background: linear-gradient(180deg, rgb(239 238 244 / 95%) 68%, rgb(239 238 244 / 76%) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.eduma-profile-panel__inner {
+  display: flex;
+  width: 100%;
+  max-width: 640px;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 auto;
+}
+
+.eduma-profile-panel__title {
+  margin: 0;
+  color: var(--eduma-text);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.eduma-profile-panel__scroll {
+  display: flex;
+  width: 100%;
+  max-width: 640px;
+  flex-direction: column;
+  gap: 22px;
+  margin: 0 auto;
+  padding: 18px 20px 48px;
+}
+
+.eduma-profile-panel__notice {
+  margin-bottom: 4px;
+}
+
+/* ── Profile | Settings Segmented Control + Search (`ProfileTabBar`) ────── */
+.eduma-profile__tabbar {
+  display: flex;
+  width: 100%;
+  height: 46px;
+  align-items: center;
+  gap: 8px;
+}
+
+.eduma-profile__segmented {
+  display: grid;
+  flex: 1 1 0;
+  height: 46px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 3px;
+  border: 1px solid rgb(16 24 40 / 9%);
+  border-radius: 999px;
+  background: rgb(229 228 236 / 75%);
+}
+
+.eduma-profile__seg-btn {
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--eduma-text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.eduma-profile__seg-btn.is-active {
+  background: var(--eduma-primary);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: none;
+}
+
+.eduma-profile__search-toggle {
+  display: inline-flex;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(16 24 40 / 9%);
+  border-radius: 50%;
+  background: rgb(229 228 236 / 75%);
+  color: var(--eduma-text);
+  cursor: pointer;
+}
+
+.eduma-profile__search-pill {
+  display: flex;
+  flex: 1 1 0;
+  height: 46px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 6px 0 16px;
+  border: 1px solid var(--eduma-border-strong);
+  border-radius: 999px;
+  background: var(--eduma-surface);
+  color: var(--eduma-text-muted);
+  box-shadow: var(--eduma-card-shadow);
+}
+
+.eduma-profile__search-input {
+  flex: 1 1 0;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--eduma-text);
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 500;
+  outline: none;
+}
+
+.eduma-profile__search-close {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--eduma-card);
+  color: var(--eduma-text);
+  cursor: pointer;
+}
+
+/* ── Mobile Layout (`ProfileView`) ──────────────────────────────────────── */
+.eduma-profile__refresh-btn {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--eduma-text-muted);
+  cursor: pointer;
+}
+
+.eduma-profile__refresh-btn.is-spinning .eduma-icon {
+  animation: eduma-spin 0.9s linear infinite;
+}
+
+@keyframes eduma-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.eduma-profile-mobile__sticky-tabs {
+  position: sticky;
+  top: 56px;
+  z-index: 14;
+  padding: 8px 16px 10px;
+  border-bottom: 0.5px solid rgb(16 24 40 / 8%);
+  background: rgb(239 238 244 / 88%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.eduma-profile-mobile__sticky-tabs .eduma-profile__tabbar {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.eduma-profile-mobile__body {
+  display: flex;
+  width: 100%;
+  max-width: 640px;
+  flex-direction: column;
+  gap: 22px;
+  margin: 0 auto;
+  padding: 12px 16px 40px;
+}
+
+.eduma-profile__mobile-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 8px 2px;
+}
+
+.eduma-profile__mobile-avatar-btn {
+  position: relative;
+  width: 86px;
+  height: 86px;
+  flex: 0 0 86px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.eduma-profile__mobile-avatar {
+  display: flex;
+  width: 86px;
+  height: 86px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--eduma-pinned-gradient);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgb(75 36 210 / 24%);
+}
+
+.eduma-profile__mobile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.eduma-profile__camera-badge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid var(--eduma-bg);
+  border-radius: 50%;
+  background: var(--eduma-primary);
+  color: #fff;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 26%);
+}
+
+.eduma-profile__mobile-meta {
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+.eduma-profile__name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.eduma-profile__name-row h2 {
+  margin: 0;
+  color: var(--eduma-text);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.eduma-profile__inline-edit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--eduma-text-muted);
+  cursor: pointer;
+}
+
+.eduma-profile__handle {
+  margin: 2px 0 0;
+  color: var(--eduma-text-secondary);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+}
+
+.eduma-profile__role-pill {
+  display: inline-flex;
+  margin-top: 6px;
+  padding: 5px 9px;
+  border: 1px solid rgb(75 36 210 / 28%);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgb(75 36 210 / 8%), rgb(83 117 246 / 18%));
+  color: var(--eduma-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+/* ── Stats Capsule (`ProfileStatsRow`) ──────────────────────────────────── */
+.eduma-profile__stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 12px;
+  border-radius: var(--eduma-radius-pill);
+}
+
+.eduma-profile__stats.is-colored {
+  border: 0;
+  background: rgb(229 228 236 / 75%);
+  box-shadow: none;
+}
+
+.eduma-profile__stats.is-frosted {
+  display: none;
+}
+
+.eduma-profile__stat-card {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  text-align: center;
+}
+
+.eduma-profile__stat-card strong {
+  color: var(--eduma-text);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.eduma-profile__stat-label {
+  color: var(--eduma-text-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.eduma-profile__stat-divider {
+  width: 1px;
+  height: 28px;
+  flex: 0 0 1px;
+  background: var(--eduma-border);
+}
+
+.eduma-profile__stats.is-frosted .eduma-profile__stat-card strong {
+  color: #fff;
+}
+
+.eduma-profile__stats.is-frosted .eduma-profile__stat-label {
+  color: rgb(255 255 255 / 78%);
+}
+
+.eduma-profile__stats.is-frosted .eduma-profile__stat-divider {
+  background: rgb(255 255 255 / 22%);
+}
+
+/* ── Verify Banner (`EmailVerificationBanner`) ──────────────────────────── */
+.eduma-profile__verify-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 10px 14px 14px;
+  border: 1px solid rgb(75 36 210 / 22%);
+  border-radius: 16px;
+  background: rgb(75 36 210 / 8%);
+}
+
+.eduma-profile__verify-icon {
+  padding-top: 1px;
+  color: var(--eduma-primary);
+}
+
+.eduma-profile__verify-copy {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.eduma-profile__verify-copy strong {
+  display: block;
+  color: var(--eduma-text);
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+.eduma-profile__verify-copy p {
+  margin: 4px 0 0;
+  color: var(--eduma-text-secondary);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.eduma-profile__verify-actions {
+  margin-top: 8px;
+}
+
+.eduma-profile__verify-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--eduma-primary);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.eduma-profile__verify-dismiss {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--eduma-text-muted);
+  cursor: pointer;
+}
+
+/* ── Grouped Settings Tiles (`AppSettingsGroup` / `AppSettingsTile`) ────── */
+.eduma-profile__group-caption {
+  display: block;
+  padding: 0 0 8px 14px;
+  color: var(--eduma-text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+.eduma-profile__group-card {
+  overflow: hidden;
+  border: 1px solid var(--eduma-border);
+  border-radius: 24px;
+  background: var(--eduma-surface);
+  box-shadow: var(--eduma-card-shadow);
+}
+
+.eduma-profile__group-divider {
+  height: 1px;
+  margin-left: 62px;
+  background: var(--eduma-border);
+}
+
+.eduma-profile__tile {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 0;
+  background: transparent;
+  color: var(--eduma-text);
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  text-decoration: none;
+  transition: background-color 140ms ease;
+}
+
+.eduma-profile__tile:hover {
+  background: rgb(16 24 40 / 3%);
+}
+
+.eduma-profile__tile-icon {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--eduma-card);
+  color: var(--eduma-text);
+}
+
+.eduma-profile__tile.is-destructive .eduma-profile__tile-icon {
+  background: var(--eduma-danger-soft);
+  color: var(--eduma-danger);
+}
+
+.eduma-profile__tile-copy {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.eduma-profile__tile-title {
+  color: var(--eduma-text);
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.eduma-profile__tile.is-destructive .eduma-profile__tile-title {
+  color: var(--eduma-danger);
+}
+
+.eduma-profile__tile-subtitle {
+  color: var(--eduma-text-muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.eduma-profile__tile-trailing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--eduma-text-muted);
+}
+
+.eduma-profile__tile-value {
+  color: var(--eduma-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.eduma-profile__tile-value.is-muted {
+  color: var(--eduma-text-muted);
+  font-weight: 500;
+}
+
+.eduma-profile__tile-chevron {
+  display: inline-flex;
+  align-items: center;
+  color: var(--eduma-text-muted);
+}
+
+.eduma-profile__tile-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--eduma-primary-soft);
+  color: var(--eduma-primary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.eduma-profile__switch {
+  display: inline-flex;
+  width: 46px;
+  height: 28px;
+  flex: 0 0 46px;
+  align-items: center;
+  padding: 2px;
+  border: 1px solid var(--eduma-border);
+  border-radius: 999px;
+  background: var(--eduma-card);
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.eduma-profile__switch-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(16 24 40 / 24%);
+  transition: transform 160ms ease;
+}
+
+.eduma-profile__switch.is-on {
+  border-color: var(--eduma-primary);
+  background: var(--eduma-primary);
+}
+
+.eduma-profile__switch.is-on .eduma-profile__switch-thumb {
+  transform: translateX(18px);
+}
+
+.eduma-profile__empty-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 44px 20px;
+  border: 1px dashed var(--eduma-border);
+  border-radius: 24px;
+  color: var(--eduma-text-muted);
+  text-align: center;
+}
+
+.eduma-profile__empty-search strong {
+  color: var(--eduma-text);
+  font-size: 15px;
+}
+
+.eduma-profile__empty-search p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.eduma-profile__code-row {
+  display: flex;
+  margin-top: 4px;
+}
+
+.eduma-profile__hint-ok {
+  margin: 4px 0 0;
+  color: var(--eduma-success);
+  font-size: 12px;
+  font-weight: 650;
+}
