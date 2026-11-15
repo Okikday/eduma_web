@@ -1,10 +1,18 @@
-# Files and directories created by pub.
+# Node / Vite / React
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.*
+!.env.example
+
+# Files and directories created by pub (for archived jaspr/)
 **/doc/api/
 .dart_tool/
 .packages
-
-# Conventional directory for build output.
-/build/
+jaspr/build/
+jaspr/.dart_tool/
 
 # Miscellaneous
 *.class
@@ -18,13 +26,8 @@
 .svn/
 migrate_working_dir/
 
-# IntelliJ related
+# IDE
 *.iml
 *.ipr
 *.iws
 .idea/
-
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
