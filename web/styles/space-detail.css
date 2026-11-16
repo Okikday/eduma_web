@@ -1295,6 +1295,17 @@ button.space-detail__item-card {
   text-overflow: ellipsis;
 }
 
+.space-detail__page-title-line {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+}
+
+.space-detail__page-title-line .space-detail__card-title {
+  flex: 1 1 auto;
+}
+
 .space-detail__card-meta-row {
   display: flex;
   align-items: center;
@@ -1314,13 +1325,13 @@ button.space-detail__item-card {
 }
 
 .space-detail__type-pill--notes {
-  background: rgb(75 36 210 / 9%);
-  color: var(--eduma-primary);
+  background: color-mix(in srgb, var(--eduma-text-muted) 12%, transparent);
+  color: var(--eduma-text-secondary);
 }
 
 .space-detail__type-pill--canvas {
-  background: rgb(14 165 233 / 11%);
-  color: #0369a1;
+  background: color-mix(in srgb, var(--eduma-primary) 12%, transparent);
+  color: var(--eduma-primary);
 }
 
 .space-detail__card-meta {

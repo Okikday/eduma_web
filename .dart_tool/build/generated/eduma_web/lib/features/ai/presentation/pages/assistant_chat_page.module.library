@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["jaspr|lib/jaspr.dart","eduma_web|lib/core/presentation/flutter_embedded_page.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}

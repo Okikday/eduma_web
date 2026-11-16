@@ -302,6 +302,8 @@ Component spacePageOptionsModal({
   required bool canManagePages,
   required bool busy,
   required VoidCallback onClose,
+  required ValueChanged<SpacePage> onCopyPageLink,
+  required ValueChanged<SpacePage> onSelectPage,
   required ValueChanged<SpacePage> onToggleArchive,
   required ValueChanged<SpacePage> onDeletePage,
 }) {
@@ -338,6 +340,30 @@ Component spacePageOptionsModal({
               edumaIcon(page.pageType.isDynamic ? EdumaIcons.canvas : EdumaIcons.note, size: 18),
               span([.text('Open ${page.pageType.label.toLowerCase()}')]),
               edumaIcon(EdumaIcons.chevronRight, size: 14),
+            ],
+          ),
+          button(
+            classes: 'space-detail__option-row',
+            type: ButtonType.button,
+            onClick: () {
+              onClose();
+              onCopyPageLink(page);
+            },
+            [
+              edumaIcon(EdumaIcons.copyLink, size: 18),
+              span([.text('Copy page link')]),
+            ],
+          ),
+          button(
+            classes: 'space-detail__option-row',
+            type: ButtonType.button,
+            onClick: () {
+              onClose();
+              onSelectPage(page);
+            },
+            [
+              edumaIcon(EdumaIcons.check, size: 18),
+              span([.text('Select page')]),
             ],
           ),
           if (canManagePages) ...[

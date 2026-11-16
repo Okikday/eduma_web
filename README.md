@@ -1,8 +1,7 @@
 # Eduma web
 
-Jaspr frontend for Eduma. The current migration includes account access and
-the initial authenticated Main/Home slice, with unmigrated workflows handed
-off to the existing Flutter workspace.
+Jaspr frontend for Eduma. Simple web surfaces are implemented in Jaspr; the
+canvas, Notes, and new AI-chat experiences use the Flutter web application.
 
 Project conventions and the Flutter-to-Jaspr mapping are documented in
 [`.rules/rules.md`](.rules/rules.md).
@@ -14,6 +13,8 @@ sh tool/jaspr_with_google.sh serve
 ```
 
 The development server is available at `http://localhost:8080`.
+The Jaspr-only development server does not include the embedded Flutter
+bundle; use the combined build below to test Canvas, Notes, or new AI chat.
 
 ## Configure and build
 
@@ -36,25 +37,33 @@ The sign-in consent links open the local `/legalDocument` route. Terms are
 loaded from the public `/legal/terms` API endpoint and fall back to the bundled
 source policy; the Privacy Policy uses its bundled source copy.
 
-## Flutter workspace handoff
+## Embedded Flutter views
 
-Routes that are not migrated yet link to the existing Flutter app at
-`https://app.eduma.com.ng` and use its real named-route paths and query
-parameters. This is the default; set `EDUMA_FLUTTER_APP_URL` only when the
-Flutter app is deployed at a different base URL:
+Build the Jaspr app and the sibling Flutter source workspace into one static
+site:
 
 ```sh
-sh tool/jaspr_with_google.sh build \
-  --dart-define=EDUMA_API_BASE_URL=https://your-api.example/api/v1 \
-  --dart-define=EDUMA_FLUTTER_APP_URL=https://your-flutter-app.example/
+sh tool/build_with_flutter.sh \
+  --dart-define=EDUMA_API_BASE_URL=https://your-api.example/api/v1
 ```
 
-Browser storage is origin-scoped. When Jaspr and Flutter are on different
-origins, signing in to Jaspr does not transfer its saved session to Flutter;
-the Flutter app may ask the user to sign in there as well. The API must allow
-the deployed Jaspr origin through CORS and permit credentialed requests.
-Configure the static host to rewrite Jaspr routes (for example `/sign-in`,
-`/verify-email`, and `/reset-password`) to `index.html`.
+Stop any running `jaspr serve` process in this workspace before this production
+build; Jaspr shares a build daemon between `serve` and `build`, and rejects
+switching its options while that daemon is active.
+
+The script expects FVM and the Flutter checkout at `../eduma`. Override that
+location with `EDUMA_FLUTTER_SOURCE_DIR` when building elsewhere. The pinned
+Flutter web output is placed at `build/jaspr/flutter/`; deploy that directory
+alongside the Jaspr output. Configure the static host to rewrite Jaspr routes
+to `/index.html` and serve the Flutter files under `/flutter/` as static
+assets. Keeping both apps on the same origin gives them a shared browser
+storage scope; the Flutter app may still require its own sign-in if the
+session formats differ.
+
+Routes not yet embedded can still hand off to the deployed Flutter app at
+`https://app.eduma.com.ng`; set `EDUMA_FLUTTER_APP_URL` only when it is hosted
+at a different base URL. The API must allow the deployed web origin through
+CORS and permit credentialed requests.
 
 ## Main icons
 

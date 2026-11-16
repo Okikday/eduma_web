@@ -2,13 +2,15 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/features/space/presentation/pages/space_detail_page
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/logic/space_detail_actions', 'packages/eduma_web/features/space/data/space_detail_models', 'packages/eduma_web/features/main/data/main_preferences', 'packages/eduma_web/core/data/eduma_memory_cache', 'packages/eduma_web/core/presentation/desktop_scaffolds', 'packages/eduma_web/features/main/presentation/widgets/main_home_notices', 'packages/eduma_web/features/space/presentation/widgets/space_detail_hero', 'packages/eduma_web/features/space/presentation/widgets/space_detail_tabs_content', 'packages/eduma_web/features/space/presentation/widgets/space_detail_pages_tab', 'packages/eduma_web/core/presentation/eduma_icons', 'packages/eduma_web/features/space/presentation/widgets/space_detail_dialogs', 'packages/eduma_web/features/calendar/presentation/widgets/calendar_create_dialog'], (function load__packages__eduma_web__features__space__presentation__pages__space_detail_page(dart_sdk, packages__jaspr__client, packages__eduma_web__features__space__logic__space_detail_actions, packages__eduma_web__features__space__data__space_detail_models, packages__eduma_web__features__main__data__main_preferences, packages__eduma_web__core__data__eduma_memory_cache, packages__eduma_web__core__presentation__desktop_scaffolds, packages__eduma_web__features__main__presentation__widgets__main_home_notices, packages__eduma_web__features__space__presentation__widgets__space_detail_hero, packages__eduma_web__features__space__presentation__widgets__space_detail_tabs_content, packages__eduma_web__features__space__presentation__widgets__space_detail_pages_tab, packages__eduma_web__core__presentation__eduma_icons, packages__eduma_web__features__space__presentation__widgets__space_detail_dialogs, packages__eduma_web__features__calendar__presentation__widgets__calendar_create_dialog) {
+define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/logic/space_detail_actions', 'packages/eduma_web/features/space/data/space_detail_models', 'packages/eduma_web/features/main/data/main_preferences', 'packages/eduma_web/core/data/eduma_memory_cache', 'packages/eduma_web/features/space/presentation/widgets/space_detail_pages_tab', 'packages/eduma_web/core/presentation/desktop_scaffolds', 'packages/eduma_web/features/main/presentation/widgets/main_home_notices', 'packages/eduma_web/features/space/presentation/widgets/space_detail_hero', 'packages/eduma_web/features/space/presentation/widgets/space_detail_tabs_content', 'packages/eduma_web/core/presentation/eduma_icons', 'packages/eduma_web/features/space/presentation/widgets/space_detail_dialogs', 'packages/eduma_web/features/calendar/presentation/widgets/calendar_create_dialog'], (function load__packages__eduma_web__features__space__presentation__pages__space_detail_page(dart_sdk, packages__jaspr__client, packages__eduma_web__features__space__logic__space_detail_actions, packages__eduma_web__features__space__data__space_detail_models, packages__eduma_web__features__main__data__main_preferences, packages__eduma_web__core__data__eduma_memory_cache, packages__eduma_web__features__space__presentation__widgets__space_detail_pages_tab, packages__eduma_web__core__presentation__desktop_scaffolds, packages__eduma_web__features__main__presentation__widgets__main_home_notices, packages__eduma_web__features__space__presentation__widgets__space_detail_hero, packages__eduma_web__features__space__presentation__widgets__space_detail_tabs_content, packages__eduma_web__core__presentation__eduma_icons, packages__eduma_web__features__space__presentation__widgets__space_detail_dialogs, packages__eduma_web__features__calendar__presentation__widgets__calendar_create_dialog) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
   const async = dart_sdk.async;
   const collection = dart_sdk.collection;
   const _interceptors = dart_sdk._interceptors;
+  const js_interop = dart_sdk.js_interop;
+  const js_util = dart_sdk.js_util;
   const _js_helper = dart_sdk._js_helper;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
@@ -18,11 +20,11 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
   const space_detail_models = packages__eduma_web__features__space__data__space_detail_models.eduma_web__features__space__data__space_detail_models;
   const main_preferences = packages__eduma_web__features__main__data__main_preferences.eduma_web__features__main__data__main_preferences;
   const eduma_memory_cache = packages__eduma_web__core__data__eduma_memory_cache.eduma_web__core__data__eduma_memory_cache;
+  const space_detail_pages_tab = packages__eduma_web__features__space__presentation__widgets__space_detail_pages_tab.eduma_web__features__space__presentation__widgets__space_detail_pages_tab;
   const desktop_scaffolds = packages__eduma_web__core__presentation__desktop_scaffolds.eduma_web__core__presentation__desktop_scaffolds;
   const main_home_notices = packages__eduma_web__features__main__presentation__widgets__main_home_notices.eduma_web__features__main__presentation__widgets__main_home_notices;
   const space_detail_hero = packages__eduma_web__features__space__presentation__widgets__space_detail_hero.eduma_web__features__space__presentation__widgets__space_detail_hero;
   const space_detail_tabs_content = packages__eduma_web__features__space__presentation__widgets__space_detail_tabs_content.eduma_web__features__space__presentation__widgets__space_detail_tabs_content;
-  const space_detail_pages_tab = packages__eduma_web__features__space__presentation__widgets__space_detail_pages_tab.eduma_web__features__space__presentation__widgets__space_detail_pages_tab;
   const eduma_icons = packages__eduma_web__core__presentation__eduma_icons.eduma_web__core__presentation__eduma_icons;
   const space_detail_dialogs = packages__eduma_web__features__space__presentation__widgets__space_detail_dialogs.eduma_web__features__space__presentation__widgets__space_detail_dialogs;
   const calendar_create_dialog = packages__eduma_web__features__calendar__presentation__widgets__calendar_create_dialog.eduma_web__features__calendar__presentation__widgets__calendar_create_dialog;
@@ -59,6 +61,12 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
     LinkedHashSetOfString: () => (T.LinkedHashSetOfString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "collection|LinkedHashSet<core|String>", true)))(),
     JSArrayOfSpacePage: () => (T.JSArrayOfSpacePage = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<eduma_web__features__space__data__space_detail_models|SpacePage>", true)))(),
     SpacePageTobool: () => (T.SpacePageTobool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool(eduma_web__features__space__data__space_detail_models|SpacePage)", true)))(),
+    ObjectN: () => (T.ObjectN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Object?", true)))(),
+    JSObject: () => (T.JSObject = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
+    JSObject$1: () => (T.JSObject$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
+    JSObject$2: () => (T.JSObject$2 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
+    JSObject$3: () => (T.JSObject$3 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
+    Object: () => (T.Object = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Object", true)))(),
     SpacePageToString: () => (T.SpacePageToString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String(eduma_web__features__space__data__space_detail_models|SpacePage)", true)))(),
     JSArrayOfSpaceMember: () => (T.JSArrayOfSpaceMember = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<eduma_web__features__space__data__space_detail_models|SpaceMember>", true)))(),
     SpaceMemberTobool: () => (T.SpaceMemberTobool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool(eduma_web__features__space__data__space_detail_models|SpaceMember)", true)))(),
@@ -201,6 +209,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
   var _togglePin = dart.privateName(space_detail_page, "_togglePin");
   var _toggleArchivePage = dart.privateName(space_detail_page, "_toggleArchivePage");
   var _deletePage = dart.privateName(space_detail_page, "_deletePage");
+  var _copyPageLink = dart.privateName(space_detail_page, "_copyPageLink");
+  var _selectPageFromOptions = dart.privateName(space_detail_page, "_selectPageFromOptions");
   var _bulkArchiveSelected = dart.privateName(space_detail_page, "_bulkArchiveSelected");
   var _bulkDeleteSelected = dart.privateName(space_detail_page, "_bulkDeleteSelected");
   var _toggleAdmin = dart.privateName(space_detail_page, "_toggleAdmin");
@@ -750,6 +760,79 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
       });
       return async._asyncStartSync(t$36async_deletePage, t$completer);
     }
+    [_copyPageLink](page) {
+      let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue, t$handler = 1, t$errorStack = [], t$36$35e, asyncScope = Object.create(null);
+      var t$36async_copyPageLink = async._wrapJsFunctionForAsync((t$errorCode, t$result) => {
+        if (t$errorCode === 1) {
+          t$errorStack.push(t$result);
+          t$goto = t$handler;
+        }
+        while (true)
+          switch (t$goto) {
+            case 0:
+              // Function start
+              t$handler = 3;
+              t$goto = 6;
+              return async._asyncAwait(js_interop['JSPromiseToFuture|get#toDart'](T.ObjectN(), T.JSObject$3()[_as](js_util.getProperty(T.JSObject(), js_util.getProperty(T.JSObject$1(), js_util.getProperty(T.JSObject$2(), dart.global, "window"), "navigator"), "clipboard").writeText(dart.toString(core.Uri.base.resolve(space_detail_pages_tab.spacePageRoutePath(page)))))), t$36async_copyPageLink, t$completer);
+            case 6:
+              // returning from await.
+              if (!this.mounted) {
+                // goto return
+                t$goto = 7;
+                break;
+              }
+              this.setState(dart.fn(() => {
+                this[_notice] = "Copied link to “" + page.title + "”";
+                this[_noticeIsError] = false;
+              }, T.VoidTovoid()));
+              t$handler = 1;
+              // goto after finally
+              t$goto = 5;
+              break;
+            case 3:
+              // catch
+              t$handler = 2;
+              t$36$35e = t$errorStack.pop();
+              asyncScope._$35wc0$35formal = dart.getThrown(t$36$35e);
+              if (T.Object()[_is](asyncScope._$35wc0$35formal)) {
+                if (!this.mounted) {
+                  // goto return
+                  t$goto = 7;
+                  break;
+                }
+                this.setState(dart.fn(() => {
+                  this[_notice] = "Could not copy the page link. Check clipboard permissions and try again.";
+                  this[_noticeIsError] = true;
+                }, T.VoidTovoid()));
+              } else
+                throw t$36$35e;
+              // goto after finally
+              t$goto = 5;
+              break;
+            case 2:
+              // uncaught
+              // goto rethrow
+              t$goto = 1;
+              break;
+            case 5:
+              // after finally
+            case 7:
+              // return
+              return async._asyncReturn(t$returnValue, t$completer);
+            case 1:
+              // rethrow
+              return async._asyncRethrow(t$errorStack.at(-1), t$completer);
+          }
+      });
+      return async._asyncStartSync(t$36async_copyPageLink, t$completer);
+    }
+    [_selectPageFromOptions](page) {
+      this.setState(dart.fn(() => {
+        this[_optionsPage] = null;
+        this[_selectingPages] = true;
+        this[_selectedPageIds] = collection.LinkedHashSet.from(T.LinkedHashSetOfString(), [page.id]);
+      }, T.VoidTovoid()));
+    }
     [_bulkArchiveSelected](selectedPages) {
       let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue, t$handler = 1, t$errorStack = [], t$next = [], t$wrappedValue, t$iterator, t$36$35e, asyncScope = Object.create(null), asyncScope$ = Object.create(null), asyncScope$0 = Object.create(null), asyncScope$1 = Object.create(null);
       var t$36async_bulkArchiveSelected = async._wrapJsFunctionForAsync((t$errorCode, t$result) => {
@@ -770,9 +853,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
               asyncScope.ids = selectedPages[$map](T.String(), dart.fn(page => page.id, T.SpacePageToString()))[$toSet]();
               this.setState(dart.fn((capturedAsyncScope => () => {
                 this[_mutatingPageIds] = (() => {
-                  let t$3612 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingPageIds]);
-                  t$3612.addAll(capturedAsyncScope.ids);
-                  return t$3612;
+                  let t$3613 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingPageIds]);
+                  t$3613.addAll(capturedAsyncScope.ids);
+                  return t$3613;
                 })();
                 this[_notice] = null;
               })(asyncScope), T.VoidTovoid()));
@@ -802,10 +885,10 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
                 break;
               }
               this[_pages] = ((capturedAsyncScope, capturedAsyncScope$) => () => {
-                let t$3613 = _interceptors.JSArray.of(T.JSArrayOfSpacePage(), []);
+                let t$3614 = _interceptors.JSArray.of(T.JSArrayOfSpacePage(), []);
                 for (let item of this[_pages])
-                  t$3613.push(item.id === capturedAsyncScope.page.id ? capturedAsyncScope$.updated : item);
-                return t$3613;
+                  t$3614.push(item.id === capturedAsyncScope.page.id ? capturedAsyncScope$.updated : item);
+                return t$3614;
               })(asyncScope$1, asyncScope$0)();
               asyncScope.done = asyncScope.done + 1;
               // goto for-of iterator update
@@ -853,13 +936,13 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
               // finally
               t$handler = 1;
               if (this.mounted) this.setState(dart.fn((capturedAsyncScope => () => {
-                let t$3616;
-                return this[_mutatingPageIds] = (t$3616 = (() => {
-                  let t$3615 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingPageIds]);
-                  return t$3615;
-                })(), (() => {
-                  t$3616.removeAll(capturedAsyncScope.ids);
+                let t$3617;
+                return this[_mutatingPageIds] = (t$3617 = (() => {
+                  let t$3616 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingPageIds]);
                   return t$3616;
+                })(), (() => {
+                  t$3617.removeAll(capturedAsyncScope.ids);
+                  return t$3617;
                 })());
               })(asyncScope), T.VoidTovoid()));
               // goto the next finally handler
@@ -897,9 +980,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
               asyncScope.ids = selectedPages[$map](T.String(), dart.fn(page => page.id, T.SpacePageToString()))[$toSet]();
               this.setState(dart.fn((capturedAsyncScope => () => {
                 this[_mutatingPageIds] = (() => {
-                  let t$3616 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingPageIds]);
-                  t$3616.addAll(capturedAsyncScope.ids);
-                  return t$3616;
+                  let t$3617 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingPageIds]);
+                  t$3617.addAll(capturedAsyncScope.ids);
+                  return t$3617;
                 })();
                 this[_notice] = null;
               })(asyncScope), T.VoidTovoid()));
@@ -973,13 +1056,13 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
               // finally
               t$handler = 1;
               if (this.mounted) this.setState(dart.fn((capturedAsyncScope => () => {
-                let t$3619;
-                return this[_mutatingPageIds] = (t$3619 = (() => {
-                  let t$3618 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingPageIds]);
-                  return t$3618;
-                })(), (() => {
-                  t$3619.removeAll(capturedAsyncScope.ids);
+                let t$3620;
+                return this[_mutatingPageIds] = (t$3620 = (() => {
+                  let t$3619 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingPageIds]);
                   return t$3619;
+                })(), (() => {
+                  t$3620.removeAll(capturedAsyncScope.ids);
+                  return t$3620;
                 })());
               })(asyncScope), T.VoidTovoid()));
               // goto the next finally handler
@@ -1016,9 +1099,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
               }
               this.setState(dart.fn(() => {
                 this[_mutatingMemberIds] = (() => {
-                  let t$3619 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingMemberIds]);
-                  t$3619.add(member.id);
-                  return t$3619;
+                  let t$3620 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingMemberIds]);
+                  t$3620.add(member.id);
+                  return t$3620;
                 })();
                 this[_notice] = null;
               }, T.VoidTovoid()));
@@ -1035,10 +1118,10 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
               }
               this.setState(dart.fn(() => {
                 this[_members] = (() => {
-                  let t$3620 = _interceptors.JSArray.of(T.JSArrayOfSpaceMember(), []);
+                  let t$3621 = _interceptors.JSArray.of(T.JSArrayOfSpaceMember(), []);
                   for (let item of this[_members])
-                    t$3620.push(item.id === member.id ? item.copyWith({role: promote ? space_detail_models.SpaceDetailRole.admin : space_detail_models.SpaceDetailRole.member}) : item);
-                  return t$3620;
+                    t$3621.push(item.id === member.id ? item.copyWith({role: promote ? space_detail_models.SpaceDetailRole.admin : space_detail_models.SpaceDetailRole.member}) : item);
+                  return t$3621;
                 })();
                 this[_notice] = promote ? member.name + " is now an admin" : "Removed admin role from " + member.name;
                 this[_noticeIsError] = false;
@@ -1077,13 +1160,13 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
               // finally
               t$handler = 1;
               if (this.mounted) this.setState(dart.fn(() => {
-                let t$3623;
-                return this[_mutatingMemberIds] = (t$3623 = (() => {
-                  let t$3622 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingMemberIds]);
-                  return t$3622;
-                })(), (() => {
-                  t$3623.remove(member.id);
+                let t$3624;
+                return this[_mutatingMemberIds] = (t$3624 = (() => {
+                  let t$3623 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingMemberIds]);
                   return t$3623;
+                })(), (() => {
+                  t$3624.remove(member.id);
+                  return t$3624;
                 })());
               }, T.VoidTovoid()));
               // goto the next finally handler
@@ -1121,9 +1204,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
               }
               this.setState(dart.fn(() => {
                 this[_mutatingMemberIds] = (() => {
-                  let t$3623 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingMemberIds]);
-                  t$3623.add(member.id);
-                  return t$3623;
+                  let t$3624 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingMemberIds]);
+                  t$3624.add(member.id);
+                  return t$3624;
                 })();
                 this[_notice] = null;
               }, T.VoidTovoid()));
@@ -1180,13 +1263,13 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
               // finally
               t$handler = 1;
               if (this.mounted) this.setState(dart.fn(() => {
-                let t$3626;
-                return this[_mutatingMemberIds] = (t$3626 = (() => {
-                  let t$3625 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingMemberIds]);
-                  return t$3625;
-                })(), (() => {
-                  t$3626.remove(member.id);
+                let t$3627;
+                return this[_mutatingMemberIds] = (t$3627 = (() => {
+                  let t$3626 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_mutatingMemberIds]);
                   return t$3626;
+                })(), (() => {
+                  t$3627.remove(member.id);
+                  return t$3627;
                 })());
               }, T.VoidTovoid()));
               // goto the next finally handler
@@ -1205,36 +1288,36 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
       return async._asyncStartSync(t$36async_removeMember, t$completer);
     }
     build(context) {
-      let t$3626, t$3627, t$3626$;
+      let t$3627, t$3628, t$3627$;
       let session = this[_session];
       let space = this[_space];
       if (this[_loading] && space == null) {
-        t$3626$ = "eduma-page-loading";
-        t$3627 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "status", "aria-live", "polite", "aria-label", "Loading space"]);
-        return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3626 = "main-home__spinner", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$3626}))]), {classes: t$3626$, attributes: t$3627});
+        t$3627$ = "eduma-page-loading";
+        t$3628 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "status", "aria-live", "polite", "aria-label", "Loading space"]);
+        return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3627 = "main-home__spinner", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$3627}))]), {classes: t$3627$, attributes: t$3628});
       }
       if (this[_error] != null && space == null || session == null || space == null) {
         return desktop_scaffolds.adaptivePageScaffold({title: "Space", maxWidth: 640, fallbackHref: "/main", body: (() => {
-            let t$3626 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+            let t$3627 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
             if (this[_error] != null && space == null)
-              t$3626.push(main_home_notices.mainHomeSessionErrorState(dart.nullCheck(this[_error]), {onRetry: dart.fn(() => async.unawaited(this[_load]()), T.VoidTovoid())}));
+              t$3627.push(main_home_notices.mainHomeSessionErrorState(dart.nullCheck(this[_error]), {onRetry: dart.fn(() => async.unawaited(this[_load]()), T.VoidTovoid())}));
             else
-              t$3626.push(main_home_notices.mainHomeSignInPromptState());
-            return t$3626;
+              t$3627.push(main_home_notices.mainHomeSignInPromptState());
+            return t$3627;
           })()});
       }
       return this[_buildLoaded](session, space);
     }
     [_buildLoaded](session, space) {
-      let t$3633, t$3635, t$3635$, t$3637, t$3636, t$3635$0, t$3635$1, t$3636$;
+      let t$3634, t$3636, t$3636$, t$3638, t$3637, t$3636$0, t$3636$1, t$3637$;
       let permissions = new space_detail_models.SpacePermissionsLogic.new({space: space, currentUserId: session.userId});
       let activePages = this[_pages][$where](dart.fn(page => !page.isArchived, T.SpacePageTobool()))[$toList]();
       let archivedPages = this[_pages][$where](dart.fn(page => page.isArchived, T.SpacePageTobool()))[$toList]();
       let filteredPages = space_detail_models.SpacePageQuery.apply(this[_pages], {filter: this[_pageFilter] === space_detail_models.SpacePageFilter.archived ? space_detail_models.SpacePageFilter.all : this[_pageFilter], query: this[_query]});
       let hero = space_detail_hero.spaceDetailDesktopHero({space: space, permissions: permissions, activePageCount: activePages[$length], archivedCount: archivedPages[$length], assetCount: this[_assets][$length], eventCount: this[_events][$length], pinning: this[_pinning], onTogglePin: dart.fn(() => async.unawaited(this[_togglePin]()), T.VoidTovoid()), onOpenEdit: dart.fn(() => this.setState(dart.fn(() => this[_editDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onOpenInvite: dart.fn(() => this.setState(dart.fn(() => this[_inviteDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onOpenMembers: dart.fn(() => this.setState(dart.fn(() => this[_membersModalOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onOpenArchived: dart.fn(() => this.setState(dart.fn(() => this[_archivedModalOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onSelectTab: dart.fn(idx => this.setState(dart.fn(() => this[_tabIndex] = idx, T.VoidTovoid())), T.intTovoid())});
-      let rightPane = (t$3635$1 = "space-detail__pane", new html.div.new((() => {
-        let t$3627 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [space_detail_hero.spaceDetailMobileHeader({space: space, permissions: permissions, archivedCount: archivedPages[$length], pinning: this[_pinning], onTogglePin: dart.fn(() => async.unawaited(this[_togglePin]()), T.VoidTovoid()), onOpenEdit: dart.fn(() => this.setState(dart.fn(() => this[_editDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onOpenInvite: dart.fn(() => this.setState(dart.fn(() => this[_inviteDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onOpenMembers: dart.fn(() => this.setState(dart.fn(() => this[_membersModalOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onOpenArchived: dart.fn(() => this.setState(dart.fn(() => this[_archivedModalOpen] = true, T.VoidTovoid())), T.VoidTovoid())}), (t$3635$ = "space-detail__pane-inner", new html.div.new((() => {
-            let t$3628 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [space_detail_tabs_content.spaceDetailTabToolbar({activeTabIndex: this[_tabIndex], query: this[_query], pageFilter: this[_pageFilter], filterMenuOpen: this[_filterMenuOpen], mobileSearchOpen: this[_mobileSearchOpen], selectingPages: this[_selectingPages], visiblePagesCount: filteredPages[$length], selectedPagesCount: this[_selectedPageIds][$length], allVisibleSelected: filteredPages[$isNotEmpty] && filteredPages[$every](dart.fn(page => this[_selectedPageIds].contains(page.id), T.SpacePageTobool())), canManagePages: permissions.isManager, canAddPages: permissions.canAddPages, canAddEvents: permissions.canAddEvents, gridView: this[_tabIndex] === 0 ? this[_pageGridView] : this[_assetGridView], onToggleView: this[_tabIndex] === 0 ? dart.tearoff(this, null, _togglePageView) : dart.tearoff(this, null, _toggleAssetView), onSelectTab: dart.fn(idx => this.setState(dart.fn(() => {
+      let rightPane = (t$3636$1 = "space-detail__pane", new html.div.new((() => {
+        let t$3628 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [space_detail_hero.spaceDetailMobileHeader({space: space, permissions: permissions, archivedCount: archivedPages[$length], pinning: this[_pinning], onTogglePin: dart.fn(() => async.unawaited(this[_togglePin]()), T.VoidTovoid()), onOpenEdit: dart.fn(() => this.setState(dart.fn(() => this[_editDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onOpenInvite: dart.fn(() => this.setState(dart.fn(() => this[_inviteDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onOpenMembers: dart.fn(() => this.setState(dart.fn(() => this[_membersModalOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onOpenArchived: dart.fn(() => this.setState(dart.fn(() => this[_archivedModalOpen] = true, T.VoidTovoid())), T.VoidTovoid())}), (t$3636$ = "space-detail__pane-inner", new html.div.new((() => {
+            let t$3629 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [space_detail_tabs_content.spaceDetailTabToolbar({activeTabIndex: this[_tabIndex], query: this[_query], pageFilter: this[_pageFilter], filterMenuOpen: this[_filterMenuOpen], mobileSearchOpen: this[_mobileSearchOpen], selectingPages: this[_selectingPages], visiblePagesCount: filteredPages[$length], selectedPagesCount: this[_selectedPageIds][$length], allVisibleSelected: filteredPages[$isNotEmpty] && filteredPages[$every](dart.fn(page => this[_selectedPageIds].contains(page.id), T.SpacePageTobool())), canManagePages: permissions.isManager, canAddPages: permissions.canAddPages, canAddEvents: permissions.canAddEvents, gridView: this[_tabIndex] === 0 ? this[_pageGridView] : this[_assetGridView], onToggleView: this[_tabIndex] === 0 ? dart.tearoff(this, null, _togglePageView) : dart.tearoff(this, null, _toggleAssetView), onSelectTab: dart.fn(idx => this.setState(dart.fn(() => {
                   this[_tabIndex] = idx;
                   this[_filterMenuOpen] = false;
                   this[_selectingPages] = false;
@@ -1250,22 +1333,22 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
                   let allSelected = filteredPages[$isNotEmpty] && filteredPages[$every](dart.fn(page => this[_selectedPageIds].contains(page.id), T.SpacePageTobool()));
                   this.setState(dart.fn(() => {
                     this[_selectedPageIds] = allSelected ? C[4] || CT.C4 : (() => {
-                      let t$3629 = collection.LinkedHashSet.new(T.LinkedHashSetOfString());
+                      let t$3630 = collection.LinkedHashSet.new(T.LinkedHashSetOfString());
                       for (let page of filteredPages)
-                        t$3629.add(page.id);
-                      return t$3629;
+                        t$3630.add(page.id);
+                      return t$3630;
                     })();
                   }, T.VoidTovoid()));
                 }, T.VoidTovoid()), onArchiveSelected: dart.fn(() => async.unawaited(this[_bulkArchiveSelected]((() => {
-                  let t$3630 = _interceptors.JSArray.of(T.JSArrayOfSpacePage(), []);
-                  for (let page of filteredPages)
-                    if (this[_selectedPageIds].contains(page.id)) t$3630.push(page);
-                  return t$3630;
-                })())), T.VoidTovoid()), onDeleteSelected: dart.fn(() => async.unawaited(this[_bulkDeleteSelected]((() => {
                   let t$3631 = _interceptors.JSArray.of(T.JSArrayOfSpacePage(), []);
                   for (let page of filteredPages)
                     if (this[_selectedPageIds].contains(page.id)) t$3631.push(page);
                   return t$3631;
+                })())), T.VoidTovoid()), onDeleteSelected: dart.fn(() => async.unawaited(this[_bulkDeleteSelected]((() => {
+                  let t$3632 = _interceptors.JSArray.of(T.JSArrayOfSpacePage(), []);
+                  for (let page of filteredPages)
+                    if (this[_selectedPageIds].contains(page.id)) t$3632.push(page);
+                  return t$3632;
                 })())), T.VoidTovoid()), onOpenCreatePage: dart.fn(() => this.setState(dart.fn(() => this[_createPageDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onOpenCreateEvent: dart.fn(() => this.setState(dart.fn(() => this[_createEventDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid())})]);
             {
               let t$36$350$350 = this[_notice];
@@ -1273,17 +1356,17 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
                 let message = null;
                 if (t$36$350$350 != null) {
                   message = t$36$350$350;
-                  t$3628.push((t$3633 = "space-detail__pane-notice", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_notices.mainHomeNotice(message, {isError: this[_noticeIsError]})]), {classes: t$3633})));
+                  t$3629.push((t$3634 = "space-detail__pane-notice", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_notices.mainHomeNotice(message, {isError: this[_noticeIsError]})]), {classes: t$3634})));
                 }
               }
             }
-            t$3628.push((t$3635 = "space-detail__pane-body", new html.div.new((() => {
-              let t$3633 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+            t$3629.push((t$3636 = "space-detail__pane-body", new html.div.new((() => {
+              let t$3634 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
               if (this[_tabIndex] === 0)
-                t$3633.push(space_detail_pages_tab.spaceDetailPagesTab({filteredPages: filteredPages, filter: this[_pageFilter], query: this[_query], gridView: this[_pageGridView], canManagePages: permissions.isManager, canCreatePage: permissions.canAddPages, selecting: this[_selectingPages], selectedPageIds: this[_selectedPageIds], mutatingPageIds: this[_mutatingPageIds], onSelectFilter: dart.fn(next => this.setState(dart.fn(() => this[_pageFilter] = next, T.VoidTovoid())), T.SpacePageFilterTovoid()), onOpenCreatePage: dart.fn(() => this.setState(dart.fn(() => this[_createPageDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onToggleSelectPage: dart.fn(page => this.setState(dart.fn(() => {
+                t$3634.push(space_detail_pages_tab.spaceDetailPagesTab({filteredPages: filteredPages, filter: this[_pageFilter], query: this[_query], gridView: this[_pageGridView], canManagePages: permissions.isManager, canCreatePage: permissions.canAddPages, selecting: this[_selectingPages], selectedPageIds: this[_selectedPageIds], mutatingPageIds: this[_mutatingPageIds], onSelectFilter: dart.fn(next => this.setState(dart.fn(() => this[_pageFilter] = next, T.VoidTovoid())), T.SpacePageFilterTovoid()), onOpenCreatePage: dart.fn(() => this.setState(dart.fn(() => this[_createPageDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onToggleSelectPage: dart.fn(page => this.setState(dart.fn(() => {
                     let next = (() => {
-                      let t$3634 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_selectedPageIds]);
-                      return t$3634;
+                      let t$3635 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_selectedPageIds]);
+                      return t$3635;
                     })();
                     if (!next.add(page.id)) {
                       next.remove(page.id);
@@ -1291,38 +1374,38 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
                     this[_selectedPageIds] = next;
                   }, T.VoidTovoid())), T.SpacePageTovoid()), onOpenPageOptions: dart.fn(page => this.setState(dart.fn(() => this[_optionsPage] = page, T.VoidTovoid())), T.SpacePageTovoid())}));
               else if (this[_tabIndex] === 1)
-                t$3633.push(space_detail_tabs_content.spaceDetailAssetsTab({assets: this[_assets], query: this[_query], gridView: this[_assetGridView]}));
+                t$3634.push(space_detail_tabs_content.spaceDetailAssetsTab({assets: this[_assets], query: this[_query], gridView: this[_assetGridView]}));
               else
-                t$3633.push(space_detail_tabs_content.spaceDetailEventsTab({events: this[_events], query: this[_query], canAddEvents: permissions.canAddEvents, onOpenCreateEvent: dart.fn(() => this.setState(dart.fn(() => this[_createEventDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid())}));
-              return t$3633;
-            })(), {classes: t$3635})));
-            return t$3628;
-          })(), {classes: t$3635$}))]);
-        if (this[_tabIndex] === 0 && permissions.canAddPages && !this[_selectingPages] || this[_tabIndex] === 2 && permissions.canAddEvents) t$3627.push((t$3635$0 = "space-detail__mobile-fab", t$3636 = html.ButtonType.button, t$3637 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", this[_tabIndex] === 0 ? "New page" : "New event"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(this[_tabIndex] === 0 ? eduma_icons.EdumaIcons.add : eduma_icons.EdumaIcons.calendarAdd, {size: 24})]), {classes: t$3635$0, type: t$3636, attributes: t$3637, onClick: dart.fn(() => this.setState(dart.fn(() => {
+                t$3634.push(space_detail_tabs_content.spaceDetailEventsTab({events: this[_events], query: this[_query], canAddEvents: permissions.canAddEvents, onOpenCreateEvent: dart.fn(() => this.setState(dart.fn(() => this[_createEventDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid())}));
+              return t$3634;
+            })(), {classes: t$3636})));
+            return t$3629;
+          })(), {classes: t$3636$}))]);
+        if (this[_tabIndex] === 0 && permissions.canAddPages && !this[_selectingPages] || this[_tabIndex] === 2 && permissions.canAddEvents) t$3628.push((t$3636$0 = "space-detail__mobile-fab", t$3637 = html.ButtonType.button, t$3638 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", this[_tabIndex] === 0 ? "New page" : "New event"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(this[_tabIndex] === 0 ? eduma_icons.EdumaIcons.add : eduma_icons.EdumaIcons.calendarAdd, {size: 24})]), {classes: t$3636$0, type: t$3637, attributes: t$3638, onClick: dart.fn(() => this.setState(dart.fn(() => {
             if (this[_tabIndex] === 0) {
               this[_createPageDialogOpen] = true;
             } else {
               this[_createEventDialogOpen] = true;
             }
           }, T.VoidTovoid())), T.VoidTovoid())})));
-        return t$3627;
-      })(), {classes: t$3635$1}));
-      t$3636$ = "space-detail";
+        return t$3628;
+      })(), {classes: t$3636$1}));
+      t$3637$ = "space-detail";
       return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [desktop_scaffolds.desktopSplitScaffold({hero: hero, body: rightPane}), new space_detail_dialogs.SpaceEditDialog.new({open: this[_editDialogOpen], space: space, onClose: dart.fn(() => this.setState(dart.fn(() => this[_editDialogOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onUpdated: dart.fn(updated => this.setState(dart.fn(() => {
             this[_space] = updated;
             this[_notice] = "Space updated";
             this[_noticeIsError] = false;
           }, T.VoidTovoid())), T.SpaceDetailDataTovoid())}), new space_detail_dialogs.SpaceCreatePageDialog.new({open: this[_createPageDialogOpen], spaceId: space.id, onClose: dart.fn(() => this.setState(dart.fn(() => this[_createPageDialogOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onCreated: dart.fn(created => this.setState(dart.fn(() => {
             this[_pages] = (() => {
-              let t$3635 = _interceptors.JSArray.of(T.JSArrayOfSpacePage(), [created]);
-              t$3635[$addAll](this[_pages][$where](dart.fn(item => item.id !== created.id, T.SpacePageTobool())));
-              return t$3635;
+              let t$3636 = _interceptors.JSArray.of(T.JSArrayOfSpacePage(), [created]);
+              t$3636[$addAll](this[_pages][$where](dart.fn(item => item.id !== created.id, T.SpacePageTobool())));
+              return t$3636;
             })();
             this[_notice] = "Created “" + created.title + "”";
             this[_noticeIsError] = false;
           }, T.VoidTovoid())), T.SpacePageTovoid())}), new space_detail_dialogs.SpaceInviteDialog.new({open: this[_inviteDialogOpen], space: space, canRenew: permissions.canRenewInvite, onClose: dart.fn(() => this.setState(dart.fn(() => this[_inviteDialogOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onInviteRenewed: dart.fn((inviteCode, expiresAt) => this.setState(dart.fn(() => {
             this[_space] = space.copyWith({inviteCode: inviteCode, inviteCodeExpiresAt: expiresAt});
-          }, T.VoidTovoid())), T.StringAndDateTimeNTovoid())}), new calendar_create_dialog.CalendarCreateDialog.new({open: this[_createEventDialogOpen], initialDate: new core.DateTime.now(), onClose: dart.fn(() => this.setState(dart.fn(() => this[_createEventDialogOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onCreated: dart.fn(_$35wc0$35formal => async.unawaited(this[_load]({keepCachedContent: true})), T.CalendarEventNTovoid())}), space_detail_tabs_content.spaceMembersModal({open: this[_membersModalOpen], members: this[_members], currentUserId: session.userId, canManageMembers: permissions.canManageMembers, isOwner: permissions.isOwner, canInvite: permissions.canInvite, mutatingMemberIds: this[_mutatingMemberIds], onClose: dart.fn(() => this.setState(dart.fn(() => this[_membersModalOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onOpenInvite: dart.fn(() => this.setState(dart.fn(() => this[_inviteDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onToggleAdmin: dart.fn((member, promote) => async.unawaited(this[_toggleAdmin](member, promote)), T.SpaceMemberAndboolTovoid()), onRemoveMember: dart.fn(member => async.unawaited(this[_removeMember](member)), T.SpaceMemberTovoid())}), space_detail_tabs_content.spaceArchivedPagesModal({open: this[_archivedModalOpen], archivedPages: archivedPages, canManagePages: permissions.isManager, mutatingPageIds: this[_mutatingPageIds], onClose: dart.fn(() => this.setState(dart.fn(() => this[_archivedModalOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onRestorePage: dart.fn(page => async.unawaited(this[_toggleArchivePage](page)), T.SpacePageTovoid()), onDeletePage: dart.fn(page => async.unawaited(this[_deletePage](page)), T.SpacePageTovoid())}), space_detail_tabs_content.spacePageOptionsModal({page: this[_optionsPage], canManagePages: permissions.isManager, busy: this[_optionsPage] != null && this[_mutatingPageIds].contains(dart.nullCheck(this[_optionsPage]).id), onClose: dart.fn(() => this.setState(dart.fn(() => this[_optionsPage] = null, T.VoidTovoid())), T.VoidTovoid()), onToggleArchive: dart.fn(page => async.unawaited(this[_toggleArchivePage](page)), T.SpacePageTovoid()), onDeletePage: dart.fn(page => async.unawaited(this[_deletePage](page)), T.SpacePageTovoid())})]), {classes: t$3636$});
+          }, T.VoidTovoid())), T.StringAndDateTimeNTovoid())}), new calendar_create_dialog.CalendarCreateDialog.new({open: this[_createEventDialogOpen], initialDate: new core.DateTime.now(), onClose: dart.fn(() => this.setState(dart.fn(() => this[_createEventDialogOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onCreated: dart.fn(_$35wc0$35formal => async.unawaited(this[_load]({keepCachedContent: true})), T.CalendarEventNTovoid())}), space_detail_tabs_content.spaceMembersModal({open: this[_membersModalOpen], members: this[_members], currentUserId: session.userId, canManageMembers: permissions.canManageMembers, isOwner: permissions.isOwner, canInvite: permissions.canInvite, mutatingMemberIds: this[_mutatingMemberIds], onClose: dart.fn(() => this.setState(dart.fn(() => this[_membersModalOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onOpenInvite: dart.fn(() => this.setState(dart.fn(() => this[_inviteDialogOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onToggleAdmin: dart.fn((member, promote) => async.unawaited(this[_toggleAdmin](member, promote)), T.SpaceMemberAndboolTovoid()), onRemoveMember: dart.fn(member => async.unawaited(this[_removeMember](member)), T.SpaceMemberTovoid())}), space_detail_tabs_content.spaceArchivedPagesModal({open: this[_archivedModalOpen], archivedPages: archivedPages, canManagePages: permissions.isManager, mutatingPageIds: this[_mutatingPageIds], onClose: dart.fn(() => this.setState(dart.fn(() => this[_archivedModalOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onRestorePage: dart.fn(page => async.unawaited(this[_toggleArchivePage](page)), T.SpacePageTovoid()), onDeletePage: dart.fn(page => async.unawaited(this[_deletePage](page)), T.SpacePageTovoid())}), space_detail_tabs_content.spacePageOptionsModal({page: this[_optionsPage], canManagePages: permissions.isManager, busy: this[_optionsPage] != null && this[_mutatingPageIds].contains(dart.nullCheck(this[_optionsPage]).id), onClose: dart.fn(() => this.setState(dart.fn(() => this[_optionsPage] = null, T.VoidTovoid())), T.VoidTovoid()), onCopyPageLink: dart.fn(page => async.unawaited(this[_copyPageLink](page)), T.SpacePageTovoid()), onSelectPage: dart.tearoff(this, null, _selectPageFromOptions), onToggleArchive: dart.fn(page => async.unawaited(this[_toggleArchivePage](page)), T.SpacePageTovoid()), onDeletePage: dart.fn(page => async.unawaited(this[_deletePage](page)), T.SpacePageTovoid())})]), {classes: t$3637$});
     }
     static ['_#new#tearOff']() {
       return new space_detail_page._SpaceDetailPageState.new(T._SpaceDetailPageState());
@@ -1375,6 +1458,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
     [_togglePin]: _ti => T.VoidToFutureOfvoid(),
     [_toggleArchivePage]: _ti => T.SpacePageToFutureOfvoid(),
     [_deletePage]: _ti => T.SpacePageToFutureOfvoid(),
+    [_copyPageLink]: _ti => T.SpacePageToFutureOfvoid(),
+    [_selectPageFromOptions]: _ti => T.SpacePageTovoid(),
     [_bulkArchiveSelected]: _ti => T.ListOfSpacePageToFutureOfvoid(),
     [_bulkDeleteSelected]: _ti => T.ListOfSpacePageToFutureOfvoid(),
     [_toggleAdmin]: _ti => T.SpaceMemberAndboolToFutureOfvoid(),
@@ -1393,6 +1478,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
     [_togglePin]: "package:eduma_web/features/space/presentation/pages/space_detail_page.dart:_SpaceDetailPageState",
     [_toggleArchivePage]: "package:eduma_web/features/space/presentation/pages/space_detail_page.dart:_SpaceDetailPageState",
     [_deletePage]: "package:eduma_web/features/space/presentation/pages/space_detail_page.dart:_SpaceDetailPageState",
+    [_copyPageLink]: "package:eduma_web/features/space/presentation/pages/space_detail_page.dart:_SpaceDetailPageState",
+    [_selectPageFromOptions]: "package:eduma_web/features/space/presentation/pages/space_detail_page.dart:_SpaceDetailPageState",
     [_bulkArchiveSelected]: "package:eduma_web/features/space/presentation/pages/space_detail_page.dart:_SpaceDetailPageState",
     [_bulkDeleteSelected]: "package:eduma_web/features/space/presentation/pages/space_detail_page.dart:_SpaceDetailPageState",
     [_toggleAdmin]: "package:eduma_web/features/space/presentation/pages/space_detail_page.dart:_SpaceDetailPageState",
@@ -1596,7 +1683,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/space/
   dart.trackLibraries("packages/eduma_web/features/space/presentation/pages/space_detail_page", {
     "package:eduma_web/features/space/presentation/pages/space_detail_page.dart": space_detail_page
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["space_detail_page.dart"],"names":[],"mappings":"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","file":"space_detail_page.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["space_detail_page.dart"],"names":[],"mappings":"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","file":"space_detail_page.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__space__presentation__pages__space_detail_page: space_detail_page

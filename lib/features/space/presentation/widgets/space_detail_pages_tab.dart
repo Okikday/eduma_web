@@ -143,10 +143,7 @@ Component _spacePageCard({
     ],
   );
 
-  final subtitlePieces = [
-    if (hasChecklist) '${page.checklistDone}/${page.checklistTotal} done',
-    if (page.description case final desc?) desc,
-  ];
+  final description = page.description?.trim();
 
   final infoBody = gridView
       ? div(classes: 'space-detail__card-body space-detail__card-body--grid', [
@@ -158,25 +155,15 @@ Component _spacePageCard({
       : div(classes: 'space-detail__card-body', [
           div(classes: 'space-detail__page-title-line', [
             strong(classes: 'space-detail__card-title', [.text(page.title)]),
-          ]),
-          div(classes: 'space-detail__card-meta-row', [
             span(
               classes: page.pageType.isDynamic
                   ? 'space-detail__type-pill space-detail__type-pill--canvas'
                   : 'space-detail__type-pill space-detail__type-pill--notes',
-              [
-                edumaIcon(
-                  page.pageType.isDynamic ? EdumaIcons.canvas : EdumaIcons.note,
-                  size: 11,
-                ),
-                span([.text(page.pageType.label)]),
-              ],
+              [.text(page.pageType.label)],
             ),
-            if (subtitlePieces.isNotEmpty)
-              span(classes: 'space-detail__card-meta', [
-                .text(subtitlePieces.join(' · ')),
-              ]),
           ]),
+          if (description != null && description.isNotEmpty)
+            span(classes: 'space-detail__card-meta', [.text(description)]),
         ]);
 
   final cardClasses = [

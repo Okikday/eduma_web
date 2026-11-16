@@ -1,6 +1,7 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
+import 'features/ai/presentation/pages/assistant_chat_page.dart';
 import 'features/ai/presentation/pages/assistant_history_page.dart';
 import 'features/auth/presentation/pages/forgot_password.dart';
 import 'features/auth/presentation/pages/sign_in.dart';
@@ -172,6 +173,11 @@ class App extends StatelessComponent {
         builder: (context, state) => AssistantHistoryPage(
           conversationId: state.queryParams['conversationId'],
         ),
+      ),
+      Route(
+        path: '/assistantChat',
+        title: 'New AI chat — Eduma',
+        builder: (context, state) => const AssistantChatPage(),
       ),
       Route(
         path: '/spacePageStatic',

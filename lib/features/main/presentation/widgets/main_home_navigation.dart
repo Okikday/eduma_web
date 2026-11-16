@@ -53,41 +53,24 @@ class _MainHomeDesktopRailState extends State<MainHomeDesktopRail> {
   int? _activePointerId;
   double _pointerStartX = 0;
   int _widthAtPointerStart = 264;
-  JSFunction? _pointerMoveListener;
-  JSFunction? _pointerUpListener;
-  JSFunction? _pointerCancelListener;
-
-  @override
-  void initState() {
-    super.initState();
-    _pointerMoveListener = ((web.PointerEvent event) => _resizeFromPointer(event)).toJS;
-    _pointerUpListener = ((web.PointerEvent event) => _stopResize(event)).toJS;
-    _pointerCancelListener = ((web.PointerEvent event) => _stopResize(event)).toJS;
-    web.window.addEventListener('pointermove', _pointerMoveListener);
-    web.window.addEventListener('pointerup', _pointerUpListener);
-    web.window.addEventListener('pointercancel', _pointerCancelListener);
-  }
-
-  @override
-  void dispose() {
-    web.window.removeEventListener('pointermove', _pointerMoveListener);
-    web.window.removeEventListener('pointerup', _pointerUpListener);
-    web.window.removeEventListener('pointercancel', _pointerCancelListener);
-    super.dispose();
-  }
+  final _resizeHandleKey = GlobalNodeKey<web.HTMLDivElement>();
 
   void _startResize(web.PointerEvent event) {
     if (_collapsed || event.button != 0) return;
     event.preventDefault();
     event.stopPropagation();
+    final handle = _resizeHandleKey.currentNode;
+    if (handle == null) return;
     _activePointerId = event.pointerId;
     _pointerStartX = event.clientX.toDouble();
     _widthAtPointerStart = _width;
+    handle.setPointerCapture(event.pointerId);
     setState(() {});
   }
 
   void _resizeFromPointer(web.PointerEvent event) {
     if (_activePointerId != event.pointerId) return;
+    event.preventDefault();
     final delta = (event.clientX - _pointerStartX).round();
     final nextWidth = (_widthAtPointerStart + delta).clamp(_minWidth, _maxWidth);
     if (nextWidth != _width) {
@@ -188,6 +171,15 @@ class _MainHomeDesktopRailState extends State<MainHomeDesktopRail> {
                   ),
               ],
             ),
+            edumaLink(
+              to: '/assistantChat',
+              classes: 'main-home__rail-ai-chat',
+              attributes: {
+                'aria-label': 'Start a new AI chat',
+                'title': 'New AI chat',
+              },
+              children: [edumaIcon(EdumaIcons.messages2, size: 21)],
+            ),
             _profileAvatarLink(
               component.session,
               classes: activeTab == .profile ? 'main-home__rail-profile is-active' : 'main-home__rail-profile',
@@ -196,6 +188,7 @@ class _MainHomeDesktopRailState extends State<MainHomeDesktopRail> {
           ]),
         ]),
         div(
+          key: _resizeHandleKey,
           classes: 'main-home__rail-resize-handle',
           attributes: {
             'role': 'separator',
@@ -210,6 +203,9 @@ class _MainHomeDesktopRailState extends State<MainHomeDesktopRail> {
           },
           events: {
             'pointerdown': (event) => _startResize(event as web.PointerEvent),
+            'pointermove': (event) => _resizeFromPointer(event as web.PointerEvent),
+            'pointerup': (event) => _stopResize(event as web.PointerEvent),
+            'pointercancel': (event) => _stopResize(event as web.PointerEvent),
             'keydown': (event) => _resizeFromKeyboard(event as web.KeyboardEvent),
           },
           [],

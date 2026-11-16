@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:js_interop';
 
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:web/web.dart' as web;
 
 import '../../../../core/data/eduma_memory_cache.dart';
 import '../../../../core/presentation/desktop_scaffolds.dart';
@@ -291,6 +293,33 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
         setState(() => _mutatingPageIds = {..._mutatingPageIds}..remove(page.id));
       }
     }
+  }
+
+  Future<void> _copyPageLink(SpacePage page) async {
+    try {
+      await web.window.navigator.clipboard
+          .writeText(Uri.base.resolve(spacePageRoutePath(page)).toString())
+          .toDart;
+      if (!mounted) return;
+      setState(() {
+        _notice = 'Copied link to “${page.title}”';
+        _noticeIsError = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _notice = 'Could not copy the page link. Check clipboard permissions and try again.';
+        _noticeIsError = true;
+      });
+    }
+  }
+
+  void _selectPageFromOptions(SpacePage page) {
+    setState(() {
+      _optionsPage = null;
+      _selectingPages = true;
+      _selectedPageIds = {page.id};
+    });
   }
 
   Future<void> _bulkArchiveSelected(List<SpacePage> selectedPages) async {
@@ -687,6 +716,8 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
         canManagePages: permissions.isManager,
         busy: _optionsPage != null && _mutatingPageIds.contains(_optionsPage!.id),
         onClose: () => setState(() => _optionsPage = null),
+        onCopyPageLink: (page) => unawaited(_copyPageLink(page)),
+        onSelectPage: _selectPageFromOptions,
         onToggleArchive: (page) => unawaited(_toggleArchivePage(page)),
         onDeletePage: (page) => unawaited(_deletePage(page)),
       ),
