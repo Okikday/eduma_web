@@ -2,7 +2,7 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/features/main/presentation/pages/main_home
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/logic/main_actions', 'packages/eduma_web/features/main/data/main_space', 'packages/eduma_web/features/auth/logic/auth_actions', 'packages/eduma_web/core/data/eduma_memory_cache', 'packages/eduma_web/core/presentation/eduma_link', 'packages/eduma_web/features/main/presentation/widgets/main_home_helpers', 'packages/eduma_web/features/streak/data/streak_api', 'packages/eduma_web/features/notifications/data/notifications_api', 'packages/eduma_web/features/main/logic/main_space_query', 'packages/eduma_web/features/main/presentation/widgets/main_home_navigation', 'packages/eduma_web/features/main/presentation/widgets/main_home_notices', 'packages/eduma_web/features/main/presentation/widgets/main_home_highlights', 'packages/eduma_web/features/main/presentation/widgets/main_home_search_bar', 'packages/eduma_web/features/main/presentation/widgets/main_home_spaces_section', 'packages/eduma_web/features/main/presentation/widgets/main_home_icons', 'packages/eduma_web/features/main/presentation/widgets/main_home_create_space_dialog', 'packages/eduma_web/features/main/presentation/widgets/main_home_join_space_dialog', 'packages/eduma_web/features/main/presentation/widgets/main_home_space_context_menu', 'packages/eduma_web/core/presentation/desktop_scaffolds', 'packages/eduma_web/features/main/presentation/widgets/calendar_agenda_panel'], (function load__packages__eduma_web__features__main__presentation__pages__main_home(dart_sdk, packages__jaspr__client, packages__eduma_web__features__main__logic__main_actions, packages__eduma_web__features__main__data__main_space, packages__eduma_web__features__auth__logic__auth_actions, packages__eduma_web__core__data__eduma_memory_cache, packages__eduma_web__core__presentation__eduma_link, packages__eduma_web__features__main__presentation__widgets__main_home_helpers, packages__eduma_web__features__streak__data__streak_api, packages__eduma_web__features__notifications__data__notifications_api, packages__eduma_web__features__main__logic__main_space_query, packages__eduma_web__features__main__presentation__widgets__main_home_navigation, packages__eduma_web__features__main__presentation__widgets__main_home_notices, packages__eduma_web__features__main__presentation__widgets__main_home_highlights, packages__eduma_web__features__main__presentation__widgets__main_home_search_bar, packages__eduma_web__features__main__presentation__widgets__main_home_spaces_section, packages__eduma_web__features__main__presentation__widgets__main_home_icons, packages__eduma_web__features__main__presentation__widgets__main_home_create_space_dialog, packages__eduma_web__features__main__presentation__widgets__main_home_join_space_dialog, packages__eduma_web__features__main__presentation__widgets__main_home_space_context_menu, packages__eduma_web__core__presentation__desktop_scaffolds, packages__eduma_web__features__main__presentation__widgets__calendar_agenda_panel) {
+define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/logic/main_actions', 'packages/eduma_web/features/main/data/main_space', 'packages/eduma_web/features/auth/logic/auth_actions', 'packages/eduma_web/core/data/eduma_memory_cache', 'packages/eduma_web/core/presentation/eduma_link', 'packages/eduma_web/features/ai/data/ai_history_api', 'packages/eduma_web/features/ai/data/ai_history_models', 'packages/eduma_web/features/main/presentation/widgets/main_home_helpers', 'packages/eduma_web/features/streak/data/streak_api', 'packages/eduma_web/features/notifications/data/notifications_api', 'packages/eduma_web/features/main/logic/main_space_query', 'packages/eduma_web/features/main/presentation/widgets/main_home_navigation', 'packages/eduma_web/features/main/data/main_canvas', 'packages/eduma_web/core/presentation/eduma_icons', 'packages/eduma_web/features/main/presentation/widgets/main_home_notices', 'packages/eduma_web/features/main/presentation/widgets/main_home_highlights', 'packages/eduma_web/features/main/presentation/widgets/main_home_search_bar', 'packages/eduma_web/features/main/presentation/widgets/main_home_spaces_section', 'packages/eduma_web/features/main/presentation/widgets/main_home_icons', 'packages/eduma_web/features/main/presentation/widgets/main_home_create_space_dialog', 'packages/eduma_web/features/main/presentation/widgets/main_home_join_space_dialog', 'packages/eduma_web/features/main/presentation/widgets/main_home_space_context_menu', 'packages/eduma_web/core/presentation/desktop_scaffolds', 'packages/eduma_web/features/main/presentation/widgets/calendar_agenda_panel'], (function load__packages__eduma_web__features__main__presentation__pages__main_home(dart_sdk, packages__jaspr__client, packages__eduma_web__features__main__logic__main_actions, packages__eduma_web__features__main__data__main_space, packages__eduma_web__features__auth__logic__auth_actions, packages__eduma_web__core__data__eduma_memory_cache, packages__eduma_web__core__presentation__eduma_link, packages__eduma_web__features__ai__data__ai_history_api, packages__eduma_web__features__ai__data__ai_history_models, packages__eduma_web__features__main__presentation__widgets__main_home_helpers, packages__eduma_web__features__streak__data__streak_api, packages__eduma_web__features__notifications__data__notifications_api, packages__eduma_web__features__main__logic__main_space_query, packages__eduma_web__features__main__presentation__widgets__main_home_navigation, packages__eduma_web__features__main__data__main_canvas, packages__eduma_web__core__presentation__eduma_icons, packages__eduma_web__features__main__presentation__widgets__main_home_notices, packages__eduma_web__features__main__presentation__widgets__main_home_highlights, packages__eduma_web__features__main__presentation__widgets__main_home_search_bar, packages__eduma_web__features__main__presentation__widgets__main_home_spaces_section, packages__eduma_web__features__main__presentation__widgets__main_home_icons, packages__eduma_web__features__main__presentation__widgets__main_home_create_space_dialog, packages__eduma_web__features__main__presentation__widgets__main_home_join_space_dialog, packages__eduma_web__features__main__presentation__widgets__main_home_space_context_menu, packages__eduma_web__core__presentation__desktop_scaffolds, packages__eduma_web__features__main__presentation__widgets__calendar_agenda_panel) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
@@ -19,11 +19,15 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
   const auth_actions = packages__eduma_web__features__auth__logic__auth_actions.eduma_web__features__auth__logic__auth_actions;
   const eduma_memory_cache = packages__eduma_web__core__data__eduma_memory_cache.eduma_web__core__data__eduma_memory_cache;
   const eduma_link = packages__eduma_web__core__presentation__eduma_link.eduma_web__core__presentation__eduma_link;
+  const ai_history_api = packages__eduma_web__features__ai__data__ai_history_api.eduma_web__features__ai__data__ai_history_api;
+  const ai_history_models = packages__eduma_web__features__ai__data__ai_history_models.eduma_web__features__ai__data__ai_history_models;
   const main_home_helpers = packages__eduma_web__features__main__presentation__widgets__main_home_helpers.eduma_web__features__main__presentation__widgets__main_home_helpers;
   const streak_api = packages__eduma_web__features__streak__data__streak_api.eduma_web__features__streak__data__streak_api;
   const notifications_api = packages__eduma_web__features__notifications__data__notifications_api.eduma_web__features__notifications__data__notifications_api;
   const main_space_query = packages__eduma_web__features__main__logic__main_space_query.eduma_web__features__main__logic__main_space_query;
   const main_home_navigation = packages__eduma_web__features__main__presentation__widgets__main_home_navigation.eduma_web__features__main__presentation__widgets__main_home_navigation;
+  const main_canvas = packages__eduma_web__features__main__data__main_canvas.eduma_web__features__main__data__main_canvas;
+  const eduma_icons = packages__eduma_web__core__presentation__eduma_icons.eduma_web__core__presentation__eduma_icons;
   const main_home_notices = packages__eduma_web__features__main__presentation__widgets__main_home_notices.eduma_web__features__main__presentation__widgets__main_home_notices;
   const main_home_highlights = packages__eduma_web__features__main__presentation__widgets__main_home_highlights.eduma_web__features__main__presentation__widgets__main_home_highlights;
   const main_home_search_bar = packages__eduma_web__features__main__presentation__widgets__main_home_search_bar.eduma_web__features__main__presentation__widgets__main_home_search_bar;
@@ -39,12 +43,13 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
   var $isEmpty = dartx.isEmpty;
   var $trim = dartx.trim;
   var $isNotEmpty = dartx.isNotEmpty;
+  var $where = dartx.where;
+  var $take = dartx.take;
+  var $toList = dartx.toList;
   var $map = dartx.map;
   var $toSet = dartx.toSet;
   var $_get = dartx._get;
-  var $where = dartx.where;
   var $addAll = dartx.addAll;
-  var $toList = dartx.toList;
   var $length = dartx.length;
   var T = {
     MainHomePageState: () => (T.MainHomePageState = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__main__presentation__pages__main_home|MainHomePageState", true)))(),
@@ -53,12 +58,15 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
     String: () => (T.String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String", true)))(),
     MainSpace: () => (T.MainSpace = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__main__data__main_space|MainSpace", true)))(),
     MainCanvas: () => (T.MainCanvas = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__main__data__main_canvas|MainCanvas", true)))(),
+    AiHistoryEntry: () => (T.AiHistoryEntry = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__ai__data__ai_history_models|AiHistoryEntry", true)))(),
     FutureOfvoid: () => (T.FutureOfvoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "async|Future<~>", true)))(),
     void: () => (T.void = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~", true)))(),
     VoidToFutureOfvoid: () => (T.VoidToFutureOfvoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "async|Future<~>()", true)))(),
     VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~()", true)))(),
     MainApiException: () => (T.MainApiException = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__main__data__main_space|MainApiException", true)))(),
     AuthApiException: () => (T.AuthApiException = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__auth__data__auth_api|AuthApiException", true)))(),
+    AiHistoryEntryTobool: () => (T.AiHistoryEntryTobool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool(eduma_web__features__ai__data__ai_history_models|AiHistoryEntry)", true)))(),
+    Object: () => (T.Object = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Object", true)))(),
     MainSpaceToString: () => (T.MainSpaceToString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String(eduma_web__features__main__data__main_space|MainSpace)", true)))(),
     ListOfMainSpace: () => (T.ListOfMainSpace = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|List<eduma_web__features__main__data__main_space|MainSpace>", true)))(),
     TimerTovoid: () => (T.TimerTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(async|Timer)", true)))(),
@@ -66,8 +74,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
     MainSpaceTobool: () => (T.MainSpaceTobool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool(eduma_web__features__main__data__main_space|MainSpace)", true)))(),
     LinkedHashSetOfString: () => (T.LinkedHashSetOfString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "collection|LinkedHashSet<core|String>", true)))(),
     MainPinLimitException: () => (T.MainPinLimitException = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__main__data__main_api|MainPinLimitException", true)))(),
-    Object: () => (T.Object = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Object", true)))(),
     JSArrayOfComponent: () => (T.JSArrayOfComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<jaspr__src__framework__framework|Component>", true)))(),
+    IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,@>", true)))(),
     ValueKeyOfString: () => (T.ValueKeyOfString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|ValueKey<core|String>", true)))(),
     MainSpaceTovoid: () => (T.MainSpaceTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(eduma_web__features__main__data__main_space|MainSpace)", true)))(),
     IdentityMapOfString$String: () => (T.IdentityMapOfString$String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,core|String>", true)))(),
@@ -89,12 +97,13 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
     Duration: () => (T.Duration = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Duration", true)))(),
     EdumaSessionN: () => (T.EdumaSessionN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__auth__data__auth_api|EdumaSession?", true)))(),
     ListOfMainCanvas: () => (T.ListOfMainCanvas = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|List<eduma_web__features__main__data__main_canvas|MainCanvas>", true)))(),
+    ListOfAiHistoryEntry: () => (T.ListOfAiHistoryEntry = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|List<eduma_web__features__ai__data__ai_history_models|AiHistoryEntry>", true)))(),
+    bool: () => (T.bool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool", true)))(),
     StringN: () => (T.StringN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String?", true)))(),
     ListNOfMainSpace: () => (T.ListNOfMainSpace = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|List<eduma_web__features__main__data__main_space|MainSpace>?", true)))(),
     MainSpaceFilter: () => (T.MainSpaceFilter = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__main__data__main_space|MainSpaceFilter", true)))(),
     MainSpaceSort: () => (T.MainSpaceSort = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__main__data__main_space|MainSpaceSort", true)))(),
     TimerN: () => (T.TimerN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "async|Timer?", true)))(),
-    bool: () => (T.bool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool", true)))(),
     DateTimeN: () => (T.DateTimeN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|DateTime?", true)))(),
     SetOfString: () => (T.SetOfString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Set<core|String>", true)))(),
     MainSpaceN: () => (T.MainSpaceN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__main__data__main_space|MainSpace?", true)))(),
@@ -111,43 +120,46 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       return C[1] = dart.constList(T.MainCanvas(), []);
     },
     get C2() {
-      return C[2] = dart.constSet(T.String(), []);
+      return C[2] = dart.constList(T.AiHistoryEntry(), []);
     },
     get C3() {
-      return C[3] = dart.const(Object.setPrototypeOf({
-        [Duration__duration]: 1000000
-      }, core.Duration.prototype));
+      return C[3] = dart.constSet(T.String(), []);
     },
     get C4() {
       return C[4] = dart.const(Object.setPrototypeOf({
-        $ti: T.ValueKeyOfString(),
-        [ValueKey_value]: "main-home-highlights"
-      }, framework.ValueKey.prototype));
+        [Duration__duration]: 1000000
+      }, core.Duration.prototype));
     },
     get C5() {
       return C[5] = dart.const(Object.setPrototypeOf({
         $ti: T.ValueKeyOfString(),
-        [ValueKey_value]: "main-home-search-region"
+        [ValueKey_value]: "main-home-highlights"
       }, framework.ValueKey.prototype));
     },
     get C6() {
       return C[6] = dart.const(Object.setPrototypeOf({
+        $ti: T.ValueKeyOfString(),
+        [ValueKey_value]: "main-home-search-region"
+      }, framework.ValueKey.prototype));
+    },
+    get C7() {
+      return C[7] = dart.const(Object.setPrototypeOf({
         [Component_key]: null,
         [CalendarAgendaPanel_initialEvents]: null
       }, calendar_agenda_panel.CalendarAgendaPanel.prototype));
     },
-    get C7() {
-      return C[7] = dart.const(Object.setPrototypeOf({
+    get C8() {
+      return C[8] = dart.const(Object.setPrototypeOf({
         [Duration__duration]: 350000
       }, core.Duration.prototype));
     },
-    get C8() {
-      return C[8] = dart.const(Object.setPrototypeOf({
+    get C9() {
+      return C[9] = dart.const(Object.setPrototypeOf({
         [Duration__duration]: 60000000
       }, core.Duration.prototype));
     }
   });
-  var C = Array(9).fill(void 0);
+  var C = Array(10).fill(void 0);
   var I = [
     "package:eduma_web/features/main/presentation/pages/main_home.dart",
     "dart:core",
@@ -196,6 +208,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
   var _spaces = dart.privateName(main_home, "_spaces");
   var _pinnedSpaces = dart.privateName(main_home, "_pinnedSpaces");
   var _recentCanvases = dart.privateName(main_home, "_recentCanvases");
+  var _recentAiChats = dart.privateName(main_home, "_recentAiChats");
+  var _loadingRecentAiChats = dart.privateName(main_home, "_loadingRecentAiChats");
+  var _recentAiChatsError = dart.privateName(main_home, "_recentAiChatsError");
   var _recentCanvasesError = dart.privateName(main_home, "_recentCanvasesError");
   var _searchResults = dart.privateName(main_home, "_searchResults");
   var _query = dart.privateName(main_home, "_query");
@@ -232,6 +247,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
   var _resendSecondsRemaining = dart.privateName(main_home, "_resendSecondsRemaining");
   var _restorePreferences = dart.privateName(main_home, "_restorePreferences");
   var _loadHome = dart.privateName(main_home, "_loadHome");
+  var _loadRecentAiChats = dart.privateName(main_home, "_loadRecentAiChats");
   var _loadStreak = dart.privateName(main_home, "_loadStreak");
   var _loadUnreadNotifications = dart.privateName(main_home, "_loadUnreadNotifications");
   var _is = dart.privateName(dart_rti, "_is");
@@ -363,7 +379,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
                   this[_spaces] = C[0] || CT.C0;
                   this[_pinnedSpaces] = C[0] || CT.C0;
                   this[_recentCanvases] = C[1] || CT.C1;
+                  this[_recentAiChats] = C[2] || CT.C2;
                   this[_recentCanvasesError] = null;
+                  this[_recentAiChatsError] = null;
                   this[_hasMore] = false;
                 }, T.VoidTovoid()));
                 eduma_link.edumaNavigate(this.context, "/sign-in", {replace: true});
@@ -374,6 +392,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
               }
               if (asyncScope$1.session.accessToken[$isEmpty]) dart.throw(new main_space.MainApiException.new((t$360$ = asyncScope$1.session.warning, t$360$ == null ? "Your session could not be restored. Please sign in again." : t$360$)));
               this.setState(dart.fn((capturedAsyncScope => () => this[_session] = capturedAsyncScope.session)(asyncScope$1), T.VoidTovoid()));
+              async.unawaited(this[_loadRecentAiChats]());
               async.unawaited(this[_loadStreak]());
               async.unawaited(this[_loadUnreadNotifications]());
               if (!this[_handledInitialJoin] && this.component.initialJoinCode[$trim]()[$isNotEmpty]) {
@@ -446,10 +465,102 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       });
       return async._asyncStartSync(t$36async_loadHome, t$completer);
     }
+    [_loadRecentAiChats]() {
+      let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue, t$handler = 1, t$errorStack = [], t$next = [], t$36$35e, asyncScope = Object.create(null), asyncScope$ = Object.create(null), asyncScope$0 = Object.create(null), asyncScope$1 = Object.create(null);
+      var t$36async_loadRecentAiChats = async._wrapJsFunctionForAsync((t$errorCode, t$result) => {
+        if (t$errorCode === 1) {
+          t$errorStack.push(t$result);
+          t$goto = t$handler;
+        }
+        while (true)
+          switch (t$goto) {
+            case 0:
+              // Function start
+              if (this[_loadingRecentAiChats]) {
+                // goto return
+                t$goto = 2;
+                break;
+              }
+              this.setState(dart.fn(() => {
+                this[_loadingRecentAiChats] = true;
+                this[_recentAiChatsError] = null;
+              }, T.VoidTovoid()));
+              t$handler = 4;
+              asyncScope$1 = Object.create(null);
+              t$goto = 7;
+              return async._asyncAwait(ai_history_api.AiHistoryApi.instance.listHistory({limit: 30}), t$36async_loadRecentAiChats, t$completer);
+            case 7:
+              // returning from await.
+              asyncScope$1.entries = t$result;
+              if (!this.mounted) {
+                t$next = [2];
+                // goto finally
+                t$goto = 5;
+                break;
+              }
+              this.setState(dart.fn((capturedAsyncScope => () => {
+                this[_recentAiChats] = capturedAsyncScope.entries[$where](dart.fn(entry => entry.kind === ai_history_models.AiHistoryKind.chat, T.AiHistoryEntryTobool()))[$take](4)[$toList]();
+              })(asyncScope$1), T.VoidTovoid()));
+              t$next.push(6);
+              // goto finally
+              t$goto = 5;
+              break;
+            case 4:
+              // catch
+              t$handler = 3;
+              t$36$35e = t$errorStack.pop();
+              asyncScope$0.t$36$35ex = dart.getThrown(t$36$35e);
+              if (T.AuthApiException()[_is](asyncScope$0.t$36$35ex)) {
+                asyncScope$ = Object.create(null);
+                asyncScope$.error = asyncScope$0.t$36$35ex;
+                if (!this.mounted) {
+                  t$next = [2];
+                  // goto finally
+                  t$goto = 5;
+                  break;
+                }
+                this.setState(dart.fn((capturedAsyncScope => () => this[_recentAiChatsError] = capturedAsyncScope.error.message)(asyncScope$), T.VoidTovoid()));
+              } else if (T.Object()[_is](asyncScope$0.t$36$35ex)) {
+                asyncScope._$35wc0$35formal = asyncScope$0.t$36$35ex;
+                if (!this.mounted) {
+                  t$next = [2];
+                  // goto finally
+                  t$goto = 5;
+                  break;
+                }
+                this.setState(dart.fn(() => this[_recentAiChatsError] = "Could not load recent AI chats.", T.VoidTovoid()));
+              } else
+                throw t$36$35e;
+              t$next.push(6);
+              // goto finally
+              t$goto = 5;
+              break;
+            case 3:
+              // uncaught
+              t$next = [1];
+            case 5:
+              // finally
+              t$handler = 1;
+              if (this.mounted) this.setState(dart.fn(() => this[_loadingRecentAiChats] = false, T.VoidTovoid()));
+              // goto the next finally handler
+              t$goto = t$next.pop();
+              break;
+            case 6:
+              // after finally
+            case 2:
+              // return
+              return async._asyncReturn(t$returnValue, t$completer);
+            case 1:
+              // rethrow
+              return async._asyncRethrow(t$errorStack.at(-1), t$completer);
+          }
+      });
+      return async._asyncStartSync(t$36async_loadRecentAiChats, t$completer);
+    }
     [_onSearch](value) {
-      let t$362;
-      t$362 = this[_searchTimer];
-      t$362 == null ? null : t$362.cancel();
+      let t$364;
+      t$364 = this[_searchTimer];
+      t$364 == null ? null : t$364.cancel();
       this[_query] = value;
       let generation = this[_searchGeneration] = this[_searchGeneration] + 1;
       if (value[$trim]()[$isEmpty]) {
@@ -472,7 +583,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       }, T.VoidTovoid()));
     }
     [_search](generation, query) {
-      let t$362, t$362$;
+      let t$364, t$364$;
       let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue, t$handler = 1, t$errorStack = [], t$next = [], t$36$35e, asyncScope = Object.create(null), asyncScope$ = Object.create(null), asyncScope$0 = Object.create(null), asyncScope$1 = Object.create(null);
       var t$36async_search = async._wrapJsFunctionForAsync((t$errorCode, t$result) => {
         if (t$errorCode === 1) {
@@ -486,7 +597,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
               t$handler = 3;
               asyncScope$1 = Object.create(null);
               t$goto = 6;
-              return async._asyncAwait(main_actions.MainActions.loadSpaces({page: 1, query: query, currentUserId: (t$362$ = (t$362 = this[_session], t$362 == null ? null : t$362.userId), t$362$ == null ? "" : t$362$)}), t$36async_search, t$completer);
+              return async._asyncAwait(main_actions.MainActions.loadSpaces({page: 1, query: query, currentUserId: (t$364$ = (t$364 = this[_session], t$364 == null ? null : t$364.userId), t$364$ == null ? "" : t$364$)}), t$36async_search, t$completer);
             case 6:
               // returning from await.
               asyncScope$1.result = t$result;
@@ -547,7 +658,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       return async._asyncStartSync(t$36async_search, t$completer);
     }
     [_loadMore]() {
-      let t$364, t$364$, t$364$0;
+      let t$366, t$366$, t$366$0;
       let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue, t$handler = 1, t$errorStack = [], t$next = [], t$36$35e, asyncScope = Object.create(null), asyncScope$ = Object.create(null), asyncScope$0 = Object.create(null), asyncScope$1 = Object.create(null), asyncScope$2 = Object.create(null);
       var t$36async_loadMore = async._wrapJsFunctionForAsync((t$errorCode, t$result) => {
         if (t$errorCode === 1) {
@@ -574,7 +685,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
               t$handler = 4;
               asyncScope$2 = Object.create(null);
               t$goto = 7;
-              return async._asyncAwait(main_actions.MainActions.loadSpaces({page: asyncScope.nextPage, query: asyncScope.query, currentUserId: (t$364$ = (t$364 = this[_session], t$364 == null ? null : t$364.userId), t$364$ == null ? "" : t$364$)}), t$36async_loadMore, t$completer);
+              return async._asyncAwait(main_actions.MainActions.loadSpaces({page: asyncScope.nextPage, query: asyncScope.query, currentUserId: (t$366$ = (t$366 = this[_session], t$366 == null ? null : t$366.userId), t$366$ == null ? "" : t$366$)}), t$36async_loadMore, t$completer);
             case 7:
               // returning from await.
               asyncScope$2.result = t$result;
@@ -584,13 +695,13 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
                 t$goto = 5;
                 break;
               }
-              asyncScope$2.current = (t$364$0 = this[_searchResults], t$364$0 == null ? this[_spaces] : t$364$0);
+              asyncScope$2.current = (t$366$0 = this[_searchResults], t$366$0 == null ? this[_spaces] : t$366$0);
               asyncScope$2.ids = asyncScope$2.current[$map](T.String(), dart.fn(space => space.id, T.MainSpaceToString()))[$toSet]();
               asyncScope$2.combined = (capturedAsyncScope => () => {
-                let t$364 = core.List.of(T.ListOfMainSpace(), capturedAsyncScope.current);
+                let t$366 = core.List.of(T.ListOfMainSpace(), capturedAsyncScope.current);
                 for (let space of capturedAsyncScope.result.spaces)
-                  if (capturedAsyncScope.ids.add(space.id)) t$364.push(space);
-                return t$364;
+                  if (capturedAsyncScope.ids.add(space.id)) t$366.push(space);
+                return t$366;
               })(asyncScope$2)();
               this.setState(dart.fn(((capturedAsyncScope, capturedAsyncScope$) => () => {
                 if (capturedAsyncScope.query[$isEmpty]) {
@@ -665,11 +776,11 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       async.unawaited(main_actions.MainActions.saveSpaceSort(main_space.MainSpaceSort.recent));
     }
     [_startResendCooldown](seconds) {
-      let t$367;
-      t$367 = this[_resendCooldownTimer];
-      t$367 == null ? null : t$367.cancel();
+      let t$369;
+      t$369 = this[_resendCooldownTimer];
+      t$369 == null ? null : t$369.cancel();
       this[_resendAvailableAt] = new core.DateTime.now().add(new core.Duration.new({seconds: seconds}));
-      this[_resendCooldownTimer] = async.Timer.periodic(C[3] || CT.C3, dart.fn(timer => {
+      this[_resendCooldownTimer] = async.Timer.periodic(C[4] || CT.C4, dart.fn(timer => {
         if (!this.mounted) {
           timer.cancel();
           return;
@@ -685,7 +796,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       }, T.VoidTovoid()));
     }
     [_resendVerification]() {
-      let t$368;
+      let t$3610;
       let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue, t$handler = 1, t$errorStack = [], t$next = [], t$36$35e, asyncScope = Object.create(null), asyncScope$ = Object.create(null);
       var t$36async_resendVerification = async._wrapJsFunctionForAsync((t$errorCode, t$result) => {
         if (t$errorCode === 1) {
@@ -735,7 +846,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
                   this[_verificationMessage] = capturedAsyncScope.error.message;
                   this[_verificationMessageIsError] = true;
                 })(asyncScope$), T.VoidTovoid()));
-                asyncScope.retryAfter = core.int.tryParse(dart.str((t$368 = asyncScope$.error.details[$_get]("retryAfter"), t$368 == null ? "" : t$368)));
+                asyncScope.retryAfter = core.int.tryParse(dart.str((t$3610 = asyncScope$.error.details[$_get]("retryAfter"), t$3610 == null ? "" : t$3610)));
                 if (asyncScope$.error.statusCode === 429 && asyncScope.retryAfter != null && dart.notNull(asyncScope.retryAfter) > 0) this[_startResendCooldown](asyncScope.retryAfter);
               } else
                 throw t$36$35e;
@@ -782,9 +893,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       if (created != null) {
         this.setState(dart.fn(() => {
           this[_spaces] = (() => {
-            let t$368 = _interceptors.JSArray.of(T.JSArrayOfMainSpace(), [created]);
-            t$368[$addAll](this[_spaces][$where](dart.fn(item => item.id !== created.id, T.MainSpaceTobool())));
-            return t$368;
+            let t$3610 = _interceptors.JSArray.of(T.JSArrayOfMainSpace(), [created]);
+            t$3610[$addAll](this[_spaces][$where](dart.fn(item => item.id !== created.id, T.MainSpaceTobool())));
+            return t$3610;
           })();
           this[_actionMessage] = "“" + created.title + "” is ready.";
           this[_actionMessageIsError] = false;
@@ -802,9 +913,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       if (joinedSpace != null) {
         this.setState(dart.fn(() => {
           this[_spaces] = (() => {
-            let t$369 = _interceptors.JSArray.of(T.JSArrayOfMainSpace(), [joinedSpace]);
-            t$369[$addAll](this[_spaces][$where](dart.fn(item => item.id !== joinedSpace.id, T.MainSpaceTobool())));
-            return t$369;
+            let t$3611 = _interceptors.JSArray.of(T.JSArrayOfMainSpace(), [joinedSpace]);
+            t$3611[$addAll](this[_spaces][$where](dart.fn(item => item.id !== joinedSpace.id, T.MainSpaceTobool())));
+            return t$3611;
           })();
           this[_actionMessage] = "Joined “" + joinedSpace.title + "”.";
           this[_actionMessageIsError] = false;
@@ -862,9 +973,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
               this.setState(dart.fn((capturedAsyncScope => () => {
                 this[_actionMessage] = null;
                 this[_pinningIds] = (() => {
-                  let t$3610 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_pinningIds]);
-                  t$3610.add(space.id);
-                  return t$3610;
+                  let t$3612 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_pinningIds]);
+                  t$3612.add(space.id);
+                  return t$3612;
                 })();
                 this[_spaces] = main_home_helpers.mainHomeReplacePin(this[_spaces], space.id, capturedAsyncScope.nextPinned);
                 if (this[_searchResults] != null) {
@@ -918,13 +1029,13 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
               // finally
               t$handler = 1;
               if (this.mounted) this.setState(dart.fn(() => {
-                let t$3614;
-                this[_pinningIds] = (t$3614 = (() => {
-                  let t$3613 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_pinningIds]);
-                  return t$3613;
+                let t$3616;
+                this[_pinningIds] = (t$3616 = (() => {
+                  let t$3615 = collection.LinkedHashSet.of(T.LinkedHashSetOfString(), this[_pinningIds]);
+                  return t$3615;
                 })(), (() => {
-                  t$3614.remove(space.id);
-                  return t$3614;
+                  t$3616.remove(space.id);
+                  return t$3616;
                 })());
               }, T.VoidTovoid()));
               // goto the next finally handler
@@ -955,7 +1066,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       }, T.VoidTovoid()));
     }
     [_loadStreak]() {
-      let t$3614;
+      let t$3616;
       let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$handler = 1, t$errorStack = [], t$36$35e, asyncScope = Object.create(null), asyncScope$ = Object.create(null);
       var t$36async_loadStreak = async._wrapJsFunctionForAsync((t$errorCode, t$result) => {
         if (t$errorCode === 1) {
@@ -973,7 +1084,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
             case 6:
               // returning from await.
               asyncScope$.summary = t$result;
-              eduma_memory_cache.EdumaMemoryCache.instance.home = (t$3614 = eduma_memory_cache.EdumaMemoryCache.instance.home, t$3614 == null ? null : t$3614.copyWith({streakCount: asyncScope$.summary.current, streakTodayMinutes: asyncScope$.summary.todayMinutes, streakGoalMinutes: asyncScope$.summary.goalMinutes}));
+              eduma_memory_cache.EdumaMemoryCache.instance.home = (t$3616 = eduma_memory_cache.EdumaMemoryCache.instance.home, t$3616 == null ? null : t$3616.copyWith({streakCount: asyncScope$.summary.current, streakTodayMinutes: asyncScope$.summary.todayMinutes, streakGoalMinutes: asyncScope$.summary.goalMinutes}));
               if (this.mounted) this.setState(dart.fn((capturedAsyncScope => () => this[_streakDays] = capturedAsyncScope.summary.current)(asyncScope$), T.VoidTovoid()));
               t$handler = 1;
               // goto after finally
@@ -1058,77 +1169,87 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       return async._asyncStartSync(t$36async_loadUnreadNotifications, t$completer);
     }
     build(context) {
-      let t$3616, t$3616$, t$3616$0, t$3623, t$3622, t$3624, t$3623$, t$3622$, t$3624$, t$3623$0, t$3622$0, t$3622$1, t$3623$1, t$3623$2, t$3623$3, t$3623$4;
+      let t$3618, t$3618$, t$3618$0, t$3620, t$3620$, t$3621, t$3621$, t$3627, t$3626, t$3628, t$3627$, t$3626$, t$3628$, t$3627$0, t$3626$0, t$3626$1, t$3627$1, t$3627$2, t$3627$3, t$3627$4;
       let session = this[_session];
       let now = new core.DateTime.now();
-      let trimmedName = (t$3616$ = (t$3616 = session, t$3616 == null ? null : t$3616.name[$trim]()), t$3616$ == null ? "" : t$3616$);
+      let trimmedName = (t$3618$ = (t$3618 = session, t$3618 == null ? null : t$3618.name[$trim]()), t$3618$ == null ? "" : t$3618$);
       let firstName = main_home_helpers.mainHomeFirstName(trimmedName);
-      let items = main_space_query.MainSpaceQuery.apply((t$3616$0 = this[_searchResults], t$3616$0 == null ? this[_spaces] : t$3616$0), {filter: this[_filter], sort: this[_sort]});
-      t$3623$4 = session != null ? "main-home main-home--has-agenda" : "main-home";
+      let items = main_space_query.MainSpaceQuery.apply((t$3618$0 = this[_searchResults], t$3618$0 == null ? this[_spaces] : t$3618$0), {filter: this[_filter], sort: this[_sort]});
+      t$3627$4 = session != null ? "main-home main-home--has-agenda" : "main-home";
       return new html.main_.new((() => {
-        let t$3616 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
-        if (session != null) t$3616.push(main_home_navigation.mainHomeDesktopRail(session, {unreadNotifications: this[_unreadNotifications]}));
-        t$3616.push((t$3623$3 = "main-home__center-wrap", new html.div.new((() => {
-          let t$3617 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3623$2 = "main-home__content", new html.div.new((() => {
-              let t$3618 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
-              if (session != null) t$3618.push(main_home_navigation.mainHomeHeader({session: session, firstName: firstName, greeting: main_home_helpers.mainHomeGreetingWord(now), desktopFirstName: trimmedName[$isEmpty] ? "" : firstName, now: now, loading: this[_loading], hasRecentCanvases: this[_recentCanvases][$isNotEmpty], onRefresh: dart.fn(() => async.unawaited(this[_loadHome]()), T.VoidTovoid()), onOpenJoinSpace: dart.fn(() => this[_openJoinDialog](), T.VoidTovoid()), onOpenCreateSpace: dart.tearoff(this, null, _openCreateDialog), unreadNotifications: this[_unreadNotifications], streakDays: this[_streakDays]}));
+        let t$3618 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+        if (session != null) t$3618.push(main_home_navigation.mainHomeDesktopRail(session, {unreadNotifications: this[_unreadNotifications], sidebarContent: _interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation.mainHomeRailSection({title: "Recent canvases", seeAllHref: "/recentCanvasesSeeAll", items: (() => {
+                let t$3619 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+                for (let canvas of this[_recentCanvases][$take](4))
+                  t$3619.push(main_home_navigation.mainHomeRailItem({icon: canvas.type === main_canvas.MainCanvasType.dynamicCanvas ? eduma_icons.EdumaIcons.canvas : eduma_icons.EdumaIcons.note, title: canvas.title[$trim]()[$isEmpty] ? "Untitled page" : canvas.title, subtitle: (t$3620 = canvas.spaceTitle, t$3620 == null ? canvas.type === main_canvas.MainCanvasType.dynamicCanvas ? "Canvas" : "Notes" : t$3620), previewUrl: canvas.previewUrl, href: core._Uri.new({path: canvas.type === main_canvas.MainCanvasType.dynamicCanvas ? "/spacePageCanvas" : "/spacePageStatic", queryParameters: new _js_helper.IdentityMap.from(T.IdentityMapOfString$dynamic(), ["id", canvas.id, "spaceId", canvas.spaceId])}).toString()}));
+                return t$3619;
+              })(), emptyMessage: (t$3620$ = this[_recentCanvasesError], t$3620$ == null ? this[_loading] ? "Loading recent canvases…" : "No recent canvases yet." : t$3620$)}), main_home_navigation.mainHomeRailSection({title: "AI chats", seeAllHref: "/assistantHistory", items: (() => {
+                let t$3620 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+                for (let chat of this[_recentAiChats][$take](4))
+                  t$3620.push(main_home_navigation.mainHomeRailItem({icon: eduma_icons.EdumaIcons.messages2, title: chat.displayTitle, subtitle: (t$3621 = chat.source.spaceTitle, t$3621 == null ? "Assistant chat" : t$3621), href: core._Uri.new({path: "/assistantHistory", queryParameters: new _js_helper.IdentityMap.from(T.IdentityMapOfString$dynamic(), ["conversationId", chat.id])}).toString()}));
+                return t$3620;
+              })(), emptyMessage: (t$3621$ = this[_recentAiChatsError], t$3621$ == null ? this[_loadingRecentAiChats] ? "Loading AI chats…" : "No recent AI chats yet." : t$3621$)})])}));
+        t$3618.push((t$3627$3 = "main-home__center-wrap", new html.div.new((() => {
+          let t$3621 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3627$2 = "main-home__content", new html.div.new((() => {
+              let t$3622 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+              if (session != null) t$3622.push(main_home_navigation.mainHomeHeader({session: session, firstName: firstName, greeting: main_home_helpers.mainHomeGreetingWord(now), desktopFirstName: trimmedName[$isEmpty] ? "" : firstName, now: now, onOpenJoinSpace: dart.fn(() => this[_openJoinDialog](), T.VoidTovoid()), onOpenCreateSpace: dart.tearoff(this, null, _openCreateDialog), unreadNotifications: this[_unreadNotifications], streakDays: this[_streakDays]}));
               if (this[_loading] && session == null)
-                t$3618.push(main_home_notices.mainHomeLoadingSessionState());
+                t$3622.push(main_home_notices.mainHomeLoadingSessionState());
               else if (this[_error] != null && session == null)
-                t$3618.push(main_home_notices.mainHomeSessionErrorState(dart.nullCheck(this[_error]), {onRetry: dart.fn(() => async.unawaited(this[_loadHome]()), T.VoidTovoid())}));
+                t$3622.push(main_home_notices.mainHomeSessionErrorState(dart.nullCheck(this[_error]), {onRetry: dart.fn(() => async.unawaited(this[_loadHome]()), T.VoidTovoid())}));
               else if (session == null)
-                t$3618.push(main_home_notices.mainHomeSignInPromptState());
+                t$3622.push(main_home_notices.mainHomeSignInPromptState());
               else
-                t$3618.push((t$3623$1 = "main-home__body", new html.div.new((() => {
-                  let t$3619 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+                t$3622.push((t$3627$1 = "main-home__body", new html.div.new((() => {
+                  let t$3623 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
                   {
                     let t$36$350$350 = this[_actionMessage];
                     {
                       let message = null;
                       if (t$36$350$350 != null) {
                         message = t$36$350$350;
-                        t$3619.push(main_home_notices.mainHomeNotice(message, {isError: this[_actionMessageIsError]}));
+                        t$3623.push(main_home_notices.mainHomeNotice(message, {isError: this[_actionMessageIsError]}));
                       }
                     }
                   }
-                  if (this[_query][$trim]()[$isEmpty] && !dart.equals(session.user[$_get]("isEmailVerified"), true) && !this[_emailVerificationDismissed]) t$3619.push(main_home_notices.mainHomeVerifyEmailBanner({session: session, resending: this[_resendingVerification], secondsRemaining: this[_resendSecondsRemaining], feedbackMessage: this[_verificationMessage], feedbackIsError: this[_verificationMessageIsError], onResend: dart.fn(() => async.unawaited(this[_resendVerification]()), T.VoidTovoid()), onDismiss: dart.fn(() => this.setState(dart.fn(() => this[_emailVerificationDismissed] = true, T.VoidTovoid())), T.VoidTovoid())}));
-                  if (this[_query][$trim]()[$isEmpty] && this[_recentCanvasesError] != null) t$3619.push(main_home_notices.mainHomeNotice(dart.nullCheck(this[_recentCanvasesError]), {isError: true}));
-                  if (this[_query][$trim]()[$isEmpty] && this[_filter] === main_space.MainSpaceFilter.all && !this[_searchFocused]) t$3619.push((t$3622 = C[4] || CT.C4, t$3623 = "main-home__highlights", new html.div.new((() => {
-                    let t$3621 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
-                    if (this[_recentCanvases][$isNotEmpty]) t$3621.push(main_home_highlights.mainHomeRecentCanvasSection(this[_recentCanvases]));
-                    if (this[_pinnedSpaces][$isNotEmpty]) t$3621.push(main_home_highlights.mainHomePinnedSection(this[_pinnedSpaces], {onOpenMenu: dart.fn(space => this.setState(dart.fn(() => this[_menuSpace] = space, T.VoidTovoid())), T.MainSpaceTovoid())}));
-                    return t$3621;
-                  })(), {key: t$3622, classes: t$3623})));
-                  t$3619.push((t$3622$ = C[5] || CT.C5, t$3623$ = "main-home__search-region", t$3624 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "search", "aria-label", "Search spaces"]), new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_search_bar.mainHomeSearchBar({query: this[_query], filter: this[_filter], sort: this[_sort], gridView: this[_spaceGridView], onSearch: dart.tearoff(this, null, _onSearch), onFocusChanged: dart.fn(focused => this.setState(dart.fn(() => this[_searchFocused] = focused, T.VoidTovoid())), T.boolTovoid()), onSelectFilter: dart.fn(filter => this.setState(dart.fn(() => this[_filter] = filter, T.VoidTovoid())), T.MainSpaceFilterTovoid()), onSelectSort: dart.tearoff(this, null, _setSort), onSelectGridView: dart.tearoff(this, null, _setGridView), onResetFilters: dart.tearoff(this, null, _resetFilters)})]), {key: t$3622$, classes: t$3623$, attributes: t$3624})));
-                  t$3619.push(main_home_spaces_section.mainHomeSpacesSection({spaces: items, query: this[_query], filter: this[_filter], loading: this[_loading], error: this[_error], gridView: this[_spaceGridView], onRetry: dart.fn(() => {
+                  if (this[_query][$trim]()[$isEmpty] && !dart.equals(session.user[$_get]("isEmailVerified"), true) && !this[_emailVerificationDismissed]) t$3623.push(main_home_notices.mainHomeVerifyEmailBanner({session: session, resending: this[_resendingVerification], secondsRemaining: this[_resendSecondsRemaining], feedbackMessage: this[_verificationMessage], feedbackIsError: this[_verificationMessageIsError], onResend: dart.fn(() => async.unawaited(this[_resendVerification]()), T.VoidTovoid()), onDismiss: dart.fn(() => this.setState(dart.fn(() => this[_emailVerificationDismissed] = true, T.VoidTovoid())), T.VoidTovoid())}));
+                  if (this[_query][$trim]()[$isEmpty] && this[_recentCanvasesError] != null) t$3623.push(main_home_notices.mainHomeNotice(dart.nullCheck(this[_recentCanvasesError]), {isError: true}));
+                  if (this[_query][$trim]()[$isEmpty] && this[_filter] === main_space.MainSpaceFilter.all && !this[_searchFocused]) t$3623.push((t$3626 = C[5] || CT.C5, t$3627 = "main-home__highlights", new html.div.new((() => {
+                    let t$3625 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+                    if (this[_recentCanvases][$isNotEmpty]) t$3625.push(main_home_highlights.mainHomeRecentCanvasSection(this[_recentCanvases]));
+                    if (this[_pinnedSpaces][$isNotEmpty]) t$3625.push(main_home_highlights.mainHomePinnedSection(this[_pinnedSpaces], {onOpenMenu: dart.fn(space => this.setState(dart.fn(() => this[_menuSpace] = space, T.VoidTovoid())), T.MainSpaceTovoid())}));
+                    return t$3625;
+                  })(), {key: t$3626, classes: t$3627})));
+                  t$3623.push((t$3626$ = C[6] || CT.C6, t$3627$ = "main-home__search-region", t$3628 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "search", "aria-label", "Search spaces"]), new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_search_bar.mainHomeSearchBar({query: this[_query], filter: this[_filter], sort: this[_sort], gridView: this[_spaceGridView], onSearch: dart.tearoff(this, null, _onSearch), onFocusChanged: dart.fn(focused => this.setState(dart.fn(() => this[_searchFocused] = focused, T.VoidTovoid())), T.boolTovoid()), onSelectFilter: dart.fn(filter => this.setState(dart.fn(() => this[_filter] = filter, T.VoidTovoid())), T.MainSpaceFilterTovoid()), onSelectSort: dart.tearoff(this, null, _setSort), onSelectGridView: dart.tearoff(this, null, _setGridView), onResetFilters: dart.tearoff(this, null, _resetFilters)})]), {key: t$3626$, classes: t$3627$, attributes: t$3628})));
+                  t$3623.push(main_home_spaces_section.mainHomeSpacesSection({spaces: items, query: this[_query], filter: this[_filter], loading: this[_loading], error: this[_error], gridView: this[_spaceGridView], onRetry: dart.fn(() => {
                       if (this[_query][$trim]()[$isEmpty]) {
                         async.unawaited(this[_loadHome]());
                       } else {
                         this[_onSearch](this[_query]);
                       }
                     }, T.VoidTovoid()), onClearSearch: dart.fn(() => this[_onSearch](""), T.VoidTovoid()), onClearFilters: dart.tearoff(this, null, _resetFilters), onOpenCreateSpace: dart.tearoff(this, null, _openCreateDialog), onOpenJoinSpace: dart.fn(() => this[_openJoinDialog](), T.VoidTovoid()), onOpenMenu: dart.fn(space => this.setState(dart.fn(() => this[_menuSpace] = space, T.VoidTovoid())), T.MainSpaceTovoid())}));
-                  if (this[_hasMore]) t$3619.push((t$3622$1 = "main-home__load-more", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3622$0 = "main-home__load-more-button", t$3623$0 = html.ButtonType.button, t$3624$ = this[_loadingMore], new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_icons.mainHomeIcon(main_home_icons.MainHomeIcon.refresh), new framework.Text.__(this[_loadingMore] ? "Loading…" : "Load more spaces")]), {classes: t$3622$0, type: t$3623$0, disabled: t$3624$, onClick: dart.fn(() => async.unawaited(this[_loadMore]()), T.VoidTovoid())}))]), {classes: t$3622$1})));
+                  if (this[_hasMore]) t$3623.push((t$3626$1 = "main-home__load-more", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3626$0 = "main-home__load-more-button", t$3627$0 = html.ButtonType.button, t$3628$ = this[_loadingMore], new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_icons.mainHomeIcon(main_home_icons.MainHomeIcon.refresh), new framework.Text.__(this[_loadingMore] ? "Loading…" : "Load more spaces")]), {classes: t$3626$0, type: t$3627$0, disabled: t$3628$, onClick: dart.fn(() => async.unawaited(this[_loadMore]()), T.VoidTovoid())}))]), {classes: t$3626$1})));
                   {
                     let t$36$351$350 = this[_pageError];
                     {
                       let message$ = null;
                       if (t$36$351$350 != null) {
                         message$ = t$36$351$350;
-                        t$3619.push(main_home_notices.mainHomeNotice(message$, {isError: true, onRetry: dart.fn(() => async.unawaited(this[_loadMore]()), T.VoidTovoid())}));
+                        t$3623.push(main_home_notices.mainHomeNotice(message$, {isError: true, onRetry: dart.fn(() => async.unawaited(this[_loadMore]()), T.VoidTovoid())}));
                       }
                     }
                   }
-                  return t$3619;
-                })(), {classes: t$3623$1})));
-              if (session != null) t$3618[$addAll](_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation.mainHomeMobileNavigation({hasSpaces: this[_spaces][$isNotEmpty], hasRecentCanvases: this[_recentCanvases][$isNotEmpty], onOpenCreateSpace: dart.tearoff(this, null, _openCreateDialog), onOpenJoinSpace: dart.fn(() => this[_openJoinDialog](), T.VoidTovoid())}), new main_home_create_space_dialog.MainHomeCreateSpaceDialog.new({open: this[_createDialogOpen], currentUserId: session.userId, onClose: dart.fn(() => this.setState(dart.fn(() => this[_createDialogOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onCreated: dart.tearoff(this, null, _onSpaceCreated)}), new main_home_join_space_dialog.MainHomeJoinSpaceDialog.new({open: this[_joinDialogOpen], initialCode: this[_joinCodeDraft], currentUserId: session.userId, onClose: dart.fn(() => this.setState(dart.fn(() => this[_joinDialogOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onJoined: dart.tearoff(this, null, _onSpaceJoined)}), new main_home_space_context_menu.MainHomeSpaceContextMenuDialog.new({space: this[_menuSpace], pinning: this[_menuSpace] != null && this[_pinningIds].contains(dart.nullCheck(this[_menuSpace]).id), onClose: dart.fn(() => this.setState(dart.fn(() => this[_menuSpace] = null, T.VoidTovoid())), T.VoidTovoid()), onTogglePin: dart.fn(space => async.unawaited(this[_togglePin](space)), T.MainSpaceTovoid()), onSpaceRemoved: dart.tearoff(this, null, _onSpaceRemoved)})]));
-              return t$3618;
-            })(), {classes: t$3623$2}))]);
-          if (session != null) t$3617.push(desktop_scaffolds.desktopQuickNoteFab());
-          return t$3617;
-        })(), {classes: t$3623$3})));
-        if (session != null) t$3616.push(C[6] || CT.C6);
-        return t$3616;
-      })(), {classes: t$3623$4});
+                  return t$3623;
+                })(), {classes: t$3627$1})));
+              if (session != null) t$3622[$addAll](_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation.mainHomeMobileNavigation({hasSpaces: this[_spaces][$isNotEmpty], hasRecentCanvases: this[_recentCanvases][$isNotEmpty], onOpenCreateSpace: dart.tearoff(this, null, _openCreateDialog), onOpenJoinSpace: dart.fn(() => this[_openJoinDialog](), T.VoidTovoid())}), new main_home_create_space_dialog.MainHomeCreateSpaceDialog.new({open: this[_createDialogOpen], currentUserId: session.userId, onClose: dart.fn(() => this.setState(dart.fn(() => this[_createDialogOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onCreated: dart.tearoff(this, null, _onSpaceCreated)}), new main_home_join_space_dialog.MainHomeJoinSpaceDialog.new({open: this[_joinDialogOpen], initialCode: this[_joinCodeDraft], currentUserId: session.userId, onClose: dart.fn(() => this.setState(dart.fn(() => this[_joinDialogOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onJoined: dart.tearoff(this, null, _onSpaceJoined)}), new main_home_space_context_menu.MainHomeSpaceContextMenuDialog.new({space: this[_menuSpace], pinning: this[_menuSpace] != null && this[_pinningIds].contains(dart.nullCheck(this[_menuSpace]).id), onClose: dart.fn(() => this.setState(dart.fn(() => this[_menuSpace] = null, T.VoidTovoid())), T.VoidTovoid()), onTogglePin: dart.fn(space => async.unawaited(this[_togglePin](space)), T.MainSpaceTovoid()), onSpaceRemoved: dart.tearoff(this, null, _onSpaceRemoved)})]));
+              return t$3622;
+            })(), {classes: t$3627$2}))]);
+          if (session != null) t$3621.push(desktop_scaffolds.desktopQuickNoteFab());
+          return t$3621;
+        })(), {classes: t$3627$3})));
+        if (session != null) t$3618.push(C[7] || CT.C7);
+        return t$3618;
+      })(), {classes: t$3627$4});
     }
     static ['_#new#tearOff']() {
       return new main_home.MainHomePageState.new(T.MainHomePageState());
@@ -1140,6 +1261,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
     this[_spaces] = C[0] || CT.C0;
     this[_pinnedSpaces] = C[0] || CT.C0;
     this[_recentCanvases] = C[1] || CT.C1;
+    this[_recentAiChats] = C[2] || CT.C2;
+    this[_loadingRecentAiChats] = false;
+    this[_recentAiChatsError] = null;
     this[_recentCanvasesError] = null;
     this[_searchResults] = null;
     this[_query] = "";
@@ -1167,7 +1291,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
     this[_joinDialogOpen] = false;
     this[_handledInitialJoin] = false;
     this[_joinCodeDraft] = "";
-    this[_pinningIds] = C[2] || CT.C2;
+    this[_pinningIds] = C[3] || CT.C3;
     this[_menuSpace] = null;
     this[_streakDays] = null;
     this[_unreadNotifications] = 0;
@@ -1181,6 +1305,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
   dart.setMethodSignature(main_home.MainHomePageState, () => dart.global.Object.setPrototypeOf({
     [_restorePreferences]: _ti => T.VoidToFutureOfvoid(),
     [_loadHome]: _ti => T.__ToFutureOfvoid(),
+    [_loadRecentAiChats]: _ti => T.VoidToFutureOfvoid(),
     [_onSearch]: _ti => T.StringTovoid(),
     [_search]: _ti => T.intAndStringToFutureOfvoid(),
     [_loadMore]: _ti => T.VoidToFutureOfvoid(),
@@ -1205,6 +1330,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
     dispose: "package:eduma_web/features/main/presentation/pages/main_home.dart:MainHomePageState",
     [_restorePreferences]: "package:eduma_web/features/main/presentation/pages/main_home.dart:MainHomePageState",
     [_loadHome]: "package:eduma_web/features/main/presentation/pages/main_home.dart:MainHomePageState",
+    [_loadRecentAiChats]: "package:eduma_web/features/main/presentation/pages/main_home.dart:MainHomePageState",
     [_onSearch]: "package:eduma_web/features/main/presentation/pages/main_home.dart:MainHomePageState",
     [_search]: "package:eduma_web/features/main/presentation/pages/main_home.dart:MainHomePageState",
     [_loadMore]: "package:eduma_web/features/main/presentation/pages/main_home.dart:MainHomePageState",
@@ -1249,6 +1375,24 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
     },
     [_recentCanvases]: {
       type: _ti => T.ListOfMainCanvas(),
+      isConst: false,
+      isFinal: false,
+      libraryUri: I[1]
+    },
+    [_recentAiChats]: {
+      type: _ti => T.ListOfAiHistoryEntry(),
+      isConst: false,
+      isFinal: false,
+      libraryUri: I[1]
+    },
+    [_loadingRecentAiChats]: {
+      type: _ti => T.bool(),
+      isConst: false,
+      isFinal: false,
+      libraryUri: I[1]
+    },
+    [_recentAiChatsError]: {
+      type: _ti => T.StringN(),
       isConst: false,
       isFinal: false,
       libraryUri: I[1]
@@ -1455,20 +1599,20 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
   dart.setStaticFieldSignature(main_home.MainHomePageState, () => ['_searchDelay', '_verificationResendCooldown']);
   dart.defineLazy(main_home.MainHomePageState, {
     /*main_home.MainHomePageState._searchDelay*/get _searchDelay() {
-      return C[7] || CT.C7;
+      return C[8] || CT.C8;
     },
     /*main_home.MainHomePageState._verificationResendCooldown*/get _verificationResendCooldown() {
-      return C[8] || CT.C8;
+      return C[9] || CT.C9;
     }
   });
   (function() {
   }).prototype = main_home;
   dart.moduleConstCaches.set("packages/eduma_web/features/main/presentation/pages/main_home", C);
-  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"eduma_web__features__main__presentation__pages__main_home|MainHomePageState":{"State.T":"eduma_web__features__main__presentation__pages__main_home|MainHomePage","jaspr__src__framework__framework|State":["eduma_web__features__main__presentation__pages__main_home|MainHomePage"]},"jaspr__src__framework__framework|State":{"State.T":"1"},"eduma_web__features__main__presentation__pages__main_home|MainHomePage":{"jaspr__src__framework__framework|StatefulComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatefulComponent":{"jaspr__src__framework__framework|Component":[]},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"async|Future":{"Future.T":"1"},"eduma_web__features__main__data__main_space|MainApiException":{"core|Exception":[]},"eduma_web__features__auth__data__auth_api|AuthApiException":{"core|Exception":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"collection|LinkedHashSet":{"LinkedHashSet.E":"1","Set.E":"1","core|Set":["1"],"Iterable.E":"1","core|Iterable":["1"],"_SetIterable.E":"1","core|_SetIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|Set":{"Set.E":"1","Iterable.E":"1","core|Iterable":["1"],"_SetIterable.E":"1","core|_SetIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|_SetIterable":{"_SetIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"eduma_web__features__main__data__main_api|MainPinLimitException":{"core|Exception":[]},"jaspr__src__framework__framework|ValueKey":{"ValueKey.T":"1","jaspr__src__framework__framework|LocalKey":[],"jaspr__src__framework__framework|Key":[]},"jaspr__src__framework__framework|LocalKey":{"jaspr__src__framework__framework|Key":[]},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"eduma_web__features__main__data__main_space|MainSpaceFilter":{"core|_Enum":[],"core|Enum":[]},"core|_Enum":{"core|Enum":[]},"core|int":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|num":{"Comparable.T":"core|num","core|Comparable":["core|num"]},"eduma_web__features__main__data__main_space|MainSpaceSort":{"core|_Enum":[],"core|Enum":[]},"core|Duration":{"Comparable.T":"core|Duration","core|Comparable":["core|Duration"]},"core|DateTime":{"Comparable.T":"core|DateTime","core|Comparable":["core|DateTime"]}}'));
+  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"eduma_web__features__main__presentation__pages__main_home|MainHomePageState":{"State.T":"eduma_web__features__main__presentation__pages__main_home|MainHomePage","jaspr__src__framework__framework|State":["eduma_web__features__main__presentation__pages__main_home|MainHomePage"]},"jaspr__src__framework__framework|State":{"State.T":"1"},"eduma_web__features__main__presentation__pages__main_home|MainHomePage":{"jaspr__src__framework__framework|StatefulComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatefulComponent":{"jaspr__src__framework__framework|Component":[]},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"async|Future":{"Future.T":"1"},"eduma_web__features__main__data__main_space|MainApiException":{"core|Exception":[]},"eduma_web__features__auth__data__auth_api|AuthApiException":{"core|Exception":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"collection|LinkedHashSet":{"LinkedHashSet.E":"1","Set.E":"1","core|Set":["1"],"Iterable.E":"1","core|Iterable":["1"],"_SetIterable.E":"1","core|_SetIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|Set":{"Set.E":"1","Iterable.E":"1","core|Iterable":["1"],"_SetIterable.E":"1","core|_SetIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|_SetIterable":{"_SetIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"eduma_web__features__main__data__main_api|MainPinLimitException":{"core|Exception":[]},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"jaspr__src__framework__framework|ValueKey":{"ValueKey.T":"1","jaspr__src__framework__framework|LocalKey":[],"jaspr__src__framework__framework|Key":[]},"jaspr__src__framework__framework|LocalKey":{"jaspr__src__framework__framework|Key":[]},"eduma_web__features__main__data__main_space|MainSpaceFilter":{"core|_Enum":[],"core|Enum":[]},"core|_Enum":{"core|Enum":[]},"core|int":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|num":{"Comparable.T":"core|num","core|Comparable":["core|num"]},"eduma_web__features__main__data__main_space|MainSpaceSort":{"core|_Enum":[],"core|Enum":[]},"core|Duration":{"Comparable.T":"core|Duration","core|Comparable":["core|Duration"]},"core|DateTime":{"Comparable.T":"core|DateTime","core|Comparable":["core|DateTime"]}}'));
   dart.trackLibraries("packages/eduma_web/features/main/presentation/pages/main_home", {
     "package:eduma_web/features/main/presentation/pages/main_home.dart": main_home
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["main_home.dart"],"names":[],"mappings":"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","file":"main_home.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["main_home.dart"],"names":[],"mappings":"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","file":"main_home.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__main__presentation__pages__main_home: main_home

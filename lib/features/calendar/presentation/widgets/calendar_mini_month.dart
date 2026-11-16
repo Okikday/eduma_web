@@ -41,14 +41,14 @@ Component calendarMonthSwitcher({
         button(
           classes: 'eduma-cal-switcher__icon-btn',
           type: ButtonType.button,
-          attributes: {'aria-label': 'Previous month'},
+          attributes: {'aria-label': 'Previous month', 'title': 'Previous month'},
           onClick: () => onShiftMonth(-1),
           [edumaIcon(EdumaIcons.back, size: 18)],
         ),
         button(
           classes: 'eduma-cal-switcher__icon-btn',
           type: ButtonType.button,
-          attributes: {'aria-label': 'Next month'},
+          attributes: {'aria-label': 'Next month', 'title': 'Next month'},
           onClick: () => onShiftMonth(1),
           [edumaIcon(EdumaIcons.chevronRight, size: 18)],
         ),
@@ -107,16 +107,12 @@ Component calendarDesktopMonthGrid({
               if (w * 7 + d < cellCount)
                 _fullDayCell(
                   day: days[w * 7 + d],
-                  inMonth:
-                      days[w * 7 + d].month == visibleMonth.month &&
-                      days[w * 7 + d].year == visibleMonth.year,
+                  inMonth: days[w * 7 + d].month == visibleMonth.month && days[w * 7 + d].year == visibleMonth.year,
                   isToday: calendarDayKey(days[w * 7 + d]) == todayKey,
                   isSelected: calendarDayKey(days[w * 7 + d]) == selectedKey,
-                  sessions:
-                      days[w * 7 + d].month == visibleMonth.month &&
-                              days[w * 7 + d].year == visibleMonth.year
-                          ? (eventsByDay[calendarDayKey(days[w * 7 + d])] ?? const [])
-                          : const [],
+                  sessions: days[w * 7 + d].month == visibleMonth.month && days[w * 7 + d].year == visibleMonth.year
+                      ? (eventsByDay[calendarDayKey(days[w * 7 + d])] ?? const [])
+                      : const [],
                   onSelect: () => onSelectDate(days[w * 7 + d]),
                   onCreate: () => onCreateOnDay(days[w * 7 + d]),
                   onOpenEvent: onOpenEvent,
@@ -232,15 +228,13 @@ Component _daySessionPreview({
         div(classes: 'eduma-cal-preview__inline', [
           span(classes: 'eduma-cal-preview__title', [.text(session.title)]),
           span(classes: 'eduma-cal-preview__time-inline', [.text(startClock)]),
-          if (recurring)
-            span(classes: 'eduma-cal-preview__repeat', [edumaIcon(EdumaIcons.refresh, size: 10)]),
+          if (recurring) span(classes: 'eduma-cal-preview__repeat', [edumaIcon(EdumaIcons.refresh, size: 10)]),
         ])
       else
         div(classes: 'eduma-cal-preview__stack', [
           div(classes: 'eduma-cal-preview__row', [
             span(classes: 'eduma-cal-preview__title', [.text(session.title)]),
-            if (recurring)
-              span(classes: 'eduma-cal-preview__repeat', [edumaIcon(EdumaIcons.refresh, size: 11)]),
+            if (recurring) span(classes: 'eduma-cal-preview__repeat', [edumaIcon(EdumaIcons.refresh, size: 11)]),
           ]),
           span(classes: 'eduma-cal-preview__range', [.text(rangeClock)]),
         ]),
@@ -337,8 +331,7 @@ Component _weekStripDayButton({
     onClick: onTap,
     [
       span(classes: 'eduma-cal-strip-day__num', [.text('${day.day}')]),
-      if (hasTasks && !isSelected)
-        span(classes: 'eduma-cal-strip-day__dot', attributes: {'aria-hidden': 'true'}, []),
+      if (hasTasks && !isSelected) span(classes: 'eduma-cal-strip-day__dot', attributes: {'aria-hidden': 'true'}, []),
     ],
   );
 }

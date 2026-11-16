@@ -2,7 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../../../../core/presentation/eduma_icons.dart';
-import '../../logic/auth_actions.dart';
+import '../../data/auth_api.dart';
 
 class AuthFrame extends StatelessComponent {
   const AuthFrame({
@@ -231,7 +231,7 @@ Component authGoogleButton({
   required bool termsAccepted,
   required VoidCallback onUnavailable,
 }) {
-  if (termsAccepted && edumaGoogleWebClientId.isNotEmpty) {
+  if (termsAccepted && edumaGoogleSignInConfigured) {
     return div(
       id: 'google-sign-in-button',
       classes: 'auth-google-rendered',
@@ -280,14 +280,5 @@ Component authIcon(String name, {int size = 20}) {
 }
 
 String _legalDocumentUrl(String document) {
-  if (AuthActions.canOpenFlutterApp) {
-    final workspace = Uri.parse(edumaFlutterAppUrl);
-    final base = workspace.path.endsWith('/') ? workspace : workspace.replace(path: '${workspace.path}/');
-    return base.resolve('legalDocument?id=$document').toString();
-  }
-  return Uri.https(
-    'app.eduma.com.ng',
-    '/legalDocument',
-    {'id': document},
-  ).toString();
+  return Uri(path: '/legalDocument', queryParameters: {'id': document}).toString();
 }

@@ -7,8 +7,6 @@ define(['dart_sdk'], (function load__packages__eduma_web__features__main__presen
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
   const js_util = dart_sdk.js_util;
-  const js_interop_unsafe = dart_sdk.js_interop_unsafe;
-  const js_interop = dart_sdk.js_interop;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
   var web_dialog_helper = Object.create(dart.library);
@@ -18,9 +16,7 @@ define(['dart_sdk'], (function load__packages__eduma_web__features__main__presen
     JSObjectN: () => (T.JSObjectN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject?", true)))(),
     String: () => (T.String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String", true)))(),
     bool: () => (T.bool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool", true)))(),
-    JSObjectN$1: () => (T.JSObjectN$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject?", true)))(),
     JSObject$1: () => (T.JSObject$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
-    JSObject$2: () => (T.JSObject$2 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
     int: () => (T.int = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|int", true)))(),
     double: () => (T.double = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|double", true)))(),
     JSObjectTobool: () => (T.JSObjectTobool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool(_interceptors|JSObject)", true)))(),
@@ -76,20 +72,23 @@ define(['dart_sdk'], (function load__packages__eduma_web__features__main__presen
       }
     }
     static _installLightDismissFallback(dialog) {
-      let t$360;
       if (web_dialog_helper.WebDialogHelper._boundFallbacks._get(dialog) === true) return;
       web_dialog_helper.WebDialogHelper._boundFallbacks._set(dialog, true);
-      let ctor = js_interop_unsafe['JSObjectUnsafeUtilExtension|getProperty'](T.JSObjectN$1(), js_util.getProperty(T.JSObject$1(), dart.global, "window"), js_interop['StringToJSString|get#toJS']("HTMLDialogElement"));
-      let proto = (t$360 = ctor, t$360 == null ? null : js_interop_unsafe['JSObjectUnsafeUtilExtension|getProperty'](T.JSObjectN$1(), t$360, js_interop['StringToJSString|get#toJS']("prototype")));
-      if (proto != null && js_interop['JSBooleanToBool|get#toDart'](js_interop_unsafe['JSObjectUnsafeUtilExtension|hasProperty'](proto, js_interop['StringToJSString|get#toJS']("closedBy")))) return;
       let pressedOutside = false;
       function isOutside(event) {
-        let rect = T.JSObject$2()[_as](dialog.getBoundingClientRect());
+        let rect = T.JSObject$1()[_as](dialog.getBoundingClientRect());
         let x = js_util.getProperty(T.int(), event, "clientX");
         let y = js_util.getProperty(T.int(), event, "clientY");
         return x < js_util.getProperty(T.double(), rect, "left") || x > js_util.getProperty(T.double(), rect, "right") || y < js_util.getProperty(T.double(), rect, "top") || y > js_util.getProperty(T.double(), rect, "bottom");
       }
       dart.fn(isOutside, T.JSObjectTobool());
+      dialog.addEventListener("keydown", js_util._functionToJS1(dart.fn(raw => {
+        let keyboard = raw;
+        if (js_util.getProperty(T.String(), keyboard, "key") === "Escape" && js_util.getProperty(T.bool(), dialog, "open")) {
+          keyboard.preventDefault();
+          dialog.close();
+        }
+      }, T.JSObjectToNull())));
       dialog.addEventListener("pointerdown", js_util._functionToJS1(dart.fn(raw => {
         let pointer = raw;
         pressedOutside = js_util.getProperty(T.bool(), dialog, "open") && isOutside(pointer);
@@ -133,7 +132,7 @@ define(['dart_sdk'], (function load__packages__eduma_web__features__main__presen
   dart.trackLibraries("packages/eduma_web/features/main/presentation/widgets/web_dialog_helper", {
     "package:eduma_web/features/main/presentation/widgets/web_dialog_helper.dart": web_dialog_helper
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["web_dialog_helper.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;sBAUkD;AACxC,oBAAuB,mBAAT,0EAAwB,EAAE;AAC9C,UAAI,OAAO,YAAoB,AAAQ,AAAc,gCAA9B,OAAO,iCAA0B;AACtD,cAAO,QAAO;;AAEhB,YAAO;IACT;oBAE4B,IAAS;AAC7B,mBAAS,6CAAW,EAAE;AAC5B,UAAI,AAAO,MAAD,UAAU;AACpB,qEAA6B,MAAM;AACnC,UAAI,YAAY;AACd,aAAY,8BAAP,MAAM;AACF,UAAP,MAAM,eAAe;AACd,UAAP,MAAM;;;AAGR,YAAW,8BAAP,MAAM;AACD,UAAP,MAAM;cACD,KAAW,iBAAP,MAAM,SAAS;AAEjB,UAAP,MAAM;AACC,UAAP,MAAM;;;IAGZ;4BAEoC;AAC5B,mBAAS,6CAAW,EAAE;AAC5B,UAAI,MAAM,UAAU,AAAO,MAAD,eAAe;IAC3C;4BAEoC;AAC5B,oBAAuB,mBAAT,0EAAwB,EAAE;AAC9C,UAAI,OAAO,YAAoB,AAAQ,AAAc,gCAA9B,OAAO,iCAA0B;AAClB,QAAnC,OAAO,QAAmC;;IAE/C;wCAE+D;UAK/C;AAJd,UAAI,AAAe,AAAS,uDAAR,MAAM,MAAK,MAAM;AACtB,MAAf,uDAAgB,MAAM,EAAI;AAEpB,iBAAkB,8EAAP,4DAAkD,wCAApB;AACzC,2BAAQ,IAAI,kBAAJ,OAAM,8EAAN,OAAyC,wCAAZ;AAC3C,UAAI,KAAK,YAA+C,yCAA7B,6DAAN,KAAK,EAAwB,wCAAX,eAAyB;AAE5D,2BAAiB;AACrB,eAAK,UAA2B;AACxB,mBAAc,oBAAP,MAAM;AACb,gBAAU,6BAAN,KAAK;AACT,gBAAU,6BAAN,KAAK;AACf,cAAO,AAAgD,EAA/C,GAAQ,gCAAL,IAAI,aAAS,CAAC,GAAQ,gCAAL,IAAI,cAAU,CAAC,GAAQ,gCAAL,IAAI,YAAQ,CAAC,GAAQ,gCAAL,IAAI;;;AAG7D,MAAP,MAAM,kBACJ,eAIG,uBAHF,QAAW;AACJ,sBAAU,GAAG;AACnB,yBAAwB,AAAK,8BAAZ,MAAM,aAAS,SAAS,CAAC,OAAO;;AAG9C,MAAP,MAAM,kBACJ,aAOG,uBANF,QAAW;AACJ,sBAAU,GAAG;AACnB,YAAI,cAAc,IAAI,SAAS,CAAC,OAAO,KAAY,8BAAP,MAAM;AACzC,UAAP,MAAM;;AAER,yBAAiB;;IAGvB;;;;EACF;;;;;;;;;;;;;;;;;;MA5Ee,iDAAe;YAAG,yCAAc","file":"web_dialog_helper.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["web_dialog_helper.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;sBASkD;AACxC,oBAAuB,mBAAT,0EAAwB,EAAE;AAC9C,UAAI,OAAO,YAAoB,AAAQ,AAAc,gCAA9B,OAAO,iCAA0B;AACtD,cAAO,QAAO;;AAEhB,YAAO;IACT;oBAE4B,IAAS;AAC7B,mBAAS,6CAAW,EAAE;AAC5B,UAAI,AAAO,MAAD,UAAU;AACpB,qEAA6B,MAAM;AACnC,UAAI,YAAY;AACd,aAAY,8BAAP,MAAM;AACF,UAAP,MAAM,eAAe;AACd,UAAP,MAAM;;;AAGR,YAAW,8BAAP,MAAM;AACD,UAAP,MAAM;cACD,KAAW,iBAAP,MAAM,SAAS;AAEjB,UAAP,MAAM;AACC,UAAP,MAAM;;;IAGZ;4BAEoC;AAC5B,mBAAS,6CAAW,EAAE;AAC5B,UAAI,MAAM,UAAU,AAAO,MAAD,eAAe;IAC3C;4BAEoC;AAC5B,oBAAuB,mBAAT,0EAAwB,EAAE;AAC9C,UAAI,OAAO,YAAoB,AAAQ,AAAc,gCAA9B,OAAO,iCAA0B;AAClB,QAAnC,OAAO,QAAmC;;IAE/C;wCAE+D;AAC7D,UAAI,AAAe,AAAS,uDAAR,MAAM,MAAK,MAAM;AACtB,MAAf,uDAAgB,MAAM,EAAI;AAEtB,2BAAiB;AACrB,eAAK,UAA2B;AACxB,mBAAc,oBAAP,MAAM;AACb,gBAAU,6BAAN,KAAK;AACT,gBAAU,6BAAN,KAAK;AACf,cAAO,AAAgD,EAA/C,GAAQ,gCAAL,IAAI,aAAS,CAAC,GAAQ,gCAAL,IAAI,cAAU,CAAC,GAAQ,gCAAL,IAAI,YAAQ,CAAC,GAAQ,gCAAL,IAAI;;;AAG7D,MAAP,MAAM,kBACJ,WAOG,uBANF,QAAW;AACJ,uBAAW,GAAG;AACpB,YAAa,AAAI,gCAAb,QAAQ,aAAQ,YAAmB,8BAAP,MAAM;AAC3B,UAAT,QAAQ;AACD,UAAP,MAAM;;;AAIL,MAAP,MAAM,kBACJ,eAIG,uBAHF,QAAW;AACJ,sBAAU,GAAG;AACnB,yBAAwB,AAAK,8BAAZ,MAAM,aAAS,SAAS,CAAC,OAAO;;AAG9C,MAAP,MAAM,kBACJ,aAOG,uBANF,QAAW;AACJ,sBAAU,GAAG;AACnB,YAAI,cAAc,IAAI,SAAS,CAAC,OAAO,KAAY,8BAAP,MAAM;AACzC,UAAP,MAAM;;AAER,yBAAiB;;IAGvB;;;;EACF;;;;;;;;;;;;;;;;;;MAlFe,iDAAe;YAAG,yCAAc","file":"web_dialog_helper.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__main__presentation__widgets__web_dialog_helper: web_dialog_helper

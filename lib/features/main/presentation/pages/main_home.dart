@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
+import '../../../ai/data/ai_history_api.dart';
+import '../../../ai/data/ai_history_models.dart';
 import '../../../auth/logic/auth_actions.dart';
 import '../../../notifications/data/notifications_api.dart';
 import '../../../streak/data/streak_api.dart';
@@ -45,6 +47,9 @@ class MainHomePageState extends State<MainHomePage> {
   List<MainSpace> _spaces = const [];
   List<MainSpace> _pinnedSpaces = const [];
   List<MainCanvas> _recentCanvases = const [];
+  List<AiHistoryEntry> _recentAiChats = const [];
+  bool _loadingRecentAiChats = false;
+  String? _recentAiChatsError;
   String? _recentCanvasesError;
   List<MainSpace>? _searchResults;
   String _query = '';
@@ -148,7 +153,9 @@ class MainHomePageState extends State<MainHomePage> {
           _spaces = const [];
           _pinnedSpaces = const [];
           _recentCanvases = const [];
+          _recentAiChats = const [];
           _recentCanvasesError = null;
+          _recentAiChatsError = null;
           _hasMore = false;
         });
         edumaNavigate(context, '/sign-in', replace: true);
@@ -160,6 +167,7 @@ class MainHomePageState extends State<MainHomePage> {
         );
       }
       setState(() => _session = session);
+      unawaited(_loadRecentAiChats());
       unawaited(_loadStreak());
       unawaited(_loadUnreadNotifications());
       if (!_handledInitialJoin && component.initialJoinCode.trim().isNotEmpty) {
@@ -197,6 +205,29 @@ class MainHomePageState extends State<MainHomePage> {
       if (mounted) setState(() => _error = error.message);
     } finally {
       if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  Future<void> _loadRecentAiChats() async {
+    if (_loadingRecentAiChats) return;
+    setState(() {
+      _loadingRecentAiChats = true;
+      _recentAiChatsError = null;
+    });
+    try {
+      final entries = await AiHistoryApi.instance.listHistory(limit: 30);
+      if (!mounted) return;
+      setState(() {
+        _recentAiChats = entries.where((entry) => entry.kind == .chat).take(4).toList();
+      });
+    } on AuthApiException catch (error) {
+      if (!mounted) return;
+      setState(() => _recentAiChatsError = error.message);
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _recentAiChatsError = 'Could not load recent AI chats.');
+    } finally {
+      if (mounted) setState(() => _loadingRecentAiChats = false);
     }
   }
 
@@ -528,6 +559,45 @@ class MainHomePageState extends State<MainHomePage> {
           mainHomeDesktopRail(
             session,
             unreadNotifications: _unreadNotifications,
+            sidebarContent: [
+              mainHomeRailSection(
+                title: 'Recent canvases',
+                seeAllHref: '/recentCanvasesSeeAll',
+                items: [
+                  for (final canvas in _recentCanvases.take(4))
+                    mainHomeRailItem(
+                      icon: canvas.type == .dynamicCanvas ? EdumaIcons.canvas : EdumaIcons.note,
+                      title: canvas.title.trim().isEmpty ? 'Untitled page' : canvas.title,
+                      subtitle: canvas.spaceTitle ?? (canvas.type == .dynamicCanvas ? 'Canvas' : 'Notes'),
+                      previewUrl: canvas.previewUrl,
+                      href: Uri(
+                        path: canvas.type == .dynamicCanvas ? '/spacePageCanvas' : '/spacePageStatic',
+                        queryParameters: {'id': canvas.id, 'spaceId': canvas.spaceId},
+                      ).toString(),
+                    ),
+                ],
+                emptyMessage:
+                    _recentCanvasesError ?? (_loading ? 'Loading recent canvases…' : 'No recent canvases yet.'),
+              ),
+              mainHomeRailSection(
+                title: 'AI chats',
+                seeAllHref: '/assistantHistory',
+                items: [
+                  for (final chat in _recentAiChats.take(4))
+                    mainHomeRailItem(
+                      icon: EdumaIcons.messages2,
+                      title: chat.displayTitle,
+                      subtitle: chat.source.spaceTitle ?? 'Assistant chat',
+                      href: Uri(
+                        path: '/assistantHistory',
+                        queryParameters: {'conversationId': chat.id},
+                      ).toString(),
+                    ),
+                ],
+                emptyMessage:
+                    _recentAiChatsError ?? (_loadingRecentAiChats ? 'Loading AI chats…' : 'No recent AI chats yet.'),
+              ),
+            ],
           ),
         div(classes: 'main-home__center-wrap', [
           div(classes: 'main-home__content', [
@@ -538,9 +608,6 @@ class MainHomePageState extends State<MainHomePage> {
                 greeting: mainHomeGreetingWord(now),
                 desktopFirstName: trimmedName.isEmpty ? '' : firstName,
                 now: now,
-                loading: _loading,
-                hasRecentCanvases: _recentCanvases.isNotEmpty,
-                onRefresh: () => unawaited(_loadHome()),
                 onOpenJoinSpace: () => _openJoinDialog(),
                 onOpenCreateSpace: _openCreateDialog,
                 unreadNotifications: _unreadNotifications,

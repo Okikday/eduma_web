@@ -10,8 +10,18 @@ import '../../logic/profile_actions.dart';
 import 'profile_settings_groups.dart';
 
 const _shortMonths = [
-  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
 ];
 
 String? _formatMemberSince(Object? raw) {
@@ -30,8 +40,6 @@ Object _roleIcon(String role) => switch (role.toLowerCase()) {
 Component profileDesktopHero({
   required EdumaSession session,
   required ProfileStats stats,
-  required bool refreshing,
-  required VoidCallback onRefresh,
   required VoidCallback onEditProfile,
   required VoidCallback onPhotoAction,
   required VoidCallback onSignOut,
@@ -55,12 +63,6 @@ Component profileDesktopHero({
     leading: desktopHeroBackButton(fallbackHref: '/home'),
     trailing: div(classes: 'eduma-profile__hero-corner', [
       desktopHeroButton(
-        icon: EdumaIcons.refresh,
-        label: refreshing ? 'Refreshing profile' : 'Refresh profile',
-        disabled: refreshing,
-        onPressed: onRefresh,
-      ),
-      desktopHeroButton(
         icon: EdumaIcons.camera,
         label: 'Change photo',
         onPressed: onPhotoAction,
@@ -75,8 +77,7 @@ Component profileDesktopHero({
               label: '${role[0].toUpperCase()}${role.substring(1)}',
             ),
           if (isVerified) _factChip(icon: EdumaIcons.verify, label: 'Verified'),
-          if (memberSince != null)
-            _factChip(icon: EdumaIcons.calendarTick, label: memberSince),
+          if (memberSince != null) _factChip(icon: EdumaIcons.calendarTick, label: memberSince),
         ]),
         div(classes: 'eduma-profile__hero-name-row', [
           h2(classes: 'eduma-profile__hero-name', [.text(displayName)]),
@@ -85,8 +86,7 @@ Component profileDesktopHero({
               edumaIcon(EdumaIcons.verify, size: 22),
             ]),
         ]),
-        if (handleLine.isNotEmpty)
-          p(classes: 'eduma-profile__hero-handle', [.text(handleLine)]),
+        if (handleLine.isNotEmpty) p(classes: 'eduma-profile__hero-handle', [.text(handleLine)]),
         profileStatsRow(stats, frosted: true),
         div(classes: 'eduma-profile__hero-actions', [
           desktopPillButton(
@@ -131,14 +131,16 @@ Component _heroBackdrop({required String initials, String? avatarUrl}) => div(
         span([.text(initials.isEmpty ? '?' : initials)]),
       ]),
     ]),
-    if (avatarUrl != null)
-      img(src: avatarUrl, alt: 'Profile photo', classes: 'eduma-profile__photo-img'),
+    if (avatarUrl != null) img(src: avatarUrl, alt: 'Profile photo', classes: 'eduma-profile__photo-img'),
   ],
 );
 
 Component _factChip({required Object icon, required String label}) => span(
   classes: 'eduma-profile__fact-chip',
-  [edumaIcon(icon, size: 14), span([.text(label)])],
+  [
+    edumaIcon(icon, size: 14),
+    span([.text(label)]),
+  ],
 );
 
 /// Mobile top profile identity row matching `ProfileHeaderCard`.
@@ -163,14 +165,15 @@ Component profileMobileHeaderCard({
       onClick: onPhotoAction,
       [
         span(classes: 'eduma-profile__mobile-avatar', [
-          if (avatarUrl != null)
-            img(src: avatarUrl, alt: displayName)
-          else
-            .text(initials.isEmpty ? '?' : initials),
+          if (avatarUrl != null) img(src: avatarUrl, alt: displayName) else .text(initials.isEmpty ? '?' : initials),
         ]),
-        span(classes: 'eduma-profile__camera-badge', attributes: {'aria-hidden': 'true'}, [
-          edumaIcon(EdumaIcons.camera, size: 14),
-        ]),
+        span(
+          classes: 'eduma-profile__camera-badge',
+          attributes: {'aria-hidden': 'true'},
+          [
+            edumaIcon(EdumaIcons.camera, size: 14),
+          ],
+        ),
       ],
     ),
     div(classes: 'eduma-profile__mobile-meta', [
@@ -249,18 +252,20 @@ Component profileTabBar({
   }
 
   return div(classes: 'eduma-profile__tabbar', [
-    div(classes: 'eduma-profile__segmented', attributes: {'role': 'tablist'}, [
-      for (final tab in ProfileTabSection.values)
-        button(
-          classes: tab == activeTab
-              ? 'eduma-profile__seg-btn is-active'
-              : 'eduma-profile__seg-btn',
-          type: ButtonType.button,
-          attributes: {'role': 'tab', 'aria-selected': '${tab == activeTab}'},
-          onClick: () => onSelectTab(tab),
-          [.text(tab.label)],
-        ),
-    ]),
+    div(
+      classes: 'eduma-profile__segmented',
+      attributes: {'role': 'tablist'},
+      [
+        for (final tab in ProfileTabSection.values)
+          button(
+            classes: tab == activeTab ? 'eduma-profile__seg-btn is-active' : 'eduma-profile__seg-btn',
+            type: ButtonType.button,
+            attributes: {'role': 'tab', 'aria-selected': '${tab == activeTab}'},
+            onClick: () => onSelectTab(tab),
+            [.text(tab.label)],
+          ),
+      ],
+    ),
     button(
       classes: 'eduma-profile__search-toggle',
       type: ButtonType.button,

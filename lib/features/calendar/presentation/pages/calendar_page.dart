@@ -6,6 +6,7 @@ import 'package:jaspr/jaspr.dart';
 import '../../../../core/data/eduma_memory_cache.dart';
 import '../../../../core/presentation/desktop_scaffolds.dart';
 import '../../../../core/presentation/eduma_icons.dart';
+import '../../../../core/utils/date_formatters.dart';
 import '../../../auth/logic/auth_actions.dart';
 import '../../../main/data/main_space.dart';
 import '../../../main/presentation/widgets/app_tab_shell.dart';
@@ -231,6 +232,8 @@ class _CalendarPageState extends State<CalendarPage> {
     final eventsByDay = CalendarScheduleLogic.groupByDay(_events);
     final upcoming = CalendarScheduleLogic.summarizeUpcoming(_events, now: DateTime.now());
     final hasNearEvent = upcoming?.hasNearEvent ?? false;
+    final upcomingEvents = _events.where((event) => event.endTime.isAfter(DateTime.now())).toList()
+      ..sort((first, second) => first.startTime.compareTo(second.startTime));
 
     return div(
       classes: session != null ? 'main-home eduma-cal-page' : 'main-home main-home--gate',
@@ -240,6 +243,22 @@ class _CalendarPageState extends State<CalendarPage> {
             session,
             activeTab: .calendar,
             unreadNotifications: _unreadNotifications,
+            sidebarContent: [
+              mainHomeRailSection(
+                title: 'Upcoming events',
+                onSeeAll: () => setState(() => _browseAllOpen = true),
+                items: [
+                  for (final event in upcomingEvents.take(4))
+                    mainHomeRailItem(
+                      icon: EdumaIcons.calendar,
+                      title: event.title,
+                      subtitle: '${formatShortDate(event.startTime)} · ${formatShortClock(event.startTime)}',
+                      onClick: () => setState(() => _detailEvent = event),
+                    ),
+                ],
+                emptyMessage: _loadingEvents ? 'Loading events…' : 'No upcoming events this month.',
+              ),
+            ],
           ),
         div(classes: 'main-home__center-wrap', [
           div(classes: 'main-home__content eduma-cal-content', [
@@ -264,14 +283,6 @@ class _CalendarPageState extends State<CalendarPage> {
                     onToday: _jumpToToday,
                   ),
                   actions: [
-                    button(
-                      classes: 'eduma-circle-icon-btn',
-                      type: ButtonType.button,
-                      disabled: _loadingEvents,
-                      attributes: {'aria-label': 'Refresh calendar', 'title': 'Refresh'},
-                      onClick: () => unawaited(_loadMonth(_visibleMonth)),
-                      [edumaIcon(EdumaIcons.refresh, size: 19)],
-                    ),
                     if (upcoming case final item?)
                       calendarUpcomingSummaryChip(
                         summary: item.summary,

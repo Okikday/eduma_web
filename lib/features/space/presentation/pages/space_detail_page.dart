@@ -9,6 +9,7 @@ import '../../../../core/presentation/eduma_icons.dart';
 import '../../../auth/data/auth_api.dart';
 import '../../../calendar/presentation/widgets/calendar_create_dialog.dart';
 import '../../../main/data/main_api.dart';
+import '../../../main/data/main_preferences.dart';
 import '../../../main/data/main_space.dart';
 import '../../../main/presentation/widgets/main_home_notices.dart';
 import '../../data/space_detail_models.dart';
@@ -45,7 +46,6 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
   String _query = '';
 
   bool _loading = true;
-  bool _refreshing = false;
   bool _pinning = false;
   String? _error;
   String? _notice;
@@ -60,12 +60,19 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
   bool _inviteDialogOpen = false;
   bool _membersModalOpen = false;
   bool _archivedModalOpen = false;
+  bool _pageGridView = false;
+  bool _assetGridView = true;
+  bool _pageViewTouched = false;
+  bool _assetViewTouched = false;
 
   @override
   void initState() {
     super.initState();
     final hasCached = _hydrateFromCache(component.spaceId.trim());
-    Future<void>.microtask(() => _load(refresh: hasCached));
+    unawaited(_loadViewPreferences());
+    Future<void>.microtask(
+      () => _load(keepCachedContent: hasCached),
+    );
   }
 
   @override
@@ -73,8 +80,41 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
     super.didUpdateComponent(oldComponent);
     if (oldComponent.spaceId != component.spaceId) {
       final hasCached = _hydrateFromCache(component.spaceId.trim());
-      Future<void>.microtask(() => _load(refresh: hasCached));
+      Future<void>.microtask(
+        () => _load(keepCachedContent: hasCached),
+      );
     }
+  }
+
+  Future<void> _loadViewPreferences() async {
+    final preferences = await MainPreferences.instance.load();
+    if (!mounted) return;
+    setState(() {
+      if (!_pageViewTouched) {
+        _pageGridView = preferences.spaceContentGridView;
+      }
+      if (!_assetViewTouched) {
+        _assetGridView = preferences.spaceAssetGridView;
+      }
+    });
+  }
+
+  void _togglePageView() {
+    final next = !_pageGridView;
+    setState(() {
+      _pageViewTouched = true;
+      _pageGridView = next;
+    });
+    unawaited(MainPreferences.instance.saveSpaceContentGridView(next));
+  }
+
+  void _toggleAssetView() {
+    final next = !_assetGridView;
+    setState(() {
+      _assetViewTouched = true;
+      _assetGridView = next;
+    });
+    unawaited(MainPreferences.instance.saveSpaceAssetGridView(next));
   }
 
   bool _hydrateFromCache(String id) {
@@ -101,7 +141,7 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
     return true;
   }
 
-  Future<void> _load({bool refresh = false}) async {
+  Future<void> _load({bool keepCachedContent = false}) async {
     final id = component.spaceId.trim();
     if (id.isEmpty) {
       setState(() {
@@ -112,9 +152,7 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
     }
 
     setState(() {
-      if (refresh) {
-        _refreshing = true;
-      } else {
+      if (!keepCachedContent) {
         _loading = true;
       }
       _error = null;
@@ -127,7 +165,6 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
         setState(() {
           _session = null;
           _loading = false;
-          _refreshing = false;
         });
         return;
       }
@@ -143,20 +180,17 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
         _events = bundle.events;
         _members = bundle.members;
         _loading = false;
-        _refreshing = false;
       });
     } on AuthApiException catch (error) {
       if (!mounted) return;
       setState(() {
         _loading = false;
-        _refreshing = false;
         _error = error.message;
       });
     } on MainApiException catch (error) {
       if (!mounted) return;
       setState(() {
         _loading = false;
-        _refreshing = false;
         _error = error.message;
       });
     }
@@ -215,9 +249,7 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
         _pages = [
           for (final item in _pages) item.id == page.id ? updated : item,
         ];
-        _notice = nextArchived
-            ? 'Archived “${page.title}”'
-            : 'Restored “${page.title}”';
+        _notice = nextArchived ? 'Archived “${page.title}”' : 'Restored “${page.title}”';
         _noticeIsError = false;
       });
     } on AuthApiException catch (error) {
@@ -345,14 +377,9 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
       if (!mounted) return;
       setState(() {
         _members = [
-          for (final item in _members)
-            item.id == member.id
-                ? item.copyWith(role: promote ? .admin : .member)
-                : item,
+          for (final item in _members) item.id == member.id ? item.copyWith(role: promote ? .admin : .member) : item,
         ];
-        _notice = promote
-            ? '${member.name} is now an admin'
-            : 'Removed admin role from ${member.name}';
+        _notice = promote ? '${member.name} is now an admin' : 'Removed admin role from ${member.name}';
         _noticeIsError = false;
       });
     } on AuthApiException catch (error) {
@@ -414,9 +441,7 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
       );
     }
 
-    if ((_error != null && space == null) ||
-        session == null ||
-        space == null) {
+    if ((_error != null && space == null) || session == null || space == null) {
       return adaptivePageScaffold(
         title: 'Space',
         maxWidth: 640,
@@ -453,9 +478,7 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
       archivedCount: archivedPages.length,
       assetCount: _assets.length,
       eventCount: _events.length,
-      refreshing: _refreshing,
       pinning: _pinning,
-      onRefresh: () => unawaited(_load(refresh: true)),
       onTogglePin: () => unawaited(_togglePin()),
       onOpenEdit: () => setState(() => _editDialogOpen = true),
       onOpenInvite: () => setState(() => _inviteDialogOpen = true),
@@ -469,9 +492,7 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
         space: space,
         permissions: permissions,
         archivedCount: archivedPages.length,
-        refreshing: _refreshing,
         pinning: _pinning,
-        onRefresh: () => unawaited(_load(refresh: true)),
         onTogglePin: () => unawaited(_togglePin()),
         onOpenEdit: () => setState(() => _editDialogOpen = true),
         onOpenInvite: () => setState(() => _inviteDialogOpen = true),
@@ -488,11 +509,13 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
           selectingPages: _selectingPages,
           visiblePagesCount: filteredPages.length,
           selectedPagesCount: _selectedPageIds.length,
-          allVisibleSelected: filteredPages.isNotEmpty &&
-              filteredPages.every((page) => _selectedPageIds.contains(page.id)),
+          allVisibleSelected:
+              filteredPages.isNotEmpty && filteredPages.every((page) => _selectedPageIds.contains(page.id)),
           canManagePages: permissions.isManager,
           canAddPages: permissions.canAddPages,
           canAddEvents: permissions.canAddEvents,
+          gridView: _tabIndex == 0 ? _pageGridView : _assetGridView,
+          onToggleView: _tabIndex == 0 ? _togglePageView : _toggleAssetView,
           onSelectTab: (idx) => setState(() {
             _tabIndex = idx;
             _filterMenuOpen = false;
@@ -513,12 +536,10 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
             _selectedPageIds = const {};
           }),
           onToggleSelectAll: () {
-            final allSelected = filteredPages.isNotEmpty &&
-                filteredPages.every((page) => _selectedPageIds.contains(page.id));
+            final allSelected =
+                filteredPages.isNotEmpty && filteredPages.every((page) => _selectedPageIds.contains(page.id));
             setState(() {
-              _selectedPageIds = allSelected
-                  ? const {}
-                  : {for (final page in filteredPages) page.id};
+              _selectedPageIds = allSelected ? const {} : {for (final page in filteredPages) page.id};
             });
           },
           onArchiveSelected: () => unawaited(
@@ -546,6 +567,7 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
               filteredPages: filteredPages,
               filter: _pageFilter,
               query: _query,
+              gridView: _pageGridView,
               canManagePages: permissions.isManager,
               canCreatePage: permissions.canAddPages,
               selecting: _selectingPages,
@@ -563,7 +585,11 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
               onOpenPageOptions: (page) => setState(() => _optionsPage = page),
             )
           else if (_tabIndex == 1)
-            spaceDetailAssetsTab(assets: _assets, query: _query)
+            spaceDetailAssetsTab(
+              assets: _assets,
+              query: _query,
+              gridView: _assetGridView,
+            )
           else
             spaceDetailEventsTab(
               events: _events,
@@ -632,7 +658,7 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
         open: _createEventDialogOpen,
         initialDate: DateTime.now(),
         onClose: () => setState(() => _createEventDialogOpen = false),
-        onCreated: (_) => unawaited(_load(refresh: true)),
+        onCreated: (_) => unawaited(_load(keepCachedContent: true)),
       ),
       spaceMembersModal(
         open: _membersModalOpen,

@@ -23,6 +23,7 @@ Component appTabShell({
   String backLabel = 'Back',
   int unreadNotifications = 0,
   List<Component> headerActions = const [],
+  List<Component> sidebarContent = const [],
   required List<Component> body,
   List<Component> overlays = const [],
   VoidCallback? onMobilePrimaryAction,
@@ -45,6 +46,7 @@ Component appTabShell({
           session,
           activeTab: activeTab,
           unreadNotifications: unreadNotifications,
+          sidebarContent: sidebarContent,
         ),
       div(classes: 'main-home__center-wrap', [
         div(classes: 'main-home__content', [
@@ -106,9 +108,7 @@ Component appTabShell({
             div(classes: 'main-home__body eduma-app-body', body),
           if (session != null) ...[
             mainHomeMobileNavigation(
-              activeTab: activeTab == .calendar || activeTab == .library
-                  ? activeTab
-                  : .home,
+              activeTab: activeTab == .calendar || activeTab == .library ? activeTab : .home,
               showActionsMenu: false,
               onPrimaryAction: onMobilePrimaryAction,
             ),

@@ -31,7 +31,9 @@ enum _AiKindFilter {
 /// Native AI chat & study-set history screen (`/assistantHistory`), matching
 /// `AssistantHistoryView` in `../eduma`.
 class AssistantHistoryPage extends StatefulComponent {
-  const AssistantHistoryPage({super.key});
+  const AssistantHistoryPage({this.conversationId, super.key});
+
+  final String? conversationId;
 
   @override
   State<AssistantHistoryPage> createState() => _AssistantHistoryPageState();
@@ -79,6 +81,21 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
       final list = await AiHistoryApi.instance.listHistory();
       if (!mounted) return;
       setState(() => _entries = list);
+      final requestedId = component.conversationId;
+      if (requestedId != null) {
+        AiHistoryEntry? requestedEntry;
+        for (final entry in list) {
+          if (entry.id == requestedId) {
+            requestedEntry = entry;
+            break;
+          }
+        }
+        if (requestedEntry == null) {
+          setState(() => _error = 'This AI conversation is no longer available.');
+        } else {
+          unawaited(_openConversation(requestedEntry));
+        }
+      }
     } on AuthApiException catch (err) {
       if (!mounted) return;
       setState(() => _error = err.message);
@@ -95,10 +112,33 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
     }
   }
 
+  @override
+  void didUpdateComponent(covariant AssistantHistoryPage oldComponent) {
+    super.didUpdateComponent(oldComponent);
+    final requestedId = component.conversationId;
+    if (oldComponent.conversationId == requestedId) return;
+    if (requestedId == null) {
+      setState(() {
+        _openEntry = null;
+        _error = null;
+      });
+      return;
+    }
+    for (final entry in _entries) {
+      if (entry.id == requestedId) {
+        unawaited(_openConversation(entry));
+        return;
+      }
+    }
+    if (_loading || _loadingSession) return;
+    setState(() => _error = 'This AI conversation is no longer available.');
+  }
+
   Future<void> _openConversation(AiHistoryEntry entry) async {
     setState(() {
       _openEntry = entry;
       _loadingDetail = entry.messages.isEmpty && entry.questions.isEmpty;
+      _error = null;
     });
     try {
       final full = await AiHistoryApi.instance.getConversation(entry.id);
@@ -126,8 +166,7 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
         _entries = _entries.where((e) => e.id != entry.id).toList();
         if (_openEntry?.id == entry.id) _openEntry = null;
         if (_openGroup != null) {
-          final remaining =
-              _openGroup!.entries.where((e) => e.id != entry.id).toList();
+          final remaining = _openGroup!.entries.where((e) => e.id != entry.id).toList();
           _openGroup = remaining.isEmpty
               ? null
               : AiHistoryGroup(
@@ -199,15 +238,8 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
           : '${_entries.length} ${_entries.length == 1 ? 'item' : 'items'}',
       maxWidth: 1120,
       showEdges: false,
+      fullBleed: true,
       fallbackHref: '/main',
-      trailing: button(
-        classes: 'main-home__icon-link main-home__refresh',
-        type: ButtonType.button,
-        disabled: _loading,
-        attributes: {'aria-label': 'Refresh'},
-        onClick: () => unawaited(_load()),
-        [edumaIcon(EdumaIcons.refresh, size: 18)],
-      ),
       body: [
         appSessionGateBody(
           session: _session,
@@ -222,15 +254,12 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
               appFeatureStateCard(
                 icon: .ai,
                 title: 'No AI chats yet',
-                message:
-                    'Ask the assistant on a canvas or a document. Your conversations and study sets sync here.',
+                message: 'Ask the assistant on a canvas or a document. Your conversations and study sets sync here.',
               )
             else if ((flat && filtered.isEmpty) || (!flat && groups.isEmpty))
               appFeatureStateCard(
                 icon: _query.trim().isNotEmpty ? .search : .ai,
-                title: _query.trim().isNotEmpty
-                    ? 'No matching chats'
-                    : 'No ${_filter.label.toLowerCase()} yet',
+                title: _query.trim().isNotEmpty ? 'No matching chats' : 'No ${_filter.label.toLowerCase()} yet',
                 message: _query.trim().isNotEmpty
                     ? 'Try another search term or switch filters.'
                     : 'Switch filter or start a new study session with the assistant.',
@@ -254,8 +283,7 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
               filterFirst: true,
               filterActive: hasActiveFilter,
               filterMenuOpen: _filterMenuOpen,
-              onToggleFilterMenu: () =>
-                  setState(() => _filterMenuOpen = !_filterMenuOpen),
+              onToggleFilterMenu: () => setState(() => _filterMenuOpen = !_filterMenuOpen),
               onCloseFilterMenu: () => setState(() => _filterMenuOpen = false),
               filterMenuChildren: [
                 seeAllFilterGroup('VIEW', [
@@ -341,9 +369,7 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
   Component _chatCard(AiHistoryEntry entry) {
     final previewText = entry.kind.isStudy
         ? (entry.statsLabel ?? '')
-        : (entry.preview.isEmpty
-              ? ''
-              : (entry.isPreviewFromUser ? 'You: ${entry.preview}' : entry.preview));
+        : (entry.preview.isEmpty ? '' : (entry.isPreviewFromUser ? 'You: ${entry.preview}' : entry.preview));
     return div(classes: 'ai-history__card-wrap', [
       button(
         classes: 'ai-history__card',
@@ -363,10 +389,8 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
               strong(classes: 'ai-history__title', [.text(entry.displayTitle)]),
               span(classes: 'ai-history__when', [.text(aiRelativeTimeLabel(entry.updatedAt))]),
             ]),
-            if (previewText.isNotEmpty)
-              span(classes: 'ai-history__preview', [.text(previewText)]),
-            if (entry.breadcrumbLabel.isNotEmpty)
-              span(classes: 'ai-history__crumb', [.text(entry.breadcrumbLabel)]),
+            if (previewText.isNotEmpty) span(classes: 'ai-history__preview', [.text(previewText)]),
+            if (entry.breadcrumbLabel.isNotEmpty) span(classes: 'ai-history__crumb', [.text(entry.breadcrumbLabel)]),
           ]),
         ],
       ),
@@ -382,7 +406,7 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
   }
 
   Component _groupSheet(AiHistoryGroup group) => div(
-    classes: 'space-detail__modal-backdrop',
+    classes: 'ai-history__overlay ai-history__overlay--group',
     attributes: {'role': 'dialog', 'aria-modal': 'true', 'aria-label': group.title},
     events: {
       'click': (e) {
@@ -390,7 +414,7 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
       },
     },
     [
-      div(classes: 'space-detail__modal-card', [
+      div(classes: 'ai-history__overlay-panel ai-history__overlay-panel--group', [
         div(classes: 'space-detail__modal-head', [
           div([
             h2([.text(group.title)]),
@@ -422,7 +446,7 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
         : null;
 
     return div(
-      classes: 'space-detail__modal-backdrop',
+      classes: 'ai-history__overlay ai-history__overlay--conversation',
       attributes: {'role': 'dialog', 'aria-modal': 'true', 'aria-label': entry.displayTitle},
       events: {
         'click': (e) {
@@ -430,7 +454,7 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
         },
       },
       [
-        div(classes: 'space-detail__modal-card ai-history__dialog', [
+        div(classes: 'ai-history__overlay-panel ai-history__overlay-panel--conversation', [
           div(classes: 'space-detail__modal-head', [
             div(classes: 'ai-history__dialog-head-copy', [
               h2([.text(entry.displayTitle)]),
@@ -478,23 +502,17 @@ class _AssistantHistoryPageState extends State<AssistantHistoryPage> {
                     ]),
                   if (entry.questions[i].answer case final ans?)
                     p(classes: 'ai-history__study-answer', [.text('Answer: $ans')]),
-                  if (entry.questions[i].explanation case final exp?)
-                    p(classes: 'ai-history__study-exp', [.text(exp)]),
+                  if (entry.questions[i].explanation case final exp?) p(classes: 'ai-history__study-exp', [.text(exp)]),
                 ])
             else if (entry.messages.isNotEmpty)
               for (final msg in entry.messages)
                 div(
-                  classes: msg.isUser
-                      ? 'ai-history__bubble is-user'
-                      : 'ai-history__bubble is-assistant',
+                  classes: msg.isUser ? 'ai-history__bubble is-user' : 'ai-history__bubble is-assistant',
                   [
                     span(classes: 'ai-history__bubble-role', [
                       .text(msg.isUser ? 'You' : 'Eduma AI'),
                     ]),
-                    if (msg.isUser)
-                      p([.text(msg.content)])
-                    else
-                      ...edumaRenderMarkdownBlocks(msg.content),
+                    if (msg.isUser) p([.text(msg.content)]) else ...edumaRenderMarkdownBlocks(msg.content),
                   ],
                 )
             else if (entry.preview.isNotEmpty)

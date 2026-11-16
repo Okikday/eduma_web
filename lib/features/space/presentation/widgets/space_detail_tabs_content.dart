@@ -1,5 +1,8 @@
+import 'dart:js_interop';
+
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:web/web.dart' as web;
 
 import '../../../../core/presentation/desktop_scaffolds.dart';
 import '../../../../core/presentation/eduma_icons.dart';
@@ -23,6 +26,7 @@ Component spaceDetailTabToolbar({
   required bool canManagePages,
   required bool canAddPages,
   required bool canAddEvents,
+  required bool gridView,
   required ValueChanged<int> onSelectTab,
   required ValueChanged<String> onSearch,
   required ValueChanged<bool> onToggleFilterMenu,
@@ -35,6 +39,7 @@ Component spaceDetailTabToolbar({
   required VoidCallback onDeleteSelected,
   required VoidCallback onOpenCreatePage,
   required VoidCallback onOpenCreateEvent,
+  required VoidCallback onToggleView,
 }) {
   if (selectingPages && activeTabIndex == 0) {
     final hasSelection = selectedPagesCount > 0;
@@ -48,14 +53,10 @@ Component spaceDetailTabToolbar({
           [edumaIcon(EdumaIcons.closePlain, size: 17)],
         ),
         span(
-          classes: hasSelection
-              ? 'space-detail__selection-title'
-              : 'space-detail__selection-title is-muted',
+          classes: hasSelection ? 'space-detail__selection-title' : 'space-detail__selection-title is-muted',
           [
             .text(
-              selectedPagesCount == 0
-                  ? 'Tap pages to select'
-                  : '$selectedPagesCount of $visiblePagesCount selected',
+              selectedPagesCount == 0 ? 'Tap pages to select' : '$selectedPagesCount of $visiblePagesCount selected',
             ),
           ],
         ),
@@ -131,7 +132,7 @@ Component spaceDetailTabToolbar({
           button(
             classes: 'space-detail__search-clear',
             type: ButtonType.button,
-            attributes: {'aria-label': 'Clear search'},
+            attributes: {'aria-label': 'Clear search', 'title': 'Clear search'},
             onClick: () => onSearch(''),
             [edumaIcon(EdumaIcons.closePlain, size: 15)],
           ),
@@ -214,6 +215,23 @@ Component spaceDetailTabToolbar({
             ),
           ],
         ]),
+      if (activeTabIndex < 2)
+        button(
+          classes: 'space-detail__tool-btn space-detail__view-toggle',
+          type: ButtonType.button,
+          attributes: {
+            'aria-label': gridView ? 'Switch to list view' : 'Switch to grid view',
+            'aria-pressed': '$gridView',
+            'title': gridView ? 'Switch to list view' : 'Switch to grid view',
+          },
+          onClick: onToggleView,
+          [
+            edumaIcon(
+              gridView ? EdumaIcons.list : EdumaIcons.element3,
+              size: 17,
+            ),
+          ],
+        ),
       if (activeTabIndex == 0 && visiblePagesCount > 0 && canManagePages)
         button(
           classes: 'space-detail__tool-btn space-detail__tool-btn--select',
@@ -232,6 +250,7 @@ Component spaceDetailTabToolbar({
         attributes: {
           'aria-label': 'Toggle search',
           'aria-expanded': '${mobileSearchOpen || query.isNotEmpty}',
+          'title': mobileSearchOpen ? 'Close search' : 'Search',
         },
         onClick: onToggleMobileSearch,
         [edumaIcon(EdumaIcons.search, size: 17)],
@@ -269,7 +288,7 @@ Component spaceDetailTabToolbar({
           button(
             classes: 'space-detail__search-clear',
             type: ButtonType.button,
-            attributes: {'aria-label': 'Clear search'},
+            attributes: {'aria-label': 'Clear search', 'title': 'Clear search'},
             onClick: () => onSearch(''),
             [edumaIcon(EdumaIcons.closePlain, size: 15)],
           ),
@@ -306,7 +325,7 @@ Component spacePageOptionsModal({
           button(
             classes: 'space-detail__modal-close',
             type: ButtonType.button,
-            attributes: {'aria-label': 'Close options'},
+            attributes: {'aria-label': 'Close options', 'title': 'Close'},
             onClick: onClose,
             [edumaIcon(EdumaIcons.closePlain, size: 18)],
           ),
@@ -359,6 +378,7 @@ Component spacePageOptionsModal({
 Component spaceDetailAssetsTab({
   required List<SpaceAsset> assets,
   required String query,
+  required bool gridView,
 }) {
   final term = query.trim().toLowerCase();
   final visible = term.isEmpty
@@ -387,53 +407,119 @@ Component spaceDetailAssetsTab({
     ]);
   }
 
-  return div(classes: 'space-detail__cards-list', [
-    for (final asset in visible) _assetCard(asset),
-  ]);
+  return div(
+    classes: [
+      'space-detail__cards-list',
+      if (gridView) 'space-detail__cards-list--grid',
+      if (gridView) 'space-detail__cards-list--assets-grid',
+    ].join(' '),
+    [for (final asset in visible) _assetCard(asset, gridView: gridView)],
+  );
 }
 
-Component _assetCard(SpaceAsset asset) {
+Component _assetCard(SpaceAsset asset, {required bool gridView}) {
   final ext = asset.extension.toUpperCase();
   final date = _formatMonthDay(asset.createdAt);
   final head = [
     if (ext.isNotEmpty) ext,
     if (asset.size.trim().isNotEmpty) asset.size.trim(),
   ].join(' · ');
-  final location = (asset.pageTitle ?? '').trim().isNotEmpty
-      ? asset.pageTitle!
-      : 'Space files';
+  final location = (asset.pageTitle ?? '').trim().isNotEmpty ? asset.pageTitle! : 'Space files';
   final meta = [if (head.isNotEmpty) head, date, location].join(' • ');
-  final href = asset.url.trim();
+  final uri = Uri.tryParse(asset.url.trim());
+  final safeUrl = uri != null && uri.hasAuthority && (uri.scheme == 'http' || uri.scheme == 'https');
+  final isLink = asset.assetType.toLowerCase() == 'link';
+  final previewUrl = _assetPreviewUrl(asset, uri, safeUrl);
 
   final inner = [
     span(classes: 'space-detail__asset-leading', [
       edumaIcon(_assetIcon(asset), size: 20),
+      if (previewUrl != null)
+        img(
+          src: previewUrl,
+          alt: '',
+          attributes: {'aria-hidden': 'true', 'draggable': 'false', 'loading': 'lazy'},
+          events: {
+            'error': (event) {
+              final target = event.currentTarget;
+              if (target != null && target.isA<web.HTMLElement>()) {
+                (target as web.HTMLElement).style.display = 'none';
+              }
+            },
+          },
+        ),
     ]),
     div(classes: 'space-detail__card-body', [
       strong(classes: 'space-detail__card-title', [.text(asset.displayName)]),
       span(classes: 'space-detail__card-meta', [.text(meta)]),
     ]),
-    span(classes: 'space-detail__card-chevron', [
-      edumaIcon(EdumaIcons.chevronRight, size: 14),
-    ]),
+    if (!gridView)
+      span(classes: 'space-detail__card-chevron', [
+        edumaIcon(EdumaIcons.chevronRight, size: 14),
+      ]),
   ];
 
-  return href.isNotEmpty
-      ? a(
-          href: href,
-          target: Target.blank,
-          attributes: {'rel': 'noopener noreferrer'},
-          classes: 'space-detail__item-card',
-          inner,
-        )
-      : div(classes: 'space-detail__item-card', inner);
+  final classes = [
+    'space-detail__item-card',
+    'space-detail__asset-card',
+    if (gridView) 'space-detail__asset-card--grid',
+  ].join(' ');
+  if (!safeUrl) return div(classes: classes, inner);
+  if (isLink) {
+    return a(
+      href: uri.toString(),
+      target: Target.blank,
+      attributes: {
+        'rel': 'noopener noreferrer',
+        'title': 'Open ${asset.displayName}',
+      },
+      classes: classes,
+      inner,
+    );
+  }
+
+  final previewRoute = Uri(
+    path: '/filePreview',
+    queryParameters: {'spaceId': asset.spaceId, 'assetId': asset.id},
+  ).toString();
+  return edumaLink(
+    to: previewRoute,
+    classes: classes,
+    attributes: {'aria-label': 'Preview ${asset.displayName}'},
+    children: inner,
+  );
 }
 
 Object _assetIcon(SpaceAsset asset) => switch (asset.assetType.toLowerCase()) {
   'link' => EdumaIcons.link,
+  'image' || 'jpg' || 'jpeg' || 'png' || 'gif' || 'webp' || 'avif' || 'bmp' => EdumaIcons.image,
   'document' => EdumaIcons.document,
   _ => EdumaIcons.folderOpen,
 };
+
+String? _assetPreviewUrl(SpaceAsset asset, Uri? uri, bool safeUrl) {
+  if (!safeUrl || uri == null) return null;
+  final extension = asset.extension.toLowerCase();
+  final isImage =
+      {'image', 'jpg', 'jpeg', 'png', 'gif', 'webp', 'avif', 'bmp'}.contains(asset.assetType.toLowerCase()) ||
+      switch (extension) {
+        'jpg' || 'jpeg' || 'png' || 'gif' || 'webp' || 'avif' || 'bmp' => true,
+        _ => false,
+      };
+  if (isImage) return uri.toString();
+
+  const driveHosts = {'drive.google.com', 'drive.usercontent.google.com', 'docs.google.com'};
+  if (!driveHosts.contains(uri.host.toLowerCase())) return null;
+  final queryId = uri.queryParameters['id'];
+  final driveId = queryId?.isNotEmpty == true
+      ? queryId
+      : uri.pathSegments.length >= 3 &&
+            {'file', 'document', 'spreadsheets', 'presentation'}.contains(uri.pathSegments[0]) &&
+            uri.pathSegments[1] == 'd'
+      ? uri.pathSegments[2]
+      : null;
+  return driveId == null ? null : Uri.https('drive.google.com', '/thumbnail', {'id': driveId, 'sz': 'w480'}).toString();
+}
 
 /// Events tab matching `SpaceEventsList` + `SpaceEventCard` in `../eduma`.
 Component spaceDetailEventsTab({
@@ -447,9 +533,7 @@ Component spaceDetailEventsTab({
       ? events
       : events
             .where(
-              (e) =>
-                  e.title.toLowerCase().contains(term) ||
-                  (e.description?.toLowerCase().contains(term) ?? false),
+              (e) => e.title.toLowerCase().contains(term) || (e.description?.toLowerCase().contains(term) ?? false),
             )
             .toList();
 
@@ -495,9 +579,7 @@ Component _eventCard(SpaceEvent event) {
       strong(classes: 'space-detail__card-title', [.text(event.title)]),
       span(classes: 'space-detail__card-meta', [
         .text(
-          event.location == null || event.location!.isEmpty
-              ? timeRange
-              : '$timeRange • ${event.location}',
+          event.location == null || event.location!.isEmpty ? timeRange : '$timeRange • ${event.location}',
         ),
       ]),
     ]),
@@ -546,7 +628,7 @@ Component spaceMembersModal({
             button(
               classes: 'space-detail__modal-close',
               type: ButtonType.button,
-              attributes: {'aria-label': 'Close members'},
+              attributes: {'aria-label': 'Close members', 'title': 'Close'},
               onClick: onClose,
               [edumaIcon(EdumaIcons.closePlain, size: 18)],
             ),
@@ -598,7 +680,10 @@ Component spaceArchivedPagesModal({
           button(
             classes: 'space-detail__modal-close',
             type: ButtonType.button,
-            attributes: {'aria-label': 'Close archived pages'},
+            attributes: {
+              'aria-label': 'Close archived pages',
+              'title': 'Close',
+            },
             onClick: onClose,
             [edumaIcon(EdumaIcons.closePlain, size: 18)],
           ),

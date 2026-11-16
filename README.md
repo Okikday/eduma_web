@@ -10,7 +10,7 @@ Project conventions and the Flutter-to-Jaspr mapping are documented in
 ## Run locally
 
 ```sh
-jaspr serve
+sh tool/jaspr_with_google.sh serve
 ```
 
 The development server is available at `http://localhost:8080`.
@@ -18,16 +18,23 @@ The development server is available at `http://localhost:8080`.
 ## Configure and build
 
 The browser app calls the existing Eduma API. The default API URL is the
-production endpoint; override it at build time when needed:
+production endpoint; override it at build time when needed. The Google web
+client ID is read from the local `.env` copied from the Flutter source:
 
 ```sh
-jaspr build \
-  --dart-define=EDUMA_API_BASE_URL=https://your-api.example/api/v1 \
-  --dart-define=EDUMA_GOOGLE_WEB_CLIENT_ID=your-google-web-client-id
+cp ../eduma/.env .env
+sh tool/jaspr_with_google.sh build \
+  --dart-define=EDUMA_API_BASE_URL=https://your-api.example/api/v1
 ```
 
-`EDUMA_GOOGLE_WEB_CLIENT_ID` is the public OAuth client ID used by Google's
-rendered web sign-in button. Google sign-in is unavailable when it is omitted.
+The helper passes only `WEB_CLIENT_ID` to the browser build as
+`EDUMA_GOOGLE_WEB_CLIENT_ID`; other `.env` values are not exposed to the
+client. `.env` is ignored by Git. Add each deployed web origin to the OAuth
+client's authorized JavaScript origins.
+
+The sign-in consent links open the local `/legalDocument` route. Terms are
+loaded from the public `/legal/terms` API endpoint and fall back to the bundled
+source policy; the Privacy Policy uses its bundled source copy.
 
 ## Flutter workspace handoff
 
@@ -37,7 +44,7 @@ parameters. This is the default; set `EDUMA_FLUTTER_APP_URL` only when the
 Flutter app is deployed at a different base URL:
 
 ```sh
-jaspr build \
+sh tool/jaspr_with_google.sh build \
   --dart-define=EDUMA_API_BASE_URL=https://your-api.example/api/v1 \
   --dart-define=EDUMA_FLUTTER_APP_URL=https://your-flutter-app.example/
 ```

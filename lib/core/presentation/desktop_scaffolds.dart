@@ -169,8 +169,7 @@ Component pureAppBar({
         if (subtitle != null && subtitle.trim().isNotEmpty)
           p(classes: 'eduma-pure-appbar__subtitle', [.text(subtitle)]),
       ]),
-      if (trailing != null)
-        div(classes: 'eduma-pure-appbar__trailing', [trailing]),
+      if (trailing != null) div(classes: 'eduma-pure-appbar__trailing', [trailing]),
     ]),
   ],
 );
@@ -187,6 +186,7 @@ Component adaptivePageScaffold({
   required List<Component> body,
   List<Component> overlays = const [],
   Component? bottomFloatingBar,
+  bool fullBleed = false,
   String classes = '',
   String fallbackHref = '/main',
   VoidCallback? onBack,
@@ -195,6 +195,7 @@ Component adaptivePageScaffold({
     'eduma-adaptive-page',
     if (maxWidth >= 800) 'eduma-adaptive-page--wide',
     if (showEdges) 'has-edges',
+    if (fullBleed) 'is-full-bleed',
     if (classes.isNotEmpty) classes,
   ].join(' ');
   return main_(

@@ -2,7 +2,7 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/features/streak/presentation/pages/streak_page
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak/data/streak_api', 'packages/eduma_web/features/streak/data/streak_models', 'packages/eduma_web/features/streak/presentation/widgets/streak_sections', 'packages/eduma_web/core/data/eduma_memory_cache', 'packages/eduma_web/core/presentation/eduma_icons', 'packages/eduma_web/core/presentation/desktop_scaffolds'], (function load__packages__eduma_web__features__streak__presentation__pages__streak_page(dart_sdk, packages__jaspr__client, packages__eduma_web__features__streak__data__streak_api, packages__eduma_web__features__streak__data__streak_models, packages__eduma_web__features__streak__presentation__widgets__streak_sections, packages__eduma_web__core__data__eduma_memory_cache, packages__eduma_web__core__presentation__eduma_icons, packages__eduma_web__core__presentation__desktop_scaffolds) {
+define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak/data/streak_api', 'packages/eduma_web/features/streak/data/streak_models', 'packages/eduma_web/features/streak/presentation/widgets/streak_sections', 'packages/eduma_web/core/data/eduma_memory_cache', 'packages/eduma_web/core/presentation/desktop_scaffolds', 'packages/eduma_web/core/presentation/eduma_icons'], (function load__packages__eduma_web__features__streak__presentation__pages__streak_page(dart_sdk, packages__jaspr__client, packages__eduma_web__features__streak__data__streak_api, packages__eduma_web__features__streak__data__streak_models, packages__eduma_web__features__streak__presentation__widgets__streak_sections, packages__eduma_web__core__data__eduma_memory_cache, packages__eduma_web__core__presentation__desktop_scaffolds, packages__eduma_web__core__presentation__eduma_icons) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
@@ -18,8 +18,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak
   const streak_sections = packages__eduma_web__features__streak__presentation__widgets__streak_sections.eduma_web__features__streak__presentation__widgets__streak_sections;
   const auth_api = packages__eduma_web__core__data__eduma_memory_cache.eduma_web__features__auth__data__auth_api;
   const eduma_memory_cache = packages__eduma_web__core__data__eduma_memory_cache.eduma_web__core__data__eduma_memory_cache;
-  const eduma_icons = packages__eduma_web__core__presentation__eduma_icons.eduma_web__core__presentation__eduma_icons;
   const desktop_scaffolds = packages__eduma_web__core__presentation__desktop_scaffolds.eduma_web__core__presentation__desktop_scaffolds;
+  const eduma_icons = packages__eduma_web__core__presentation__eduma_icons.eduma_web__core__presentation__eduma_icons;
   var streak_page = Object.create(dart.library);
   var $trim = dartx.trim;
   var $addAll = dartx.addAll;
@@ -38,9 +38,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak
     StreakLeaderboardUnavailableException: () => (T.StreakLeaderboardUnavailableException = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__streak__data__streak_models|StreakLeaderboardUnavailableException", true)))(),
     AuthApiException: () => (T.AuthApiException = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__auth__data__auth_api|AuthApiException", true)))(),
     JSArrayOfComponent: () => (T.JSArrayOfComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<jaspr__src__framework__framework|Component>", true)))(),
-    IdentityMapOfString$String: () => (T.IdentityMapOfString$String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,core|String>", true)))(),
     VoidTo_StreakPageState: () => (T.VoidTo_StreakPageState = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__streak__presentation__pages__streak_page|_StreakPageState()", true)))(),
-    __ToFutureOfvoid: () => (T.__ToFutureOfvoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "async|Future<~>({background:core|bool})", true)))(),
+    __ToFutureOfvoid: () => (T.__ToFutureOfvoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "async|Future<~>({keepCachedContent:core|bool})", true)))(),
     VoidToFutureOfvoid: () => (T.VoidToFutureOfvoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "async|Future<~>()", true)))(),
     LeaderboardScopeToFutureOfvoid: () => (T.LeaderboardScopeToFutureOfvoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "async|Future<~>(eduma_web__features__streak__data__streak_models|LeaderboardScope)", true)))(),
     LeaderboardScopeTovoid: () => (T.LeaderboardScopeTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(eduma_web__features__streak__data__streak_models|LeaderboardScope)", true)))(),
@@ -109,7 +108,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak
   dart.setLibraryUri(streak_page.StreakPage, I[0]);
   var _streakApi = dart.privateName(streak_page, "_streakApi");
   var _loading = dart.privateName(streak_page, "_loading");
-  var _refreshing = dart.privateName(streak_page, "_refreshing");
   var _authenticated = dart.privateName(streak_page, "_authenticated");
   var _leaderboardVisible = dart.privateName(streak_page, "_leaderboardVisible");
   var _savingVisibility = dart.privateName(streak_page, "_savingVisibility");
@@ -159,11 +157,11 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak
           hasCached = true;
         }
       }
-      async.unawaited(this[_load]({background: hasCached}));
+      async.unawaited(this[_load]({keepCachedContent: hasCached}));
     }
     [_load](opts) {
       let t$360;
-      let background = opts && 'background' in opts ? opts.background : false;
+      let keepCachedContent = opts && 'keepCachedContent' in opts ? opts.keepCachedContent : false;
       let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue, t$temp, asyncScope = Object.create(null);
       var t$36async_load = async._wrapJsFunctionForAsync((t$errorCode, t$result) => {
         if (t$errorCode === 1) return async._asyncRethrow(t$result, t$completer);
@@ -198,7 +196,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak
                 this.setState(dart.fn(() => {
                   this[_authenticated] = false;
                   this[_loading] = false;
-                  this[_refreshing] = false;
                 }, T.VoidTovoid()));
                 // goto return
                 t$goto = 6;
@@ -207,14 +204,11 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak
               this[_currentUserId] = asyncScope.session.userId;
               this[_currentUserName] = asyncScope.session.name[$trim]();
               eduma_memory_cache.EdumaMemoryCache.instance.ensureUser(asyncScope.session.userId);
-              if (!background)
-                this.setState(dart.fn(() => {
-                  this[_authenticated] = true;
-                  this[_loading] = true;
-                  this[_error] = null;
-                }, T.VoidTovoid()));
-              else
-                this.setState(dart.fn(() => this[_refreshing] = true, T.VoidTovoid()));
+              if (!keepCachedContent) this.setState(dart.fn(() => {
+                this[_authenticated] = true;
+                this[_loading] = true;
+                this[_error] = null;
+              }, T.VoidTovoid()));
               this[_boardUnavailable] = false;
               t$goto = 7;
               return async._asyncAwait(async.Future.wait(T.void(), _interceptors.JSArray.of(T.JSArrayOfFutureOfvoid(), [this[_loadOverview](), this[_loadBoard](this[_scope])])), t$36async_load, t$completer);
@@ -227,7 +221,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak
               }
               this.setState(dart.fn(() => {
                 this[_loading] = false;
-                this[_refreshing] = false;
               }, T.VoidTovoid()));
             case 6:
               // return
@@ -511,13 +504,12 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak
       return T.AuthApiException()[_is](error) ? error.message : "Something went wrong. Try again.";
     }
     build(context) {
-      let t$364, t$364$, t$366, t$365, t$364$0, t$364$1;
+      let t$364, t$364$, t$364$0;
       if (this[_loading]) {
         t$364$ = "eduma-page-loading";
         return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$364 = "main-home__spinner", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$364}))]), {classes: t$364$});
       }
-      let trailing = this[_authenticated] ? (t$364$0 = this[_refreshing] ? "eduma-streak__refresh-btn is-spinning" : "eduma-streak__refresh-btn", t$365 = html.ButtonType.button, t$366 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Refresh streak"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.refresh, {size: 18})]), {classes: t$364$0, type: t$365, attributes: t$366, onClick: dart.fn(() => async.unawaited(this[_load]({background: true})), T.VoidTovoid())})) : null;
-      return desktop_scaffolds.adaptivePageScaffold({title: "Streak", maxWidth: 1120, fallbackHref: "/home", trailing: trailing, body: _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$364$1 = "eduma-streak", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [this[_buildContent]()]), {classes: t$364$1}))])});
+      return desktop_scaffolds.adaptivePageScaffold({title: "Streak", maxWidth: 1120, fallbackHref: "/home", body: _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$364$0 = "eduma-streak", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [this[_buildContent]()]), {classes: t$364$0}))])});
     }
     [_buildContent]() {
       let t$364, t$365, t$364$, t$364$0, t$364$1, t$364$2, t$364$3, t$364$4, t$364$5, t$364$6, t$364$7, t$365$, t$365$0, t$365$1;
@@ -550,7 +542,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak
     this.$ti = this.$ti || _ti || dart.getReifiedType(this);
     this[_streakApi] = streak_api.StreakApi.instance;
     this[_loading] = true;
-    this[_refreshing] = false;
     this[_authenticated] = false;
     this[_leaderboardVisible] = true;
     this[_savingVisibility] = false;
@@ -599,12 +590,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak
       libraryUri: I[1]
     },
     [_loading]: {
-      type: _ti => T.bool(),
-      isConst: false,
-      isFinal: false,
-      libraryUri: I[2]
-    },
-    [_refreshing]: {
       type: _ti => T.bool(),
       isConst: false,
       isFinal: false,
@@ -692,11 +677,11 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/streak
   (function() {
   }).prototype = streak_page;
   dart.moduleConstCaches.set("packages/eduma_web/features/streak/presentation/pages/streak_page", C);
-  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"eduma_web__features__streak__presentation__pages__streak_page|_StreakPageState":{"State.T":"eduma_web__features__streak__presentation__pages__streak_page|StreakPage","jaspr__src__framework__framework|State":["eduma_web__features__streak__presentation__pages__streak_page|StreakPage"]},"jaspr__src__framework__framework|State":{"State.T":"1"},"eduma_web__features__streak__presentation__pages__streak_page|StreakPage":{"jaspr__src__framework__framework|StatefulComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatefulComponent":{"jaspr__src__framework__framework|Component":[]},"_js_helper|LinkedMap":{"LinkedMap.K":"1","LinkedMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"eduma_web__features__streak__data__streak_models|LeaderboardScope":{"core|_Enum":[],"core|Enum":[]},"core|_Enum":{"core|Enum":[]},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"async|Future":{"Future.T":"1"},"eduma_web__features__streak__data__streak_models|StreakLeaderboardUnavailableException":{"core|Exception":[]},"eduma_web__features__auth__data__auth_api|AuthApiException":{"core|Exception":[]},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"eduma_web__features__streak__presentation__widgets__streak_sections|StreakLeaderboardStatus":{"core|_Enum":[],"core|Enum":[]}}'));
+  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"eduma_web__features__streak__presentation__pages__streak_page|_StreakPageState":{"State.T":"eduma_web__features__streak__presentation__pages__streak_page|StreakPage","jaspr__src__framework__framework|State":["eduma_web__features__streak__presentation__pages__streak_page|StreakPage"]},"jaspr__src__framework__framework|State":{"State.T":"1"},"eduma_web__features__streak__presentation__pages__streak_page|StreakPage":{"jaspr__src__framework__framework|StatefulComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatefulComponent":{"jaspr__src__framework__framework|Component":[]},"_js_helper|LinkedMap":{"LinkedMap.K":"1","LinkedMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"eduma_web__features__streak__data__streak_models|LeaderboardScope":{"core|_Enum":[],"core|Enum":[]},"core|_Enum":{"core|Enum":[]},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"async|Future":{"Future.T":"1"},"eduma_web__features__streak__data__streak_models|StreakLeaderboardUnavailableException":{"core|Exception":[]},"eduma_web__features__auth__data__auth_api|AuthApiException":{"core|Exception":[]},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"eduma_web__features__streak__presentation__widgets__streak_sections|StreakLeaderboardStatus":{"core|_Enum":[],"core|Enum":[]}}'));
   dart.trackLibraries("packages/eduma_web/features/streak/presentation/pages/streak_page", {
     "package:eduma_web/features/streak/presentation/pages/streak_page.dart": streak_page
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["streak_page.dart"],"names":[],"mappings":"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","file":"streak_page.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["streak_page.dart"],"names":[],"mappings":"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","file":"streak_page.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__streak__presentation__pages__streak_page: streak_page

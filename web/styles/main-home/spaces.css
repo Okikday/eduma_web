@@ -350,11 +350,33 @@
   background: rgb(18 21 34 / 54%);
   color: #fff;
   backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    opacity 140ms ease,
+    visibility 140ms ease,
+    background 140ms ease;
+}
+
+.main-home__space-grid-wrap:hover > .main-home__space-more,
+.main-home__space-grid-wrap:focus-within > .main-home__space-more {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
 }
 
 .main-home__space-grid-wrap > .main-home__space-more:hover {
   background: rgb(18 21 34 / 76%);
   color: #fff;
+}
+
+@media (hover: none) {
+  .main-home__space-grid-wrap > .main-home__space-more {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
 }
 
 .main-home__grid-members .main-home__member-avatar,
@@ -621,12 +643,12 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 72%);
+  border: var(--eduma-glass-dialog-border);
   border-radius: 22px;
-  background: rgb(255 255 255 / 88%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 22px 48px rgb(20 21 34 / 18%);
+  background: var(--eduma-glass-dialog-bg);
+  backdrop-filter: var(--eduma-glass-dialog-blur);
+  -webkit-backdrop-filter: var(--eduma-glass-dialog-blur);
+  box-shadow: var(--eduma-glass-dialog-shadow);
   color: var(--eduma-text);
 }
 
@@ -677,7 +699,7 @@
 .main-home__context-menu-divider {
   height: 1px;
   margin: 0 14px;
-  border-top: 1px dashed rgb(20 21 34 / 14%);
+  border-top: 1px dashed var(--eduma-border-strong);
 }
 
 .main-home__context-menu-row {
@@ -699,7 +721,7 @@
 }
 
 .main-home__context-menu-row:hover:not(:disabled) {
-  background: rgb(75 36 210 / 8%);
+  background: var(--eduma-primary-soft);
 }
 
 .main-home__context-menu-row:focus-visible {

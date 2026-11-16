@@ -9,6 +9,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
   const _js_helper = dart_sdk._js_helper;
   const _interceptors = dart_sdk._interceptors;
   const js_util = dart_sdk.js_util;
+  const js_interop = dart_sdk.js_interop;
+  const collection = dart_sdk.collection;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
   const html = packages__jaspr__client.jaspr__src__dom__html__html;
@@ -45,14 +47,18 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
     JSObjectTovoid: () => (T.JSObjectTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(_interceptors|JSObject)", true)))(),
     IdentityMapOfString$JSObjectTovoid: () => (T.IdentityMapOfString$JSObjectTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,~(_interceptors|JSObject)>", true)))(),
     Component: () => (T.Component = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component", true)))(),
-    __ToComponent: () => (T.__ToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({activeTabIndex!core|int,allVisibleSelected!core|bool,canAddEvents!core|bool,canAddPages!core|bool,canManagePages!core|bool,filterMenuOpen!core|bool,mobileSearchOpen!core|bool,onArchiveSelected!~(),onDeleteSelected!~(),onEnterSelection!~(),onExitSelection!~(),onOpenCreateEvent!~(),onOpenCreatePage!~(),onSearch!~(core|String),onSelectPageFilter!~(eduma_web__features__space__data__space_detail_models|SpacePageFilter),onSelectTab!~(core|int),onToggleFilterMenu!~(core|bool),onToggleMobileSearch!~(),onToggleSelectAll!~(),pageFilter!eduma_web__features__space__data__space_detail_models|SpacePageFilter,query!core|String,selectedPagesCount!core|int,selectingPages!core|bool,visiblePagesCount!core|int})", true)))(),
+    __ToComponent: () => (T.__ToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({activeTabIndex!core|int,allVisibleSelected!core|bool,canAddEvents!core|bool,canAddPages!core|bool,canManagePages!core|bool,filterMenuOpen!core|bool,gridView!core|bool,mobileSearchOpen!core|bool,onArchiveSelected!~(),onDeleteSelected!~(),onEnterSelection!~(),onExitSelection!~(),onOpenCreateEvent!~(),onOpenCreatePage!~(),onSearch!~(core|String),onSelectPageFilter!~(eduma_web__features__space__data__space_detail_models|SpacePageFilter),onSelectTab!~(core|int),onToggleFilterMenu!~(core|bool),onToggleMobileSearch!~(),onToggleSelectAll!~(),onToggleView!~(),pageFilter!eduma_web__features__space__data__space_detail_models|SpacePageFilter,query!core|String,selectedPagesCount!core|int,selectingPages!core|bool,visiblePagesCount!core|int})", true)))(),
     JSObjectN: () => (T.JSObjectN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject?", true)))(),
     __ToComponent$1: () => (T.__ToComponent$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({busy!core|bool,canManagePages!core|bool,onClose!~(),onDeletePage!~(eduma_web__features__space__data__space_detail_models|SpacePage),onToggleArchive!~(eduma_web__features__space__data__space_detail_models|SpacePage),page!eduma_web__features__space__data__space_detail_models|SpacePage?})", true)))(),
     SpaceAssetTobool: () => (T.SpaceAssetTobool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool(eduma_web__features__space__data__space_detail_models|SpaceAsset)", true)))(),
-    __ToComponent$2: () => (T.__ToComponent$2 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({assets!core|List<eduma_web__features__space__data__space_detail_models|SpaceAsset>,query!core|String})", true)))(),
+    __ToComponent$2: () => (T.__ToComponent$2 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({assets!core|List<eduma_web__features__space__data__space_detail_models|SpaceAsset>,gridView!core|bool,query!core|String})", true)))(),
+    JSObject: () => (T.JSObject = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
     JSArrayOfStatelessComponent: () => (T.JSArrayOfStatelessComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<jaspr__src__framework__framework|StatelessComponent>", true)))(),
-    SpaceAssetToComponent: () => (T.SpaceAssetToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component(eduma_web__features__space__data__space_detail_models|SpaceAsset)", true)))(),
+    IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,@>", true)))(),
+    SpaceAsset__ToComponent: () => (T.SpaceAsset__ToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component(eduma_web__features__space__data__space_detail_models|SpaceAsset{gridView!core|bool})", true)))(),
     SpaceAssetToObject: () => (T.SpaceAssetToObject = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Object(eduma_web__features__space__data__space_detail_models|SpaceAsset)", true)))(),
+    LinkedHashSetOfString: () => (T.LinkedHashSetOfString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "collection|LinkedHashSet<core|String>", true)))(),
+    SpaceAssetAndUriNAndboolToStringN: () => (T.SpaceAssetAndUriNAndboolToStringN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String?(eduma_web__features__space__data__space_detail_models|SpaceAsset,core|Uri?,core|bool)", true)))(),
     SpaceEventTobool: () => (T.SpaceEventTobool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool(eduma_web__features__space__data__space_detail_models|SpaceEvent)", true)))(),
     __ToComponent$3: () => (T.__ToComponent$3 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({canAddEvents!core|bool,events!core|List<eduma_web__features__space__data__space_detail_models|SpaceEvent>,onOpenCreateEvent!~(),query!core|String})", true)))(),
     SpaceEventToComponent: () => (T.SpaceEventToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component(eduma_web__features__space__data__space_detail_models|SpaceEvent)", true)))(),
@@ -99,14 +105,17 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
       }, space_detail_models.SpacePageFilter.prototype));
     },
     get C6() {
-      return C[6] = dart.constList(T.String(), ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]);
+      return C[6] = dart.constSet(T.String(), ["drive.google.com", "drive.usercontent.google.com", "docs.google.com"]);
+    },
+    get C7() {
+      return C[7] = dart.constList(T.String(), ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]);
     }
   });
-  var C = Array(7).fill(void 0);
+  var C = Array(8).fill(void 0);
   var _Enum__name = dart.privateName(core, "_Enum._name");
   var _Enum_index = dart.privateName(core, "_Enum.index");
   space_detail_tabs_content.spaceDetailTabToolbar = function spaceDetailTabToolbar(opts) {
-    let t$364, t$363, t$362, t$361, t$361$, t$364$, t$363$, t$362$, t$361$0, t$365, t$364$0, t$363$0, t$362$0, t$361$1, t$365$, t$364$1, t$363$1, t$362$1, t$361$2, t$361$3, t$361$4, t$3611, t$3610, t$369, t$3610$, t$369$, t$369$0, t$3612, t$3611$, t$3610$0, t$3610$1, t$3614, t$3613, t$3612$, t$3614$, t$3613$, t$3612$0, t$3613$0, t$3615, t$3615$, t$3615$0, t$3617, t$3616, t$3615$1, t$3616$, t$3615$2, t$3615$3, t$3616$0, t$3615$4, t$3615$5, t$3618, t$3617$, t$3616$1, t$3615$6, t$3619, t$3618$, t$3617$0, t$3616$2, t$3616$3, t$3619$, t$3618$0, t$3617$1, t$3617$2, t$3617$3;
+    let t$364, t$363, t$362, t$361, t$361$, t$364$, t$363$, t$362$, t$361$0, t$365, t$364$0, t$363$0, t$362$0, t$361$1, t$365$, t$364$1, t$363$1, t$362$1, t$361$2, t$361$3, t$361$4, t$3611, t$3610, t$369, t$3610$, t$369$, t$369$0, t$3612, t$3611$, t$3610$0, t$3610$1, t$3614, t$3613, t$3612$, t$3614$, t$3613$, t$3612$0, t$3613$0, t$3615, t$3615$, t$3615$0, t$3617, t$3616, t$3615$1, t$3616$, t$3615$2, t$3615$3, t$3616$0, t$3615$4, t$3615$5, t$3618, t$3617$, t$3616$1, t$3615$6, t$3618$, t$3617$0, t$3616$2, t$3615$7, t$3619, t$3618$0, t$3617$1, t$3616$3, t$3616$4, t$3619$, t$3618$1, t$3617$2, t$3617$3, t$3617$4;
     let activeTabIndex = opts && 'activeTabIndex' in opts ? opts.activeTabIndex : null;
     let query = opts && 'query' in opts ? opts.query : null;
     let pageFilter = opts && 'pageFilter' in opts ? opts.pageFilter : null;
@@ -119,6 +128,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
     let canManagePages = opts && 'canManagePages' in opts ? opts.canManagePages : null;
     let canAddPages = opts && 'canAddPages' in opts ? opts.canAddPages : null;
     let canAddEvents = opts && 'canAddEvents' in opts ? opts.canAddEvents : null;
+    let gridView = opts && 'gridView' in opts ? opts.gridView : null;
     let onSelectTab = opts && 'onSelectTab' in opts ? opts.onSelectTab : null;
     let onSearch = opts && 'onSearch' in opts ? opts.onSearch : null;
     let onToggleFilterMenu = opts && 'onToggleFilterMenu' in opts ? opts.onToggleFilterMenu : null;
@@ -131,6 +141,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
     let onDeleteSelected = opts && 'onDeleteSelected' in opts ? opts.onDeleteSelected : null;
     let onOpenCreatePage = opts && 'onOpenCreatePage' in opts ? opts.onOpenCreatePage : null;
     let onOpenCreateEvent = opts && 'onOpenCreateEvent' in opts ? opts.onOpenCreateEvent : null;
+    let onToggleView = opts && 'onToggleView' in opts ? opts.onToggleView : null;
     if (selectingPages && activeTabIndex === 0) {
       let hasSelection = selectedPagesCount > 0;
       t$361$4 = "space-detail__pane-toolbar";
@@ -169,9 +180,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
       return t$361;
     })();
     let filterActive = pageFilter !== space_detail_models.SpacePageFilter.all;
-    t$3617$3 = "space-detail__pane-toolbar";
+    t$3617$4 = "space-detail__pane-toolbar";
     return new html.div.new((() => {
-      let t$365 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3616$3 = "space-detail__toolbar-row", new html.div.new((() => {
+      let t$365 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3616$4 = "space-detail__toolbar-row", new html.div.new((() => {
           let t$366 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$369$ = "space-detail__seg", t$3610$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "tablist", "aria-label", "Space sections"]), new html.div.new((() => {
               let t$367 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
               for (let i = 0; i < labels[$length]; i = i + 1)
@@ -183,7 +194,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
               return t$367;
             })(), {classes: t$369$, attributes: t$3610$})), (t$369$0 = "space-detail__toolbar-spacer", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$369$0})), (t$3610$1 = "space-detail__toolbar-search space-detail__toolbar-search--desktop", new html.div.new((() => {
               let t$369 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.search, {size: 16}), new html.input.new(T.inputOfString(), {type: html.InputType.search, value: query, attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["placeholder", searchPlaceholder, "aria-label", searchPlaceholder]), onInput: onSearch})]);
-              if (query[$isNotEmpty]) t$369.push((t$3610$0 = "space-detail__search-clear", t$3611$ = html.ButtonType.button, t$3612 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Clear search"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 15})]), {classes: t$3610$0, type: t$3611$, attributes: t$3612, onClick: dart.fn(() => onSearch(""), T.VoidTovoid())})));
+              if (query[$isNotEmpty]) t$369.push((t$3610$0 = "space-detail__search-clear", t$3611$ = html.ButtonType.button, t$3612 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Clear search", "title", "Clear search"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 15})]), {classes: t$3610$0, type: t$3611$, attributes: t$3612, onClick: dart.fn(() => onSearch(""), T.VoidTovoid())})));
               return t$369;
             })(), {classes: t$3610$1}))]);
           if (activeTabIndex === 0) t$366.push((t$3615$5 = "space-detail__filter-wrap", new html.div.new((() => {
@@ -236,24 +247,25 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
               })(), {classes: t$3615$4, attributes: t$3616$0}))]));
             return t$3610;
           })(), {classes: t$3615$5})));
-          if (activeTabIndex === 0 && visiblePagesCount > 0 && canManagePages) t$366.push((t$3615$6 = "space-detail__tool-btn space-detail__tool-btn--select", t$3616$1 = html.ButtonType.button, t$3617$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Select pages", "title", "Select pages"]), t$3618 = onEnterSelection, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.tickSquare, {size: 17})]), {classes: t$3615$6, type: t$3616$1, attributes: t$3617$, onClick: t$3618})));
-          t$366.push((t$3616$2 = (() => {
+          if (activeTabIndex < 2) t$366.push((t$3615$6 = "space-detail__tool-btn space-detail__view-toggle", t$3616$1 = html.ButtonType.button, t$3617$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", gridView ? "Switch to list view" : "Switch to grid view", "aria-pressed", dart.strSafe(gridView), "title", gridView ? "Switch to list view" : "Switch to grid view"]), t$3618 = onToggleView, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(gridView ? eduma_icons.EdumaIcons.list : eduma_icons.EdumaIcons.element3, {size: 17})]), {classes: t$3615$6, type: t$3616$1, attributes: t$3617$, onClick: t$3618})));
+          if (activeTabIndex === 0 && visiblePagesCount > 0 && canManagePages) t$366.push((t$3615$7 = "space-detail__tool-btn space-detail__tool-btn--select", t$3616$2 = html.ButtonType.button, t$3617$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Select pages", "title", "Select pages"]), t$3618$ = onEnterSelection, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.tickSquare, {size: 17})]), {classes: t$3615$7, type: t$3616$2, attributes: t$3617$0, onClick: t$3618$})));
+          t$366.push((t$3616$3 = (() => {
             let t$3615 = _interceptors.JSArray.of(T.JSArrayOfString(), ["space-detail__tool-btn", "space-detail__mobile-search-toggle"]);
             if (mobileSearchOpen || query[$isNotEmpty]) t$3615.push("is-active");
             return t$3615;
-          })()[$join](" "), t$3617$0 = html.ButtonType.button, t$3618$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Toggle search", "aria-expanded", dart.strSafe(mobileSearchOpen || query[$isNotEmpty])]), t$3619 = onToggleMobileSearch, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.search, {size: 17})]), {classes: t$3616$2, type: t$3617$0, attributes: t$3618$, onClick: t$3619})));
+          })()[$join](" "), t$3617$1 = html.ButtonType.button, t$3618$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Toggle search", "aria-expanded", dart.strSafe(mobileSearchOpen || query[$isNotEmpty]), "title", mobileSearchOpen ? "Close search" : "Search"]), t$3619 = onToggleMobileSearch, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.search, {size: 17})]), {classes: t$3616$3, type: t$3617$1, attributes: t$3618$0, onClick: t$3619})));
           if (activeTabIndex === 0 && canAddPages)
             t$366.push(desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.noteAdd, label: "New page", variant: desktop_scaffolds.DesktopPillVariant.primary, classes: "space-detail__toolbar-add", onPressed: onOpenCreatePage}));
           else if (activeTabIndex === 2 && canAddEvents) t$366.push(desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.calendarAdd, label: "New event", variant: desktop_scaffolds.DesktopPillVariant.primary, classes: "space-detail__toolbar-add", onPressed: onOpenCreateEvent}));
           return t$366;
-        })(), {classes: t$3616$3}))]);
-      if (mobileSearchOpen || query[$isNotEmpty]) t$365.push((t$3617$2 = "space-detail__toolbar-search space-detail__toolbar-search--mobile", new html.div.new((() => {
+        })(), {classes: t$3616$4}))]);
+      if (mobileSearchOpen || query[$isNotEmpty]) t$365.push((t$3617$3 = "space-detail__toolbar-search space-detail__toolbar-search--mobile", new html.div.new((() => {
         let t$3616 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.search, {size: 16}), new html.input.new(T.inputOfString(), {type: html.InputType.search, value: query, attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["placeholder", searchPlaceholder, "aria-label", searchPlaceholder]), onInput: onSearch})]);
-        if (query[$isNotEmpty]) t$3616.push((t$3617$1 = "space-detail__search-clear", t$3618$0 = html.ButtonType.button, t$3619$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Clear search"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 15})]), {classes: t$3617$1, type: t$3618$0, attributes: t$3619$, onClick: dart.fn(() => onSearch(""), T.VoidTovoid())})));
+        if (query[$isNotEmpty]) t$3616.push((t$3617$2 = "space-detail__search-clear", t$3618$1 = html.ButtonType.button, t$3619$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Clear search", "title", "Clear search"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 15})]), {classes: t$3617$2, type: t$3618$1, attributes: t$3619$, onClick: dart.fn(() => onSearch(""), T.VoidTovoid())})));
         return t$3616;
-      })(), {classes: t$3617$2})));
+      })(), {classes: t$3617$3})));
       return t$365;
-    })(), {classes: t$3617$3});
+    })(), {classes: t$3617$4});
   };
   dart.lazyFn(space_detail_tabs_content.spaceDetailTabToolbar, () => T.__ToComponent());
   space_detail_tabs_content.spacePageOptionsModal = function spacePageOptionsModal(opts) {
@@ -271,7 +283,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
     t$3620$1 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["click", dart.fn(event => {
         if (dart.equals(js_util.getProperty(T.JSObjectN(), event, "target"), js_util.getProperty(T.JSObjectN(), event, "currentTarget"))) onClose();
       }, T.JSObjectTovoid())]);
-    return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3618$2 = "space-detail__modal-card space-detail__modal-card--compact", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3617$ = "space-detail__modal-head", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(page.title)])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(page.pageType.label + (page.isArchived ? " · Archived" : ""))]))])), (t$3617 = "space-detail__modal-close", t$3618 = html.ButtonType.button, t$3619 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close options"]), t$3620 = onClose, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 18})]), {classes: t$3617, type: t$3618, attributes: t$3619, onClick: t$3620}))]), {classes: t$3617$})), (t$3618$1 = "space-detail__options-list", new html.div.new((() => {
+    return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3618$2 = "space-detail__modal-card space-detail__modal-card--compact", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3617$ = "space-detail__modal-head", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(page.title)])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(page.pageType.label + (page.isArchived ? " · Archived" : ""))]))])), (t$3617 = "space-detail__modal-close", t$3618 = html.ButtonType.button, t$3619 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close options", "title", "Close"]), t$3620 = onClose, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 18})]), {classes: t$3617, type: t$3618, attributes: t$3619, onClick: t$3620}))]), {classes: t$3617$})), (t$3618$1 = "space-detail__options-list", new html.div.new((() => {
           let t$3617 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_link.edumaLink({to: route, classes: "space-detail__option-row", children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(page.pageType.isDynamic ? eduma_icons.EdumaIcons.canvas : eduma_icons.EdumaIcons.note, {size: 18}), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Open " + page.pageType.label[$toLowerCase]())])), eduma_icons.edumaIcon(eduma_icons.EdumaIcons.chevronRight, {size: 14})])})]);
           if (canManagePages) t$3617[$addAll](_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3618$ = "space-detail__option-row", t$3619$ = html.ButtonType.button, t$3620$ = busy, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(page.isArchived ? eduma_icons.EdumaIcons.refresh : eduma_icons.EdumaIcons.archive, {size: 18}), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(page.isArchived ? "Restore to space" : "Archive page")]))]), {classes: t$3618$, type: t$3619$, disabled: t$3620$, onClick: dart.fn(() => {
                 onClose();
@@ -285,9 +297,10 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
   };
   dart.lazyFn(space_detail_tabs_content.spacePageOptionsModal, () => T.__ToComponent$1());
   space_detail_tabs_content.spaceDetailAssetsTab = function spaceDetailAssetsTab(opts) {
-    let t$3618, t$3618$, t$3619;
+    let t$3618, t$3618$, t$3620;
     let assets = opts && 'assets' in opts ? opts.assets : null;
     let query = opts && 'query' in opts ? opts.query : null;
+    let gridView = opts && 'gridView' in opts ? opts.gridView : null;
     let term = query[$trim]()[$toLowerCase]();
     let visible = term[$isEmpty] ? assets : assets[$where](dart.fn(asset => {
       let t$3618, t$3618$;
@@ -297,107 +310,198 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
       t$3618$ = "space-detail__empty-pane";
       return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3618 = "space-detail__empty-icon", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(term[$isEmpty] ? eduma_icons.EdumaIcons.folderOpen : eduma_icons.EdumaIcons.search, {size: 26})]), {classes: t$3618})), new html.h3.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(term[$isEmpty] ? "No assets yet" : "No matching assets")])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(term[$isEmpty] ? "Files and links added to pages in this space will appear here." : "Try another file name or clear your search.")]))]), {classes: t$3618$});
     }
-    t$3619 = "space-detail__cards-list";
-    return new html.div.new((() => {
-      let t$3618 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
-      for (let asset of visible)
-        t$3618.push(space_detail_tabs_content._assetCard(asset));
+    t$3620 = (() => {
+      let t$3618 = _interceptors.JSArray.of(T.JSArrayOfString(), ["space-detail__cards-list"]);
+      if (gridView) t$3618.push("space-detail__cards-list--grid");
+      if (gridView) t$3618.push("space-detail__cards-list--assets-grid");
       return t$3618;
-    })(), {classes: t$3619});
+    })()[$join](" ");
+    return new html.div.new((() => {
+      let t$3619 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+      for (let asset of visible)
+        t$3619.push(space_detail_tabs_content._assetCard(asset, {gridView: gridView}));
+      return t$3619;
+    })(), {classes: t$3620});
   };
   dart.lazyFn(space_detail_tabs_content.spaceDetailAssetsTab, () => T.__ToComponent$2());
-  space_detail_tabs_content._assetCard = function _assetCard(asset) {
-    let t$3620, t$3621, t$3621$, t$3621$0, t$3621$1, t$3621$2, t$3624, t$3623, t$3622, t$3621$3, t$3621$4;
+  space_detail_tabs_content._assetCard = function _assetCard(asset, opts) {
+    let t$3621, t$3624, t$3624$, t$3624$0, t$3624$1, t$3624$2, t$3625, t$3628, t$3627, t$3626, t$3625$;
+    let gridView = opts && 'gridView' in opts ? opts.gridView : null;
     let ext = asset.extension[$toUpperCase]();
     let date = space_detail_tabs_content._formatMonthDay(asset.createdAt);
     let head = (() => {
-      let t$3619 = _interceptors.JSArray.of(T.JSArrayOfString(), []);
-      if (ext[$isNotEmpty]) t$3619.push(ext);
-      if (asset.size[$trim]()[$isNotEmpty]) t$3619.push(asset.size[$trim]());
-      return t$3619;
-    })()[$join](" · ");
-    let location = (t$3620 = asset.pageTitle, t$3620 == null ? "" : t$3620)[$trim]()[$isNotEmpty] ? dart.nullCheck(asset.pageTitle) : "Space files";
-    let meta = (() => {
       let t$3620 = _interceptors.JSArray.of(T.JSArrayOfString(), []);
-      if (head[$isNotEmpty]) t$3620.push(head);
-      t$3620.push(date);
-      t$3620.push(location);
+      if (ext[$isNotEmpty]) t$3620.push(ext);
+      if (asset.size[$trim]()[$isNotEmpty]) t$3620.push(asset.size[$trim]());
       return t$3620;
+    })()[$join](" · ");
+    let location = (t$3621 = asset.pageTitle, t$3621 == null ? "" : t$3621)[$trim]()[$isNotEmpty] ? dart.nullCheck(asset.pageTitle) : "Space files";
+    let meta = (() => {
+      let t$3621 = _interceptors.JSArray.of(T.JSArrayOfString(), []);
+      if (head[$isNotEmpty]) t$3621.push(head);
+      t$3621.push(date);
+      t$3621.push(location);
+      return t$3621;
     })()[$join](" • ");
-    let href = asset.url[$trim]();
-    let inner = _interceptors.JSArray.of(T.JSArrayOfStatelessComponent(), [(t$3621 = "space-detail__asset-leading", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(space_detail_tabs_content._assetIcon(asset), {size: 20})]), {classes: t$3621})), (t$3621$1 = "space-detail__card-body", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3621$ = "space-detail__card-title", new html.strong.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(asset.displayName)]), {classes: t$3621$})), (t$3621$0 = "space-detail__card-meta", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(meta)]), {classes: t$3621$0}))]), {classes: t$3621$1})), (t$3621$2 = "space-detail__card-chevron", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.chevronRight, {size: 14})]), {classes: t$3621$2}))]);
-    return href[$isNotEmpty] ? (t$3621$3 = href, t$3622 = html.Target.blank, t$3623 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["rel", "noopener noreferrer"]), t$3624 = "space-detail__item-card", new html.a.new(inner, {href: t$3621$3, target: t$3622, attributes: t$3623, classes: t$3624})) : (t$3621$4 = "space-detail__item-card", new html.div.new(inner, {classes: t$3621$4}));
+    let uri = core.Uri.tryParse(asset.url[$trim]());
+    let safeUrl = uri != null && uri.hasAuthority && (uri.scheme === "http" || uri.scheme === "https");
+    let isLink = asset.assetType[$toLowerCase]() === "link";
+    let previewUrl = space_detail_tabs_content._assetPreviewUrl(asset, uri, safeUrl);
+    let inner = (() => {
+      let t$3622 = _interceptors.JSArray.of(T.JSArrayOfStatelessComponent(), [(t$3624 = "space-detail__asset-leading", new html.span.new((() => {
+          let t$3623 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(space_detail_tabs_content._assetIcon(asset), {size: 20})]);
+          if (previewUrl != null) t$3623.push(new html.img.new({src: previewUrl, alt: "", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true", "draggable", "false", "loading", "lazy"]), events: new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["error", dart.fn(event => {
+                let target = js_util.getProperty(T.JSObjectN(), event, "currentTarget");
+                if (target != null && target != null && js_interop['JSAnyUtilityExtension|instanceOfString'](target, "HTMLElement")) {
+                  js_util.getProperty(T.JSObject(), target, "style").display = "none";
+                }
+              }, T.JSObjectTovoid())])}));
+          return t$3623;
+        })(), {classes: t$3624})), (t$3624$1 = "space-detail__card-body", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3624$ = "space-detail__card-title", new html.strong.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(asset.displayName)]), {classes: t$3624$})), (t$3624$0 = "space-detail__card-meta", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(meta)]), {classes: t$3624$0}))]), {classes: t$3624$1}))]);
+      if (!gridView) t$3622.push((t$3624$2 = "space-detail__card-chevron", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.chevronRight, {size: 14})]), {classes: t$3624$2})));
+      return t$3622;
+    })();
+    let classes = (() => {
+      let t$3624 = _interceptors.JSArray.of(T.JSArrayOfString(), ["space-detail__item-card", "space-detail__asset-card"]);
+      if (gridView) t$3624.push("space-detail__asset-card--grid");
+      return t$3624;
+    })()[$join](" ");
+    if (!safeUrl) {
+      t$3625 = classes;
+      return new html.div.new(inner, {classes: t$3625});
+    }
+    if (isLink) {
+      t$3625$ = dart.toString(uri);
+      t$3626 = html.Target.blank;
+      t$3627 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["rel", "noopener noreferrer", "title", "Open " + asset.displayName]);
+      t$3628 = classes;
+      return new html.a.new(inner, {href: t$3625$, target: t$3626, attributes: t$3627, classes: t$3628});
+    }
+    let previewRoute = core._Uri.new({path: "/filePreview", queryParameters: new _js_helper.IdentityMap.from(T.IdentityMapOfString$dynamic(), ["spaceId", asset.spaceId, "assetId", asset.id])}).toString();
+    return eduma_link.edumaLink({to: previewRoute, classes: classes, attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Preview " + asset.displayName]), children: inner});
   };
-  dart.lazyFn(space_detail_tabs_content._assetCard, () => T.SpaceAssetToComponent());
+  dart.lazyFn(space_detail_tabs_content._assetCard, () => T.SpaceAsset__ToComponent());
   space_detail_tabs_content._assetIcon = function _assetIcon(asset) {
     return (() => {
-      let t$3621 = null;
+      let t$3625 = null;
       let t$36$350$350 = asset.assetType[$toLowerCase]();
       let t$36$350$351 = "link";
-      let t$36$350$353 = "document";
+      let t$36$350$353 = "image";
+      let t$36$350$355 = "jpg";
+      let t$36$350$357 = "jpeg";
+      let t$36$350$359 = "png";
+      let t$36$350$3511 = "gif";
+      let t$36$350$3513 = "webp";
+      let t$36$350$3515 = "avif";
+      let t$36$350$3517 = "bmp";
+      let t$36$350$3519 = "document";
       L1: {
         {
           if ("link" === t$36$350$350) {
-            t$3621 = eduma_icons.EdumaIcons.link;
+            t$3625 = eduma_icons.EdumaIcons.link;
+            break L1;
+          }
+        }
+        {
+          if ("image" === t$36$350$350 || "jpg" === t$36$350$350 || "jpeg" === t$36$350$350 || "png" === t$36$350$350 || "gif" === t$36$350$350 || "webp" === t$36$350$350 || "avif" === t$36$350$350 || "bmp" === t$36$350$350) {
+            t$3625 = eduma_icons.EdumaIcons.image;
             break L1;
           }
         }
         {
           if ("document" === t$36$350$350) {
-            t$3621 = eduma_icons.EdumaIcons.document;
+            t$3625 = eduma_icons.EdumaIcons.document;
             break L1;
           }
         }
         {
           {
-            t$3621 = eduma_icons.EdumaIcons.folderOpen;
+            t$3625 = eduma_icons.EdumaIcons.folderOpen;
             break L1;
           }
         }
       }
-      return t$3621;
+      return t$3625;
     })();
   };
   dart.lazyFn(space_detail_tabs_content._assetIcon, () => T.SpaceAssetToObject());
+  space_detail_tabs_content._assetPreviewUrl = function _assetPreviewUrl(asset, uri, safeUrl) {
+    let t$3646;
+    if (!safeUrl || uri == null) return null;
+    let extension = asset.extension[$toLowerCase]();
+    let isImage = collection.LinkedHashSet.from(T.LinkedHashSetOfString(), ["image", "jpg", "jpeg", "png", "gif", "webp", "avif", "bmp"]).contains(asset.assetType[$toLowerCase]()) || (() => {
+      let t$3637 = null;
+      let t$36$350$350 = extension;
+      let t$36$350$351 = "jpg";
+      let t$36$350$353 = "jpeg";
+      let t$36$350$355 = "png";
+      let t$36$350$357 = "gif";
+      let t$36$350$359 = "webp";
+      let t$36$350$3511 = "avif";
+      let t$36$350$3513 = "bmp";
+      L2: {
+        {
+          if ("jpg" === t$36$350$350 || "jpeg" === t$36$350$350 || "png" === t$36$350$350 || "gif" === t$36$350$350 || "webp" === t$36$350$350 || "avif" === t$36$350$350 || "bmp" === t$36$350$350) {
+            t$3637 = true;
+            break L2;
+          }
+        }
+        {
+          {
+            t$3637 = false;
+            break L2;
+          }
+        }
+      }
+      return t$3637;
+    })();
+    if (isImage) return dart.toString(uri);
+    let driveHosts = C[6] || CT.C6;
+    if (!driveHosts.contains(uri.host[$toLowerCase]())) return null;
+    let queryId = uri.queryParameters[$_get]("id");
+    let driveId = (t$3646 = queryId, t$3646 == null ? null : t$3646[$isNotEmpty]) === true ? queryId : uri.pathSegments[$length] >= 3 && collection.LinkedHashSet.from(T.LinkedHashSetOfString(), ["file", "document", "spreadsheets", "presentation"]).contains(uri.pathSegments[$_get](0)) && uri.pathSegments[$_get](1) === "d" ? uri.pathSegments[$_get](2) : null;
+    return driveId == null ? null : core._Uri.https("drive.google.com", "/thumbnail", new _js_helper.IdentityMap.from(T.IdentityMapOfString$dynamic(), ["id", driveId, "sz", "w480"])).toString();
+  };
+  dart.lazyFn(space_detail_tabs_content._assetPreviewUrl, () => T.SpaceAssetAndUriNAndboolToStringN());
   space_detail_tabs_content.spaceDetailEventsTab = function spaceDetailEventsTab(opts) {
-    let t$3626, t$3626$, t$3627;
+    let t$3647, t$3647$, t$3648;
     let events = opts && 'events' in opts ? opts.events : null;
     let query = opts && 'query' in opts ? opts.query : null;
     let canAddEvents = opts && 'canAddEvents' in opts ? opts.canAddEvents : null;
     let onOpenCreateEvent = opts && 'onOpenCreateEvent' in opts ? opts.onOpenCreateEvent : null;
     let term = query[$trim]()[$toLowerCase]();
     let visible = term[$isEmpty] ? events : events[$where](dart.fn(e => {
-      let t$3625, t$3625$;
-      return e.title[$toLowerCase]()[$contains](term) || dart.test((t$3625$ = (t$3625 = e.description, t$3625 == null ? null : t$3625[$toLowerCase]()[$contains](term)), t$3625$ == null ? false : t$3625$));
+      let t$3646, t$3646$;
+      return e.title[$toLowerCase]()[$contains](term) || dart.test((t$3646$ = (t$3646 = e.description, t$3646 == null ? null : t$3646[$toLowerCase]()[$contains](term)), t$3646$ == null ? false : t$3646$));
     }, T.SpaceEventTobool()))[$toList]();
     if (visible[$isEmpty]) {
-      t$3626$ = "space-detail__empty-pane space-detail__empty-pane--card";
+      t$3647$ = "space-detail__empty-pane space-detail__empty-pane--card";
       return new html.div.new((() => {
-        let t$3625 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3626 = "space-detail__empty-icon", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.calendar, {size: 26})]), {classes: t$3626})), new html.h3.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(term[$isEmpty] ? "No events scheduled" : "No matching events")])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(canAddEvents ? "Schedule group syncs, study halls, or deadlines to collaborate effectively." : "Sessions scheduled by the space admins will show up here.")]))]);
-        if (canAddEvents && term[$isEmpty]) t$3625.push(desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.calendarAdd, label: "Add Event", variant: desktop_scaffolds.DesktopPillVariant.primary, onPressed: onOpenCreateEvent}));
-        return t$3625;
-      })(), {classes: t$3626$});
+        let t$3646 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3647 = "space-detail__empty-icon", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.calendar, {size: 26})]), {classes: t$3647})), new html.h3.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(term[$isEmpty] ? "No events scheduled" : "No matching events")])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(canAddEvents ? "Schedule group syncs, study halls, or deadlines to collaborate effectively." : "Sessions scheduled by the space admins will show up here.")]))]);
+        if (canAddEvents && term[$isEmpty]) t$3646.push(desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.calendarAdd, label: "Add Event", variant: desktop_scaffolds.DesktopPillVariant.primary, onPressed: onOpenCreateEvent}));
+        return t$3646;
+      })(), {classes: t$3647$});
     }
-    t$3627 = "space-detail__cards-list";
+    t$3648 = "space-detail__cards-list";
     return new html.div.new((() => {
-      let t$3626 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+      let t$3647 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
       for (let event of visible)
-        t$3626.push(space_detail_tabs_content._eventCard(event));
-      return t$3626;
-    })(), {classes: t$3627});
+        t$3647.push(space_detail_tabs_content._eventCard(event));
+      return t$3647;
+    })(), {classes: t$3648});
   };
   dart.lazyFn(space_detail_tabs_content.spaceDetailEventsTab, () => T.__ToComponent$3());
   space_detail_tabs_content._eventCard = function _eventCard(event) {
-    let t$3627, t$3627$, t$3627$0, t$3627$1, t$3627$2, t$3627$3, t$3627$4, t$3627$5;
+    let t$3648, t$3648$, t$3648$0, t$3648$1, t$3648$2, t$3648$3, t$3648$4, t$3648$5;
     let month = space_detail_tabs_content._shortMonths[$_get](event.startTime.month - 1)[$toUpperCase]();
     let day = dart.strSafe(event.startTime.day);
     let timeRange = space_detail_tabs_content._formatClock(event.startTime) + " - " + space_detail_tabs_content._formatClock(event.endTime);
-    t$3627$5 = "space-detail__item-card";
-    return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3627$0 = "space-detail__event-date", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3627 = "space-detail__event-month", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(month)]), {classes: t$3627})), (t$3627$ = "space-detail__event-day", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(day)]), {classes: t$3627$}))]), {classes: t$3627$0})), (t$3627$3 = "space-detail__card-body", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3627$1 = "space-detail__card-title", new html.strong.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(event.title)]), {classes: t$3627$1})), (t$3627$2 = "space-detail__card-meta", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(event.location == null || dart.nullCheck(event.location)[$isEmpty] ? timeRange : timeRange + " • " + dart.str(event.location))]), {classes: t$3627$2}))]), {classes: t$3627$3})), (t$3627$4 = "space-detail__card-chevron", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.chevronRight, {size: 14})]), {classes: t$3627$4}))]), {classes: t$3627$5});
+    t$3648$5 = "space-detail__item-card";
+    return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3648$0 = "space-detail__event-date", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3648 = "space-detail__event-month", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(month)]), {classes: t$3648})), (t$3648$ = "space-detail__event-day", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(day)]), {classes: t$3648$}))]), {classes: t$3648$0})), (t$3648$3 = "space-detail__card-body", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3648$1 = "space-detail__card-title", new html.strong.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(event.title)]), {classes: t$3648$1})), (t$3648$2 = "space-detail__card-meta", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(event.location == null || dart.nullCheck(event.location)[$isEmpty] ? timeRange : timeRange + " • " + dart.str(event.location))]), {classes: t$3648$2}))]), {classes: t$3648$3})), (t$3648$4 = "space-detail__card-chevron", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.chevronRight, {size: 14})]), {classes: t$3648$4}))]), {classes: t$3648$5});
   };
   dart.lazyFn(space_detail_tabs_content._eventCard, () => T.SpaceEventToComponent());
   space_detail_tabs_content.spaceMembersModal = function spaceMembersModal(opts) {
-    let t$3631, t$3630, t$3629, t$3628, t$3628$, t$3628$0, t$3628$1, t$3628$2, t$3629$, t$3628$3;
+    let t$3652, t$3651, t$3650, t$3649, t$3649$, t$3649$0, t$3649$1, t$3649$2, t$3650$, t$3649$3;
     let open = opts && 'open' in opts ? opts.open : null;
     let members = opts && 'members' in opts ? opts.members : null;
     let currentUserId = opts && 'currentUserId' in opts ? opts.currentUserId : null;
@@ -410,21 +514,21 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
     let onToggleAdmin = opts && 'onToggleAdmin' in opts ? opts.onToggleAdmin : null;
     let onRemoveMember = opts && 'onRemoveMember' in opts ? opts.onRemoveMember : null;
     if (!open) return new framework.Fragment.__(_interceptors.JSArray.of(T.JSArrayOfComponent(), []));
-    t$3628$3 = "space-detail__modal-backdrop";
-    t$3629$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "dialog", "aria-modal", "true", "aria-label", "Space members"]);
-    return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3628$2 = "space-detail__modal-card", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3628$0 = "space-detail__modal-head", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Members (" + dart.strSafe(members[$length]) + ")")])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("People with access to this space")]))])), (t$3628$ = "space-detail__modal-head-actions", new html.div.new((() => {
-            let t$3627 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
-            if (canInvite) t$3627.push(desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.userAdd, label: "Invite", variant: desktop_scaffolds.DesktopPillVariant.tonal, onPressed: dart.fn(() => {
+    t$3649$3 = "space-detail__modal-backdrop";
+    t$3650$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "dialog", "aria-modal", "true", "aria-label", "Space members"]);
+    return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3649$2 = "space-detail__modal-card", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3649$0 = "space-detail__modal-head", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Members (" + dart.strSafe(members[$length]) + ")")])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("People with access to this space")]))])), (t$3649$ = "space-detail__modal-head-actions", new html.div.new((() => {
+            let t$3648 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+            if (canInvite) t$3648.push(desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.userAdd, label: "Invite", variant: desktop_scaffolds.DesktopPillVariant.tonal, onPressed: dart.fn(() => {
                 onClose();
                 onOpenInvite();
               }, T.VoidTovoid())}));
-            t$3627.push((t$3628 = "space-detail__modal-close", t$3629 = html.ButtonType.button, t$3630 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close members"]), t$3631 = onClose, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 18})]), {classes: t$3628, type: t$3629, attributes: t$3630, onClick: t$3631})));
-            return t$3627;
-          })(), {classes: t$3628$}))]), {classes: t$3628$0})), (t$3628$1 = "space-detail__modal-body", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [space_detail_members_tab.spaceDetailMembersTab({members: members, currentUserId: currentUserId, canManageMembers: canManageMembers, isOwner: isOwner, mutatingMemberIds: mutatingMemberIds, onToggleAdmin: onToggleAdmin, onRemoveMember: onRemoveMember})]), {classes: t$3628$1}))]), {classes: t$3628$2}))]), {classes: t$3628$3, attributes: t$3629$});
+            t$3648.push((t$3649 = "space-detail__modal-close", t$3650 = html.ButtonType.button, t$3651 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close members", "title", "Close"]), t$3652 = onClose, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 18})]), {classes: t$3649, type: t$3650, attributes: t$3651, onClick: t$3652})));
+            return t$3648;
+          })(), {classes: t$3649$}))]), {classes: t$3649$0})), (t$3649$1 = "space-detail__modal-body", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [space_detail_members_tab.spaceDetailMembersTab({members: members, currentUserId: currentUserId, canManageMembers: canManageMembers, isOwner: isOwner, mutatingMemberIds: mutatingMemberIds, onToggleAdmin: onToggleAdmin, onRemoveMember: onRemoveMember})]), {classes: t$3649$1}))]), {classes: t$3649$2}))]), {classes: t$3649$3, attributes: t$3650$});
   };
   dart.lazyFn(space_detail_tabs_content.spaceMembersModal, () => T.__ToComponent$4());
   space_detail_tabs_content.spaceArchivedPagesModal = function spaceArchivedPagesModal(opts) {
-    let t$3631, t$3630, t$3629, t$3628, t$3628$, t$3629$, t$3629$0, t$3631$, t$3631$0, t$3631$1, t$3634, t$3633, t$3632, t$3631$2, t$3634$, t$3633$, t$3632$, t$3631$3, t$3631$4, t$3631$5, t$3631$6, t$3631$7, t$3632$0, t$3631$8;
+    let t$3652, t$3651, t$3650, t$3649, t$3649$, t$3650$, t$3650$0, t$3652$, t$3652$0, t$3652$1, t$3655, t$3654, t$3653, t$3652$2, t$3655$, t$3654$, t$3653$, t$3652$3, t$3652$4, t$3652$5, t$3652$6, t$3652$7, t$3653$0, t$3652$8;
     let open = opts && 'open' in opts ? opts.open : null;
     let archivedPages = opts && 'archivedPages' in opts ? opts.archivedPages : null;
     let canManagePages = opts && 'canManagePages' in opts ? opts.canManagePages : null;
@@ -433,25 +537,25 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
     let onRestorePage = opts && 'onRestorePage' in opts ? opts.onRestorePage : null;
     let onDeletePage = opts && 'onDeletePage' in opts ? opts.onDeletePage : null;
     if (!open) return new framework.Fragment.__(_interceptors.JSArray.of(T.JSArrayOfComponent(), []));
-    t$3631$8 = "space-detail__modal-backdrop";
-    t$3632$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "dialog", "aria-modal", "true", "aria-label", "Archived pages"]);
-    return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3631$7 = "space-detail__modal-card", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3628$ = "space-detail__modal-head", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Archived pages")])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(archivedPages[$isEmpty] ? "Hidden from the Pages tab" : dart.strSafe(archivedPages[$length]) + " hidden from the Pages tab")]))])), (t$3628 = "space-detail__modal-close", t$3629 = html.ButtonType.button, t$3630 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close archived pages"]), t$3631 = onClose, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 18})]), {classes: t$3628, type: t$3629, attributes: t$3630, onClick: t$3631}))]), {classes: t$3628$})), (t$3631$6 = "space-detail__modal-body", new html.div.new((() => {
-          let t$3628 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+    t$3652$8 = "space-detail__modal-backdrop";
+    t$3653$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "dialog", "aria-modal", "true", "aria-label", "Archived pages"]);
+    return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3652$7 = "space-detail__modal-card", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3649$ = "space-detail__modal-head", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Archived pages")])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(archivedPages[$isEmpty] ? "Hidden from the Pages tab" : dart.strSafe(archivedPages[$length]) + " hidden from the Pages tab")]))])), (t$3649 = "space-detail__modal-close", t$3650 = html.ButtonType.button, t$3651 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close archived pages", "title", "Close"]), t$3652 = onClose, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 18})]), {classes: t$3649, type: t$3650, attributes: t$3651, onClick: t$3652}))]), {classes: t$3649$})), (t$3652$6 = "space-detail__modal-body", new html.div.new((() => {
+          let t$3649 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
           if (archivedPages[$isEmpty])
-            t$3628.push((t$3629$0 = "space-detail__empty-pane", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3629$ = "space-detail__empty-icon", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.archive, {size: 24})]), {classes: t$3629$})), new html.h3.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Nothing archived")])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Archive a page from its options to tuck it away without deleting it.")]))]), {classes: t$3629$0})));
+            t$3649.push((t$3650$0 = "space-detail__empty-pane", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3650$ = "space-detail__empty-icon", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.archive, {size: 24})]), {classes: t$3650$})), new html.h3.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Nothing archived")])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Archive a page from its options to tuck it away without deleting it.")]))]), {classes: t$3650$0})));
           else
-            t$3628.push((t$3631$5 = "space-detail__cards-list", new html.div.new((() => {
-              let t$3629 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+            t$3649.push((t$3652$5 = "space-detail__cards-list", new html.div.new((() => {
+              let t$3650 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
               for (let page of archivedPages)
-                t$3629.push((t$3631$4 = "space-detail__item-card", new html.div.new((() => {
-                  let t$3630 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3631$1 = "space-detail__card-body", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3631$ = "space-detail__card-title", new html.strong.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(page.title)]), {classes: t$3631$})), (t$3631$0 = "space-detail__card-meta", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(page.updatedAt == null ? page.pageType.label : page.pageType.label + " • " + space_detail_tabs_content._formatMonthDay(dart.nullCheck(page.updatedAt)))]), {classes: t$3631$0}))]), {classes: t$3631$1}))]);
-                  if (canManagePages) t$3630[$addAll](_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3631$2 = "space-detail__icon-btn", t$3632 = html.ButtonType.button, t$3633 = mutatingPageIds.contains(page.id), t$3634 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["title", "Restore", "aria-label", "Restore " + page.title]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.refresh, {size: 16})]), {classes: t$3631$2, type: t$3632, disabled: t$3633, attributes: t$3634, onClick: dart.fn(() => onRestorePage(page), T.VoidTovoid())})), (t$3631$3 = "space-detail__icon-btn space-detail__icon-btn--danger", t$3632$ = html.ButtonType.button, t$3633$ = mutatingPageIds.contains(page.id), t$3634$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["title", "Delete", "aria-label", "Delete " + page.title]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.delete, {size: 16})]), {classes: t$3631$3, type: t$3632$, disabled: t$3633$, attributes: t$3634$, onClick: dart.fn(() => onDeletePage(page), T.VoidTovoid())}))]));
-                  return t$3630;
-                })(), {classes: t$3631$4})));
-              return t$3629;
-            })(), {classes: t$3631$5})));
-          return t$3628;
-        })(), {classes: t$3631$6}))]), {classes: t$3631$7}))]), {classes: t$3631$8, attributes: t$3632$0});
+                t$3650.push((t$3652$4 = "space-detail__item-card", new html.div.new((() => {
+                  let t$3651 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3652$1 = "space-detail__card-body", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3652$ = "space-detail__card-title", new html.strong.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(page.title)]), {classes: t$3652$})), (t$3652$0 = "space-detail__card-meta", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(page.updatedAt == null ? page.pageType.label : page.pageType.label + " • " + space_detail_tabs_content._formatMonthDay(dart.nullCheck(page.updatedAt)))]), {classes: t$3652$0}))]), {classes: t$3652$1}))]);
+                  if (canManagePages) t$3651[$addAll](_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3652$2 = "space-detail__icon-btn", t$3653 = html.ButtonType.button, t$3654 = mutatingPageIds.contains(page.id), t$3655 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["title", "Restore", "aria-label", "Restore " + page.title]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.refresh, {size: 16})]), {classes: t$3652$2, type: t$3653, disabled: t$3654, attributes: t$3655, onClick: dart.fn(() => onRestorePage(page), T.VoidTovoid())})), (t$3652$3 = "space-detail__icon-btn space-detail__icon-btn--danger", t$3653$ = html.ButtonType.button, t$3654$ = mutatingPageIds.contains(page.id), t$3655$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["title", "Delete", "aria-label", "Delete " + page.title]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.delete, {size: 16})]), {classes: t$3652$3, type: t$3653$, disabled: t$3654$, attributes: t$3655$, onClick: dart.fn(() => onDeletePage(page), T.VoidTovoid())}))]));
+                  return t$3651;
+                })(), {classes: t$3652$4})));
+              return t$3650;
+            })(), {classes: t$3652$5})));
+          return t$3649;
+        })(), {classes: t$3652$6}))]), {classes: t$3652$7}))]), {classes: t$3652$8, attributes: t$3653$0});
   };
   dart.lazyFn(space_detail_tabs_content.spaceArchivedPagesModal, () => T.__ToComponent$5());
   space_detail_tabs_content._formatMonthDay = function _formatMonthDay(date) {
@@ -468,17 +572,17 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentati
   dart.lazyFn(space_detail_tabs_content._formatClock, () => T.DateTimeToString());
   dart.defineLazy(space_detail_tabs_content, {
     /*space_detail_tabs_content._shortMonths*/get _shortMonths() {
-      return C[6] || CT.C6;
+      return C[7] || CT.C7;
     }
   });
   (function() {
   }).prototype = space_detail_tabs_content;
   dart.moduleConstCaches.set("packages/eduma_web/features/space/presentation/widgets/space_detail_tabs_content", C);
-  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"jaspr__src__dom__html__html|input":{"input.T":"1","jaspr__src__framework__framework|StatelessComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatelessComponent":{"jaspr__src__framework__framework|Component":[]},"core|int":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|num":{"Comparable.T":"core|num","core|Comparable":["core|num"]},"eduma_web__features__space__data__space_detail_models|SpacePageFilter":{"core|_Enum":[],"core|Enum":[]},"core|_Enum":{"core|Enum":[]},"core|Set":{"Set.E":"1","Iterable.E":"1","core|Iterable":["1"],"_SetIterable.E":"1","core|_SetIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|_SetIterable":{"_SetIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"core|DateTime":{"Comparable.T":"core|DateTime","core|Comparable":["core|DateTime"]}}'));
+  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"jaspr__src__dom__html__html|input":{"input.T":"1","jaspr__src__framework__framework|StatelessComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatelessComponent":{"jaspr__src__framework__framework|Component":[]},"core|int":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|num":{"Comparable.T":"core|num","core|Comparable":["core|num"]},"eduma_web__features__space__data__space_detail_models|SpacePageFilter":{"core|_Enum":[],"core|Enum":[]},"core|_Enum":{"core|Enum":[]},"collection|LinkedHashSet":{"LinkedHashSet.E":"1","Set.E":"1","core|Set":["1"],"Iterable.E":"1","core|Iterable":["1"],"_SetIterable.E":"1","core|_SetIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|Set":{"Set.E":"1","Iterable.E":"1","core|Iterable":["1"],"_SetIterable.E":"1","core|_SetIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|_SetIterable":{"_SetIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"core|DateTime":{"Comparable.T":"core|DateTime","core|Comparable":["core|DateTime"]}}'));
   dart.trackLibraries("packages/eduma_web/features/space/presentation/widgets/space_detail_tabs_content", {
     "package:eduma_web/features/space/presentation/widgets/space_detail_tabs_content.dart": space_detail_tabs_content
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["space_detail_tabs_content.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;QA8CmB,OADG,OADK,OADR,OAQL,QAcK,QADmB,QADX,QADR,SAYE,OADG,SADF,SADO,SADR,SAYA,QADG,SADF,SADO,SADR,SArCF,SADK,SAuEE,QADK,QADf,OAPI,SADH,QAgBE,SAgBK,QADK,SADR,UAbF,UA4BK,QADK,QADf,SAeQ,SADI,SADH,UASM,UAgBS,QAQA,SAEE,UApBN,QADK,QADR,UA+BQ,SADR,UAFA,UAlCL,UADH,UAxBF,UAkFF,QADG,SADK,UADR,UAiBF,QAJG,SADK,UADf,UAlIO,UA4KO,SADK,UADR,UAbF,UA9JG;QArFP;QACG;QACS;QACX;QACA;QACA;QACD;QACA;QACC;QACA;QACA;QACA;QACa;QACG;QACF;QACW;QACjB;QACA;QACA;QACA;QACA;QACA;QACA;QACA;AAEtB,QAAI,cAAc,IAAI,AAAe,cAAD,KAAI;AAChC,yBAAe,kBAAkB,GAAG;AAC1C,gBAAoB;YAAb,kBAA2C,6DACnC,+BAAb,iBAA4C;iFAE/B,kCACQ,gCACL,iEAAC,cAAc,oBAAoB,SAAS,oBAC/C,eAAe,EAJ1B,oBAKE,kDAAC,sBAAqB,0CAAkB,kBAJ/B,aACQ,mBACL,gBACH,WAKL,SADK,YAAY,GACf,kCACA,wCAFe,EADvB,kBAIE,kDACE,sBACE,AAAmB,kBAAD,KAAI,IAChB,qCACE,kBAAkB,0BAAK,iBAAiB,8BANhD,sBAWK,4CACQ,iCACP,AAAkB,iBAAD,KAAI,YACtB,iBAAiB,EAJ5B,oBAKE,kDAAC,sBAAM,kBAAkB,GAAG,iBAAiB,YAApB,eAJhB,eACQ,kBACW,iBACnB;AAGX,cAAI,cAAc,EA3BwB,AA2BnB,eAAA,6DAEV,oCACQ,wBACP,WAAC,YAAY,YACX,iEAAC,cAAc,oBAAoB,SAAS,8BAC/C,iBAAiB,EAL5B,oBAME,kDAAC,sBAAqB,uCAAe,kBAL5B,eACQ,mBACP,qBACE,kBACH,qBAIA,mEACQ,wBACP,WAAC,YAAY,YACX,iEAAC,cAAc,mBAAmB,SAAS,8BAC9C,gBAAgB,EAL3B,oBAME,kDAAC,sBAAqB,sCAAc,kBAL3B,eACQ,mBACP,qBACE,kBACH;gBAzC6B;wBAA/B,wBADK;;AAkDhB;AACA,4BAAoB;;AAAQ,uCAAc;AAC9C;AACA;AAFwB;;AACtB,cAAF,MADgC;oBAC3B;AAAH;;;;AACA,cAAF,MAFgC;oBAE3B;AAAH;;;;AACA;oBAAG;AAAH;;;;;;AAEE,uBAAe,AAAW,UAAD,KAAI;AAEnC,eAAoB;UAAb,kBAA2C;gFACnC,6BAAb,iBAA0C;kFAE7B,+BACG,iEAAC,QAAQ,WAAW,cAAc,oBAFhD,iBAGE;;AACE,uBAAS,IAAI,GAAG,CAAC,GAAG,AAAO,MAAD,WAAU,IAAD,CAAC;AAK9B,gBANR,oBAGe,AAGP;6EAFA;AACA,sBAAI,AAAe,cAAD,KAAI,CAAC,EAFhB,AAEkB,WAAA;wBAFlB;4BAGF,eACU,iCACL,iEAAC,QAAQ,OAAO,8BAAoB,AAAe,cAAD,KAAI,CAAC,KANrE,oBAQE,kDAAC,sBAAM,AAAM,MAAA,QAAC,CAAC,gBAJb,aACe,oBACL,iBACH,cAAM,AAAW,WAAA,CAAC,CAAC;oBATlC;4BAFS,oBACG,uBAeD,gCAAb,iBAA6C,gEAAhC,wBACA,sEAAb,iBAAmF;4EACjF,sBAAqB,sCAAc,MACnC,6CACkB,8BACT,KAAK,cACA,iEACV,eAAe,iBAAiB,EAChC,cAAc,iBAAiB,aAExB,QAAQ;AAEnB,kBAAI,AAAM,KAAD,eAXwE,AAapE,uBAAA,wCACQ,iCACL,iEAAC,cAAc,kBAH7B,oBAKE,kDAAC,sBAAqB,0CAAkB,kBAJ/B,gBACQ,qBACL,iBACH,cAAM,AAAQ,QAAA,CAAC;oBAhBqD;4BAAtE;AAoBb,cAAI,AAAe,cAAD,KAAI,GAvCkB,AAwCzB,uBAAA,6BAAb,iBAA0C;sFAE7B,AAGP;4EAFA;AACA,oBAAI,YAAY,IAAI,cAAc,EAF3B,AAE6B,YAAA;sBAF7B;0BAGF,eACU,iCACL,iEACV,cAAc,gBACd,iBAAiB,QACjB,8BAAmB,cAAc,GACjC,SAAS,kBAVb,oBAaE,kDAAC,sBAAqB,sCAAc,kBATlC,eACe,oBACL,iBAMH,cAAM,AAAkB,kBAAA,EAAE,cAAc;AAGnD,gBAAI,cAAc,EAhBsB,AAgBjB,gBAAA,8DAEV,2CACG,iEAAC,eAAe,oBACpB,yEAAC,SAAS,QAAC,oBAAM,AAAkB,kBAAA,CAAC,+BAH9C,0CACW,sBACG,iBACJ,wBAIC,wCACG,iEAAC,QAAQ,QAAQ,cAAc,kBAF7C,iBAGE;2FACe,sCAAb,iBAAmD,kDAAC,sBAAM,2BAA7C;AACb,yBAAW,SAA0B;AACnC,sBAAI,MAAM,KAAI,8CAHlB,AAKiB,wBAAA,wCACQ,iCACL,iEACV,QAAQ,iBACR,6BAAmB,AAAW,UAAD,KAAI,MAAM,GACvC,6BAAmB,AAAW,UAAD,KAAI,MAAM,KAN3C,oBAYE;6FACgB,oCAAd,kBAAkD,kDAChD,sBAAU;;kCAAQ,MAAM;;;AACH;;;;;AACG;;;;;AACD;;;;;AACG;;;;;qCACjB,kBANG,sBAQA,qCAAd,kBAAmD,kDAAC,sBAAM,AAAO,MAAD,qBAAlD;AACd,wBAAI,AAAW,UAAD,KAAI,MAAM,EAV1B,AAWkB,wBAAA,qCAAd,kBAAmD,kDACjD,sBAAqB,qCAAa,kBADtB;0BAXlB;kCAXS,gBACQ,oBACL,iBAKH;AACW,sBAAlB,kBAAkB,CAAC,MAAM;AACP,sBAAlB,kBAAkB,CAAC;;AAkB3B,oBAAI,UAAU,KAAI,yCAhCpB,AAiCiB,wBAAA,mCAAb,iBAAgD,8DAEnC,wCACQ,wBAFnB,oBAOE,kDACE,sBAAqB,uCAAe,MACpC,kBAAK,kDAAC,sBAAM,gCARL,gBACQ,kBACR;AACW,sBAAlB,kBAAkB,CAAC;AACD,sBAAlB,kBAAkB,CAAC;uDANZ;sBAjCjB;8BAFS,sBACG;kBAzBwB;0BAA7B;AA6Ef,cAAI,AAAe,cAAD,KAAI,KAAK,iBAAiB,GAAG,KAAK,cAAc,EArH1B,AAuH3B,uBAAA,oEACQ,kCACL,iEAAC,cAAc,gBAAgB,SAAS,2BAC3C,gBAAgB,EAJ3B,oBAKE,kDAAC,sBAAqB,0CAAkB,kBAJ/B,gBACQ,sBACL,kBACH;AAQT,UAlIoC,uBA8H7B,AAIP;wEAHA,0BACA;AACA,gBAAI,gBAAgB,IAAI,AAAM,KAAD,eAHtB,AAGmC,YAAA;kBAHnC;sBAIF,iBACU,kCACL,iEACV,cAAc,iBACd,8BAAoB,AAAiB,gBAAD,IAAI,AAAM,KAAD,2BAEtC,oBAAoB,EAX/B,oBAYE,kDAAC,sBAAqB,sCAAc,kBAPlC,gBACe,sBACL,kBAIH;AAGX,cAAI,AAAe,cAAD,KAAI,KAAK,WAAW;AACpC,YA5IsC,WA4ItC,2CACmB,uCACV,qBACE,uDACA,wCACE,gBAAgB;cAE1B,KAAI,AAAe,cAAD,KAAI,KAAK,YAAY,EAnJJ,AAoJtC,WAAA,2CACmB,2CACV,sBACE,uDACA,wCACE,iBAAiB;gBAzJQ;wBAA7B;AA4Jb,UAAI,gBAAgB,IAAI,AAAM,KAAD,eA7JmB,AA8JjC,uBAAA,qEAAb,iBAAkF;uEAChF,sBAAqB,sCAAc,MACnC,6CACkB,8BACT,KAAK,cACA,iEACV,eAAe,iBAAiB,EAChC,cAAc,iBAAiB,aAExB,QAAQ;AAEnB,YAAI,AAAM,KAAD,eAXuE,AAanE,wBAAA,yCACQ,kCACL,iEAAC,cAAc,kBAH7B,oBAKE,kDAAC,sBAAqB,0CAAkB,kBAJ/B,gBACQ,sBACL,kBACH,cAAM,AAAQ,QAAA,CAAC;cAhBoD;sBAArE;YA9JiC;oBAA9B;EAmLtB;;;QAgCqB,QADG,QADK,QADR,QANA,SA2BG,SADO,SADR,SAeC,UADO,UADR,UAzBF,UAdF,UANP,UADI,UADH;QAVS;QACN;QACA;QACQ;QACW;QACA;AAEjC,QAAI,AAAK,IAAD,UAAU,MAAO;AACnB,gBAAQ,0CAAmB,IAAI;AACrC,eACW;eACG,iEAAC,QAAQ,UAAU,cAAc,QAAQ,cAAc;eAC3D,yEACN,SAAS,QAAC;AACR,YAAiB,YAAP,mCAAN,KAAK,aAAiB,mCAAN,KAAK,qBAAgB,AAAO,OAAA;;UAL/C,kBAQL,8DACe,8DAAb,iBAA2E,6DAC5D,4BAAb,iBAAyC,kDACvC,iBAAI,kDACF,gBAAG,kDAAC,sBAAM,AAAK,IAAD,YACd,eAAE,kDAAC,sBAAS,AAAK,AAAS,IAAV,mBAAkB,AAAK,IAAD,cAAc,gBAAgB,sBAG3D,sCACQ,iCACL,iEAAC,cAAc,4BAClB,OAAO,EAJlB,oBAKE,kDAAC,sBAAqB,0CAAkB,kBAJ/B,cACQ,oBACL,iBACH,uBATA,wBAaA,8BAAb,iBAA2C;yEACzC,0BACM,KAAK,WACA,sCACC,kDACR,sBAAU,AAAK,AAAS,IAAV,sBAAiC,gCAAoB,oCAAY,MAC/E,kBAAK,kDAAC,sBAAM,UAAQ,AAAK,AAAS,AAAM,IAAhB,qCACxB,sBAAqB,4CAAoB;AAG7C,cAAI,cAAc,EAVuB,AAUlB,gBAAA,6DAEV,sCACQ,kCACP,IAAI,EAHhB,oBAQE,kDACE,sBAAU,AAAK,IAAD,cAAyB,iCAAqB,uCAAe,MAC3E,kBAAK,kDAAC,sBAAM,AAAK,IAAD,cAAc,qBAAqB,gCAT5C,eACQ,mBACP,kBACD;AACA,gBAAP,OAAO;AACQ,gBAAf,eAAe,CAAC,IAAI;iDAQb,wEACQ,mCACP,IAAI,EAHhB,oBAQE,kDACE,sBAAqB,sCAAc,MACnC,kBAAK,kDAAC,sBAAM,+BATL,gBACQ,oBACP,mBACD;AACA,gBAAP,OAAO;AACK,gBAAZ,YAAY,CAAC,IAAI;;gBA9BkB;wBAA9B,yBAdF,yBARN,sBACG,kBACJ;EA8DZ;;;QAoBoB,QADI,SAeF;QA9BM;QACV;AAEV,eAAO,AAAM,AAAO,KAAR;AACZ,kBAAU,AAAK,IAAD,aACd,MAAM,GACN,AACK,AAKA,MANC,SAEA,QAAC;kBAEU;AADP,YAAA,AAAM,AAAY,AAAc,AAAe,MAA1C,wCAAoC,IAAI,gBACE,oBAA9C,AAAM,KAAD,6BAAC,OAAA,AAAW,AAAc,kCAAS,IAAI,IAAtC,kBAA2C,QAA3C;;AAIvB,QAAI,AAAQ,OAAD;AACT,gBAAoB;YAAb,kBAAyC,4DAChC,4BAAd,kBAA0C,kDACxC,sBAAU,AAAK,IAAD,aAAsB,oCAAwB,sCAAc,kBAD9D,WAGd,gBAAG,kDAAC,sBAAM,AAAK,IAAD,aAAW,kBAAkB,0BAC3C,eAAE,kDACA,sBACE,AAAK,IAAD,aACE,mEACA,+DATQ;;AAetB,aAAoB;UAAb,kBAAyC;;AAC9C,eAAW,QAAS,QAAO;AAAE,QADiB,YACjB,qCAAW,KAAK;YADC;oBAA5B;EAGtB;;6DAEgC;QAON,QAOR,QAII,SACF,UAFH,UAIC,UAUC,QADG,QADG,QADT,UAMK;AAjCb,cAAM,AAAM,AAAU,KAAX;AACX,eAAO,0CAAgB,AAAM,KAAD;AAC5B,eAAO,AAGX;;AAFA,UAAI,AAAI,GAAD,eADI,AACS,YAAA,GAAG;AACvB,UAAI,AAAM,AAAK,AAAO,KAAb,6BAFE,AAEkC,YAAX,AAAM,AAAK,KAAN;YAF5B;gBAGN;AACD,mBAAmC,AAAO,CAAd,SAAhB,AAAM,KAAD,YAAC,iBAAa,KAAb,gCACH,eAAf,AAAM,KAAD,cACL;AACA,eAAO,AAA4C;;AAA3C,UAAI,AAAK,IAAD,eAAT,AAAsB,YAAA,IAAI;AAAE,MAA5B,YAA4B,IAAI;AAAE,MAAlC,YAAkC,QAAQ;YAA1C;gBAAiD;AACxD,eAAO,AAAM,AAAI,KAAL;AAEZ,gBAAQ,qEACE,+BAAd,kBAA6C,kDAC3C,sBAAU,qCAAW,KAAK,UAAS,kBADvB,uBAGD,2BAAb,iBAAwC,6DACtB,4BAAhB,oBAA4C,kDAAC,sBAAM,AAAM,KAAD,2BAAxC,wBACF,2BAAd,kBAAyC,kDAAC,sBAAM,IAAI,eAAtC,yBAFH,yBAIC,8BAAd,kBAA4C,kDAC1C,sBAAqB,4CAAoB,kBAD7B;AAKhB,UAAO,AAAK,KAAD,4BAEG,IAAI,WACK,4BACH,iEAAC,OAAO,kCACX,2BAJX,eAKE,KAAK,SAJC,kBACS,oBACH,iBACH,wBAGE,2BAAb,iBAAwC,KAAK,YAAhC;EACrB;;6DAE6B;AAAU;;AAAwB,yBAAhB,AAAM,KAAD;AAClD;AACA;AAFqC;;AAC9B,cAAP,WAD6D;qBACxC;AAAd;;;;AACI,cAAX,eAF6D;qBAEpC;AAAd;;;;AACT;qBAAc;AAAd;;;;;;EACH;;;QAsBmB,QADI,SAsBF;QAvCM;QACV;QACF;QACQ;AAEhB,eAAO,AAAM,AAAO,KAAR;AACZ,kBAAU,AAAK,IAAD,aACd,MAAM,GACN,AACK,AAKA,MANC,SAEA,QAAC;kBAEM;AADH,YAAA,AAAE,AAAM,AAAc,AAAe,EAApC,kCAA8B,IAAI,gBACU,oBAA5C,AAAE,CAAD,+BAAC,OAAA,AAAa,AAAc,kCAAS,IAAI,IAAxC,kBAA6C,QAA7C;;AAInB,QAAI,AAAQ,OAAD;AACT,gBAAoB;YAAb,kBAAwE;iFAC/D,4BAAd,kBAA0C,kDACxC,sBAAqB,wCAAgB,kBADzB,WAGd,gBAAG,kDAAC,sBAAM,AAAK,IAAD,aAAW,wBAAwB,0BACjD,eAAE,kDACA,sBACE,YAAY,GACN,gFACA,2DAFM;AAKhB,YAAI,YAAY,IAAI,AAAK,IAAD,YAZqD,AAa3E,YAAA,2CACmB,2CACV,sBACE,yDACE,iBAAiB;cAjB6C;sBAA3D;;AAsBtB,aAAoB;UAAb,kBAAyC;;AAC9C,eAAW,QAAS,QAAO;AAAE,QADiB,YACjB,qCAAW,KAAK;YADC;oBAA5B;EAGtB;;6DAEgC;QAOZ,QACA,SAFH,UAKK,UACF,UAFH,UAUC,UAfI;AAJd,gBAAQ,AAAY,AAA4B,8CAA3B,AAAM,AAAU,KAAX,mBAAmB;AAC7C,2BAAS,AAAM,AAAU,KAAX;AACd,oBAAe,uCAAa,AAAM,KAAD,cAAY,QAAK,uCAAa,AAAM,KAAD;AAE1E,eAAoB;UAAb,kBAAwC,8DAChC,4BAAb,iBAAyC,4DACzB,6BAAd,kBAA2C,kDAAC,sBAAM,KAAK,eAAzC,sBACA,2BAAd,kBAAyC,kDAAC,sBAAM,GAAG,eAArC,wBAFH,yBAIA,2BAAb,iBAAwC,8DACtB,4BAAhB,oBAA4C,kDAAC,sBAAM,AAAM,KAAD,qBAAxC,yBACF,2BAAd,kBAAyC,kDACvC,sBACE,AAAM,AAAS,AAAQ,KAAlB,qBAAmC,AAAE,eAAhB,AAAM,KAAD,uBACzB,SAAS,GACP,SAAS,oBAAK,AAAM,KAAD,yBAJjB,yBAFH,yBAUC,8BAAd,kBAA4C,kDAC1C,sBAAqB,4CAAoB,kBAD7B,yBAfI;EAmBtB;;;QA0CuB,QADG,QADK,QADR,QAZA,SALF,UAyBA,UA1BF,UAFH,SADH;QAdG;QACa;QACX;QACF;QACA;QACA;QACO;QACC;QACA;QACmC;QACtB;AAEnC,SAAK,IAAI,EAAE,MAAO,2BAAU;AAC5B,eACW;cACG,iEAAC,QAAQ,UAAU,cAAc,QAAQ,cAAc;UAF9D,kBAGL,8DACe,4BAAb,iBAAyC,8DAC1B,4BAAb,iBAAyC,kDACvC,iBAAI,kDACF,gBAAG,kDAAC,sBAAM,2BAAY,AAAQ,OAAD,aAAQ,SACrC,eAAE,kDAAC,sBAAM,sDAEE,oCAAb,iBAAiD;;AAC/C,gBAAI,SAAS,EADkC,AAE7C,YAAA,2CACmB,uCACV,mBACE,uDACE;AACF,gBAAP,OAAO;AACK,gBAAZ,YAAY;;AAIP,YAZoC,sBAYpC,sCACQ,iCACL,iEAAC,cAAc,4BAClB,OAAO,EAJlB,oBAKE,kDAAC,sBAAqB,0CAAkB,kBAJ/B,cACQ,oBACL,iBACH;kBAfoC;0BAApC,wBALF,yBAyBA,4BAAb,iBAAyC,kDACvC,yDACW,OAAO,iBACD,aAAa,oBACV,gBAAgB,WACzB,OAAO,qBACG,iBAAiB,iBACrB,aAAa,kBACZ,cAAc,gBARrB,yBA1BF,yBAHN,sBACG;EA0ChB;;;QAiCqB,QADG,QADK,QADR,QAZA,SAsBO,SADH,UAYW,SACF,UAFH,UAeG,QADc,QADT,QADR,UAWG,SADc,SADT,SADR,UArBF,UAFJ,UAVJ,UApBF,UAFH,UADH;QAVG;QACW;QACX;QACO;QACC;QACW;QACA;AAEjC,SAAK,IAAI,EAAE,MAAO,2BAAU;AAC5B,eACW;eACG,iEAAC,QAAQ,UAAU,cAAc,QAAQ,cAAc;UAF9D,kBAGL,8DACe,4BAAb,iBAAyC,6DAC1B,4BAAb,iBAAyC,kDACvC,iBAAI,kDACF,gBAAG,kDAAC,sBAAM,sBACV,eAAE,kDACA,sBACE,AAAc,aAAD,aACP,2CACG,AAAc,aAAD,aAAQ,+CAKzB,sCACQ,iCACL,iEAAC,cAAc,mCAClB,OAAO,EAJlB,oBAKE,kDAAC,sBAAqB,0CAAkB,kBAJ/B,cACQ,oBACL,iBACH,uBAfA,wBAmBA,4BAAb,iBAAyC;;AACvC,cAAI,AAAc,aAAD;AACF,YAFwB,wBAExB,4BAAb,iBAAyC,6DACzB,4BAAd,kBAA0C,kDACxC,sBAAqB,uCAAe,kBADxB,YAGd,gBAAG,kDAAC,sBAAM,wBACV,eAAE,kDAAC,sBAAM,wFALE;;AAQA,YAVwB,wBAUxB,4BAAb,iBAAyC;;AACvC,uBAAW,OAAQ,cAAa;AACjB,gBAFwB,wBAExB,2BAAb,iBAAwC;6FACzB,2BAAb,iBAAwC,6DACtB,4BAAhB,oBAA4C,kDAAC,sBAAM,AAAK,IAAD,qBAAvC,wBACF,2BAAd,kBAAyC,kDACvC,sBACE,AAAK,AAAU,IAAX,qBACE,AAAK,AAAS,IAAV,kBACD,AAAK,AAAS,IAAV,kBAAgB,QAAK,0CAA8B,eAAd,AAAK,IAAD,2BAJ5C,yBAFH;AAUb,sBAAI,cAAc,EAXoB,AAWf,gBAAA,8DAEV,mCACQ,iCACP,AAAgB,eAAD,UAAU,AAAK,IAAD,eAC3B,iEAAC,SAAS,WAAW,cAAc,aAAW,AAAK,IAAD,UAJhE,oBAME,kDAAC,sBAAqB,uCAAe,kBAL5B,gBACQ,kBACS,oBACd,iBACH,cAAM,AAAa,aAAA,CAAC,IAAI,mCAIxB,mEACQ,kCACP,AAAgB,eAAD,UAAU,AAAK,IAAD,gBAC3B,iEAAC,SAAS,UAAU,cAAc,YAAU,AAAK,IAAD,UAJ9D,oBAME,kDAAC,sBAAqB,sCAAc,kBAL3B,gBACQ,mBACS,qBACd,kBACH,cAAM,AAAY,YAAA,CAAC,IAAI;wBAzBE;gCAA3B;oBAFwB;4BAA5B;gBAVwB;wBAA5B,yBApBF,yBAHN,sBACG;EAqEhB;;uEAiBgC;AAAS,UAAG,AAAY,+CAAC,AAAK,IAAD,SAAS,KAAG,mBAAG,AAAK,IAAD;EAAM;;iEAEzD;AACrB,cAAM,AAAK,IAAD;AACV,iBAAS,GAAG,IAAI,KAAK,OAAO;AAC5B,cAAM,AAAI,AAAK,GAAN,UAAG,QAAM,IAAI,KAAK,AAAI,GAAD,UAAG;AACjC,YAAI,AAAK,AAAO,AAAW,IAAnB,+BAA2B,GAAG;AAC5C,wBAAS,GAAG,UAAE,CAAC,SAAE,MAAM;EACzB;;;MAvBM,sCAAY","file":"space_detail_tabs_content.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["space_detail_tabs_content.dart"],"names":[],"mappings":"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","file":"space_detail_tabs_content.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__space__presentation__widgets__space_detail_tabs_content: space_detail_tabs_content

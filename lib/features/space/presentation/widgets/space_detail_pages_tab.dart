@@ -14,6 +14,7 @@ Component spaceDetailPagesTab({
   required List<SpacePage> filteredPages,
   required SpacePageFilter filter,
   required String query,
+  required bool gridView,
   required bool canManagePages,
   required bool canCreatePage,
   required bool selecting,
@@ -32,7 +33,7 @@ Component spaceDetailPagesTab({
           button(
             classes: 'space-detail__chip-clear',
             type: ButtonType.button,
-            attributes: {'aria-label': 'Clear filter'},
+            attributes: {'aria-label': 'Clear filter', 'title': 'Clear filter'},
             onClick: () => onSelectFilter(.all),
             [edumaIcon(EdumaIcons.closePlain, size: 12)],
           ),
@@ -68,17 +69,24 @@ Component spaceDetailPagesTab({
           ),
       ])
     else
-      div(classes: 'space-detail__cards-list', [
-        for (final page in filteredPages)
-          _spacePageCard(
-            page: page,
-            busy: mutatingPageIds.contains(page.id),
-            selecting: selecting,
-            selected: selectedPageIds.contains(page.id),
-            onToggleSelect: () => onToggleSelectPage(page),
-            onOpenOptions: () => onOpenPageOptions(page),
-          ),
-      ]),
+      div(
+        classes: [
+          'space-detail__cards-list',
+          if (gridView) 'space-detail__cards-list--grid',
+        ].join(' '),
+        [
+          for (final page in filteredPages)
+            _spacePageCard(
+              page: page,
+              gridView: gridView,
+              busy: mutatingPageIds.contains(page.id),
+              selecting: selecting,
+              selected: selectedPageIds.contains(page.id),
+              onToggleSelect: () => onToggleSelectPage(page),
+              onOpenOptions: () => onOpenPageOptions(page),
+            ),
+        ],
+      ),
   ]);
 }
 
@@ -93,6 +101,7 @@ String spacePageRoutePath(SpacePage page) {
 
 Component _spacePageCard({
   required SpacePage page,
+  required bool gridView,
   required bool busy,
   required bool selecting,
   required bool selected,
@@ -102,22 +111,35 @@ Component _spacePageCard({
   final route = spacePageRoutePath(page);
   final hasChecklist = page.checklistTotal > 0;
   final pct = hasChecklist
-      ? ((page.checklistDone / page.checklistTotal).clamp(0.0, 1.0) * 100)
-            .toStringAsFixed(1)
+      ? ((page.checklistDone / page.checklistTotal).clamp(0.0, 1.0) * 100).toStringAsFixed(1)
       : '0';
 
   final thumb = span(
-    classes: hasChecklist
-        ? 'space-detail__page-thumb has-checklist'
-        : 'space-detail__page-thumb',
+    classes: hasChecklist ? 'space-detail__page-thumb has-checklist' : 'space-detail__page-thumb',
     attributes: hasChecklist ? {'style': '--ring-pct: $pct%;'} : const {},
     [
       span(classes: 'space-detail__page-thumb-inner', [
-        if (page.visualPreview case final imgUrl?)
-          img(src: imgUrl, alt: '')
-        else
-          edumaCoverFallback(logoPercent: 42),
+        if (page.visualPreview case final imgUrl?) img(src: imgUrl, alt: '') else edumaCoverFallback(logoPercent: 42),
       ]),
+      if (gridView)
+        span(
+          classes: [
+            'space-detail__grid-badge',
+            page.pageType.isDynamic ? 'space-detail__grid-badge--canvas' : 'space-detail__grid-badge--notes',
+          ].join(' '),
+          [
+            edumaIcon(
+              page.pageType.isDynamic ? EdumaIcons.canvas : EdumaIcons.note,
+              size: 12,
+            ),
+            .text(page.pageType.label),
+          ],
+        ),
+      if (gridView && hasChecklist)
+        span(classes: 'space-detail__grid-checklist', [
+          edumaIcon(EdumaIcons.check, size: 12),
+          .text('${page.checklistDone}/${page.checklistTotal}'),
+        ]),
     ],
   );
 
@@ -126,31 +148,47 @@ Component _spacePageCard({
     if (page.description case final desc?) desc,
   ];
 
-  final infoBody = div(classes: 'space-detail__card-body', [
-    div(classes: 'space-detail__page-title-line', [
-      strong(classes: 'space-detail__card-title', [.text(page.title)]),
-    ]),
-    div(classes: 'space-detail__card-meta-row', [
-      span(
-        classes: page.pageType.isDynamic
-            ? 'space-detail__type-pill space-detail__type-pill--canvas'
-            : 'space-detail__type-pill space-detail__type-pill--notes',
-        [
-          edumaIcon(page.pageType.isDynamic ? EdumaIcons.canvas : EdumaIcons.note, size: 11),
-          span([.text(page.pageType.label)]),
-        ],
-      ),
-      if (subtitlePieces.isNotEmpty)
-        span(classes: 'space-detail__card-meta', [
-          .text(subtitlePieces.join(' · ')),
-        ]),
-    ]),
-  ]);
+  final infoBody = gridView
+      ? div(classes: 'space-detail__card-body space-detail__card-body--grid', [
+          strong(classes: 'space-detail__card-title', [.text(page.title)]),
+          span(classes: 'space-detail__card-meta', [
+            .text(_pageEditedLabel(page.updatedAt)),
+          ]),
+        ])
+      : div(classes: 'space-detail__card-body', [
+          div(classes: 'space-detail__page-title-line', [
+            strong(classes: 'space-detail__card-title', [.text(page.title)]),
+          ]),
+          div(classes: 'space-detail__card-meta-row', [
+            span(
+              classes: page.pageType.isDynamic
+                  ? 'space-detail__type-pill space-detail__type-pill--canvas'
+                  : 'space-detail__type-pill space-detail__type-pill--notes',
+              [
+                edumaIcon(
+                  page.pageType.isDynamic ? EdumaIcons.canvas : EdumaIcons.note,
+                  size: 11,
+                ),
+                span([.text(page.pageType.label)]),
+              ],
+            ),
+            if (subtitlePieces.isNotEmpty)
+              span(classes: 'space-detail__card-meta', [
+                .text(subtitlePieces.join(' · ')),
+              ]),
+          ]),
+        ]);
+
+  final cardClasses = [
+    'space-detail__item-card',
+    'space-detail__item-card--page',
+    if (gridView) 'space-detail__item-card--page-grid',
+    if (selected) 'is-selected',
+  ].join(' ');
 
   if (selecting) {
     return button(
-      classes:
-          'space-detail__item-card space-detail__item-card--page${selected ? ' is-selected' : ''}',
+      classes: cardClasses,
       type: ButtonType.button,
       disabled: busy,
       attributes: {'aria-pressed': '$selected'},
@@ -167,7 +205,7 @@ Component _spacePageCard({
   }
 
   return div(
-    classes: 'space-detail__item-card space-detail__item-card--page',
+    classes: cardClasses,
     events: {
       'contextmenu': (event) {
         event.preventDefault();
@@ -180,22 +218,45 @@ Component _spacePageCard({
         classes: 'space-detail__card-main-link',
         children: [thumb, infoBody],
       ),
-      div(classes: 'space-detail__page-actions', [
-        button(
-          classes: 'space-detail__more-btn',
-          type: ButtonType.button,
-          disabled: busy,
-          attributes: {'aria-label': 'Options for ${page.title}', 'title': 'Options'},
-          onClick: onOpenOptions,
-          [edumaIcon(EdumaIcons.moreHorizontal, size: 16)],
-        ),
-        edumaLink(
-          to: route,
-          classes: 'space-detail__card-chevron',
-          attributes: {'aria-label': 'Open ${page.title}'},
-          children: [edumaIcon(EdumaIcons.chevronRight, size: 14)],
-        ),
-      ]),
+      div(
+        classes: [
+          'space-detail__page-actions',
+          if (gridView) 'space-detail__page-actions--grid',
+        ].join(' '),
+        [
+          button(
+            classes: 'space-detail__more-btn',
+            type: ButtonType.button,
+            disabled: busy,
+            attributes: {
+              'aria-label': 'Options for ${page.title}',
+              'title': 'Options for ${page.title}',
+            },
+            onClick: onOpenOptions,
+            [edumaIcon(EdumaIcons.moreHorizontal, size: 16)],
+          ),
+          if (!gridView)
+            edumaLink(
+              to: route,
+              classes: 'space-detail__card-chevron',
+              attributes: {
+                'aria-label': 'Open ${page.title}',
+                'title': 'Open ${page.title}',
+              },
+              children: [edumaIcon(EdumaIcons.chevronRight, size: 14)],
+            ),
+        ],
+      ),
     ],
   );
+}
+
+String _pageEditedLabel(DateTime? updatedAt) {
+  if (updatedAt == null) return 'Recently edited';
+  final elapsed = DateTime.now().difference(updatedAt.toLocal());
+  if (elapsed.isNegative || elapsed.inMinutes < 1) return 'Edited just now';
+  if (elapsed.inHours < 1) return 'Edited ${elapsed.inMinutes}m ago';
+  if (elapsed.inDays < 1) return 'Edited ${elapsed.inHours}h ago';
+  if (elapsed.inDays < 7) return 'Edited ${elapsed.inDays}d ago';
+  return 'Edited ${updatedAt.toLocal().month}/${updatedAt.toLocal().day}';
 }

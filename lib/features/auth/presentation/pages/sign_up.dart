@@ -5,6 +5,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:web/web.dart' as web;
 
 import '../../../../core/presentation/eduma_link.dart';
+import '../../data/auth_api.dart' show edumaGoogleSignInConfigured;
 import '../../logic/auth_actions.dart';
 import '../../logic/sign_up_logic.dart';
 import '../widgets/auth_frame.dart';
@@ -359,9 +360,9 @@ class SignUpPageState extends State<SignUpPage> {
       );
       return;
     }
-    if (edumaGoogleWebClientId.isEmpty) {
+    if (!edumaGoogleSignInConfigured) {
       setState(
-        () => _error = 'Google sign-in is not configured. Please sign in with your email instead.',
+        () => _error = 'Google sign-in needs a web client ID. Use email sign-in for now.',
       );
       return;
     }
@@ -385,7 +386,7 @@ class SignUpPageState extends State<SignUpPage> {
     setState(() {
       _error = !_termsAccepted
           ? 'Please agree to the Terms of Service and acknowledge the Privacy Policy before continuing.'
-          : 'Google sign-in is not configured. Please sign in with your email instead.';
+          : 'Google sign-in needs a web client ID. Use email sign-in for now.';
     });
   }
 

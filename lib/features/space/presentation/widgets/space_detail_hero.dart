@@ -15,9 +15,7 @@ Component spaceDetailDesktopHero({
   required int archivedCount,
   required int assetCount,
   required int eventCount,
-  required bool refreshing,
   required bool pinning,
-  required VoidCallback onRefresh,
   required VoidCallback onTogglePin,
   required VoidCallback onOpenEdit,
   required VoidCallback onOpenInvite,
@@ -41,12 +39,6 @@ Component spaceDetailDesktopHero({
         backdrop: _heroBackdrop(space.coverUrl),
         leading: desktopHeroBackButton(fallbackHref: '/main'),
         trailing: div(classes: 'space-detail__hero-top-actions', [
-          desktopHeroButton(
-            icon: EdumaIcons.refresh,
-            label: 'Refresh space',
-            disabled: refreshing,
-            onPressed: onRefresh,
-          ),
           desktopHeroButton(
             icon: space.isPinned ? EdumaIcons.pinSolid : EdumaIcons.pin,
             label: space.isPinned ? 'Unpin space' : 'Pin space',
@@ -74,8 +66,7 @@ Component spaceDetailDesktopHero({
                   edumaIcon(EdumaIcons.verify, size: 22),
                 ]),
             ]),
-            if (space.description case final desc?)
-              p(classes: 'space-detail__hero-desc', [.text(desc)]),
+            if (space.description case final desc?) p(classes: 'space-detail__hero-desc', [.text(desc)]),
           ]),
           div(classes: 'space-detail__hero-facts', [
             if (space.isPersonal)
@@ -92,9 +83,7 @@ Component spaceDetailDesktopHero({
                   _heroAvatarStack(space),
                   span([
                     .text(
-                      space.memberCount <= 1
-                          ? 'Just you'
-                          : mainHomeMemberLabel(space.memberCount),
+                      space.memberCount <= 1 ? 'Just you' : mainHomeMemberLabel(space.memberCount),
                     ),
                   ]),
                 ],
@@ -165,9 +154,7 @@ Component spaceDetailMobileHeader({
   required SpaceDetailData space,
   required SpacePermissionsLogic permissions,
   required int archivedCount,
-  required bool refreshing,
   required bool pinning,
-  required VoidCallback onRefresh,
   required VoidCallback onTogglePin,
   required VoidCallback onOpenEdit,
   required VoidCallback onOpenInvite,
@@ -175,9 +162,7 @@ Component spaceDetailMobileHeader({
   required VoidCallback onOpenArchived,
 }) {
   final trio = spaceGridAccentTrio(space.id);
-  final memberCountLabel = space.memberCount <= 1
-      ? 'Just you'
-      : mainHomeMemberLabel(space.memberCount);
+  final memberCountLabel = space.memberCount <= 1 ? 'Just you' : mainHomeMemberLabel(space.memberCount);
 
   return div(classes: 'space-detail__mobile-top', [
     header(
@@ -192,7 +177,7 @@ Component spaceDetailMobileHeader({
           edumaLink(
             to: '/main',
             classes: 'eduma-hero-btn',
-            attributes: {'aria-label': 'Back to Home'},
+            attributes: {'aria-label': 'Back to Home', 'title': 'Back to Home'},
             children: [edumaIcon(EdumaIcons.back, size: 18)],
           ),
           div(classes: 'space-detail__hero-actions', [
@@ -223,8 +208,7 @@ Component spaceDetailMobileHeader({
       ],
     ),
     div(classes: 'space-detail__meta-section', [
-      if (space.description case final desc?)
-        p(classes: 'space-detail__meta-desc', [.text(desc)]),
+      if (space.description case final desc?) p(classes: 'space-detail__meta-desc', [.text(desc)]),
       div(classes: 'space-detail__meta-bar', [
         if (space.isPersonal)
           div(classes: 'space-detail__meta-card space-detail__meta-card--grow space-detail__meta-card--personal', [
@@ -253,13 +237,16 @@ Component spaceDetailMobileHeader({
             classes: 'space-detail__meta-card space-detail__meta-card--primary',
             type: ButtonType.button,
             onClick: onOpenInvite,
-            [edumaIcon(EdumaIcons.userAdd, size: 15), span([.text('Invite')])],
+            [
+              edumaIcon(EdumaIcons.userAdd, size: 15),
+              span([.text('Invite')]),
+            ],
           ),
         if (permissions.canEditSpaceDetails)
           button(
             classes: 'space-detail__meta-card space-detail__meta-card--icon',
             type: ButtonType.button,
-            attributes: {'aria-label': 'Edit space'},
+            attributes: {'aria-label': 'Edit space', 'title': 'Edit space'},
             onClick: onOpenEdit,
             [edumaIcon(EdumaIcons.edit, size: 16)],
           ),
@@ -267,7 +254,10 @@ Component spaceDetailMobileHeader({
           button(
             classes: 'space-detail__meta-card space-detail__meta-card--icon',
             type: ButtonType.button,
-            attributes: {'aria-label': 'Archived pages ($archivedCount)'},
+            attributes: {
+              'aria-label': 'Archived pages ($archivedCount)',
+              'title': 'Archived pages',
+            },
             onClick: onOpenArchived,
             [
               edumaIcon(EdumaIcons.archive, size: 16),
@@ -295,10 +285,7 @@ Component _heroAvatarStack(SpaceDetailData space) {
   return span(classes: 'space-detail__hero-avatars', [
     for (final member in visible)
       span(classes: 'space-detail__hero-avatar', [
-        if (member.avatarUrl case final url?)
-          img(src: url, alt: '')
-        else
-          .text(mainHomeInitials(member.name)),
+        if (member.avatarUrl case final url?) img(src: url, alt: '') else .text(mainHomeInitials(member.name)),
       ]),
   ]);
 }

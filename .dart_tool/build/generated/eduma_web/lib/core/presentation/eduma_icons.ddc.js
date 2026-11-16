@@ -644,642 +644,654 @@ define(['dart_sdk', 'packages/jaspr/client'], (function load__packages__eduma_we
     },
     get C102() {
       return C[102] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61254
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 62617
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C103() {
       return C[103] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61258
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 62619
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C104() {
       return C[104] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 61169
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 61254
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C105() {
       return C[105] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 61171
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 61258
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C106() {
       return C[106] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61483
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 61169
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C107() {
       return C[107] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 60980
+        [codePoint]: 61171
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C108() {
       return C[108] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 63238
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 61483
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C109() {
       return C[109] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60151
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 60980
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C110() {
       return C[110] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 60832
+        [codePoint]: 63238
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C111() {
       return C[111] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60697
+        [codePoint]: 60151
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C112() {
       return C[112] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60702
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 60832
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C113() {
       return C[113] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60724
+        [codePoint]: 60697
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C114() {
       return C[114] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60720
+        [codePoint]: 60702
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C115() {
       return C[115] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61519
+        [codePoint]: 60724
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C116() {
       return C[116] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 62381
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 60720
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C117() {
       return C[117] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60900
+        [codePoint]: 61519
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C118() {
       return C[118] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60899
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 62381
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C119() {
       return C[119] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60395
+        [codePoint]: 60900
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C120() {
       return C[120] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 61345
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 60899
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C121() {
       return C[121] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60638
+        [codePoint]: 60395
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C122() {
       return C[122] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 61757
+        [codePoint]: 61345
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C123() {
       return C[123] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60081
+        [codePoint]: 60638
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C124() {
       return C[124] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 60695
+        [codePoint]: 61757
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C125() {
       return C[125] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61462
+        [codePoint]: 60081
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C126() {
       return C[126] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60629
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 60695
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C127() {
       return C[127] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60461
+        [codePoint]: 61462
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C128() {
       return C[128] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60460
+        [codePoint]: 60629
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C129() {
       return C[129] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60463
+        [codePoint]: 60461
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C130() {
       return C[130] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 61716
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 60460
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C131() {
       return C[131] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 59995
+        [codePoint]: 60463
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C132() {
       return C[132] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60256
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 61716
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C133() {
       return C[133] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60278
+        [codePoint]: 59995
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C134() {
       return C[134] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60277
+        [codePoint]: 60256
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C135() {
       return C[135] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60260
+        [codePoint]: 60278
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C136() {
       return C[136] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60280
+        [codePoint]: 60277
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C137() {
       return C[137] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 61099
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 60260
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C138() {
       return C[138] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60408
+        [codePoint]: 60280
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C139() {
       return C[139] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60410
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 61099
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C140() {
       return C[140] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60423
+        [codePoint]: 60408
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C141() {
       return C[141] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 59882
+        [codePoint]: 60410
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C142() {
       return C[142] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 60193
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 60423
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C143() {
       return C[143] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 61260
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 59882
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C144() {
       return C[144] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 61375
+        [codePoint]: 60193
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C145() {
       return C[145] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 59967
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 61260
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C146() {
       return C[146] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 59975
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 61375
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C147() {
       return C[147] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 59973
+        [codePoint]: 59967
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C148() {
       return C[148] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61155
+        [codePoint]: 59975
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C149() {
       return C[149] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61400
+        [codePoint]: 59973
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C150() {
       return C[150] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60960
+        [codePoint]: 61155
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C151() {
       return C[151] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60951
+        [codePoint]: 61400
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C152() {
       return C[152] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61561
+        [codePoint]: 60960
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C153() {
       return C[153] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 61968
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 60951
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C154() {
       return C[154] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61367
+        [codePoint]: 61561
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C155() {
       return C[155] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61364
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 61968
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C156() {
       return C[156] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsSolid",
-        [codePoint]: 63533
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 61367
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C157() {
       return C[157] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60495
+        [codePoint]: 61364
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C158() {
       return C[158] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60856
+        [fontFamily]: "HugeIconsSolid",
+        [codePoint]: 63533
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C159() {
       return C[159] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60177
+        [codePoint]: 60495
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C160() {
       return C[160] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61624
+        [codePoint]: 60856
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C161() {
       return C[161] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60095
+        [codePoint]: 60177
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C162() {
       return C[162] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60847
+        [codePoint]: 61624
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C163() {
       return C[163] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60398
+        [codePoint]: 60095
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C164() {
       return C[164] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60740
+        [codePoint]: 60847
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C165() {
       return C[165] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61413
+        [codePoint]: 60398
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C166() {
       return C[166] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61237
+        [codePoint]: 60740
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C167() {
       return C[167] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61279
+        [codePoint]: 61413
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C168() {
       return C[168] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61277
+        [codePoint]: 61237
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C169() {
       return C[169] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60359
+        [codePoint]: 61279
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C170() {
       return C[170] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60361
+        [codePoint]: 61277
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C171() {
       return C[171] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60894
+        [codePoint]: 60359
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C172() {
       return C[172] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61394
+        [codePoint]: 60361
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C173() {
       return C[173] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60127
+        [codePoint]: 60894
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C174() {
       return C[174] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61435
+        [codePoint]: 61394
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C175() {
       return C[175] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60947
+        [codePoint]: 60127
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C176() {
       return C[176] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61227
+        [codePoint]: 61435
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C177() {
       return C[177] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61223
+        [codePoint]: 60947
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C178() {
       return C[178] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61411
+        [codePoint]: 61227
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C179() {
       return C[179] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60354
+        [codePoint]: 61223
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C180() {
       return C[180] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60632
+        [codePoint]: 61411
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C181() {
       return C[181] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 59704
+        [codePoint]: 60354
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C182() {
       return C[182] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60831
+        [codePoint]: 60632
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C183() {
       return C[183] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60721
+        [codePoint]: 59704
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C184() {
       return C[184] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60811
+        [codePoint]: 60831
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C185() {
       return C[185] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 59710
+        [codePoint]: 60721
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C186() {
       return C[186] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60667
+        [codePoint]: 60811
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C187() {
       return C[187] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60804
+        [codePoint]: 59710
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C188() {
       return C[188] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61634
+        [codePoint]: 60667
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C189() {
       return C[189] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60967
+        [codePoint]: 60804
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C190() {
       return C[190] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60965
+        [codePoint]: 61634
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C191() {
       return C[191] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsSolid",
-        [codePoint]: 62530
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 60967
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C192() {
       return C[192] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 62544
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 60965
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C193() {
       return C[193] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60230
+        [fontFamily]: "HugeIconsSolid",
+        [codePoint]: 62530
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C194() {
       return C[194] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60800
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 62544
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C195() {
       return C[195] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60822
+        [codePoint]: 60230
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C196() {
       return C[196] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60824
+        [codePoint]: 60800
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C197() {
       return C[197] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 59801
+        [codePoint]: 60822
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C198() {
       return C[198] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 59683
+        [codePoint]: 60824
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C199() {
       return C[199] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60776
+        [codePoint]: 59801
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C200() {
       return C[200] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61098
+        [codePoint]: 59683
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C201() {
       return C[201] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "HugeIconsStroke",
-        [codePoint]: 62089
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 60776
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C202() {
       return C[202] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61337
+        [codePoint]: 61098
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C203() {
       return C[203] = dart.const(Object.setPrototypeOf({
-        [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61347
+        [fontFamily]: "HugeIconsStroke",
+        [codePoint]: 62089
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C204() {
       return C[204] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61341
+        [codePoint]: 61337
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C205() {
       return C[205] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 60658
+        [codePoint]: 61347
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C206() {
       return C[206] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
-        [codePoint]: 61451
+        [codePoint]: 61341
       }, eduma_icons.EdumaIconData.prototype));
     },
     get C207() {
       return C[207] = dart.const(Object.setPrototypeOf({
         [fontFamily]: "FlutterIconsax",
+        [codePoint]: 60658
+      }, eduma_icons.EdumaIconData.prototype));
+    },
+    get C208() {
+      return C[208] = dart.const(Object.setPrototypeOf({
+        [fontFamily]: "FlutterIconsax",
+        [codePoint]: 61451
+      }, eduma_icons.EdumaIconData.prototype));
+    },
+    get C209() {
+      return C[209] = dart.const(Object.setPrototypeOf({
+        [fontFamily]: "FlutterIconsax",
         [codePoint]: 60503
       }, eduma_icons.EdumaIconData.prototype));
     }
   });
-  var C = Array(208).fill(void 0);
+  var C = Array(210).fill(void 0);
   var I = [
     "package:eduma_web/core/presentation/eduma_icons.dart",
     "dart:core"
@@ -1333,7 +1345,7 @@ define(['dart_sdk', 'packages/jaspr/client'], (function load__packages__eduma_we
   }).prototype = eduma_icons.EdumaIcons.prototype;
   dart.addRtiResources(eduma_icons.EdumaIcons, ["eduma_web__core__presentation__eduma_icons|EdumaIcons"]);
   dart.setLibraryUri(eduma_icons.EdumaIcons, I[0]);
-  dart.setStaticFieldSignature(eduma_icons.EdumaIcons, () => ['navRailHomeActive', 'navRailHome', 'navRailCalendarActive', 'navRailCalendar', 'navRailLibraryActive', 'navRailLibrary', 'navRailNotifications', 'navBarHomeActive', 'navBarHome', 'navBarCalendarActive', 'navBarCalendar', 'navBarLibraryActive', 'navBarLibrary', 'fabCreateSpace', 'fabNewEvent', 'fabAddLibrary', 'quickNote', 'sparkles', 'aiMagic', 'magicWand', 'canvas', 'canvasSolid', 'note', 'noteSolid', 'note01', 'layer', 'layerSolid', 'pin', 'pinSolid', 'pinOff', 'playSolid', 'crownSolid', 'crownFilled', 'crown', 'shieldUserSolid', 'bookmarkSolid', 'bookmarkAdd', 'streak', 'streakSolid', 'search', 'searchAlt', 'searchStroke', 'searchStrokeAlt', 'filter', 'sort', 'sortAz', 'refresh', 'login', 'loginStroke', 'logout', 'logoutStroke', 'add', 'addStroke', 'addCircle', 'addCircleHalfDot', 'addSquare', 'archive', 'archiveStroke', 'archiveSolid', 'archiveAdd', 'archiveMinus', 'archiveTick', 'back', 'arrowLeft', 'arrowLeftStroke', 'chevronRight', 'arrowRightStroke', 'arrowDown1', 'arrowDown2', 'arrowDownStroke', 'arrowSwap', 'arrowSwapHorizontal', 'arrowTransferVertical', 'grid', 'element3', 'element4', 'list', 'check', 'tick04', 'tickCircle', 'tickCircleFilled', 'tickSquare', 'verify', 'closePlain', 'closeCircle', 'closeCircleFilled', 'cancelCircle', 'calendarAddStroke', 'addTeam', 'userGroup', 'people', 'peopleFilled', 'profile2User', 'user', 'userAdd', 'userEdit', 'userRemove', 'userTag', 'userSearch', 'userTick', 'settings02', 'expand', 'setting2', 'setting4', 'edit', 'edit02', 'edit04', 'delete', 'delete02', 'share', 'copy', 'copyLink', 'link', 'linkAlt', 'lock', 'lockFilled', 'unlock', 'moreHorizontal', 'more', 'moreCircle', 'flag', 'flag03', 'infoCircle', 'infoCircleStroke', 'clock', 'clock01', 'timer', 'image', 'gallery', 'galleryAdd', 'galleryEdit', 'imageAdd', 'camera', 'document', 'documentText', 'documentText1', 'documentDownload', 'documentUpload', 'download', 'folder', 'folderAdd', 'folderOpen', 'book1', 'bookUpload', 'fileAdd', 'folderAddStroke', 'calendar', 'calendarCopy', 'calendarAdd', 'calendarTick', 'calendarSearch', 'repeat', 'tag', 'noteText', 'noteAdd', 'videoPlay', 'libraryEmpty', 'star', 'starFilled', 'starSolid', 'global', 'mobile', 'warning', 'warning2', 'cloudCross', 'minusCircle', 'flash', 'magicStar', 'teacher', 'securitySafe', 'shieldTick', 'shieldSlash', 'eye', 'eyeSlash', 'moon', 'sun', 'colorfilter', 'text', 'note2', 'searchZoomIn', 'searchStatus', 'taskSquare', 'export3', 'import1', 'archive1', 'microphone2', 'lock1', 'messages2', 'archiveBook', 'lampCharge', 'messageQuestion', 'whatsapp', 'notifications', 'notificationsActive', 'notificationsSolid', 'notificationsSquare', 'directNotification', 'messageNotif', 'messageText', 'messageTick', 'award', 'alarm', 'medal', 'ranking', 'mail', 'sms', 'smsTracking', 'smsNotification', 'key', 'ticket', 'google']);
+  dart.setStaticFieldSignature(eduma_icons.EdumaIcons, () => ['navRailHomeActive', 'navRailHome', 'navRailCalendarActive', 'navRailCalendar', 'navRailLibraryActive', 'navRailLibrary', 'navRailNotifications', 'navBarHomeActive', 'navBarHome', 'navBarCalendarActive', 'navBarCalendar', 'navBarLibraryActive', 'navBarLibrary', 'fabCreateSpace', 'fabNewEvent', 'fabAddLibrary', 'quickNote', 'sparkles', 'aiMagic', 'magicWand', 'canvas', 'canvasSolid', 'note', 'noteSolid', 'note01', 'layer', 'layerSolid', 'pin', 'pinSolid', 'pinOff', 'playSolid', 'crownSolid', 'crownFilled', 'crown', 'shieldUserSolid', 'bookmarkSolid', 'bookmarkAdd', 'streak', 'streakSolid', 'search', 'searchAlt', 'searchStroke', 'searchStrokeAlt', 'filter', 'sort', 'sortAz', 'refresh', 'login', 'loginStroke', 'logout', 'logoutStroke', 'add', 'addStroke', 'addCircle', 'addCircleHalfDot', 'addSquare', 'archive', 'archiveStroke', 'archiveSolid', 'archiveAdd', 'archiveMinus', 'archiveTick', 'back', 'arrowLeft', 'arrowLeftStroke', 'chevronRight', 'arrowRightStroke', 'arrowDown1', 'arrowDown2', 'arrowDownStroke', 'arrowSwap', 'arrowSwapHorizontal', 'arrowTransferVertical', 'grid', 'element3', 'element4', 'list', 'check', 'tick04', 'tickCircle', 'tickCircleFilled', 'tickSquare', 'verify', 'closePlain', 'closeCircle', 'closeCircleFilled', 'cancelCircle', 'calendarAddStroke', 'addTeam', 'userGroup', 'people', 'peopleFilled', 'profile2User', 'user', 'userAdd', 'userEdit', 'userRemove', 'userTag', 'userSearch', 'userTick', 'settings02', 'expand', 'panelLeftClose', 'panelLeftOpen', 'setting2', 'setting4', 'edit', 'edit02', 'edit04', 'delete', 'delete02', 'share', 'copy', 'copyLink', 'link', 'linkAlt', 'lock', 'lockFilled', 'unlock', 'moreHorizontal', 'more', 'moreCircle', 'flag', 'flag03', 'infoCircle', 'infoCircleStroke', 'clock', 'clock01', 'timer', 'image', 'gallery', 'galleryAdd', 'galleryEdit', 'imageAdd', 'camera', 'document', 'documentText', 'documentText1', 'documentDownload', 'documentUpload', 'download', 'folder', 'folderAdd', 'folderOpen', 'book1', 'bookUpload', 'fileAdd', 'folderAddStroke', 'calendar', 'calendarCopy', 'calendarAdd', 'calendarTick', 'calendarSearch', 'repeat', 'tag', 'noteText', 'noteAdd', 'videoPlay', 'libraryEmpty', 'star', 'starFilled', 'starSolid', 'global', 'mobile', 'warning', 'warning2', 'cloudCross', 'minusCircle', 'flash', 'magicStar', 'teacher', 'securitySafe', 'shieldTick', 'shieldSlash', 'eye', 'eyeSlash', 'moon', 'sun', 'colorfilter', 'text', 'note2', 'searchZoomIn', 'searchStatus', 'taskSquare', 'export3', 'import1', 'archive1', 'microphone2', 'lock1', 'messages2', 'archiveBook', 'lampCharge', 'messageQuestion', 'whatsapp', 'notifications', 'notificationsActive', 'notificationsSolid', 'notificationsSquare', 'directNotification', 'messageNotif', 'messageText', 'messageTick', 'award', 'alarm', 'medal', 'ranking', 'mail', 'sms', 'smsTracking', 'smsNotification', 'key', 'ticket', 'google']);
   dart.defineLazy(eduma_icons.EdumaIcons, {
     /*eduma_icons.EdumaIcons.navRailHomeActive*/get navRailHomeActive() {
       return C[0] || CT.C0;
@@ -1641,332 +1653,338 @@ define(['dart_sdk', 'packages/jaspr/client'], (function load__packages__eduma_we
     /*eduma_icons.EdumaIcons.expand*/get expand() {
       return C[101] || CT.C101;
     },
-    /*eduma_icons.EdumaIcons.setting2*/get setting2() {
+    /*eduma_icons.EdumaIcons.panelLeftClose*/get panelLeftClose() {
       return C[102] || CT.C102;
     },
-    /*eduma_icons.EdumaIcons.setting4*/get setting4() {
+    /*eduma_icons.EdumaIcons.panelLeftOpen*/get panelLeftOpen() {
       return C[103] || CT.C103;
+    },
+    /*eduma_icons.EdumaIcons.setting2*/get setting2() {
+      return C[104] || CT.C104;
+    },
+    /*eduma_icons.EdumaIcons.setting4*/get setting4() {
+      return C[105] || CT.C105;
     },
     /*eduma_icons.EdumaIcons.edit*/get edit() {
       return C[16] || CT.C16;
     },
     /*eduma_icons.EdumaIcons.edit02*/get edit02() {
-      return C[104] || CT.C104;
-    },
-    /*eduma_icons.EdumaIcons.edit04*/get edit04() {
-      return C[105] || CT.C105;
-    },
-    /*eduma_icons.EdumaIcons.delete*/get delete() {
       return C[106] || CT.C106;
     },
-    /*eduma_icons.EdumaIcons.delete02*/get delete02() {
+    /*eduma_icons.EdumaIcons.edit04*/get edit04() {
       return C[107] || CT.C107;
     },
-    /*eduma_icons.EdumaIcons.share*/get share() {
+    /*eduma_icons.EdumaIcons.delete*/get delete() {
       return C[108] || CT.C108;
     },
-    /*eduma_icons.EdumaIcons.copy*/get copy() {
+    /*eduma_icons.EdumaIcons.delete02*/get delete02() {
       return C[109] || CT.C109;
     },
-    /*eduma_icons.EdumaIcons.copyLink*/get copyLink() {
+    /*eduma_icons.EdumaIcons.share*/get share() {
       return C[110] || CT.C110;
     },
-    /*eduma_icons.EdumaIcons.link*/get link() {
+    /*eduma_icons.EdumaIcons.copy*/get copy() {
       return C[111] || CT.C111;
     },
-    /*eduma_icons.EdumaIcons.linkAlt*/get linkAlt() {
+    /*eduma_icons.EdumaIcons.copyLink*/get copyLink() {
       return C[112] || CT.C112;
     },
-    /*eduma_icons.EdumaIcons.lock*/get lock() {
+    /*eduma_icons.EdumaIcons.link*/get link() {
       return C[113] || CT.C113;
     },
-    /*eduma_icons.EdumaIcons.lockFilled*/get lockFilled() {
+    /*eduma_icons.EdumaIcons.linkAlt*/get linkAlt() {
       return C[114] || CT.C114;
     },
-    /*eduma_icons.EdumaIcons.unlock*/get unlock() {
+    /*eduma_icons.EdumaIcons.lock*/get lock() {
       return C[115] || CT.C115;
     },
-    /*eduma_icons.EdumaIcons.moreHorizontal*/get moreHorizontal() {
+    /*eduma_icons.EdumaIcons.lockFilled*/get lockFilled() {
       return C[116] || CT.C116;
     },
-    /*eduma_icons.EdumaIcons.more*/get more() {
+    /*eduma_icons.EdumaIcons.unlock*/get unlock() {
       return C[117] || CT.C117;
     },
-    /*eduma_icons.EdumaIcons.moreCircle*/get moreCircle() {
+    /*eduma_icons.EdumaIcons.moreHorizontal*/get moreHorizontal() {
       return C[118] || CT.C118;
     },
-    /*eduma_icons.EdumaIcons.flag*/get flag() {
+    /*eduma_icons.EdumaIcons.more*/get more() {
       return C[119] || CT.C119;
     },
-    /*eduma_icons.EdumaIcons.flag03*/get flag03() {
+    /*eduma_icons.EdumaIcons.moreCircle*/get moreCircle() {
       return C[120] || CT.C120;
     },
-    /*eduma_icons.EdumaIcons.infoCircle*/get infoCircle() {
+    /*eduma_icons.EdumaIcons.flag*/get flag() {
       return C[121] || CT.C121;
     },
-    /*eduma_icons.EdumaIcons.infoCircleStroke*/get infoCircleStroke() {
+    /*eduma_icons.EdumaIcons.flag03*/get flag03() {
       return C[122] || CT.C122;
     },
-    /*eduma_icons.EdumaIcons.clock*/get clock() {
+    /*eduma_icons.EdumaIcons.infoCircle*/get infoCircle() {
       return C[123] || CT.C123;
     },
-    /*eduma_icons.EdumaIcons.clock01*/get clock01() {
+    /*eduma_icons.EdumaIcons.infoCircleStroke*/get infoCircleStroke() {
       return C[124] || CT.C124;
     },
-    /*eduma_icons.EdumaIcons.timer*/get timer() {
+    /*eduma_icons.EdumaIcons.clock*/get clock() {
       return C[125] || CT.C125;
     },
-    /*eduma_icons.EdumaIcons.image*/get image() {
+    /*eduma_icons.EdumaIcons.clock01*/get clock01() {
       return C[126] || CT.C126;
     },
-    /*eduma_icons.EdumaIcons.gallery*/get gallery() {
+    /*eduma_icons.EdumaIcons.timer*/get timer() {
       return C[127] || CT.C127;
     },
-    /*eduma_icons.EdumaIcons.galleryAdd*/get galleryAdd() {
+    /*eduma_icons.EdumaIcons.image*/get image() {
       return C[128] || CT.C128;
     },
-    /*eduma_icons.EdumaIcons.galleryEdit*/get galleryEdit() {
+    /*eduma_icons.EdumaIcons.gallery*/get gallery() {
       return C[129] || CT.C129;
     },
-    /*eduma_icons.EdumaIcons.imageAdd*/get imageAdd() {
+    /*eduma_icons.EdumaIcons.galleryAdd*/get galleryAdd() {
       return C[130] || CT.C130;
     },
-    /*eduma_icons.EdumaIcons.camera*/get camera() {
+    /*eduma_icons.EdumaIcons.galleryEdit*/get galleryEdit() {
       return C[131] || CT.C131;
     },
-    /*eduma_icons.EdumaIcons.document*/get document() {
+    /*eduma_icons.EdumaIcons.imageAdd*/get imageAdd() {
       return C[132] || CT.C132;
     },
-    /*eduma_icons.EdumaIcons.documentText*/get documentText() {
+    /*eduma_icons.EdumaIcons.camera*/get camera() {
       return C[133] || CT.C133;
     },
-    /*eduma_icons.EdumaIcons.documentText1*/get documentText1() {
+    /*eduma_icons.EdumaIcons.document*/get document() {
       return C[134] || CT.C134;
     },
-    /*eduma_icons.EdumaIcons.documentDownload*/get documentDownload() {
+    /*eduma_icons.EdumaIcons.documentText*/get documentText() {
       return C[135] || CT.C135;
     },
-    /*eduma_icons.EdumaIcons.documentUpload*/get documentUpload() {
+    /*eduma_icons.EdumaIcons.documentText1*/get documentText1() {
       return C[136] || CT.C136;
     },
-    /*eduma_icons.EdumaIcons.download*/get download() {
+    /*eduma_icons.EdumaIcons.documentDownload*/get documentDownload() {
       return C[137] || CT.C137;
     },
-    /*eduma_icons.EdumaIcons.folder*/get folder() {
+    /*eduma_icons.EdumaIcons.documentUpload*/get documentUpload() {
       return C[138] || CT.C138;
     },
-    /*eduma_icons.EdumaIcons.folderAdd*/get folderAdd() {
+    /*eduma_icons.EdumaIcons.download*/get download() {
       return C[139] || CT.C139;
     },
-    /*eduma_icons.EdumaIcons.folderOpen*/get folderOpen() {
+    /*eduma_icons.EdumaIcons.folder*/get folder() {
       return C[140] || CT.C140;
     },
-    /*eduma_icons.EdumaIcons.book1*/get book1() {
+    /*eduma_icons.EdumaIcons.folderAdd*/get folderAdd() {
       return C[141] || CT.C141;
     },
-    /*eduma_icons.EdumaIcons.bookUpload*/get bookUpload() {
+    /*eduma_icons.EdumaIcons.folderOpen*/get folderOpen() {
       return C[142] || CT.C142;
     },
-    /*eduma_icons.EdumaIcons.fileAdd*/get fileAdd() {
+    /*eduma_icons.EdumaIcons.book1*/get book1() {
       return C[143] || CT.C143;
     },
-    /*eduma_icons.EdumaIcons.folderAddStroke*/get folderAddStroke() {
+    /*eduma_icons.EdumaIcons.bookUpload*/get bookUpload() {
       return C[144] || CT.C144;
+    },
+    /*eduma_icons.EdumaIcons.fileAdd*/get fileAdd() {
+      return C[145] || CT.C145;
+    },
+    /*eduma_icons.EdumaIcons.folderAddStroke*/get folderAddStroke() {
+      return C[146] || CT.C146;
     },
     /*eduma_icons.EdumaIcons.calendar*/get calendar() {
       return C[3] || CT.C3;
     },
     /*eduma_icons.EdumaIcons.calendarCopy*/get calendarCopy() {
-      return C[145] || CT.C145;
+      return C[147] || CT.C147;
     },
     /*eduma_icons.EdumaIcons.calendarAdd*/get calendarAdd() {
       return C[14] || CT.C14;
     },
     /*eduma_icons.EdumaIcons.calendarTick*/get calendarTick() {
-      return C[146] || CT.C146;
-    },
-    /*eduma_icons.EdumaIcons.calendarSearch*/get calendarSearch() {
-      return C[147] || CT.C147;
-    },
-    /*eduma_icons.EdumaIcons.repeat*/get repeat() {
       return C[148] || CT.C148;
     },
-    /*eduma_icons.EdumaIcons.tag*/get tag() {
+    /*eduma_icons.EdumaIcons.calendarSearch*/get calendarSearch() {
       return C[149] || CT.C149;
     },
-    /*eduma_icons.EdumaIcons.noteText*/get noteText() {
+    /*eduma_icons.EdumaIcons.repeat*/get repeat() {
       return C[150] || CT.C150;
     },
-    /*eduma_icons.EdumaIcons.noteAdd*/get noteAdd() {
+    /*eduma_icons.EdumaIcons.tag*/get tag() {
       return C[151] || CT.C151;
     },
-    /*eduma_icons.EdumaIcons.videoPlay*/get videoPlay() {
+    /*eduma_icons.EdumaIcons.noteText*/get noteText() {
       return C[152] || CT.C152;
     },
-    /*eduma_icons.EdumaIcons.libraryEmpty*/get libraryEmpty() {
+    /*eduma_icons.EdumaIcons.noteAdd*/get noteAdd() {
       return C[153] || CT.C153;
     },
-    /*eduma_icons.EdumaIcons.star*/get star() {
+    /*eduma_icons.EdumaIcons.videoPlay*/get videoPlay() {
       return C[154] || CT.C154;
     },
-    /*eduma_icons.EdumaIcons.starFilled*/get starFilled() {
+    /*eduma_icons.EdumaIcons.libraryEmpty*/get libraryEmpty() {
       return C[155] || CT.C155;
     },
-    /*eduma_icons.EdumaIcons.starSolid*/get starSolid() {
+    /*eduma_icons.EdumaIcons.star*/get star() {
       return C[156] || CT.C156;
     },
-    /*eduma_icons.EdumaIcons.global*/get global() {
+    /*eduma_icons.EdumaIcons.starFilled*/get starFilled() {
       return C[157] || CT.C157;
     },
-    /*eduma_icons.EdumaIcons.mobile*/get mobile() {
+    /*eduma_icons.EdumaIcons.starSolid*/get starSolid() {
       return C[158] || CT.C158;
     },
-    /*eduma_icons.EdumaIcons.warning*/get warning() {
+    /*eduma_icons.EdumaIcons.global*/get global() {
       return C[159] || CT.C159;
     },
-    /*eduma_icons.EdumaIcons.warning2*/get warning2() {
+    /*eduma_icons.EdumaIcons.mobile*/get mobile() {
       return C[160] || CT.C160;
     },
-    /*eduma_icons.EdumaIcons.cloudCross*/get cloudCross() {
+    /*eduma_icons.EdumaIcons.warning*/get warning() {
       return C[161] || CT.C161;
     },
-    /*eduma_icons.EdumaIcons.minusCircle*/get minusCircle() {
+    /*eduma_icons.EdumaIcons.warning2*/get warning2() {
       return C[162] || CT.C162;
     },
-    /*eduma_icons.EdumaIcons.flash*/get flash() {
+    /*eduma_icons.EdumaIcons.cloudCross*/get cloudCross() {
       return C[163] || CT.C163;
     },
-    /*eduma_icons.EdumaIcons.magicStar*/get magicStar() {
+    /*eduma_icons.EdumaIcons.minusCircle*/get minusCircle() {
       return C[164] || CT.C164;
     },
-    /*eduma_icons.EdumaIcons.teacher*/get teacher() {
+    /*eduma_icons.EdumaIcons.flash*/get flash() {
       return C[165] || CT.C165;
     },
-    /*eduma_icons.EdumaIcons.securitySafe*/get securitySafe() {
+    /*eduma_icons.EdumaIcons.magicStar*/get magicStar() {
       return C[166] || CT.C166;
     },
-    /*eduma_icons.EdumaIcons.shieldTick*/get shieldTick() {
+    /*eduma_icons.EdumaIcons.teacher*/get teacher() {
       return C[167] || CT.C167;
     },
-    /*eduma_icons.EdumaIcons.shieldSlash*/get shieldSlash() {
+    /*eduma_icons.EdumaIcons.securitySafe*/get securitySafe() {
       return C[168] || CT.C168;
     },
-    /*eduma_icons.EdumaIcons.eye*/get eye() {
+    /*eduma_icons.EdumaIcons.shieldTick*/get shieldTick() {
       return C[169] || CT.C169;
     },
-    /*eduma_icons.EdumaIcons.eyeSlash*/get eyeSlash() {
+    /*eduma_icons.EdumaIcons.shieldSlash*/get shieldSlash() {
       return C[170] || CT.C170;
     },
-    /*eduma_icons.EdumaIcons.moon*/get moon() {
+    /*eduma_icons.EdumaIcons.eye*/get eye() {
       return C[171] || CT.C171;
     },
-    /*eduma_icons.EdumaIcons.sun*/get sun() {
+    /*eduma_icons.EdumaIcons.eyeSlash*/get eyeSlash() {
       return C[172] || CT.C172;
     },
-    /*eduma_icons.EdumaIcons.colorfilter*/get colorfilter() {
+    /*eduma_icons.EdumaIcons.moon*/get moon() {
       return C[173] || CT.C173;
     },
-    /*eduma_icons.EdumaIcons.text*/get text() {
+    /*eduma_icons.EdumaIcons.sun*/get sun() {
       return C[174] || CT.C174;
     },
-    /*eduma_icons.EdumaIcons.note2*/get note2() {
+    /*eduma_icons.EdumaIcons.colorfilter*/get colorfilter() {
       return C[175] || CT.C175;
     },
-    /*eduma_icons.EdumaIcons.searchZoomIn*/get searchZoomIn() {
+    /*eduma_icons.EdumaIcons.text*/get text() {
       return C[176] || CT.C176;
     },
-    /*eduma_icons.EdumaIcons.searchStatus*/get searchStatus() {
+    /*eduma_icons.EdumaIcons.note2*/get note2() {
       return C[177] || CT.C177;
     },
-    /*eduma_icons.EdumaIcons.taskSquare*/get taskSquare() {
+    /*eduma_icons.EdumaIcons.searchZoomIn*/get searchZoomIn() {
       return C[178] || CT.C178;
     },
-    /*eduma_icons.EdumaIcons.export3*/get export3() {
+    /*eduma_icons.EdumaIcons.searchStatus*/get searchStatus() {
       return C[179] || CT.C179;
     },
-    /*eduma_icons.EdumaIcons.import1*/get import1() {
+    /*eduma_icons.EdumaIcons.taskSquare*/get taskSquare() {
       return C[180] || CT.C180;
     },
-    /*eduma_icons.EdumaIcons.archive1*/get archive1() {
+    /*eduma_icons.EdumaIcons.export3*/get export3() {
       return C[181] || CT.C181;
     },
-    /*eduma_icons.EdumaIcons.microphone2*/get microphone2() {
+    /*eduma_icons.EdumaIcons.import1*/get import1() {
       return C[182] || CT.C182;
     },
-    /*eduma_icons.EdumaIcons.lock1*/get lock1() {
+    /*eduma_icons.EdumaIcons.archive1*/get archive1() {
       return C[183] || CT.C183;
     },
-    /*eduma_icons.EdumaIcons.messages2*/get messages2() {
+    /*eduma_icons.EdumaIcons.microphone2*/get microphone2() {
       return C[184] || CT.C184;
     },
-    /*eduma_icons.EdumaIcons.archiveBook*/get archiveBook() {
+    /*eduma_icons.EdumaIcons.lock1*/get lock1() {
       return C[185] || CT.C185;
     },
-    /*eduma_icons.EdumaIcons.lampCharge*/get lampCharge() {
+    /*eduma_icons.EdumaIcons.messages2*/get messages2() {
       return C[186] || CT.C186;
     },
-    /*eduma_icons.EdumaIcons.messageQuestion*/get messageQuestion() {
+    /*eduma_icons.EdumaIcons.archiveBook*/get archiveBook() {
       return C[187] || CT.C187;
     },
-    /*eduma_icons.EdumaIcons.whatsapp*/get whatsapp() {
+    /*eduma_icons.EdumaIcons.lampCharge*/get lampCharge() {
       return C[188] || CT.C188;
     },
-    /*eduma_icons.EdumaIcons.notifications*/get notifications() {
+    /*eduma_icons.EdumaIcons.messageQuestion*/get messageQuestion() {
       return C[189] || CT.C189;
     },
-    /*eduma_icons.EdumaIcons.notificationsActive*/get notificationsActive() {
+    /*eduma_icons.EdumaIcons.whatsapp*/get whatsapp() {
       return C[190] || CT.C190;
     },
-    /*eduma_icons.EdumaIcons.notificationsSolid*/get notificationsSolid() {
+    /*eduma_icons.EdumaIcons.notifications*/get notifications() {
       return C[191] || CT.C191;
     },
-    /*eduma_icons.EdumaIcons.notificationsSquare*/get notificationsSquare() {
+    /*eduma_icons.EdumaIcons.notificationsActive*/get notificationsActive() {
       return C[192] || CT.C192;
     },
-    /*eduma_icons.EdumaIcons.directNotification*/get directNotification() {
+    /*eduma_icons.EdumaIcons.notificationsSolid*/get notificationsSolid() {
       return C[193] || CT.C193;
     },
-    /*eduma_icons.EdumaIcons.messageNotif*/get messageNotif() {
+    /*eduma_icons.EdumaIcons.notificationsSquare*/get notificationsSquare() {
       return C[194] || CT.C194;
     },
-    /*eduma_icons.EdumaIcons.messageText*/get messageText() {
+    /*eduma_icons.EdumaIcons.directNotification*/get directNotification() {
       return C[195] || CT.C195;
     },
-    /*eduma_icons.EdumaIcons.messageTick*/get messageTick() {
+    /*eduma_icons.EdumaIcons.messageNotif*/get messageNotif() {
       return C[196] || CT.C196;
     },
-    /*eduma_icons.EdumaIcons.award*/get award() {
+    /*eduma_icons.EdumaIcons.messageText*/get messageText() {
       return C[197] || CT.C197;
     },
-    /*eduma_icons.EdumaIcons.alarm*/get alarm() {
+    /*eduma_icons.EdumaIcons.messageTick*/get messageTick() {
       return C[198] || CT.C198;
     },
-    /*eduma_icons.EdumaIcons.medal*/get medal() {
+    /*eduma_icons.EdumaIcons.award*/get award() {
       return C[199] || CT.C199;
     },
-    /*eduma_icons.EdumaIcons.ranking*/get ranking() {
+    /*eduma_icons.EdumaIcons.alarm*/get alarm() {
       return C[200] || CT.C200;
     },
-    /*eduma_icons.EdumaIcons.mail*/get mail() {
+    /*eduma_icons.EdumaIcons.medal*/get medal() {
       return C[201] || CT.C201;
     },
-    /*eduma_icons.EdumaIcons.sms*/get sms() {
+    /*eduma_icons.EdumaIcons.ranking*/get ranking() {
       return C[202] || CT.C202;
     },
-    /*eduma_icons.EdumaIcons.smsTracking*/get smsTracking() {
+    /*eduma_icons.EdumaIcons.mail*/get mail() {
       return C[203] || CT.C203;
     },
-    /*eduma_icons.EdumaIcons.smsNotification*/get smsNotification() {
+    /*eduma_icons.EdumaIcons.sms*/get sms() {
       return C[204] || CT.C204;
     },
-    /*eduma_icons.EdumaIcons.key*/get key() {
+    /*eduma_icons.EdumaIcons.smsTracking*/get smsTracking() {
       return C[205] || CT.C205;
     },
-    /*eduma_icons.EdumaIcons.ticket*/get ticket() {
+    /*eduma_icons.EdumaIcons.smsNotification*/get smsNotification() {
       return C[206] || CT.C206;
     },
-    /*eduma_icons.EdumaIcons.google*/get google() {
+    /*eduma_icons.EdumaIcons.key*/get key() {
       return C[207] || CT.C207;
+    },
+    /*eduma_icons.EdumaIcons.ticket*/get ticket() {
+      return C[208] || CT.C208;
+    },
+    /*eduma_icons.EdumaIcons.google*/get google() {
+      return C[209] || CT.C209;
     }
   });
   var _is = dart.privateName(dart_rti, "_is");
@@ -2063,7 +2081,7 @@ define(['dart_sdk', 'packages/jaspr/client'], (function load__packages__eduma_we
   dart.trackLibraries("packages/eduma_web/core/presentation/eduma_icons", {
     "package:eduma_web/core/presentation/eduma_icons.dart": eduma_icons
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["eduma_icons.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;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","file":"eduma_icons.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["eduma_icons.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;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","file":"eduma_icons.ddc.js"}');
   // Exports:
   return {
     eduma_web__core__presentation__eduma_icons: eduma_icons

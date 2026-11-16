@@ -91,8 +91,7 @@ class _MainHomeSearchBarState extends State<_MainHomeSearchBar> {
 
   @override
   Component build(BuildContext context) {
-    final hasActiveFilter =
-        component.filter != .all || component.sort != .recent;
+    final hasActiveFilter = component.filter != .all || component.sort != .recent;
 
     return div(classes: 'main-home__search-row', [
       div(classes: 'main-home__search', [
@@ -119,7 +118,7 @@ class _MainHomeSearchBarState extends State<_MainHomeSearchBar> {
           button(
             classes: 'main-home__clear-search',
             type: ButtonType.button,
-            attributes: {'aria-label': 'Clear search'},
+            attributes: {'aria-label': 'Clear search', 'title': 'Clear search'},
             events: {'mousedown': (e) => e.preventDefault()},
             onClick: () => component.onSearch(''),
             [mainHomeIcon(.closePlain, size: 18)],
@@ -130,13 +129,13 @@ class _MainHomeSearchBarState extends State<_MainHomeSearchBar> {
         [
           button(
             id: 'main-home-filter-trigger',
-            classes:
-                'main-home__filter-trigger${hasActiveFilter ? ' is-active' : ''}',
+            classes: 'main-home__filter-trigger${hasActiveFilter ? ' is-active' : ''}',
             type: ButtonType.button,
             attributes: {
               'aria-label': 'Filter & sort',
               'aria-haspopup': 'menu',
               'aria-expanded': '$_menuOpen',
+              'title': 'Filter and sort spaces',
             },
             onClick: () => _setMenuOpen(!_menuOpen),
             [mainHomeIcon(.filter, size: 18)],

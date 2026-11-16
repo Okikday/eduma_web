@@ -8,12 +8,14 @@ import 'features/auth/presentation/pages/sign_up.dart';
 import 'features/auth/presentation/pages/verify_email.dart';
 import 'features/calendar/presentation/pages/calendar_page.dart';
 import 'features/library/presentation/pages/library_page.dart';
+import 'features/legal/presentation/pages/legal_document_page.dart';
 import 'features/main/presentation/pages/main_home.dart';
 import 'features/main/presentation/pages/recent_canvases_see_all_page.dart';
 import 'features/main/presentation/pages/spaces_see_all_page.dart';
 import 'features/notifications/presentation/pages/notifications_page.dart';
 import 'features/profile/presentation/pages/profile_page.dart';
 import 'features/space/presentation/pages/space_detail_page.dart';
+import 'features/space/presentation/pages/space_asset_preview_page.dart';
 import 'features/space/presentation/pages/space_page_viewer_page.dart';
 import 'features/streak/presentation/pages/streak_page.dart';
 
@@ -41,6 +43,13 @@ class App extends StatelessComponent {
         path: '/sign-in',
         title: 'Sign in to Eduma',
         builder: (context, state) => SignInPage(email: state.queryParams['email'] ?? ''),
+      ),
+      Route(
+        path: '/legalDocument',
+        title: 'Legal documents — Eduma',
+        builder: (context, state) => LegalDocumentPage(
+          documentId: state.queryParams['id'] ?? 'terms',
+        ),
       ),
       Route(
         path: '/sign-up',
@@ -160,7 +169,9 @@ class App extends StatelessComponent {
       Route(
         path: '/assistantHistory',
         title: 'AI Chats — Eduma',
-        builder: (context, state) => const AssistantHistoryPage(),
+        builder: (context, state) => AssistantHistoryPage(
+          conversationId: state.queryParams['conversationId'],
+        ),
       ),
       Route(
         path: '/spacePageStatic',
@@ -169,6 +180,14 @@ class App extends StatelessComponent {
           isDynamicCanvas: false,
           spaceId: state.queryParams['spaceId'],
           pageId: state.queryParams['id'],
+        ),
+      ),
+      Route(
+        path: '/filePreview',
+        title: 'File preview — Eduma',
+        builder: (context, state) => SpaceAssetPreviewPage(
+          spaceId: state.queryParams['spaceId'] ?? '',
+          assetId: state.queryParams['assetId'] ?? '',
         ),
       ),
       Route(

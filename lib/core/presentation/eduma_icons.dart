@@ -91,8 +91,7 @@ abstract final class EdumaIcons {
   static const arrowDownStroke = EdumaIconData(0xea00, fontFamily: 'HugeIconsStroke');
   static const arrowSwap = EdumaIconData(0xe97f, fontFamily: 'FlutterIconsax');
   static const arrowSwapHorizontal = EdumaIconData(0xe981, fontFamily: 'FlutterIconsax');
-  static const arrowTransferVertical =
-      EdumaIconData(0xe9fe, fontFamily: 'HugeIconsStroke');
+  static const arrowTransferVertical = EdumaIconData(0xe9fe, fontFamily: 'HugeIconsStroke');
   static const grid = EdumaIconData(0xec65, fontFamily: 'FlutterIconsax');
   static const element3 = EdumaIconData(0xeb95, fontFamily: 'FlutterIconsax');
   static const element4 = EdumaIconData(0xeb97, fontFamily: 'FlutterIconsax');
@@ -124,6 +123,8 @@ abstract final class EdumaIcons {
   static const userTick = EdumaIconData(0xf067, fontFamily: 'FlutterIconsax');
   static const settings02 = EdumaIconData(0xf6f0, fontFamily: 'HugeIconsStroke');
   static const expand = EdumaIconData(0xef30, fontFamily: 'HugeIconsStroke');
+  static const panelLeftClose = EdumaIconData(0xf499, fontFamily: 'HugeIconsStroke');
+  static const panelLeftOpen = EdumaIconData(0xf49b, fontFamily: 'HugeIconsStroke');
   static const setting2 = EdumaIconData(0xef46, fontFamily: 'FlutterIconsax');
   static const setting4 = EdumaIconData(0xef4a, fontFamily: 'FlutterIconsax');
   static const edit = EdumaIconData(0xeb8c, fontFamily: 'FlutterIconsax');

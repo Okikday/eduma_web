@@ -4,7 +4,7 @@ import 'package:jaspr/jaspr.dart';
 /// Parses inline `**bold**` markers into `strong` spans while stripping
 /// unbalanced `**` tokens cleanly.
 List<Component> edumaRichInlineSpans(String input) {
-  final pattern = RegExp(r'\*\*(.+?)\*\*');
+  final pattern = RegExp(r'\*\*(.+?)\*\*|\[([^\]]+)\]\(([^)]+)\)');
   final matches = pattern.allMatches(input).toList();
   if (matches.isEmpty) {
     return [.text(input.replaceAll('**', ''))];
@@ -15,7 +15,27 @@ List<Component> edumaRichInlineSpans(String input) {
     if (match.start > cursor) {
       out.add(.text(input.substring(cursor, match.start).replaceAll('**', '')));
     }
-    out.add(strong([.text(match.group(1) ?? '')]));
+    final bold = match.group(1);
+    if (bold != null) {
+      out.add(strong([.text(bold)]));
+    } else {
+      final label = match.group(2) ?? '';
+      final uri = Uri.tryParse(match.group(3) ?? '');
+      if (uri != null && (uri.scheme == 'https' || uri.scheme == 'mailto')) {
+        out.add(
+          a(
+            href: uri.toString(),
+            attributes: {
+              if (uri.scheme == 'https') 'target': '_blank',
+              if (uri.scheme == 'https') 'rel': 'noopener noreferrer',
+            },
+            [.text(label)],
+          ),
+        );
+      } else {
+        out.add(.text(label));
+      }
+    }
     cursor = match.end;
   }
   if (cursor < input.length) {
@@ -38,9 +58,17 @@ List<Component> edumaRenderMarkdownBlocks(String markdown) {
       continue;
     }
 
-    if (trimmed.startsWith('|') &&
-        i + 1 < lines.length &&
-        _isTableSeparator(lines[i + 1].trim())) {
+    if (trimmed.startsWith('>')) {
+      final quote = <String>[];
+      while (i < lines.length && lines[i].trim().startsWith('>')) {
+        quote.add(lines[i].trim().substring(1).trim());
+        i++;
+      }
+      out.add(blockquote([for (final line in quote) p(edumaRichInlineSpans(line))]));
+      continue;
+    }
+
+    if (trimmed.startsWith('|') && i + 1 < lines.length && _isTableSeparator(lines[i + 1].trim())) {
       final headers = _splitTableRow(trimmed);
       i += 2;
       final rows = <List<String>>[];
@@ -59,8 +87,7 @@ List<Component> edumaRenderMarkdownBlocks(String markdown) {
             tbody([
               for (final row in rows)
                 tr([
-                  for (var c = 0; c < headers.length; c++)
-                    td(edumaRichInlineSpans(c < row.length ? row[c] : '')),
+                  for (var c = 0; c < headers.length; c++) td(edumaRichInlineSpans(c < row.length ? row[c] : '')),
                 ]),
             ]),
           ]),
@@ -92,9 +119,7 @@ List<Component> edumaRenderMarkdownBlocks(String markdown) {
         i++;
       }
       out.add(
-        isOrdered
-            ? ol(classes: 'ai-history__md-list', items)
-            : ul(classes: 'ai-history__md-list', items),
+        isOrdered ? ol(classes: 'ai-history__md-list', items) : ul(classes: 'ai-history__md-list', items),
       );
       continue;
     }
@@ -106,8 +131,7 @@ List<Component> edumaRenderMarkdownBlocks(String markdown) {
   return out;
 }
 
-bool _isTableSeparator(String line) =>
-    line.startsWith('|') && RegExp(r'^[\|\s:\-]+$').hasMatch(line);
+bool _isTableSeparator(String line) => line.startsWith('|') && RegExp(r'^[\|\s:\-]+$').hasMatch(line);
 
 List<String> _splitTableRow(String line) {
   var core = line.trim();

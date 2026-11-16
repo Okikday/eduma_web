@@ -7,6 +7,7 @@ import '../../../../core/data/eduma_memory_cache.dart';
 import '../../../../core/presentation/eduma_icons.dart';
 import '../../../auth/logic/auth_actions.dart';
 import '../../../main/presentation/widgets/app_tab_shell.dart';
+import '../../../main/presentation/widgets/main_home_navigation.dart';
 import '../../../main/presentation/widgets/main_home_notices.dart';
 import '../../../notifications/data/notifications_api.dart';
 import '../../logic/library_actions.dart';
@@ -314,30 +315,47 @@ class _LibraryPageState extends State<LibraryPage> {
       title: 'Library',
       subtitle: 'Explore vast collections of books',
       unreadNotifications: _unreadNotifications,
+      sidebarContent: [
+        mainHomeRailSection(
+          title: 'Recently opened',
+          onSeeAll: () => setState(() {
+            _query = '';
+            _selectedCategory = '';
+            _selectedShelf = '';
+            _showFilter = .everything;
+          }),
+          items: [
+            for (final doc in _recents.take(4))
+              mainHomeRailItem(
+                icon: EdumaIcons.book1,
+                title: doc.title,
+                subtitle: doc.author.isNotEmpty ? doc.author : doc.category,
+                previewUrl: doc.resolvedThumbnailUrl(edumaApiBaseUrl),
+                onClick: () => _recordOpen(doc),
+              ),
+          ],
+          emptyMessage: _loading ? 'Loading your recents…' : 'No recently opened books yet.',
+        ),
+      ],
       showAgendaPanel: true,
       showQuickNoteFab: true,
       headerActions: [
-        button(
-          classes: 'eduma-circle-icon-btn',
-          type: ButtonType.button,
-          disabled: _loading,
-          attributes: {'aria-label': 'Refresh library', 'title': 'Refresh'},
-          onClick: () => unawaited(_load()),
-          [edumaIcon(EdumaIcons.refresh, size: 19)],
-        ),
         div(classes: 'eduma-library__header-search', [
           edumaIcon(EdumaIcons.search, size: 17),
           input<String>(
             type: InputType.search,
             value: _query,
-            attributes: {'placeholder': 'Search documents'},
+            attributes: {
+              'placeholder': 'Search documents',
+              'aria-label': 'Search documents',
+            },
             onInput: _onQueryChanged,
           ),
           if (_query.isNotEmpty)
             button(
               classes: 'eduma-search-box__clear',
               type: ButtonType.button,
-              attributes: {'aria-label': 'Clear search'},
+              attributes: {'aria-label': 'Clear search', 'title': 'Clear search'},
               onClick: () => _onQueryChanged(''),
               [edumaIcon(EdumaIcons.closePlain, size: 15)],
             ),
@@ -396,7 +414,7 @@ class _LibraryPageState extends State<LibraryPage> {
             button(
               classes: 'eduma-search-box__clear',
               type: ButtonType.button,
-              attributes: {'aria-label': 'Clear search'},
+              attributes: {'aria-label': 'Clear search', 'title': 'Clear search'},
               onClick: () => _onQueryChanged(''),
               [edumaIcon(EdumaIcons.closePlain, size: 16)],
             ),

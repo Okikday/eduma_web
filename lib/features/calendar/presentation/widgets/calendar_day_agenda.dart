@@ -40,14 +40,14 @@ Component calendarDayHeading({
         button(
           classes: 'eduma-cal-day-nav-btn',
           type: ButtonType.button,
-          attributes: {'aria-label': 'Previous day'},
+          attributes: {'aria-label': 'Previous day', 'title': 'Previous day'},
           onClick: onPrevDay,
           [edumaIcon(EdumaIcons.back, size: 16)],
         ),
         button(
           classes: 'eduma-cal-day-nav-btn',
           type: ButtonType.button,
-          attributes: {'aria-label': 'Next day'},
+          attributes: {'aria-label': 'Next day', 'title': 'Next day'},
           onClick: onNextDay,
           [edumaIcon(EdumaIcons.chevronRight, size: 16)],
         ),

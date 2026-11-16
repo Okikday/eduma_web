@@ -12,17 +12,13 @@ abstract final class MainPreferenceCodec {
 
   static String serializeSpaceGridView(bool grid) => grid ? 'grid' : 'list';
 
-  static bool parseSpaceContentGridView(Object? raw) =>
-      '$raw'.trim() == 'grid';
+  static bool parseSpaceContentGridView(Object? raw) => '$raw'.trim() == 'grid';
 
-  static String serializeSpaceContentGridView(bool grid) =>
-      grid ? 'grid' : 'list';
+  static String serializeSpaceContentGridView(bool grid) => grid ? 'grid' : 'list';
 
-  static bool parseSpaceAssetGridView(Object? raw) =>
-      '$raw'.trim() == 'grid';
+  static bool parseSpaceAssetGridView(Object? raw) => '$raw'.trim() == 'grid';
 
-  static String serializeSpaceAssetGridView(bool grid) =>
-      grid ? 'grid' : 'list';
+  static String serializeSpaceAssetGridView(bool grid) => grid ? 'grid' : 'list';
 
   static MainSpaceSort parseSpaceSort(Object? raw) => switch ('$raw'.trim()) {
     'name' => MainSpaceSort.name,

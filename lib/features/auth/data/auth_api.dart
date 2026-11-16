@@ -20,8 +20,10 @@ const edumaFlutterAppUrl = String.fromEnvironment(
 
 const edumaGoogleWebClientId = String.fromEnvironment(
   'EDUMA_GOOGLE_WEB_CLIENT_ID',
-  defaultValue: '',
+  defaultValue: 'REPLACE_WITH_GOOGLE_WEB_CLIENT_ID',
 );
+const edumaGoogleSignInConfigured =
+    edumaGoogleWebClientId != '' && edumaGoogleWebClientId != 'REPLACE_WITH_GOOGLE_WEB_CLIENT_ID';
 
 Map<String, dynamic>? _pendingUser(Map<String, dynamic> details) {
   final raw = details['user'] is Map

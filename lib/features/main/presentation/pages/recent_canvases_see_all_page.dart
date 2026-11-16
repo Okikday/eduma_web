@@ -21,8 +21,7 @@ class RecentCanvasesSeeAllPage extends StatefulComponent {
   const RecentCanvasesSeeAllPage({super.key});
 
   @override
-  State<RecentCanvasesSeeAllPage> createState() =>
-      _RecentCanvasesSeeAllPageState();
+  State<RecentCanvasesSeeAllPage> createState() => _RecentCanvasesSeeAllPageState();
 }
 
 class _RecentCanvasesSeeAllPageState extends State<RecentCanvasesSeeAllPage> {
@@ -86,8 +85,7 @@ class _RecentCanvasesSeeAllPageState extends State<RecentCanvasesSeeAllPage> {
     final filtered = _canvases.where((c) {
       if (_typeFilter != null && c.type != _typeFilter) return false;
       if (q.isEmpty) return true;
-      return c.title.toLowerCase().contains(q) ||
-          (c.spaceTitle?.toLowerCase().contains(q) ?? false);
+      return c.title.toLowerCase().contains(q) || (c.spaceTitle?.toLowerCase().contains(q) ?? false);
     }).toList();
     if (_sortByTitle) {
       filtered.sort(
@@ -103,19 +101,11 @@ class _RecentCanvasesSeeAllPageState extends State<RecentCanvasesSeeAllPage> {
     final hasActiveFilter = _typeFilter != null || _sortByTitle;
     return adaptivePageScaffold(
       title: 'Recent pages',
-      subtitle:
-          '${_canvases.length} recently opened ${_canvases.length == 1 ? 'page' : 'pages'}',
+      subtitle: '${_canvases.length} recently opened ${_canvases.length == 1 ? 'page' : 'pages'}',
       maxWidth: 1120,
       showEdges: false,
+      fullBleed: true,
       fallbackHref: '/main',
-      trailing: button(
-        classes: 'main-home__icon-link main-home__refresh',
-        type: ButtonType.button,
-        disabled: _loading,
-        attributes: {'aria-label': 'Refresh'},
-        onClick: () => unawaited(_load()),
-        [edumaIcon(EdumaIcons.refresh, size: 18)],
-      ),
       body: [
         appSessionGateBody(
           session: _session,
@@ -131,9 +121,7 @@ class _RecentCanvasesSeeAllPageState extends State<RecentCanvasesSeeAllPage> {
             else if (visible.isEmpty)
               appFeatureStateCard(
                 icon: .canvas,
-                title: _query.trim().isNotEmpty || _typeFilter != null
-                    ? 'No matching pages'
-                    : 'No recent pages yet',
+                title: _query.trim().isNotEmpty || _typeFilter != null ? 'No matching pages' : 'No recent pages yet',
                 message: _query.trim().isNotEmpty || _typeFilter != null
                     ? 'Try another search term or adjust your filters.'
                     : 'Canvases and structured notes you open across your spaces will appear here.',
@@ -152,8 +140,7 @@ class _RecentCanvasesSeeAllPageState extends State<RecentCanvasesSeeAllPage> {
               onQueryChanged: (q) => setState(() => _query = q),
               filterActive: hasActiveFilter,
               filterMenuOpen: _filterMenuOpen,
-              onToggleFilterMenu: () =>
-                  setState(() => _filterMenuOpen = !_filterMenuOpen),
+              onToggleFilterMenu: () => setState(() => _filterMenuOpen = !_filterMenuOpen),
               onCloseFilterMenu: () => setState(() => _filterMenuOpen = false),
               filterMenuChildren: [
                 seeAllFilterGroup('TYPE', [
@@ -216,9 +203,7 @@ Component _recentCanvasListTile(MainCanvas canvas) {
   final isDynamic = canvas.type == .dynamicCanvas;
   final kind = isDynamic ? 'Canvas' : 'Note';
   final path = isDynamic ? '/spacePageCanvas' : '/spacePageStatic';
-  final title = canvas.title.isEmpty
-      ? 'Untitled ${kind.toLowerCase()}'
-      : canvas.title;
+  final title = canvas.title.isEmpty ? 'Untitled ${kind.toLowerCase()}' : canvas.title;
   final spaceTitle = (canvas.spaceTitle ?? '').trim();
   final activity = mainHomeCanvasActivityLabel(canvas);
   final meta = spaceTitle.isEmpty ? activity : '$spaceTitle · $activity';

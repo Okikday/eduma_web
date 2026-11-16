@@ -1,5 +1,4 @@
 import 'dart:js_interop';
-import 'dart:js_interop_unsafe';
 
 import 'package:web/web.dart' as web;
 
@@ -52,10 +51,6 @@ abstract final class WebDialogHelper {
     if (_boundFallbacks[dialog] == true) return;
     _boundFallbacks[dialog] = true;
 
-    final ctor = web.window.getProperty<JSObject?>('HTMLDialogElement'.toJS);
-    final proto = ctor?.getProperty<JSObject?>('prototype'.toJS);
-    if (proto != null && proto.hasProperty('closedBy'.toJS).toDart) return;
-
     var pressedOutside = false;
     bool isOutside(web.PointerEvent event) {
       final rect = dialog.getBoundingClientRect();
@@ -64,6 +59,16 @@ abstract final class WebDialogHelper {
       return x < rect.left || x > rect.right || y < rect.top || y > rect.bottom;
     }
 
+    dialog.addEventListener(
+      'keydown',
+      ((web.Event raw) {
+        final keyboard = raw as web.KeyboardEvent;
+        if (keyboard.key == 'Escape' && dialog.open) {
+          keyboard.preventDefault();
+          dialog.close();
+        }
+      }).toJS,
+    );
     dialog.addEventListener(
       'pointerdown',
       ((web.Event raw) {

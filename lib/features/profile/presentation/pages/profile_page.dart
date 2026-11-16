@@ -32,7 +32,6 @@ class ProfilePage extends StatefulComponent {
 class _ProfilePageState extends State<ProfilePage> {
   EdumaSession? _session = AuthActions.currentSession;
   bool _loadingSession = AuthActions.currentSession == null;
-  bool _refreshing = false;
   String? _sessionError;
 
   ProfileStats _stats = const ProfileStats();
@@ -73,10 +72,9 @@ class _ProfilePageState extends State<ProfilePage> {
     unawaited(_load());
   }
 
-  Future<void> _load({bool manualRefresh = false}) async {
+  Future<void> _load() async {
     setState(() {
       _loadingSession = _session == null;
-      _refreshing = manualRefresh;
       _sessionError = null;
     });
 
@@ -110,10 +108,6 @@ class _ProfilePageState extends State<ProfilePage> {
           );
           _syncPrivacyFromUser(freshUser);
         }
-        if (manualRefresh) {
-          _notice = 'Profile refreshed.';
-          _noticeIsError = false;
-        }
       });
     } on AuthApiException catch (error) {
       if (!mounted) return;
@@ -125,7 +119,6 @@ class _ProfilePageState extends State<ProfilePage> {
       if (mounted) {
         setState(() {
           _loadingSession = false;
-          _refreshing = false;
         });
       }
     }
@@ -134,10 +127,8 @@ class _ProfilePageState extends State<ProfilePage> {
   void _syncPrivacyFromUser(Map<String, dynamic> user) {
     final prefsMap = user['preferences'] is Map ? user['preferences'] as Map : const {};
     _allowSpaceAdds = (user['allowSpaceAdds'] ?? prefsMap['allowSpaceAdds']) as bool? ?? true;
-    _showPresence =
-        (user['showPresence'] ?? user['isPresenceShown'] ?? prefsMap['showPresence']) as bool? ?? true;
-    _personalization =
-        (user['personalizationEnabled'] ?? user['isPersonalizationEnabled']) as bool? ?? true;
+    _showPresence = (user['showPresence'] ?? user['isPresenceShown'] ?? prefsMap['showPresence']) as bool? ?? true;
+    _personalization = (user['personalizationEnabled'] ?? user['isPersonalizationEnabled']) as bool? ?? true;
     final rawAccess = '${user['aiPersonalityAccess'] ?? 'ask'}'.trim().toLowerCase();
     _aiAccess = (rawAccess == 'auto' || rawAccess == 'denied') ? rawAccess : 'ask';
   }
@@ -361,8 +352,6 @@ class _ProfilePageState extends State<ProfilePage> {
           hero: profileDesktopHero(
             session: session,
             stats: _stats,
-            refreshing: _refreshing,
-            onRefresh: () => unawaited(_load(manualRefresh: true)),
             onEditProfile: () => setState(() => _editOpen = true),
             onPhotoAction: () => _showNotice('Avatar upload opens in the mobile & desktop Eduma app.'),
             onSignOut: () => unawaited(_signOut()),
@@ -387,16 +376,6 @@ class _ProfilePageState extends State<ProfilePage> {
         pureAppBar(
           title: 'Profile & Settings',
           fallbackHref: '/home',
-          trailing: button(
-            classes: _refreshing
-                ? 'eduma-profile__refresh-btn is-spinning'
-                : 'eduma-profile__refresh-btn',
-            type: ButtonType.button,
-            disabled: _refreshing,
-            attributes: {'aria-label': 'Refresh profile', 'title': 'Refresh profile'},
-            onClick: () => unawaited(_load(manualRefresh: true)),
-            [edumaIcon(EdumaIcons.refresh, size: 20)],
-          ),
         ),
         div(classes: 'eduma-profile-mobile__sticky-tabs', [tabBar]),
         div(classes: 'eduma-profile-mobile__body', [

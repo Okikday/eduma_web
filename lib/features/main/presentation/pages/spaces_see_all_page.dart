@@ -135,15 +135,8 @@ class _SpacesSeeAllPageState extends State<SpacesSeeAllPage> {
       subtitle: '${_spaces.length} ${_spaces.length == 1 ? 'space' : 'spaces'}',
       maxWidth: 1120,
       showEdges: false,
+      fullBleed: true,
       fallbackHref: '/main',
-      trailing: button(
-        classes: 'main-home__icon-link main-home__refresh',
-        type: ButtonType.button,
-        disabled: _loading,
-        attributes: {'aria-label': 'Refresh'},
-        onClick: () => unawaited(_load()),
-        [edumaIcon(EdumaIcons.refresh, size: 18)],
-      ),
       body: [
         appSessionGateBody(
           session: _session,

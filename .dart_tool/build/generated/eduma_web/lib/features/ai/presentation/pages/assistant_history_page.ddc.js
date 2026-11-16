@@ -2,7 +2,7 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/features/ai/presentation/pages/assistant_history_page
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/logic/main_actions', 'packages/eduma_web/features/ai/data/ai_history_api', 'packages/eduma_web/features/ai/data/ai_history_models', 'packages/eduma_web/core/presentation/desktop_scaffolds', 'packages/eduma_web/core/presentation/eduma_icons', 'packages/eduma_web/features/main/presentation/widgets/app_tab_shell', 'packages/eduma_web/features/main/presentation/widgets/main_home_notices', 'packages/eduma_web/features/main/presentation/widgets/main_home_icons', 'packages/eduma_web/core/presentation/see_all_bottom_bar', 'packages/eduma_web/core/presentation/eduma_link', 'packages/eduma_web/core/presentation/eduma_rich_text'], (function load__packages__eduma_web__features__ai__presentation__pages__assistant_history_page(dart_sdk, packages__jaspr__client, packages__eduma_web__features__main__logic__main_actions, packages__eduma_web__features__ai__data__ai_history_api, packages__eduma_web__features__ai__data__ai_history_models, packages__eduma_web__core__presentation__desktop_scaffolds, packages__eduma_web__core__presentation__eduma_icons, packages__eduma_web__features__main__presentation__widgets__app_tab_shell, packages__eduma_web__features__main__presentation__widgets__main_home_notices, packages__eduma_web__features__main__presentation__widgets__main_home_icons, packages__eduma_web__core__presentation__see_all_bottom_bar, packages__eduma_web__core__presentation__eduma_link, packages__eduma_web__core__presentation__eduma_rich_text) {
+define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/logic/main_actions', 'packages/eduma_web/features/ai/data/ai_history_api', 'packages/eduma_web/features/ai/data/ai_history_models', 'packages/eduma_web/core/presentation/desktop_scaffolds', 'packages/eduma_web/features/main/presentation/widgets/app_tab_shell', 'packages/eduma_web/features/main/presentation/widgets/main_home_notices', 'packages/eduma_web/features/main/presentation/widgets/main_home_icons', 'packages/eduma_web/core/presentation/see_all_bottom_bar', 'packages/eduma_web/core/presentation/eduma_icons', 'packages/eduma_web/core/presentation/eduma_link', 'packages/eduma_web/core/presentation/eduma_rich_text'], (function load__packages__eduma_web__features__ai__presentation__pages__assistant_history_page(dart_sdk, packages__jaspr__client, packages__eduma_web__features__main__logic__main_actions, packages__eduma_web__features__ai__data__ai_history_api, packages__eduma_web__features__ai__data__ai_history_models, packages__eduma_web__core__presentation__desktop_scaffolds, packages__eduma_web__features__main__presentation__widgets__app_tab_shell, packages__eduma_web__features__main__presentation__widgets__main_home_notices, packages__eduma_web__features__main__presentation__widgets__main_home_icons, packages__eduma_web__core__presentation__see_all_bottom_bar, packages__eduma_web__core__presentation__eduma_icons, packages__eduma_web__core__presentation__eduma_link, packages__eduma_web__core__presentation__eduma_rich_text) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
@@ -19,11 +19,11 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
   const ai_history_api = packages__eduma_web__features__ai__data__ai_history_api.eduma_web__features__ai__data__ai_history_api;
   const ai_history_models = packages__eduma_web__features__ai__data__ai_history_models.eduma_web__features__ai__data__ai_history_models;
   const desktop_scaffolds = packages__eduma_web__core__presentation__desktop_scaffolds.eduma_web__core__presentation__desktop_scaffolds;
-  const eduma_icons = packages__eduma_web__core__presentation__eduma_icons.eduma_web__core__presentation__eduma_icons;
   const app_tab_shell = packages__eduma_web__features__main__presentation__widgets__app_tab_shell.eduma_web__features__main__presentation__widgets__app_tab_shell;
   const main_home_notices = packages__eduma_web__features__main__presentation__widgets__main_home_notices.eduma_web__features__main__presentation__widgets__main_home_notices;
   const main_home_icons = packages__eduma_web__features__main__presentation__widgets__main_home_icons.eduma_web__features__main__presentation__widgets__main_home_icons;
   const see_all_bottom_bar = packages__eduma_web__core__presentation__see_all_bottom_bar.eduma_web__core__presentation__see_all_bottom_bar;
+  const eduma_icons = packages__eduma_web__core__presentation__eduma_icons.eduma_web__core__presentation__eduma_icons;
   const eduma_link = packages__eduma_web__core__presentation__eduma_link.eduma_web__core__presentation__eduma_link;
   const eduma_rich_text = packages__eduma_web__core__presentation__eduma_rich_text.eduma_web__core__presentation__eduma_rich_text;
   var assistant_history_page = Object.create(dart.library);
@@ -51,13 +51,15 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
     String: () => (T.String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String", true)))(),
     ListOf_AiKindFilter: () => (T.ListOf_AiKindFilter = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|List<eduma_web__features__ai__presentation__pages__assistant_history_page|_AiKindFilter>", true)))(),
     _AssistantHistoryPageState: () => (T._AssistantHistoryPageState = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__ai__presentation__pages__assistant_history_page|_AssistantHistoryPageState", true)))(),
-    __ToAssistantHistoryPage: () => (T.__ToAssistantHistoryPage = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__ai__presentation__pages__assistant_history_page|AssistantHistoryPage({key:jaspr__src__framework__framework|Key?})", true)))(),
+    __ToAssistantHistoryPage: () => (T.__ToAssistantHistoryPage = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__ai__presentation__pages__assistant_history_page|AssistantHistoryPage({conversationId:core|String?,key:jaspr__src__framework__framework|Key?})", true)))(),
     VoidToStateOfAssistantHistoryPage: () => (T.VoidToStateOfAssistantHistoryPage = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|State<eduma_web__features__ai__presentation__pages__assistant_history_page|AssistantHistoryPage>()", true)))(),
+    StringN: () => (T.StringN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String?", true)))(),
     AiHistoryEntry: () => (T.AiHistoryEntry = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__ai__data__ai_history_models|AiHistoryEntry", true)))(),
     VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~()", true)))(),
     Object: () => (T.Object = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Object", true)))(),
     AuthApiException: () => (T.AuthApiException = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__auth__data__auth_api|AuthApiException", true)))(),
     void: () => (T.void = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~", true)))(),
+    AssistantHistoryPage: () => (T.AssistantHistoryPage = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__ai__presentation__pages__assistant_history_page|AssistantHistoryPage", true)))(),
     JSArrayOfAiHistoryEntry: () => (T.JSArrayOfAiHistoryEntry = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<eduma_web__features__ai__data__ai_history_models|AiHistoryEntry>", true)))(),
     LinkedHashSetOfString: () => (T.LinkedHashSetOfString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "collection|LinkedHashSet<core|String>", true)))(),
     AiHistoryEntryTobool: () => (T.AiHistoryEntryTobool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool(eduma_web__features__ai__data__ai_history_models|AiHistoryEntry)", true)))(),
@@ -83,7 +85,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
     AiHistoryEntryToComponent: () => (T.AiHistoryEntryToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component(eduma_web__features__ai__data__ai_history_models|AiHistoryEntry)", true)))(),
     EdumaSessionN: () => (T.EdumaSessionN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__auth__data__auth_api|EdumaSession?", true)))(),
     bool: () => (T.bool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool", true)))(),
-    StringN: () => (T.StringN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String?", true)))(),
     AiHistoryGroupN: () => (T.AiHistoryGroupN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__ai__data__ai_history_models|AiHistoryGroup?", true)))(),
     AiHistoryEntryN: () => (T.AiHistoryEntryN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__ai__data__ai_history_models|AiHistoryEntry?", true)))(),
     SetOfString: () => (T.SetOfString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Set<core|String>", true)))()
@@ -250,17 +251,27 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       return C[7] || CT.C7;
     }
   });
+  var conversationId = dart.privateName(assistant_history_page, "AssistantHistoryPage.conversationId");
   assistant_history_page.AssistantHistoryPage = class AssistantHistoryPage extends framework.StatefulComponent {
+    get conversationId() {
+      return this[conversationId];
+    }
+    set conversationId(value) {
+      super.conversationId = value;
+    }
     static ['_#new#tearOff'](opts) {
+      let conversationId = opts && 'conversationId' in opts ? opts.conversationId : null;
       let key = opts && 'key' in opts ? opts.key : null;
-      return new assistant_history_page.AssistantHistoryPage.new({key: key});
+      return new assistant_history_page.AssistantHistoryPage.new({conversationId: conversationId, key: key});
     }
     createState() {
       return new assistant_history_page._AssistantHistoryPageState.new(T._AssistantHistoryPageState());
     }
   };
   (assistant_history_page.AssistantHistoryPage.new = function(opts) {
+    let conversationId$ = opts && 'conversationId' in opts ? opts.conversationId : null;
     let key = opts && 'key' in opts ? opts.key : null;
+    this[conversationId] = conversationId$;
     dart.global.Object.getPrototypeOf(assistant_history_page.AssistantHistoryPage).new.call(this, {key: key});
     ;
   }).prototype = assistant_history_page.AssistantHistoryPage.prototype;
@@ -271,6 +282,12 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
   }, dart.getMethods(dart.global.Object.getPrototypeOf(assistant_history_page.AssistantHistoryPage))));
   dart.setMethodsImmediateTargetSignature(assistant_history_page.AssistantHistoryPage, () => dart.global.Object.setPrototypeOf({createState: "package:eduma_web/features/ai/presentation/pages/assistant_history_page.dart:AssistantHistoryPage"}, dart.getMethodsImmediateTargets(dart.global.Object.getPrototypeOf(assistant_history_page.AssistantHistoryPage))));
   dart.setLibraryUri(assistant_history_page.AssistantHistoryPage, I[0]);
+  dart.setFieldSignature(assistant_history_page.AssistantHistoryPage, () => dart.global.Object.setPrototypeOf({conversationId: {
+      type: _ti => T.StringN(),
+      isConst: false,
+      isFinal: true,
+      libraryUri: I[1]
+    }}, dart.getFields(dart.global.Object.getPrototypeOf(assistant_history_page.AssistantHistoryPage))));
   var _session = dart.privateName(assistant_history_page, "_session");
   var _loadingSession = dart.privateName(assistant_history_page, "_loadingSession");
   var _sessionError = dart.privateName(assistant_history_page, "_sessionError");
@@ -286,8 +303,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
   var _loadingDetail = dart.privateName(assistant_history_page, "_loadingDetail");
   var _deletingIds = dart.privateName(assistant_history_page, "_deletingIds");
   var _load = dart.privateName(assistant_history_page, "_load");
-  var _is = dart.privateName(dart_rti, "_is");
   var _openConversation = dart.privateName(assistant_history_page, "_openConversation");
+  var _is = dart.privateName(dart_rti, "_is");
+  var _as = dart.privateName(dart_rti, "_as");
   var _deleteConversation = dart.privateName(assistant_history_page, "_deleteConversation");
   var _filteredEntries = dart.privateName(assistant_history_page, "_filteredEntries");
   var _buildGroups = dart.privateName(assistant_history_page, "_buildGroups");
@@ -301,7 +319,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       async.unawaited(this[_load]());
     }
     [_load]() {
-      let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue, t$handler = 1, t$errorStack = [], t$next = [], t$36$35e, asyncScope = Object.create(null), asyncScope$ = Object.create(null), asyncScope$0 = Object.create(null), asyncScope$1 = Object.create(null);
+      let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue, t$handler = 1, t$errorStack = [], t$next = [], t$36$35e, asyncScope = Object.create(null), asyncScope$ = Object.create(null), asyncScope$0 = Object.create(null), asyncScope$1 = Object.create(null), asyncScope$2 = Object.create(null);
       var t$36async_load = async._wrapJsFunctionForAsync((t$errorCode, t$result) => {
         if (t$errorCode === 1) {
           t$errorStack.push(t$result);
@@ -318,38 +336,51 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
                 this[_error] = null;
               }, T.VoidTovoid()));
               t$handler = 3;
-              asyncScope$1 = Object.create(null);
+              asyncScope$2 = Object.create(null);
               t$goto = 6;
               return async._asyncAwait(main_actions.MainActions.restoreSession(), t$36async_load, t$completer);
             case 6:
               // returning from await.
-              asyncScope$1.session = t$result;
+              asyncScope$2.session = t$result;
               if (!this.mounted) {
                 t$next = [7];
                 // goto finally
                 t$goto = 4;
                 break;
               }
-              if (asyncScope$1.session == null) {
+              if (asyncScope$2.session == null) {
                 this.setState(dart.fn(() => this[_session] = null, T.VoidTovoid()));
                 t$next = [7];
                 // goto finally
                 t$goto = 4;
                 break;
               }
-              this.setState(dart.fn((capturedAsyncScope => () => this[_session] = capturedAsyncScope.session)(asyncScope$1), T.VoidTovoid()));
+              this.setState(dart.fn((capturedAsyncScope => () => this[_session] = capturedAsyncScope.session)(asyncScope$2), T.VoidTovoid()));
               t$goto = 8;
               return async._asyncAwait(ai_history_api.AiHistoryApi.instance.listHistory(), t$36async_load, t$completer);
             case 8:
               // returning from await.
-              asyncScope$1.list = t$result;
+              asyncScope$2.list = t$result;
               if (!this.mounted) {
                 t$next = [7];
                 // goto finally
                 t$goto = 4;
                 break;
               }
-              this.setState(dart.fn((capturedAsyncScope => () => this[_entries] = capturedAsyncScope.list)(asyncScope$1), T.VoidTovoid()));
+              this.setState(dart.fn((capturedAsyncScope => () => this[_entries] = capturedAsyncScope.list)(asyncScope$2), T.VoidTovoid()));
+              asyncScope$2.requestedId = this.component.conversationId;
+              if (asyncScope$2.requestedId != null) {
+                asyncScope$1.requestedEntry = null;
+                for (let entry of asyncScope$2.list)
+                  if (entry.id === asyncScope$2.requestedId) {
+                    asyncScope$1.requestedEntry = entry;
+                    break;
+                  }
+                if (asyncScope$1.requestedEntry == null)
+                  this.setState(dart.fn(() => this[_error] = "This AI conversation is no longer available.", T.VoidTovoid()));
+                else
+                  async.unawaited(this[_openConversation](asyncScope$1.requestedEntry));
+              }
               t$next.push(5);
               // goto finally
               t$goto = 4;
@@ -409,6 +440,27 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       });
       return async._asyncStartSync(t$36async_load, t$completer);
     }
+    didUpdateComponent(oldComponent) {
+      T.AssistantHistoryPage()[_as](oldComponent);
+      super.didUpdateComponent(oldComponent);
+      let requestedId = this.component.conversationId;
+      if (oldComponent.conversationId == requestedId) return;
+      if (requestedId == null) {
+        this.setState(dart.fn(() => {
+          this[_openEntry] = null;
+          this[_error] = null;
+        }, T.VoidTovoid()));
+        return;
+      }
+      for (let entry of this[_entries]) {
+        if (entry.id === requestedId) {
+          async.unawaited(this[_openConversation](entry));
+          return;
+        }
+      }
+      if (this[_loading] || this[_loadingSession]) return;
+      this.setState(dart.fn(() => this[_error] = "This AI conversation is no longer available.", T.VoidTovoid()));
+    }
     [_openConversation](entry) {
       let t$366, t$368;
       let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue, t$handler = 1, t$errorStack = [], t$next = [], t$36$35e, asyncScope = Object.create(null), asyncScope$ = Object.create(null);
@@ -424,6 +476,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
               this.setState(dart.fn(() => {
                 this[_openEntry] = entry;
                 this[_loadingDetail] = entry.messages[$isEmpty] && entry.questions[$isEmpty];
+                this[_error] = null;
               }, T.VoidTovoid()));
               t$handler = 3;
               asyncScope$ = Object.create(null);
@@ -635,12 +688,11 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       return groups;
     }
     build(context) {
-      let t$3616, t$3615, t$3614, t$3613;
       let filtered = this[_filteredEntries];
       let flat = this[_query][$trim]()[$isNotEmpty] || this[_view] === assistant_history_page._AiViewMode.all;
       let groups = flat ? C[10] || CT.C10 : this[_buildGroups](filtered);
       let hasActiveFilter = this[_view] !== assistant_history_page._AiViewMode.grouped || this[_filter] !== assistant_history_page._AiKindFilter.all;
-      return desktop_scaffolds.adaptivePageScaffold({title: "AI chats", subtitle: this[_entries][$isEmpty] ? "Chats and study sets" : dart.strSafe(this[_entries][$length]) + " " + (this[_entries][$length] === 1 ? "item" : "items"), maxWidth: 1120, showEdges: false, fallbackHref: "/main", trailing: (t$3613 = "main-home__icon-link main-home__refresh", t$3614 = html.ButtonType.button, t$3615 = this[_loading], t$3616 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Refresh"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.refresh, {size: 18})]), {classes: t$3613, type: t$3614, disabled: t$3615, attributes: t$3616, onClick: dart.fn(() => async.unawaited(this[_load]()), T.VoidTovoid())})), body: _interceptors.JSArray.of(T.JSArrayOfComponent(), [app_tab_shell.appSessionGateBody({session: this[_session], loadingSession: this[_loadingSession], sessionError: this[_sessionError], onRetrySession: dart.fn(() => async.unawaited(this[_load]()), T.VoidTovoid()), builder: dart.fn(_$35wc0$35formal => {
+      return desktop_scaffolds.adaptivePageScaffold({title: "AI chats", subtitle: this[_entries][$isEmpty] ? "Chats and study sets" : dart.strSafe(this[_entries][$length]) + " " + (this[_entries][$length] === 1 ? "item" : "items"), maxWidth: 1120, showEdges: false, fullBleed: true, fallbackHref: "/main", body: _interceptors.JSArray.of(T.JSArrayOfComponent(), [app_tab_shell.appSessionGateBody({session: this[_session], loadingSession: this[_loadingSession], sessionError: this[_sessionError], onRetrySession: dart.fn(() => async.unawaited(this[_load]()), T.VoidTovoid()), builder: dart.fn(_$35wc0$35formal => {
               let t$3615, t$3615$, t$3616, t$3617;
               return (() => {
                 let t$3613 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
@@ -785,12 +837,12 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
     }
     [_groupSheet](group) {
       let t$3626, t$3625, t$3624, t$3624$, t$3625$, t$3625$0, t$3627, t$3626$, t$3625$1;
-      t$3625$1 = "space-detail__modal-backdrop";
+      t$3625$1 = "ai-history__overlay ai-history__overlay--group";
       t$3626$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "dialog", "aria-modal", "true", "aria-label", group.title]);
       t$3627 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["click", dart.fn(e => {
           if (dart.equals(js_util.getProperty(T.JSObjectN(), e, "target"), js_util.getProperty(T.JSObjectN(), e, "currentTarget"))) this.setState(dart.fn(() => this[_openGroup] = null, T.VoidTovoid()));
         }, T.JSObjectTovoid())]);
-      return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3625$0 = "space-detail__modal-card", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3624$ = "space-detail__modal-head", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(group.title)])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(group.countsLabel)]))])), (t$3624 = "space-detail__modal-close", t$3625 = html.ButtonType.button, t$3626 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 18})]), {classes: t$3624, type: t$3625, attributes: t$3626, onClick: dart.fn(() => this.setState(dart.fn(() => this[_openGroup] = null, T.VoidTovoid())), T.VoidTovoid())}))]), {classes: t$3624$})), (t$3625$ = "space-detail__modal-body ai-history__sheet-list", new html.div.new((() => {
+      return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3625$0 = "ai-history__overlay-panel ai-history__overlay-panel--group", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3624$ = "space-detail__modal-head", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(group.title)])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(group.countsLabel)]))])), (t$3624 = "space-detail__modal-close", t$3625 = html.ButtonType.button, t$3626 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 18})]), {classes: t$3624, type: t$3625, attributes: t$3626, onClick: dart.fn(() => this.setState(dart.fn(() => this[_openGroup] = null, T.VoidTovoid())), T.VoidTovoid())}))]), {classes: t$3624$})), (t$3625$ = "space-detail__modal-body ai-history__sheet-list", new html.div.new((() => {
             let t$3624 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
             for (let entry of group.entries)
               t$3624.push(this[_chatCard](entry));
@@ -802,12 +854,12 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
       let sourceSpaceId = entry.source.spaceId;
       let sourcePageId = entry.source.pageId;
       let pageRoute = sourceSpaceId != null && sourcePageId != null ? core._Uri.new({path: "/spacePageStatic", queryParameters: new _js_helper.IdentityMap.from(T.IdentityMapOfString$dynamic(), ["id", sourcePageId, "spaceId", sourceSpaceId])}).toString() : null;
-      t$3632$4 = "space-detail__modal-backdrop";
+      t$3632$4 = "ai-history__overlay ai-history__overlay--conversation";
       t$3633 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "dialog", "aria-modal", "true", "aria-label", entry.displayTitle]);
       t$3634 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["click", dart.fn(e => {
           if (dart.equals(js_util.getProperty(T.JSObjectN(), e, "target"), js_util.getProperty(T.JSObjectN(), e, "currentTarget"))) this.setState(dart.fn(() => this[_openEntry] = null, T.VoidTovoid()));
         }, T.JSObjectTovoid())]);
-      return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3632$3 = "space-detail__modal-card ai-history__dialog", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3626$0 = "space-detail__modal-head", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3625 = "ai-history__dialog-head-copy", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(entry.displayTitle)])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(entry.breadcrumbLabel[$isEmpty] ? ai_history_models.aiRelativeTimeLabel(entry.updatedAt) : entry.breadcrumbLabel + " · " + ai_history_models.aiRelativeTimeLabel(entry.updatedAt))]))]), {classes: t$3625})), (t$3626$ = "space-detail__modal-head-actions", new html.div.new((() => {
+      return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3632$3 = "ai-history__overlay-panel ai-history__overlay-panel--conversation", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3626$0 = "space-detail__modal-head", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3625 = "ai-history__dialog-head-copy", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(entry.displayTitle)])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(entry.breadcrumbLabel[$isEmpty] ? ai_history_models.aiRelativeTimeLabel(entry.updatedAt) : entry.breadcrumbLabel + " · " + ai_history_models.aiRelativeTimeLabel(entry.updatedAt))]))]), {classes: t$3625})), (t$3626$ = "space-detail__modal-head-actions", new html.div.new((() => {
               let t$3625 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
               if (pageRoute != null) t$3625.push(eduma_link.edumaLink({to: pageRoute, classes: "eduma-desktop-pill eduma-desktop-pill--tonal", children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.note, {size: 14}), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Open page")]))])}));
               t$3625.push((t$3626 = "space-detail__modal-close", t$3627 = html.ButtonType.button, t$3628 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close conversation"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 18})]), {classes: t$3626, type: t$3627, attributes: t$3628, onClick: dart.fn(() => this.setState(dart.fn(() => this[_openEntry] = null, T.VoidTovoid())), T.VoidTovoid())})));
@@ -904,6 +956,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
   dart.setMethodsImmediateTargetSignature(assistant_history_page._AssistantHistoryPageState, () => dart.global.Object.setPrototypeOf({
     initState: "package:eduma_web/features/ai/presentation/pages/assistant_history_page.dart:_AssistantHistoryPageState",
     [_load]: "package:eduma_web/features/ai/presentation/pages/assistant_history_page.dart:_AssistantHistoryPageState",
+    didUpdateComponent: "package:eduma_web/features/ai/presentation/pages/assistant_history_page.dart:_AssistantHistoryPageState",
     [_openConversation]: "package:eduma_web/features/ai/presentation/pages/assistant_history_page.dart:_AssistantHistoryPageState",
     [_deleteConversation]: "package:eduma_web/features/ai/presentation/pages/assistant_history_page.dart:_AssistantHistoryPageState",
     [_buildGroups]: "package:eduma_web/features/ai/presentation/pages/assistant_history_page.dart:_AssistantHistoryPageState",
@@ -1010,7 +1063,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/l
   dart.trackLibraries("packages/eduma_web/features/ai/presentation/pages/assistant_history_page", {
     "package:eduma_web/features/ai/presentation/pages/assistant_history_page.dart": assistant_history_page
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["assistant_history_page.dart"],"names":[],"mappings":"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","file":"assistant_history_page.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["assistant_history_page.dart"],"names":[],"mappings":"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","file":"assistant_history_page.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__ai__presentation__pages__assistant_history_page: assistant_history_page

@@ -23,7 +23,6 @@ class _StreakPageState extends State<StreakPage> {
   final _streakApi = StreakApi.instance;
 
   bool _loading = true;
-  bool _refreshing = false;
   bool _authenticated = false;
   bool _leaderboardVisible = true;
   bool _savingVisibility = false;
@@ -54,23 +53,20 @@ class _StreakPageState extends State<StreakPage> {
         _currentUserName = session.name.trim();
         _summary = cachedSummary;
         _boards.addAll(EdumaMemoryCache.instance.streakBoards);
-        _boardStatus = _boards[_scope] != null
-            ? StreakLeaderboardStatus.ready
-            : StreakLeaderboardStatus.loading;
+        _boardStatus = _boards[_scope] != null ? StreakLeaderboardStatus.ready : StreakLeaderboardStatus.loading;
         hasCached = true;
       }
     }
-    unawaited(_load(background: hasCached));
+    unawaited(_load(keepCachedContent: hasCached));
   }
 
-  Future<void> _load({bool background = false}) async {
+  Future<void> _load({bool keepCachedContent = false}) async {
     final session = EdumaAuthApi.instance.currentSession ?? await EdumaAuthApi.instance.restoreSession();
     if (!mounted) return;
     if (session == null) {
       setState(() {
         _authenticated = false;
         _loading = false;
-        _refreshing = false;
       });
       return;
     }
@@ -78,14 +74,12 @@ class _StreakPageState extends State<StreakPage> {
     _currentUserId = session.userId;
     _currentUserName = session.name.trim();
     EdumaMemoryCache.instance.ensureUser(session.userId);
-    if (!background) {
+    if (!keepCachedContent) {
       setState(() {
         _authenticated = true;
         _loading = true;
         _error = null;
       });
-    } else {
-      setState(() => _refreshing = true);
     }
 
     _boardUnavailable = false;
@@ -97,7 +91,6 @@ class _StreakPageState extends State<StreakPage> {
     if (!mounted) return;
     setState(() {
       _loading = false;
-      _refreshing = false;
     });
   }
 
@@ -143,9 +136,7 @@ class _StreakPageState extends State<StreakPage> {
       if (_scope != scope) return;
       setState(() {
         _boardRefreshing = false;
-        _boardStatus = _boards[scope] != null
-            ? StreakLeaderboardStatus.ready
-            : StreakLeaderboardStatus.unavailable;
+        _boardStatus = _boards[scope] != null ? StreakLeaderboardStatus.ready : StreakLeaderboardStatus.unavailable;
       });
     } catch (error) {
       if (!mounted) return;
@@ -197,8 +188,7 @@ class _StreakPageState extends State<StreakPage> {
     }
   }
 
-  String _friendlyError(Object error) =>
-      error is AuthApiException ? error.message : 'Something went wrong. Try again.';
+  String _friendlyError(Object error) => error is AuthApiException ? error.message : 'Something went wrong. Try again.';
 
   @override
   Component build(BuildContext context) {
@@ -208,22 +198,13 @@ class _StreakPageState extends State<StreakPage> {
       ]);
     }
 
-    final trailing = _authenticated
-        ? button(
-            classes: _refreshing ? 'eduma-streak__refresh-btn is-spinning' : 'eduma-streak__refresh-btn',
-            type: ButtonType.button,
-            attributes: {'aria-label': 'Refresh streak'},
-            onClick: () => unawaited(_load(background: true)),
-            [edumaIcon(EdumaIcons.refresh, size: 18)],
-          )
-        : null;
-
     return adaptivePageScaffold(
       title: 'Streak',
       maxWidth: 1120,
       fallbackHref: '/home',
-      trailing: trailing,
-      body: [div(classes: 'eduma-streak', [_buildContent()])],
+      body: [
+        div(classes: 'eduma-streak', [_buildContent()]),
+      ],
     );
   }
 
