@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":["hive_ce|lib/src/crypto/aes_engine.dart","meta|lib/meta.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":["typed_data"],"hasMain":false}

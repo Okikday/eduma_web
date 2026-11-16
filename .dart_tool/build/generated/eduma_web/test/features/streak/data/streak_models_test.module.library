@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["eduma_web|lib/features/streak/data/streak_models.dart","test|lib/test.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":true}

@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":["hive_ce|lib/src/binary/binary_reader.dart","hive_ce|lib/src/binary/binary_writer.dart","meta|lib/meta.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}

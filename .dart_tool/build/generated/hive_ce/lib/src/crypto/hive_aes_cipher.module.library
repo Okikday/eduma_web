@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":["crypto|lib/crypto.dart","hive_ce|lib/src/crypto/aes_cbc_pkcs7.dart","hive_ce|lib/src/crypto/crc32.dart","hive_ce|lib/src/crypto/hive_cipher.dart","hive_ce|lib/src/util/extensions.dart","meta|lib/meta.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":["math","typed_data"],"hasMain":false}

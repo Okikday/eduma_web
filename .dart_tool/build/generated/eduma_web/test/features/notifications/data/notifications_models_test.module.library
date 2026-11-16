@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["eduma_web|lib/features/notifications/data/notifications_models.dart","test|lib/test.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":true}

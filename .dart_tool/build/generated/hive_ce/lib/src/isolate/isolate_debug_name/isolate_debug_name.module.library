@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":[],"parts":[],"conditionalDeps":[{"$default":"hive_ce|lib/src/isolate/isolate_debug_name/impl/isolate_debug_name_stub.dart","dart.library.io":"hive_ce|lib/src/isolate/isolate_debug_name/impl/isolate_debug_name_vm.dart"}],"sdkDeps":[],"hasMain":false}

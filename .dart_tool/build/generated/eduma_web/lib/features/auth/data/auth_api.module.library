@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["hive_ce|lib/hive.dart","http|lib/browser_client.dart","http|lib/http.dart","web|lib/web.dart","eduma_web|lib/core/data/eduma_memory_cache.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":["async","convert"],"hasMain":false}

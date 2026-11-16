@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":["hive_ce|lib/hive_ce.dart","hive_ce|lib/src/object/hive_list_impl.dart","meta|lib/meta.dart"],"parts":["hive_ce|lib/src/object/hive_object_internal.dart"],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}

@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":["isolate_channel|lib/src/model/isolate_exception.dart","meta|lib/meta.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}

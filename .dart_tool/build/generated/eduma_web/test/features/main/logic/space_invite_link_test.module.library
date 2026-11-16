@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["test|lib/test.dart","eduma_web|lib/features/main/data/main_space.dart","eduma_web|lib/features/main/data/main_space_mutations.dart","eduma_web|lib/features/main/logic/space_invite_link.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":true}

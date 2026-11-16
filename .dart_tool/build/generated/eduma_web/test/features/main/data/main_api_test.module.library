@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["eduma_web|lib/features/main/data/main_canvas.dart","eduma_web|lib/features/main/data/main_space.dart","eduma_web|lib/features/main/logic/main_space_query.dart","test|lib/test.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":true}

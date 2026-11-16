@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["eduma_web|lib/features/auth/logic/auth_link_logic.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}

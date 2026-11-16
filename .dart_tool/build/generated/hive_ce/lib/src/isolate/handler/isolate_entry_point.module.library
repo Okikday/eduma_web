@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":["hive_ce|lib/src/isolate/handler/isolated_box_handler.dart","hive_ce|lib/src/isolate/handler/isolated_hive_handler.dart","isolate_channel|lib/isolate_channel.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":["isolate"],"hasMain":false}

@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":["crypto|lib/crypto.dart","hive_ce|lib/hive_ce.dart","hive_ce|lib/src/box_collection/box_collection_stub.dart","hive_ce|lib/src/hive_impl.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":["async","convert"],"hasMain":false}

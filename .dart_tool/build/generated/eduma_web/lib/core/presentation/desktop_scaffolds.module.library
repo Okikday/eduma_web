@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["jaspr|lib/dom.dart","jaspr|lib/jaspr.dart","web|lib/web.dart","eduma_web|lib/core/presentation/eduma_icons.dart","eduma_web|lib/core/presentation/eduma_link.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}

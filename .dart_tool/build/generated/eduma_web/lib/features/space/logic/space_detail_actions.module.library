@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["eduma_web|lib/features/auth/data/auth_api.dart","eduma_web|lib/features/main/logic/main_actions.dart","eduma_web|lib/features/space/data/space_detail_api.dart","eduma_web|lib/features/space/data/space_detail_models.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}

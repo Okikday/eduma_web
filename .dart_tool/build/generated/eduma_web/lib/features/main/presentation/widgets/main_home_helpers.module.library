@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["jaspr|lib/dom.dart","jaspr|lib/jaspr.dart","eduma_web|lib/features/auth/logic/auth_actions.dart","eduma_web|lib/features/main/data/main_canvas.dart","eduma_web|lib/features/main/data/main_space.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}

@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":["hive_ce|lib/src/binary/binary_reader_impl.dart","hive_ce|lib/src/hive_error.dart","hive_ce|lib/src/registry/type_registry_impl.dart","hive_ce|lib/src/schema/hive_schema.dart","meta|lib/meta.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":["typed_data"],"hasMain":false}

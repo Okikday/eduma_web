@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":["json_annotation|lib/json_annotation.dart","meta|lib/meta.dart"],"parts":["hive_ce|lib/src/backend/lock_props.g.dart"],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}

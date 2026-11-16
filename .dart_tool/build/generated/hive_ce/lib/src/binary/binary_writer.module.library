@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":["hive_ce|lib/src/object/hive_list.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":["convert"],"hasMain":false}

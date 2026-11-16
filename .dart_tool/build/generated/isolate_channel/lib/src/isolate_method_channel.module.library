@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":["isolate_channel|lib/isolate_channel.dart","isolate_channel|lib/src/model/internal/method_invocation.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":["async","isolate"],"hasMain":false}

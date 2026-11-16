@@ -1,0 +1,1 @@
+{"isEntrypoint":false,"deps":["json_annotation|lib/json_annotation.dart","meta|lib/meta.dart"],"parts":["hive_ce|lib/src/schema/hive_schema.g.dart"],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}
