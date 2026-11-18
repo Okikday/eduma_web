@@ -16,7 +16,10 @@ Component spaceDetailDesktopHero({
   required int assetCount,
   required int eventCount,
   required bool pinning,
+  required bool refreshing,
   required VoidCallback onTogglePin,
+  required VoidCallback onRefresh,
+  required VoidCallback onOpenOptions,
   required VoidCallback onOpenEdit,
   required VoidCallback onOpenInvite,
   required VoidCallback onOpenMembers,
@@ -38,20 +41,26 @@ Component spaceDetailDesktopHero({
         classes: 'space-detail__hero-pane',
         backdrop: _heroBackdrop(space.coverUrl),
         leading: desktopHeroBackButton(fallbackHref: '/main'),
+        // SpaceHeroTopActions: refresh, pin, more options.
         trailing: div(classes: 'space-detail__hero-top-actions', [
+          desktopHeroButton(
+            icon: EdumaIcons.refresh,
+            label: refreshing ? 'Refreshing…' : 'Refresh',
+            disabled: refreshing,
+            classes: refreshing ? 'is-spinning' : '',
+            onPressed: onRefresh,
+          ),
           desktopHeroButton(
             icon: space.isPinned ? EdumaIcons.pinSolid : EdumaIcons.pin,
             label: space.isPinned ? 'Unpin space' : 'Pin space',
-            active: space.isPinned,
             disabled: pinning,
             onPressed: onTogglePin,
           ),
-          if (permissions.canEditSpaceDetails)
-            desktopHeroButton(
-              icon: EdumaIcons.moreHorizontal,
-              label: 'Edit space details',
-              onPressed: onOpenEdit,
-            ),
+          desktopHeroButton(
+            icon: EdumaIcons.moreHorizontal,
+            label: 'More options',
+            onPressed: onOpenOptions,
+          ),
         ]),
         bottomContent: [
           div(classes: 'space-detail__hero-headline', [
@@ -70,10 +79,16 @@ Component spaceDetailDesktopHero({
           ]),
           div(classes: 'space-detail__hero-facts', [
             if (space.isPersonal)
-              span(classes: 'space-detail__fact-static', [
-                edumaIcon(EdumaIcons.lock, size: 14),
-                span([.text('Personal space')]),
-              ])
+              span(
+                classes: 'space-detail__fact-static',
+                attributes: {'title': 'Only you can see this space'},
+                [
+                  span(classes: 'space-detail__personal-badge', [
+                    edumaIcon(EdumaIcons.lock, size: 10),
+                    span([.text('Personal')]),
+                  ]),
+                ],
+              )
             else
               button(
                 classes: 'space-detail__fact-btn',
@@ -93,8 +108,9 @@ Component spaceDetailDesktopHero({
               type: ButtonType.button,
               onClick: () => onSelectTab(0),
               [
-                edumaIcon(EdumaIcons.note, size: 14),
+                edumaIcon(EdumaIcons.note, size: 16),
                 span([.text('$activePageCount ${activePageCount == 1 ? 'page' : 'pages'}')]),
+                edumaIcon(EdumaIcons.chevronRight, size: 12, classes: 'space-detail__fact-chevron'),
               ],
             ),
             if (archivedCount > 0)
@@ -103,8 +119,9 @@ Component spaceDetailDesktopHero({
                 type: ButtonType.button,
                 onClick: onOpenArchived,
                 [
-                  edumaIcon(EdumaIcons.archive, size: 14),
+                  edumaIcon(EdumaIcons.archive, size: 16),
                   span([.text('$archivedCount archived')]),
+                  edumaIcon(EdumaIcons.chevronRight, size: 12, classes: 'space-detail__fact-chevron'),
                 ],
               ),
             button(
@@ -112,8 +129,9 @@ Component spaceDetailDesktopHero({
               type: ButtonType.button,
               onClick: () => onSelectTab(1),
               [
-                edumaIcon(EdumaIcons.layer, size: 14),
+                edumaIcon(EdumaIcons.layer, size: 16),
                 span([.text('$assetCount ${assetCount == 1 ? 'asset' : 'assets'}')]),
+                edumaIcon(EdumaIcons.chevronRight, size: 12, classes: 'space-detail__fact-chevron'),
               ],
             ),
             button(
@@ -121,8 +139,9 @@ Component spaceDetailDesktopHero({
               type: ButtonType.button,
               onClick: () => onSelectTab(2),
               [
-                edumaIcon(EdumaIcons.calendar, size: 14),
+                edumaIcon(EdumaIcons.calendar, size: 16),
                 span([.text('$eventCount ${eventCount == 1 ? 'event' : 'events'}')]),
+                edumaIcon(EdumaIcons.chevronRight, size: 12, classes: 'space-detail__fact-chevron'),
               ],
             ),
           ]),
@@ -137,7 +156,7 @@ Component spaceDetailDesktopHero({
                 ),
               if (permissions.canEditSpaceDetails)
                 desktopPillButton(
-                  icon: EdumaIcons.edit,
+                  icon: EdumaIcons.edit02,
                   label: 'Edit space',
                   variant: .glass,
                   onPressed: onOpenEdit,

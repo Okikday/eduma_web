@@ -80,13 +80,11 @@ class ProfileApi {
       '/users/me',
       body: {
         if (level != null && level.trim().isNotEmpty) 'level': level.trim(),
-        if (fieldOfStudy != null && fieldOfStudy.trim().isNotEmpty)
-          'fieldOfStudy': fieldOfStudy.trim(),
+        if (fieldOfStudy != null && fieldOfStudy.trim().isNotEmpty) 'fieldOfStudy': fieldOfStudy.trim(),
         if (school != null && school.trim().isNotEmpty) 'school': school.trim(),
       },
     );
-    final rawUser =
-        payload['user'] is Map ? Map<String, dynamic>.from(payload['user'] as Map) : payload;
+    final rawUser = payload['user'] is Map ? Map<String, dynamic>.from(payload['user'] as Map) : payload;
     return _auth.saveUpdatedUserProfile(rawUser);
   }
 

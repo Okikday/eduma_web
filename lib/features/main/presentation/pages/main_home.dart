@@ -15,6 +15,7 @@ import '../../data/main_space_mutations.dart';
 import '../../logic/main_actions.dart';
 import '../../logic/main_space_query.dart';
 import '../../logic/space_invite_link.dart';
+import '../../../../core/presentation/flutter_host.dart';
 import '../../../../core/data/eduma_memory_cache.dart';
 import '../../../../core/presentation/desktop_scaffolds.dart';
 import '../../../../core/presentation/eduma_link.dart';
@@ -167,6 +168,7 @@ class MainHomePageState extends State<MainHomePage> {
         );
       }
       setState(() => _session = session);
+      FlutterHost.scheduleWarmUp();
       unawaited(_loadRecentAiChats());
       unawaited(_loadStreak());
       unawaited(_loadUnreadNotifications());

@@ -260,7 +260,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/data/eduma
     let t$366, t$365, t$364, t$364$, t$367, t$366$, t$365$, t$364$0;
     let termsAccepted = opts && 'termsAccepted' in opts ? opts.termsAccepted : null;
     let onUnavailable = opts && 'onUnavailable' in opts ? opts.onUnavailable : null;
-    if (termsAccepted && false) {
+    if (termsAccepted && true) {
       t$364 = "google-sign-in-button";
       t$365 = "auth-google-rendered";
       t$366 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["data-google-client-id", auth_api.edumaGoogleWebClientId]);

@@ -100,7 +100,7 @@ class _SpaceEditDialogState extends State<SpaceEditDialog> {
   Component build(BuildContext context) => dialog(
     id: _dialogId,
     classes: 'eduma-modal',
-    attributes: {'aria-labelledby': 'edit-space-title', 'closedby': 'any'},
+    attributes: {...WebDialogHelper.openAttr(component.open), 'aria-labelledby': 'edit-space-title', 'closedby': 'any'},
     events: {
       'close': (_) {
         WebDialogHelper.resetReturnValue(_dialogId);
@@ -157,13 +157,6 @@ class _SpaceEditDialogState extends State<SpaceEditDialog> {
               p(classes: 'eduma-modal__error', attributes: {'role': 'alert'}, [.text(message)]),
           ]),
           div(classes: 'eduma-modal__footer', [
-            button(
-              classes: 'eduma-modal__btn',
-              type: ButtonType.button,
-              disabled: _saving,
-              onClick: component.onClose,
-              [.text('Cancel')],
-            ),
             button(
               classes: 'eduma-modal__btn eduma-modal__btn--primary',
               type: ButtonType.submit,
@@ -264,7 +257,11 @@ class _SpaceCreatePageDialogState extends State<SpaceCreatePageDialog> {
   Component build(BuildContext context) => dialog(
     id: _dialogId,
     classes: 'eduma-modal',
-    attributes: {'aria-labelledby': 'create-page-title', 'closedby': 'any'},
+    attributes: {
+      ...WebDialogHelper.openAttr(component.open),
+      'aria-labelledby': 'create-page-title',
+      'closedby': 'any',
+    },
     events: {
       'close': (_) {
         WebDialogHelper.resetReturnValue(_dialogId);
@@ -341,13 +338,6 @@ class _SpaceCreatePageDialogState extends State<SpaceCreatePageDialog> {
               p(classes: 'eduma-modal__error', attributes: {'role': 'alert'}, [.text(message)]),
           ]),
           div(classes: 'eduma-modal__footer', [
-            button(
-              classes: 'eduma-modal__btn',
-              type: ButtonType.button,
-              disabled: _submitting,
-              onClick: component.onClose,
-              [.text('Cancel')],
-            ),
             button(
               classes: 'eduma-modal__btn eduma-modal__btn--primary',
               type: ButtonType.submit,
@@ -458,7 +448,11 @@ class _SpaceInviteDialogState extends State<SpaceInviteDialog> {
     return dialog(
       id: _dialogId,
       classes: 'eduma-modal',
-      attributes: {'aria-labelledby': 'invite-space-title', 'closedby': 'any'},
+      attributes: {
+        ...WebDialogHelper.openAttr(component.open),
+        'aria-labelledby': 'invite-space-title',
+        'closedby': 'any',
+      },
       events: {
         'close': (_) {
           WebDialogHelper.resetReturnValue(_dialogId);

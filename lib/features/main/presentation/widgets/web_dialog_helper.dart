@@ -1,6 +1,13 @@
 import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
 
 import 'package:web/web.dart' as web;
+
+/// Pointer coordinates as doubles. `MouseEvent.clientX/Y` are typed `int` in
+/// package:web, but browsers report fractional pixels under display scaling
+/// or zoom, which throws a TypeError on access.
+double pointerClientX(web.MouseEvent event) => (event as JSObject).getProperty<JSNumber>('clientX'.toJS).toDartDouble;
+double pointerClientY(web.MouseEvent event) => (event as JSObject).getProperty<JSNumber>('clientY'.toJS).toDartDouble;
 
 /// Coordinates native `<dialog>.showModal()`, `close()` synchronization, and the
 /// `closedby="any"` light-dismiss fallback for browsers lacking native `closedBy`.
@@ -15,11 +22,22 @@ abstract final class WebDialogHelper {
     return null;
   }
 
+  /// Spread into a `<dialog>`'s `attributes` so Jaspr keeps the `open`
+  /// attribute that `showModal()` sets. Jaspr's element update removes every
+  /// DOM attribute missing from the component's attribute map, so without
+  /// this the first rebuild after `showModal()` hides the dialog.
+  static Map<String, String> openAttr(bool open) => {if (open) 'open': ''};
+
   static void syncOpen(String id, bool shouldBeOpen) {
     final dialog = dialogById(id);
     if (dialog == null) return;
     _installLightDismissFallback(dialog);
     if (shouldBeOpen) {
+      if (dialog.open && !dialog.matches(':modal')) {
+        // Jaspr rendered `open` (see [openAttr]) before this ran: promote the
+        // non-modal dialog to a modal one in the top layer.
+        dialog.removeAttribute('open');
+      }
       if (!dialog.open) {
         dialog.returnValue = '';
         dialog.showModal();
@@ -54,8 +72,8 @@ abstract final class WebDialogHelper {
     var pressedOutside = false;
     bool isOutside(web.PointerEvent event) {
       final rect = dialog.getBoundingClientRect();
-      final x = event.clientX;
-      final y = event.clientY;
+      final x = pointerClientX(event);
+      final y = pointerClientY(event);
       return x < rect.left || x > rect.right || y < rect.top || y > rect.bottom;
     }
 

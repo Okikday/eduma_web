@@ -4,8 +4,7 @@
 abstract final class SpaceInviteLink {
   static const maxPinnedSpaces = 16;
 
-  static const expiredInviteMessage =
-      'This invite link has expired. Ask someone in the space for a new one.';
+  static const expiredInviteMessage = 'This invite link has expired. Ask someone in the space for a new one.';
 
   /// Builds a shareable join URL for [inviteCode] given the web origin.
   static String buildForOrigin(String origin, String inviteCode) {

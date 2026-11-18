@@ -1,1 +1,1 @@
-{"isEntrypoint":true,"deps":["eduma_web|lib/features/auth/data/auth_api.dart","eduma_web|lib/features/profile/data/profile_api.dart","eduma_web|lib/features/profile/data/profile_models.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}
+{"isEntrypoint":true,"deps":["eduma_web|lib/core/presentation/flutter_host.dart","eduma_web|lib/features/auth/data/auth_api.dart","eduma_web|lib/features/profile/data/profile_api.dart","eduma_web|lib/features/profile/data/profile_models.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}

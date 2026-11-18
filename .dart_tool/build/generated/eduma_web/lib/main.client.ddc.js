@@ -2,17 +2,22 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/main.client
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/eduma_web/core/presentation/theme_controller', 'packages/jaspr/client', 'packages/eduma_web/app'], (function load__packages__eduma_web__main_client(dart_sdk, packages__eduma_web__core__presentation__theme_controller, packages__jaspr__client, packages__eduma_web__app) {
+define(['dart_sdk', 'packages/eduma_web/core/presentation/theme_controller', 'packages/jaspr/client', 'packages/eduma_web/app', 'packages/eduma_web/features/auth/logic/auth_actions', 'packages/eduma_web/core/presentation/flutter_host'], (function load__packages__eduma_web__main_client(dart_sdk, packages__eduma_web__core__presentation__theme_controller, packages__jaspr__client, packages__eduma_web__app, packages__eduma_web__features__auth__logic__auth_actions, packages__eduma_web__core__presentation__flutter_host) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
+  const async = dart_sdk.async;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
   const theme_controller = packages__eduma_web__core__presentation__theme_controller.eduma_web__core__presentation__theme_controller;
   const run_app = packages__jaspr__client.jaspr__src__client__run_app;
   const app = packages__eduma_web__app.eduma_web__app;
+  const auth_actions = packages__eduma_web__features__auth__logic__auth_actions.eduma_web__features__auth__logic__auth_actions;
+  const flutter_host = packages__eduma_web__core__presentation__flutter_host.eduma_web__core__presentation__flutter_host;
   var main$46client = Object.create(dart.library);
   var T = {
+    Null: () => (T.Null = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Null", true)))(),
+    EdumaSessionNToNull: () => (T.EdumaSessionNToNull = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Null(eduma_web__features__auth__data__auth_api|EdumaSession?)", true)))(),
     VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~()", true)))()
   };
   const CT = Object.create({
@@ -21,6 +26,9 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/theme_controller', 'pa
   main$46client.main = function main() {
     theme_controller.EdumaThemeController.applySavedTheme();
     run_app.runApp(new app.App.new());
+    async['FutureExtensions|ignore'](T.Null(), auth_actions.AuthActions.restoreSession().then(T.Null(), dart.fn(session => {
+      if (session != null) flutter_host.FlutterHost.scheduleWarmUp();
+    }, T.EdumaSessionNToNull())));
   };
   dart.lazyFn(main$46client.main, () => T.VoidTovoid());
   (function() {
@@ -28,7 +36,7 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/theme_controller', 'pa
   dart.trackLibraries("packages/eduma_web/main.client", {
     "package:eduma_web/main.client.dart": main$46client
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["main.client.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;AAYuB;AAErB,mBAAO;EACT","file":"main.client.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["main.client.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;AAcuB;AAErB,mBAAO;AAKJ,+CAFS,AAAiB,yDAAK,QAAC;AACjC,UAAI,OAAO,UAAsB;;EAErC","file":"main.client.ddc.js"}');
   // Exports:
   return {
     eduma_web__main$46client: main$46client

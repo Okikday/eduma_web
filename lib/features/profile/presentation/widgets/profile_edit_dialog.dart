@@ -4,16 +4,18 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../../../auth/data/auth_api.dart';
-import '../../../main/presentation/widgets/main_home_icons.dart';
+import '../../../../core/presentation/eduma_icons.dart';
 import '../../../main/presentation/widgets/web_dialog_helper.dart';
 import '../../logic/profile_actions.dart';
 
-/// Native modal `<dialog>` for editing display name and username (`PATCH /users/me`).
+/// Native modal `<dialog>` port of `EditProfileSheet` in `../eduma`: the full
+/// name (`PATCH /users/me`) over the read-only account email.
 class ProfileEditDialog extends StatefulComponent {
   const ProfileEditDialog({
     required this.open,
     required this.currentName,
     required this.currentUsername,
+    required this.email,
     required this.onClose,
     required this.onSaved,
     super.key,
@@ -22,6 +24,7 @@ class ProfileEditDialog extends StatefulComponent {
   final bool open;
   final String currentName;
   final String currentUsername;
+  final String email;
   final VoidCallback onClose;
   final ValueChanged<Map<String, dynamic>> onSaved;
 
@@ -31,17 +34,10 @@ class ProfileEditDialog extends StatefulComponent {
 
 class _ProfileEditDialogState extends State<ProfileEditDialog> {
   static const _dialogId = 'eduma-edit-profile-dialog';
-  static const _checkDelay = Duration(milliseconds: 300);
 
   String _name = '';
-  String _username = '';
-  bool _checking = false;
-  bool? _available;
-  String? _usernameError;
   bool _saving = false;
   String? _error;
-  Timer? _debounce;
-  int _checkSeq = 0;
 
   @override
   void initState() {
@@ -59,66 +55,10 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
     WebDialogHelper.syncOpen(_dialogId, component.open);
   }
 
-  @override
-  void dispose() {
-    _debounce?.cancel();
-    super.dispose();
-  }
-
   void _resetFromComponent() {
-    _debounce?.cancel();
-    _checkSeq++;
     _name = component.currentName;
-    _username = component.currentUsername;
-    _checking = false;
-    _available = null;
-    _usernameError = null;
     _saving = false;
     _error = null;
-  }
-
-  void _onUsernameInput(String raw) {
-    _debounce?.cancel();
-    final seq = ++_checkSeq;
-    setState(() {
-      _username = raw;
-      _error = null;
-    });
-
-    if (!EditProfileLogic.usernameChanged(raw, component.currentUsername)) {
-      setState(() {
-        _checking = false;
-        _available = null;
-        _usernameError = null;
-      });
-      return;
-    }
-
-    final problem = EditProfileLogic.usernameProblem(raw, component.currentUsername);
-    if (problem != null) {
-      setState(() {
-        _checking = false;
-        _available = false;
-        _usernameError = problem;
-      });
-      return;
-    }
-
-    setState(() {
-      _checking = true;
-      _available = null;
-      _usernameError = null;
-    });
-
-    _debounce = Timer(_checkDelay, () async {
-      final result = await ProfileActions.checkUsername(raw);
-      if (!mounted || seq != _checkSeq) return;
-      setState(() {
-        _checking = false;
-        _available = result == true;
-        _usernameError = result == false ? 'Username is already taken.' : null;
-      });
-    });
   }
 
   void _dismiss() {
@@ -132,10 +72,10 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
     final canSave = EditProfileLogic.canSave(
       name: _name,
       currentName: component.currentName,
-      username: _username,
+      username: component.currentUsername,
       currentUsername: component.currentUsername,
-      usernameAvailable: _available,
-      isCheckingUsername: _checking,
+      usernameAvailable: null,
+      isCheckingUsername: false,
     );
     if (!canSave) return;
 
@@ -145,14 +85,7 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
     });
 
     try {
-      final changedUsername = EditProfileLogic.usernameChanged(
-        _username,
-        component.currentUsername,
-      );
-      final updated = await ProfileActions.updateProfile(
-        name: _name,
-        username: changedUsername ? _username : null,
-      );
+      final updated = await ProfileActions.updateProfile(name: _name);
       if (!mounted) return;
       WebDialogHelper.resetReturnValue(_dialogId);
       component.onClose();
@@ -173,16 +106,17 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
     final canSave = EditProfileLogic.canSave(
       name: _name,
       currentName: component.currentName,
-      username: _username,
+      username: component.currentUsername,
       currentUsername: component.currentUsername,
-      usernameAvailable: _available,
-      isCheckingUsername: _checking,
+      usernameAvailable: null,
+      isCheckingUsername: false,
     );
 
     return dialog(
       id: _dialogId,
       classes: 'eduma-modal',
       attributes: {
+        ...WebDialogHelper.openAttr(component.open),
         'closedby': 'any',
         'aria-labelledby': 'eduma-edit-profile-title',
       },
@@ -194,16 +128,9 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
       [
         div(classes: 'eduma-modal__header', [
           div(classes: 'eduma-modal__title', [
-            h2(id: 'eduma-edit-profile-title', [.text('Edit profile')]),
-            p([.text('Update how your name and handle appear to space members.')]),
+            h2(id: 'eduma-edit-profile-title', [.text('Edit Profile')]),
+            p([.text('Update your name as it appears to instructors and space members')]),
           ]),
-          button(
-            classes: 'eduma-modal__close',
-            type: ButtonType.button,
-            attributes: {'aria-label': 'Close dialog'},
-            onClick: _dismiss,
-            [mainHomeIcon(.close, size: 18)],
-          ),
         ]),
         form(
           events: {
@@ -215,54 +142,45 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
           [
             div(classes: 'eduma-modal__body', [
               div(classes: 'eduma-modal__field', [
-                label(htmlFor: 'eduma-profile-name', [.text('Display name')]),
-                input<String>(
-                  id: 'eduma-profile-name',
-                  classes: 'eduma-modal__input',
-                  type: InputType.text,
-                  value: _name,
-                  disabled: _saving,
-                  attributes: {'autofocus': 'true'},
-                  onInput: (value) => setState(() {
-                    _name = value;
-                    _error = null;
-                  }),
-                ),
+                label(htmlFor: 'eduma-profile-name', [.text('Full Name')]),
+                div(classes: 'eduma-modal__input-wrap', [
+                  edumaIcon(EdumaIcons.user, size: 20),
+                  input<String>(
+                    id: 'eduma-profile-name',
+                    classes: 'eduma-modal__input',
+                    type: InputType.text,
+                    value: _name,
+                    disabled: _saving,
+                    attributes: {'placeholder': 'Enter your name', 'autocomplete': 'name'},
+                    onInput: (value) => setState(() {
+                      _name = value;
+                      _error = null;
+                    }),
+                  ),
+                ]),
               ]),
               div(classes: 'eduma-modal__field', [
-                label(htmlFor: 'eduma-profile-username', [.text('Username')]),
-                input<String>(
-                  id: 'eduma-profile-username',
-                  classes: 'eduma-modal__input',
-                  type: InputType.text,
-                  value: _username,
-                  disabled: _saving,
-                  attributes: {'placeholder': 'username'},
-                  onInput: _onUsernameInput,
-                ),
-                if (_checking)
-                  p(classes: 'eduma-modal__hint', [.text('Checking availability…')])
-                else if (_usernameError != null)
-                  p(classes: 'eduma-modal__error', [.text(_usernameError!)])
-                else if (_available == true)
-                  p(classes: 'eduma-profile__hint-ok', [.text('Username is available.')]),
+                label(htmlFor: 'eduma-profile-email', [.text('Email')]),
+                div(classes: 'eduma-modal__input-wrap', [
+                  edumaIcon(EdumaIcons.mail, size: 20),
+                  input<String>(
+                    id: 'eduma-profile-email',
+                    classes: 'eduma-modal__input',
+                    type: InputType.email,
+                    value: component.email,
+                    disabled: true,
+                    attributes: {'readonly': ''},
+                  ),
+                ]),
               ]),
-              if (_error case final msg?)
-                p(classes: 'eduma-modal__error', attributes: {'role': 'alert'}, [.text(msg)]),
+              if (_error case final msg?) p(classes: 'eduma-modal__error', attributes: {'role': 'alert'}, [.text(msg)]),
             ]),
             div(classes: 'eduma-modal__footer', [
-              button(
-                classes: 'eduma-modal__btn',
-                type: ButtonType.button,
-                disabled: _saving,
-                onClick: _dismiss,
-                [.text('Cancel')],
-              ),
               button(
                 classes: 'eduma-modal__btn eduma-modal__btn--primary',
                 type: ButtonType.submit,
                 disabled: _saving || !canSave,
-                [.text(_saving ? 'Saving…' : 'Save changes')],
+                [.text(_saving ? 'Saving…' : 'Save Changes')],
               ),
             ]),
           ],

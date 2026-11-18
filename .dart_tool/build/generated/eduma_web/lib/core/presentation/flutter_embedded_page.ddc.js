@@ -2,7 +2,7 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/core/presentation/flutter_embedded_page
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/jaspr/client'], (function load__packages__eduma_web__core__presentation__flutter_embedded_page(dart_sdk, packages__jaspr__client) {
+define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentation/flutter_host', 'packages/eduma_web/core/presentation/eduma_link'], (function load__packages__eduma_web__core__presentation__flutter_embedded_page(dart_sdk, packages__jaspr__client, packages__eduma_web__core__presentation__flutter_host, packages__eduma_web__core__presentation__eduma_link) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
@@ -10,14 +10,27 @@ define(['dart_sdk', 'packages/jaspr/client'], (function load__packages__eduma_we
   const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
+  const framework = packages__jaspr__client.jaspr__src__framework__framework;
   const html = packages__jaspr__client.jaspr__src__dom__html__html;
+  const flutter_host = packages__eduma_web__core__presentation__flutter_host.eduma_web__core__presentation__flutter_host;
+  const eduma_link = packages__eduma_web__core__presentation__eduma_link.eduma_web__core__presentation__eduma_link;
   var flutter_embedded_page = Object.create(dart.library);
   var T = {
-    IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,@>", true)))(),
-    StringToString: () => (T.StringToString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String(core|String)", true)))(),
+    _FlutterEmbeddedViewState: () => (T._FlutterEmbeddedViewState = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__core__presentation__flutter_embedded_page|_FlutterEmbeddedViewState", true)))(),
+    __ToFlutterEmbeddedView: () => (T.__ToFlutterEmbeddedView = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__core__presentation__flutter_embedded_page|FlutterEmbeddedView({key:jaspr__src__framework__framework|Key?,route!core|String,title!core|String})", true)))(),
+    VoidToStateOfFlutterEmbeddedView: () => (T.VoidToStateOfFlutterEmbeddedView = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|State<eduma_web__core__presentation__flutter_embedded_page|FlutterEmbeddedView>()", true)))(),
+    String: () => (T.String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String", true)))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~()", true)))(),
+    FlutterEmbeddedView: () => (T.FlutterEmbeddedView = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__core__presentation__flutter_embedded_page|FlutterEmbeddedView", true)))(),
+    StringTovoid: () => (T.StringTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(core|String)", true)))(),
     IdentityMapOfString$String: () => (T.IdentityMapOfString$String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,core|String>", true)))(),
-    Component: () => (T.Component = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component", true)))(),
     JSArrayOfComponent: () => (T.JSArrayOfComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<jaspr__src__framework__framework|Component>", true)))(),
+    VoidTo_FlutterEmbeddedViewState: () => (T.VoidTo_FlutterEmbeddedViewState = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__core__presentation__flutter_embedded_page|_FlutterEmbeddedViewState()", true)))(),
+    BuildContextToComponent: () => (T.BuildContextToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component(jaspr__src__framework__framework|BuildContext)", true)))(),
+    bool: () => (T.bool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool", true)))(),
+    intN: () => (T.intN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|int?", true)))(),
+    StringToString: () => (T.StringToString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String(core|String)", true)))(),
+    BuildContext__Tovoid: () => (T.BuildContext__Tovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(jaspr__src__framework__framework|BuildContext{onClosed:~()?})", true)))(),
     __ToComponent: () => (T.__ToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({route!core|String,title!core|String})", true)))()
   };
   const CT = Object.create({
@@ -25,30 +38,186 @@ define(['dart_sdk', 'packages/jaspr/client'], (function load__packages__eduma_we
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.constList(T.Component(), []);
+      return C[0] = dart.constSet(T.String(), ["/main", "/home", "/spaceDetail", "/calendarTab", "/libraryTab", "/notifications", "/profile", "/streak", "/assistantHistory", "/pinnedSpacesSeeAll", "/recentSpacesSeeAll", "/recentCanvasesSeeAll", "/legalDocument"]);
     }
   });
   var C = [void 0];
-  flutter_embedded_page.flutterEmbeddedRouteUrl = function flutterEmbeddedRouteUrl(route) {
-    return core._Uri.new({path: "/flutter/index.html", queryParameters: new _js_helper.IdentityMap.from(T.IdentityMapOfString$dynamic(), ["edumaRoute", route])}).toString();
+  var I = [
+    "package:eduma_web/core/presentation/flutter_embedded_page.dart",
+    "dart:core"
+  ];
+  var title = dart.privateName(flutter_embedded_page, "FlutterEmbeddedView.title");
+  var route = dart.privateName(flutter_embedded_page, "FlutterEmbeddedView.route");
+  flutter_embedded_page.FlutterEmbeddedView = class FlutterEmbeddedView extends framework.StatefulComponent {
+    get title() {
+      return this[title];
+    }
+    set title(value) {
+      super.title = value;
+    }
+    get route() {
+      return this[route];
+    }
+    set route(value) {
+      super.route = value;
+    }
+    static ['_#new#tearOff'](opts) {
+      let title = opts && 'title' in opts ? opts.title : null;
+      let route = opts && 'route' in opts ? opts.route : null;
+      let key = opts && 'key' in opts ? opts.key : null;
+      return new flutter_embedded_page.FlutterEmbeddedView.new({title: title, route: route, key: key});
+    }
+    createState() {
+      return new flutter_embedded_page._FlutterEmbeddedViewState.new(T._FlutterEmbeddedViewState());
+    }
   };
-  dart.lazyFn(flutter_embedded_page.flutterEmbeddedRouteUrl, () => T.StringToString());
+  (flutter_embedded_page.FlutterEmbeddedView.new = function(opts) {
+    let title$ = opts && 'title' in opts ? opts.title : null;
+    let route$ = opts && 'route' in opts ? opts.route : null;
+    let key = opts && 'key' in opts ? opts.key : null;
+    this[title] = title$;
+    this[route] = route$;
+    dart.global.Object.getPrototypeOf(flutter_embedded_page.FlutterEmbeddedView).new.call(this, {key: key});
+    ;
+  }).prototype = flutter_embedded_page.FlutterEmbeddedView.prototype;
+  dart.lazyFn(flutter_embedded_page.FlutterEmbeddedView['_#new#tearOff'], () => T.__ToFlutterEmbeddedView());
+  dart.addRtiResources(flutter_embedded_page.FlutterEmbeddedView, ["eduma_web__core__presentation__flutter_embedded_page|FlutterEmbeddedView"]);
+  dart.setMethodSignature(flutter_embedded_page.FlutterEmbeddedView, () => dart.global.Object.setPrototypeOf({
+    createState: _ti => T.VoidToStateOfFlutterEmbeddedView()
+  }, dart.getMethods(dart.global.Object.getPrototypeOf(flutter_embedded_page.FlutterEmbeddedView))));
+  dart.setMethodsImmediateTargetSignature(flutter_embedded_page.FlutterEmbeddedView, () => dart.global.Object.setPrototypeOf({createState: "package:eduma_web/core/presentation/flutter_embedded_page.dart:FlutterEmbeddedView"}, dart.getMethodsImmediateTargets(dart.global.Object.getPrototypeOf(flutter_embedded_page.FlutterEmbeddedView))));
+  dart.setLibraryUri(flutter_embedded_page.FlutterEmbeddedView, I[0]);
+  dart.setFieldSignature(flutter_embedded_page.FlutterEmbeddedView, () => dart.global.Object.setPrototypeOf({
+    title: {
+      type: _ti => T.String(),
+      isConst: false,
+      isFinal: true,
+      libraryUri: I[1]
+    },
+    route: {
+      type: _ti => T.String(),
+      isConst: false,
+      isFinal: true,
+      libraryUri: I[1]
+    }
+  }, dart.getFields(dart.global.Object.getPrototypeOf(flutter_embedded_page.FlutterEmbeddedView))));
+  var _ready = dart.privateName(flutter_embedded_page, "_ready");
+  var _owner = dart.privateName(flutter_embedded_page, "_owner");
+  var _open = dart.privateName(flutter_embedded_page, "_open");
+  var _as = dart.privateName(dart_rti, "_as");
+  flutter_embedded_page._FlutterEmbeddedViewState = class _FlutterEmbeddedViewState extends framework.State {
+    initState() {
+      super.initState();
+      this[_open]();
+      if (!this[_ready]) {
+        flutter_host.FlutterHost.whenReady(dart.fn(() => {
+          if (this.mounted) this.setState(dart.fn(() => this[_ready] = true, T.VoidTovoid()));
+        }, T.VoidTovoid()));
+      }
+    }
+    didUpdateComponent(oldComponent) {
+      T.FlutterEmbeddedView()[_as](oldComponent);
+      super.didUpdateComponent(oldComponent);
+      if (oldComponent.route !== this.component.route) this[_open]();
+    }
+    [_open]() {
+      this[_owner] = flutter_host.FlutterHost.open(this.component.route, {onClose: dart.fn(() => {
+          if (this.mounted) eduma_link.edumaBack(this.context);
+        }, T.VoidTovoid()), onNavigate: dart.fn(location => {
+          if (this.mounted) eduma_link.edumaNavigate(this.context, flutter_embedded_page.jasprLocationFor(location), {replace: true});
+        }, T.StringTovoid())});
+    }
+    dispose() {
+      flutter_host.FlutterHost.hide(this[_owner]);
+      super.dispose();
+    }
+    build(context) {
+      let t$362, t$361, t$361$, t$362$, t$361$0;
+      t$361$0 = "eduma-flutter-embedded";
+      t$362$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", this.component.title, "aria-busy", dart.strSafe(!this[_ready])]);
+      return new html.main_.new((() => {
+        let t$360 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+        if (!this[_ready]) t$360.push((t$361$ = "eduma-flutter-embedded__loading", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$361 = "eduma-flutter-embedded__spinner", t$362 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$361, attributes: t$362})), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Opening " + this.component.title + "…")]))]), {classes: t$361$})));
+        return t$360;
+      })(), {classes: t$361$0, attributes: t$362$});
+    }
+    static ['_#new#tearOff']() {
+      return new flutter_embedded_page._FlutterEmbeddedViewState.new(T._FlutterEmbeddedViewState());
+    }
+  };
+  (flutter_embedded_page._FlutterEmbeddedViewState.new = function(_ti) {
+    this.$ti = this.$ti || _ti || dart.getReifiedType(this);
+    this[_ready] = flutter_host.FlutterHost.isReady;
+    this[_owner] = null;
+    dart.global.Object.getPrototypeOf(flutter_embedded_page._FlutterEmbeddedViewState).new.call(this, null);
+    ;
+  }).prototype = flutter_embedded_page._FlutterEmbeddedViewState.prototype;
+  dart.lazyFn(flutter_embedded_page._FlutterEmbeddedViewState['_#new#tearOff'], () => T.VoidTo_FlutterEmbeddedViewState());
+  dart.addRtiResources(flutter_embedded_page._FlutterEmbeddedViewState, ["eduma_web__core__presentation__flutter_embedded_page|_FlutterEmbeddedViewState"]);
+  dart.setMethodSignature(flutter_embedded_page._FlutterEmbeddedViewState, () => dart.global.Object.setPrototypeOf({
+    [_open]: _ti => T.VoidTovoid(),
+    build: _ti => T.BuildContextToComponent()
+  }, dart.getMethods(dart.global.Object.getPrototypeOf(flutter_embedded_page._FlutterEmbeddedViewState))));
+  dart.setMethodsImmediateTargetSignature(flutter_embedded_page._FlutterEmbeddedViewState, () => dart.global.Object.setPrototypeOf({
+    initState: "package:eduma_web/core/presentation/flutter_embedded_page.dart:_FlutterEmbeddedViewState",
+    didUpdateComponent: "package:eduma_web/core/presentation/flutter_embedded_page.dart:_FlutterEmbeddedViewState",
+    [_open]: "package:eduma_web/core/presentation/flutter_embedded_page.dart:_FlutterEmbeddedViewState",
+    dispose: "package:eduma_web/core/presentation/flutter_embedded_page.dart:_FlutterEmbeddedViewState",
+    build: "package:eduma_web/core/presentation/flutter_embedded_page.dart:_FlutterEmbeddedViewState"
+  }, dart.getMethodsImmediateTargets(dart.global.Object.getPrototypeOf(flutter_embedded_page._FlutterEmbeddedViewState))));
+  dart.setLibraryUri(flutter_embedded_page._FlutterEmbeddedViewState, I[0]);
+  dart.setFieldSignature(flutter_embedded_page._FlutterEmbeddedViewState, () => dart.global.Object.setPrototypeOf({
+    [_ready]: {
+      type: _ti => T.bool(),
+      isConst: false,
+      isFinal: false,
+      libraryUri: I[1]
+    },
+    [_owner]: {
+      type: _ti => T.intN(),
+      isConst: false,
+      isFinal: false,
+      libraryUri: I[1]
+    }
+  }, dart.getFields(dart.global.Object.getPrototypeOf(flutter_embedded_page._FlutterEmbeddedViewState))));
+  flutter_embedded_page.jasprLocationFor = function jasprLocationFor(flutterLocation) {
+    let uri = core.Uri.tryParse(flutterLocation);
+    if (uri == null) return "/main";
+    return flutter_embedded_page._jasprPaths.contains(uri.path) ? dart.toString(uri) : "/main";
+  };
+  dart.lazyFn(flutter_embedded_page.jasprLocationFor, () => T.StringToString());
+  flutter_embedded_page.openAiChatOverlay = function openAiChatOverlay(context, opts) {
+    let onClosed = opts && 'onClosed' in opts ? opts.onClosed : null;
+    flutter_host.FlutterHost.open("/assistantNewChat", {onClose: dart.fn(() => {
+        let t$361;
+        flutter_host.FlutterHost.hide();
+        t$361 = onClosed;
+        t$361 == null ? null : t$361();
+      }, T.VoidTovoid()), onNavigate: dart.fn(location => {
+        flutter_host.FlutterHost.hide();
+        eduma_link.edumaNavigate(context, flutter_embedded_page.jasprLocationFor(location));
+      }, T.StringTovoid())});
+  };
+  dart.lazyFn(flutter_embedded_page.openAiChatOverlay, () => T.BuildContext__Tovoid());
   flutter_embedded_page.flutterEmbeddedPage = function flutterEmbeddedPage(opts) {
-    let t$363, t$362, t$361, t$360, t$360$;
     let title = opts && 'title' in opts ? opts.title : null;
     let route = opts && 'route' in opts ? opts.route : null;
-    t$360$ = "eduma-flutter-embedded";
-    return new html.main_.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$360 = flutter_embedded_page.flutterEmbeddedRouteUrl(route), t$361 = "eduma-flutter-embedded__frame", t$362 = html.MediaLoading.eager, t$363 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["title", title]), new html.iframe.new(C[0] || CT.C0, {src: t$360, classes: t$361, loading: t$362, attributes: t$363}))]), {classes: t$360$});
+    return new flutter_embedded_page.FlutterEmbeddedView.new({title: title, route: route});
   };
   dart.lazyFn(flutter_embedded_page.flutterEmbeddedPage, () => T.__ToComponent());
+  dart.defineLazy(flutter_embedded_page, {
+    /*flutter_embedded_page._jasprPaths*/get _jasprPaths() {
+      return C[0] || CT.C0;
+    }
+  });
   (function() {
   }).prototype = flutter_embedded_page;
   dart.moduleConstCaches.set("packages/eduma_web/core/presentation/flutter_embedded_page", C);
-  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]}}'));
+  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"eduma_web__core__presentation__flutter_embedded_page|_FlutterEmbeddedViewState":{"State.T":"eduma_web__core__presentation__flutter_embedded_page|FlutterEmbeddedView","jaspr__src__framework__framework|State":["eduma_web__core__presentation__flutter_embedded_page|FlutterEmbeddedView"]},"jaspr__src__framework__framework|State":{"State.T":"1"},"eduma_web__core__presentation__flutter_embedded_page|FlutterEmbeddedView":{"jaspr__src__framework__framework|StatefulComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatefulComponent":{"jaspr__src__framework__framework|Component":[]},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"core|int":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|num":{"Comparable.T":"core|num","core|Comparable":["core|num"]}}'));
   dart.trackLibraries("packages/eduma_web/core/presentation/flutter_embedded_page", {
     "package:eduma_web/core/presentation/flutter_embedded_page.dart": flutter_embedded_page
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["flutter_embedded_page.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;mFAGsC;AAAU,UAAA,AAG9C,sBAFM,wCACW,kEAAC,cAAc,KAAK;EAC3B;;;QAYM,OADH,OADA,OADJ,OAHA;QAHO;QACA;AACZ,aACK;UADL,oBAEJ,2DAES,8CAAwB,KAAK,WACzB,yCACA,iCACG,iEAAC,SAAS,KAAK,IAJ7B,yCACO,gBACI,gBACA,mBACG,sBANP;EAUV","file":"flutter_embedded_page.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["flutter_embedded_page.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAwCe;;;;;;IACA;;;;;;;;;;;;;AAG+B;IAA2B;;;QAN9B;QAAqB;QAAa;AAAlC,wBAAK;AAAgB,wBAAK;AAA7D,sGAAqE,GAAG;;EAAE;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAexE;AACN;AACA,WAAK;AACS,2CAAU;AACpB,cAAI,cAAS,cAAS,cAAM,eAAS;;;IAG3C;uBAGsD;;AAC9C,+BAAmB,YAAY;AACrC,UAAI,AAAa,YAAD,WAAU,AAAU,sBAAO;IAC7C;;AAGE,qBAAqB,8BACnB,AAAU,gCACD;AACP,cAAI,cAAS,qBAAU;wCAEb,QAAC;AACX,cAAI,cAAS,yBAAc,cAAS,uCAAiB,QAAQ,aAAY;;IAG/E;;AAIc,oCAAK;AACX;IACR;UAG6B;UAMwC,OAA/C,OADH,QAHL,QADH;AAD8B,gBAC9B;eACG,iEAAC,cAAc,AAAU,sBAAO,aAAgB,cAAC;YAFtB,oBAGvC;;AACE,aAAK,cADP,AAEiB,qBAAA,mCAAb,iBAAgD,2DAChC,2CAA+C,iEAAC,eAAe,UAA7E,kBAAsF,gEAAxE,mBAA+C,UAC7D,kBAAK,kDAAC,sBAAM,aAAW,AAAU,uBAAM,qBAF5B;cAFjB;sBAFS,qBACG;IAQb;;;;;;;AAjDI,mBAAqB;AACrB;;;EAiDP;;;;;;;;;;;;;;;;;;;;;;;;;;;;;qEAzE+B;AACvB,cAAU,kBAAS,eAAe;AACxC,QAAI,AAAI,GAAD,UAAU,MAAO;AACxB,UAAO,AAAY,4CAAS,AAAI,GAAD,SAAa,cAAJ,GAAG,IAAc;EAC3D;;uEA0EoC;QAAwB;AAC9C,kCACV,+BACS;YAEP;AADY;AACZ,wBAAQ;wBAAR,OAAA,AAAU;sCAEA,QAAC;AACC;AACZ,iCAAc,OAAO,EAAE,uCAAiB,QAAQ;;EAGtD;;;QAG+C;QAAuB;AAClE,qEAA2B,KAAK,SAAS,KAAK;EAAC;;;MA/G7C,iCAAW","file":"flutter_embedded_page.ddc.js"}');
   // Exports:
   return {
     eduma_web__core__presentation__flutter_embedded_page: flutter_embedded_page

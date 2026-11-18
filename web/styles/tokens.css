@@ -91,13 +91,16 @@
   --eduma-shadow-sm: var(--eduma-card-shadow);
   --eduma-shadow-md: var(--eduma-card-shadow-raised);
 
-  /* Blur & barrier tokens matching AppBarrier, AppGlassSurface & AppSheetGlass in ../eduma. */
-  --eduma-barrier-bg: rgb(0 0 0 / 16%);
-  --eduma-barrier-blur: blur(3px);
-  --eduma-glass-dialog-bg: rgb(239 238 244 / 80%);
-  --eduma-glass-dialog-blur: blur(12px);
+  /* Blur & barrier tokens matching AppBarrier, AppGlassSurface & AppSheetGlass in ../eduma.
+     The source turns blur off on web (AppBlur), so the barrier is a slightly deeper
+     dim with no page blur, and popup glass is near-opaque. */
+  --eduma-barrier-bg: rgb(0 0 0 / 24%);
+  --eduma-barrier-blur: none;
+  --eduma-glass-dialog-bg: rgb(239 238 244 / 97%);
+  --eduma-glass-dialog-blur: none;
   --eduma-glass-dialog-border: 0.5px solid rgb(16 24 40 / 8%);
-  --eduma-glass-dialog-shadow: 0 12px 32px rgb(0 0 0 / 14%);
+  --eduma-glass-dialog-shadow: 0 12px 32px rgb(0 0 0 / 18%);
+  --eduma-grabber: rgb(16 24 40 / 18%);
   --eduma-glass-sheet-blur: blur(4px);
 
   font-family: "Raleway", sans-serif;
@@ -132,8 +135,9 @@
   --eduma-error: #ff4d4f;
   --eduma-danger: #ff4d4f;
   --eduma-success: #52c41a;
-  --eduma-barrier-bg: rgb(0 0 0 / 32%);
-  --eduma-glass-dialog-bg: rgb(19 19 19 / 84%);
+  --eduma-barrier-bg: rgb(0 0 0 / 42%);
+  --eduma-glass-dialog-bg: rgb(19 19 19 / 97%);
+  --eduma-grabber: rgb(255 255 255 / 22%);
   --eduma-glass-dialog-border: 0.5px solid #2e2e34;
   --eduma-glass-dialog-shadow: 0 12px 32px rgb(0 0 0 / 30%);
 }
@@ -164,8 +168,9 @@
     --eduma-error: #ff4d4f;
     --eduma-danger: #ff4d4f;
     --eduma-success: #52c41a;
-    --eduma-barrier-bg: rgb(0 0 0 / 32%);
-    --eduma-glass-dialog-bg: rgb(19 19 19 / 84%);
+    --eduma-barrier-bg: rgb(0 0 0 / 42%);
+    --eduma-glass-dialog-bg: rgb(19 19 19 / 97%);
+    --eduma-grabber: rgb(255 255 255 / 22%);
     --eduma-glass-dialog-border: 0.5px solid #2e2e34;
     --eduma-glass-dialog-shadow: 0 12px 32px rgb(0 0 0 / 30%);
   }
@@ -190,6 +195,8 @@ body {
   background: var(--eduma-bg);
   color: var(--eduma-text);
   font-family: "Raleway", sans-serif;
+  /* Source AppTypography: every Text inherits bodyMedium (w500), never lighter. */
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

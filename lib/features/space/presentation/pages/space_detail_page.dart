@@ -7,6 +7,8 @@ import 'package:web/web.dart' as web;
 
 import '../../../../core/data/eduma_memory_cache.dart';
 import '../../../../core/presentation/desktop_scaffolds.dart';
+import '../../../../core/presentation/eduma_confirm_dialog.dart';
+import '../../../../core/presentation/eduma_link.dart';
 import '../../../../core/presentation/eduma_icons.dart';
 import '../../../auth/data/auth_api.dart';
 import '../../../calendar/presentation/widgets/calendar_create_dialog.dart';
@@ -14,12 +16,14 @@ import '../../../main/data/main_api.dart';
 import '../../../main/data/main_preferences.dart';
 import '../../../main/data/main_space.dart';
 import '../../../main/presentation/widgets/main_home_notices.dart';
+import '../../../main/presentation/widgets/main_home_space_context_menu.dart';
 import '../../data/space_detail_models.dart';
 import '../../logic/space_detail_actions.dart';
 import '../widgets/space_detail_dialogs.dart';
 import '../widgets/space_detail_hero.dart';
 import '../widgets/space_detail_pages_tab.dart';
 import '../widgets/space_detail_tabs_content.dart';
+import '../widgets/space_options_dialog.dart';
 
 class SpaceDetailPage extends StatefulComponent {
   const SpaceDetailPage({required this.spaceId, super.key});
@@ -62,6 +66,10 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
   bool _inviteDialogOpen = false;
   bool _membersModalOpen = false;
   bool _archivedModalOpen = false;
+  bool _optionsOpen = false;
+  bool _reportOpen = false;
+  bool _removeOpen = false;
+  bool _refreshing = false;
   bool _pageGridView = false;
   bool _assetGridView = true;
   bool _pageViewTouched = false;
@@ -141,6 +149,44 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
     _members = cached.members;
     _loading = false;
     return true;
+  }
+
+  Future<void> _refresh() async {
+    if (_refreshing) return;
+    setState(() => _refreshing = true);
+    await _load(keepCachedContent: true);
+    if (mounted) setState(() => _refreshing = false);
+  }
+
+  Future<void> _copySpaceLink(SpaceDetailData space) async {
+    try {
+      final link = Uri.base.resolve('/spaces/${Uri.encodeComponent(space.id)}').toString();
+      await web.window.navigator.clipboard.writeText(link).toDart;
+      if (!mounted) return;
+      setState(() {
+        _notice = 'Space link copied';
+        _noticeIsError = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _notice = 'Could not copy the space link.';
+        _noticeIsError = true;
+      });
+    }
+  }
+
+  Future<void> _leaveOrDelete(SpaceDetailData space, {required bool isOwner, required bool deleteMedia}) async {
+    final session = _session ?? await SpaceDetailActions.restoreSession();
+    if (session == null) {
+      throw const AuthApiException(message: 'Your session has expired. Please sign in again.', statusCode: 401);
+    }
+    await SpaceDetailActions.leaveOrDeleteSpace(
+      space.id,
+      userId: session.userId,
+      deleteSpace: isOwner,
+      deleteMedia: deleteMedia,
+    );
   }
 
   Future<void> _load({bool keepCachedContent = false}) async {
@@ -297,9 +343,7 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
 
   Future<void> _copyPageLink(SpacePage page) async {
     try {
-      await web.window.navigator.clipboard
-          .writeText(Uri.base.resolve(spacePageRoutePath(page)).toString())
-          .toDart;
+      await web.window.navigator.clipboard.writeText(Uri.base.resolve(spacePageRoutePath(page)).toString()).toDart;
       if (!mounted) return;
       setState(() {
         _notice = 'Copied link to “${page.title}”';
@@ -508,7 +552,10 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
       assetCount: _assets.length,
       eventCount: _events.length,
       pinning: _pinning,
+      refreshing: _refreshing,
       onTogglePin: () => unawaited(_togglePin()),
+      onRefresh: () => unawaited(_refresh()),
+      onOpenOptions: () => setState(() => _optionsOpen = true),
       onOpenEdit: () => setState(() => _editDialogOpen = true),
       onOpenInvite: () => setState(() => _inviteDialogOpen = true),
       onOpenMembers: () => setState(() => _membersModalOpen = true),
@@ -654,6 +701,43 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
 
     return div(classes: 'space-detail', [
       desktopSplitScaffold(hero: hero, body: rightPane),
+      SpaceOptionsDialog(
+        open: _optionsOpen,
+        space: space,
+        permissions: permissions,
+        onClose: () => setState(() => _optionsOpen = false),
+        onInvite: () => setState(() => _inviteDialogOpen = true),
+        onMembers: () => setState(() => _membersModalOpen = true),
+        onEdit: () => setState(() => _editDialogOpen = true),
+        onReport: () => setState(() => _reportOpen = true),
+        onLeaveOrDelete: () => setState(() => _removeOpen = true),
+        onCopyLink: () => unawaited(_copySpaceLink(space)),
+      ),
+      if (_reportOpen)
+        SpaceReportDialog(
+          spaceId: space.id,
+          spaceTitle: space.title,
+          onClose: () => setState(() => _reportOpen = false),
+        ),
+      EdumaConfirmDialog(
+        id: 'space-remove-dialog',
+        open: _removeOpen,
+        title: permissions.isOwner ? 'Delete space?' : 'Leave space?',
+        message: permissions.isOwner
+            ? '“${space.title}” and everything in it will be deleted for all members. This can’t be undone.'
+            : 'You’ll lose access to “${space.title}” and its shared materials until you’re invited again.',
+        confirmLabel: permissions.isOwner ? 'Delete' : 'Leave',
+        destructive: true,
+        optionLabel: permissions.isOwner ? 'Delete all files in this space' : 'Also delete my files',
+        optionSubtitle: permissions.isOwner
+            ? 'Files stored for this space and copies on this device'
+            : 'Files you added to this space and copies saved on this device',
+        optionDefault: permissions.isOwner,
+        onConfirmWithOption: (deleteMedia) =>
+            _leaveOrDelete(space, isOwner: permissions.isOwner, deleteMedia: deleteMedia),
+        onConfirmed: () => edumaNavigate(context, '/main'),
+        onClose: () => setState(() => _removeOpen = false),
+      ),
       SpaceEditDialog(
         open: _editDialogOpen,
         space: space,

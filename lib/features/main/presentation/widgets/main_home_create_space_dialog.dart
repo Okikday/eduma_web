@@ -102,6 +102,7 @@ class _MainHomeCreateSpaceDialogState extends State<MainHomeCreateSpaceDialog> {
     id: _dialogId,
     classes: 'eduma-modal',
     attributes: {
+      ...WebDialogHelper.openAttr(component.open),
       'aria-labelledby': 'create-space-title',
       'closedby': 'any',
     },
@@ -177,13 +178,6 @@ class _MainHomeCreateSpaceDialogState extends State<MainHomeCreateSpaceDialog> {
               ),
           ]),
           div(classes: 'eduma-modal__footer', [
-            button(
-              classes: 'eduma-modal__btn',
-              type: ButtonType.button,
-              disabled: _submitting,
-              onClick: component.onClose,
-              [.text('Cancel')],
-            ),
             button(
               classes: 'eduma-modal__btn eduma-modal__btn--primary',
               type: ButtonType.submit,

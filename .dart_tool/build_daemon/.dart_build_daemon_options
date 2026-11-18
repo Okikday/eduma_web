@@ -1,0 +1,6 @@
+--delete-conflicting-outputs
+--define=build_web_compilers:ddc=generate-full-dill=true
+--define=build_web_compilers:entrypoint=compiler=dartdevc
+--define=build_web_compilers:ddc=environment={"jaspr.flags.verbose":false,"EDUMA_GOOGLE_WEB_CLIENT_ID":"1059598631043-u5oqku1rvnjjcd6ojb3lv1utgan0vurk.apps.googleusercontent.com"}
+--build-mode=BuildMode.Auto
+--force-aot

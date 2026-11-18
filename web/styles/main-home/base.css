@@ -23,7 +23,7 @@
 
 .main-home__header {
   position: sticky;
-  z-index: 4;
+  z-index: 20;
   top: 0;
   display: flex;
   min-height: 64px;
@@ -172,3 +172,11 @@
   display: none;
 }
 
+
+/* Everything that scrolls under the sticky header stacks in its own context,
+   so raised controls inside it (the search filter button, card menus) can
+   never paint over the header. */
+.main-home__body {
+  position: relative;
+  isolation: isolate;
+}

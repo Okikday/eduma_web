@@ -133,9 +133,13 @@ Component mainHomeSessionErrorState(
       onClick: onRetry,
       [mainHomeIcon(.refresh), .text('Try again')],
     ),
-    edumaLink(classes: 'main-home__secondary-link', to: '/sign-in', children: [
-      .text('Sign in again'),
-    ]),
+    edumaLink(
+      classes: 'main-home__secondary-link',
+      to: '/sign-in',
+      children: [
+        .text('Sign in again'),
+      ],
+    ),
   ],
 );
 
@@ -144,8 +148,12 @@ Component mainHomeSignInPromptState() => div(
   [
     h1([.text('Sign in to Eduma')]),
     p([.text('Your spaces and learning dashboard appear here after sign-in.')]),
-    edumaLink(classes: 'main-home__primary-link', to: '/sign-in', children: [
-      .text('Sign in'),
-    ]),
+    edumaLink(
+      classes: 'main-home__primary-link',
+      to: '/sign-in',
+      children: [
+        .text('Sign in'),
+      ],
+    ),
   ],
 );

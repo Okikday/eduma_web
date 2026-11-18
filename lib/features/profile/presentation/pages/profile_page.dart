@@ -5,6 +5,7 @@ import 'package:jaspr/jaspr.dart';
 
 import '../../../../core/data/eduma_memory_cache.dart';
 import '../../../../core/presentation/desktop_scaffolds.dart';
+import '../../../../core/presentation/eduma_confirm_dialog.dart';
 import '../../../../core/presentation/eduma_icons.dart';
 import '../../../../core/presentation/theme_controller.dart';
 import '../../../auth/logic/auth_actions.dart';
@@ -56,6 +57,8 @@ class _ProfilePageState extends State<ProfilePage> {
   bool _aboutYouOpen = false;
   bool _passwordOpen = false;
   bool _deleteAccountOpen = false;
+  bool _confirmSignOutOpen = false;
+  bool _confirmSignOutAllOpen = false;
   bool _signingOut = false;
   String? _notice;
   bool _noticeIsError = false;
@@ -187,21 +190,18 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
-  Future<void> _signOut() async {
+  // Both sign-outs confirm first, like `ProfileActions` in ../eduma.
+  void _signOut() {
     if (_signingOut) return;
-    setState(() => _signingOut = true);
-    await AuthActions.signOut();
-    if (!mounted) return;
-    setState(() {
-      _session = null;
-      _signingOut = false;
-    });
+    setState(() => _confirmSignOutOpen = true);
   }
 
-  Future<void> _signOutAllDevices() async {
+  void _signOutAllDevices() {
     if (_signingOut) return;
-    setState(() => _signingOut = true);
-    await ProfileActions.signOutAllDevices();
+    setState(() => _confirmSignOutAllOpen = true);
+  }
+
+  void _signedOut() {
     if (!mounted) return;
     setState(() {
       _session = null;
@@ -244,8 +244,8 @@ class _ProfilePageState extends State<ProfilePage> {
       onEditProfile: () => setState(() => _editOpen = true),
       onEditAboutYou: () => setState(() => _aboutYouOpen = true),
       onChangePassword: () => setState(() => _passwordOpen = true),
-      onSignOut: () => unawaited(_signOut()),
-      onSignOutAll: () => unawaited(_signOutAllDevices()),
+      onSignOut: _signOut,
+      onSignOutAll: _signOutAllDevices,
       onDeleteAccount: () => setState(() => _deleteAccountOpen = true),
       onToggleGridView: (val) => unawaited(_setGridView(val)),
       onCycleSort: () => unawaited(_cycleSort()),
@@ -350,11 +350,12 @@ class _ProfilePageState extends State<ProfilePage> {
         desktopSplitScaffold(
           classes: 'eduma-profile-split',
           hero: profileDesktopHero(
+            onRefresh: () => unawaited(_load()),
             session: session,
             stats: _stats,
             onEditProfile: () => setState(() => _editOpen = true),
             onPhotoAction: () => _showNotice('Avatar upload opens in the mobile & desktop Eduma app.'),
-            onSignOut: () => unawaited(_signOut()),
+            onSignOut: _signOut,
           ),
           body: div(classes: 'eduma-profile-panel', [
             div(classes: 'eduma-profile-panel__sticky', [
@@ -395,6 +396,7 @@ class _ProfilePageState extends State<ProfilePage> {
         open: _editOpen,
         currentName: session.name,
         currentUsername: username,
+        email: email,
         onClose: () => setState(() => _editOpen = false),
         onSaved: (updated) => setState(() {
           _session = EdumaSession(
@@ -430,6 +432,30 @@ class _ProfilePageState extends State<ProfilePage> {
           _notice = 'Academic profile updated.';
           _noticeIsError = false;
         }),
+      ),
+      EdumaConfirmDialog(
+        id: 'eduma-sign-out-dialog',
+        open: _confirmSignOutOpen,
+        title: 'Log Out',
+        message: 'Are you sure you want to log out of Eduma?',
+        confirmLabel: 'Log Out',
+        destructive: true,
+        onConfirm: AuthActions.signOut,
+        onConfirmed: _signedOut,
+        onClose: () => setState(() => _confirmSignOutOpen = false),
+      ),
+      EdumaConfirmDialog(
+        id: 'eduma-sign-out-all-dialog',
+        open: _confirmSignOutAllOpen,
+        title: 'Sign out of all devices?',
+        message:
+            'This ends every Eduma session: your phones, computers, the web and the WhatsApp bot, this device included. '
+            'You can sign back in right after.',
+        confirmLabel: 'End all session',
+        destructive: true,
+        onConfirm: ProfileActions.signOutAllDevices,
+        onConfirmed: _signedOut,
+        onClose: () => setState(() => _confirmSignOutAllOpen = false),
       ),
       ProfileDeleteAccountDialog(
         open: _deleteAccountOpen,

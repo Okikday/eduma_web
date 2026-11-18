@@ -74,9 +74,7 @@ class MainSpaceJoinResult {
     final id = '${map['spaceId'] ?? parsedSpace?.id ?? ''}'.trim();
     final status = '${map['status'] ?? ''}'.trim().toLowerCase();
     final request = map['request'];
-    final reqId =
-        '${map['requestId'] ?? (request is Map ? (request['_id'] ?? request['id'] ?? '') : '')}'
-            .trim();
+    final reqId = '${map['requestId'] ?? (request is Map ? (request['_id'] ?? request['id'] ?? '') : '')}'.trim();
     return MainSpaceJoinResult(
       spaceId: id.isEmpty ? null : id,
       pending: status == 'pending' || map['pending'] == true,

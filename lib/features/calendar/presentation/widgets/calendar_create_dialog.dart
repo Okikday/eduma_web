@@ -181,6 +181,7 @@ class _CalendarCreateDialogState extends State<CalendarCreateDialog> {
     id: _dialogId,
     classes: 'eduma-modal',
     attributes: {
+      ...WebDialogHelper.openAttr(component.open),
       'closedby': 'any',
       'aria-labelledby': 'eduma-create-event-title',
     },
@@ -306,8 +307,7 @@ class _CalendarCreateDialogState extends State<CalendarCreateDialog> {
                   onChange: (values) => setState(() => _spaceId = values.isEmpty ? '' : values.first),
                   [
                     option(value: '', selected: _spaceId.isEmpty, [.text('Personal / None')]),
-                    for (final s in _spaces)
-                      option(value: s.id, selected: _spaceId == s.id, [.text(s.title)]),
+                    for (final s in _spaces) option(value: s.id, selected: _spaceId == s.id, [.text(s.title)]),
                   ],
                 ),
               ]),
@@ -354,9 +354,7 @@ class _CalendarCreateDialogState extends State<CalendarCreateDialog> {
               disabled: _submitting,
               [
                 .text(
-                  _submitting
-                      ? 'Saving…'
-                      : (component.editingEvent != null ? 'Save changes' : 'Save event'),
+                  _submitting ? 'Saving…' : (component.editingEvent != null ? 'Save changes' : 'Save event'),
                 ),
               ],
             ),

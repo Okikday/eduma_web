@@ -350,7 +350,12 @@ class EdumaAuthApi {
       return null;
     }
 
-    final storedProfile = _asStringMap(await box.get('profile'));
+    final rawProfile = await box.get('profile');
+    final storedProfile = _asStringMap(rawProfile);
+    // Older builds stored a raw map, which the embedded source app can't read.
+    if (rawProfile is Map && storedProfile != null) {
+      await box.put('profile', jsonEncode(storedProfile));
+    }
     final refreshToken = '${await box.get('refreshToken') ?? ''}';
     try {
       final payload = await _post(
@@ -597,7 +602,9 @@ class EdumaAuthApi {
     _accessToken = session.accessToken;
     _currentSession = session;
     await box.putAll({
-      'profile': session.user,
+      // Same shape as the source app (`UserData.toJson()`: a JSON string), so
+      // the embedded Flutter app can read the shared box.
+      'profile': jsonEncode(session.user),
       'userId': session.userId,
       'userRole': session.role,
       'isUserSignedIn': true,
@@ -628,7 +635,7 @@ class EdumaAuthApi {
     }
     final box = await _appBox();
     await box.putAll({
-      'profile': user,
+      'profile': jsonEncode(user),
       'userId': _userId(user),
       'userRole': '${user['role'] ?? 'student'}',
     });
@@ -676,7 +683,18 @@ class EdumaAuthApi {
     }
   }
 
-  Map<String, dynamic>? _asStringMap(Object? value) => value is Map ? Map<String, dynamic>.from(value) : null;
+  /// Reads a stored map: a JSON string (the source app's format) or, from
+  /// older builds of this app, a raw map.
+  Map<String, dynamic>? _asStringMap(Object? value) {
+    if (value is Map) return Map<String, dynamic>.from(value);
+    if (value is String && value.trim().startsWith('{')) {
+      try {
+        final decoded = jsonDecode(value);
+        if (decoded is Map) return Map<String, dynamic>.from(decoded);
+      } catch (_) {}
+    }
+    return null;
+  }
 
   static String _userId(Map<String, dynamic> user) => '${user['_id'] ?? user['id'] ?? ''}';
 }

@@ -2,7 +2,7 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/features/profile/presentation/pages/profile_page
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/logic/auth_actions', 'packages/eduma_web/features/profile/data/profile_models', 'packages/eduma_web/features/main/data/main_preferences', 'packages/eduma_web/features/main/data/main_space', 'packages/eduma_web/features/profile/presentation/widgets/profile_settings_groups', 'packages/eduma_web/core/presentation/theme_controller', 'packages/eduma_web/core/data/eduma_memory_cache', 'packages/eduma_web/features/profile/logic/profile_actions', 'packages/eduma_web/features/main/logic/main_actions', 'packages/eduma_web/core/presentation/eduma_icons', 'packages/eduma_web/features/profile/presentation/widgets/profile_hero_widgets', 'packages/eduma_web/core/presentation/desktop_scaffolds', 'packages/eduma_web/features/main/presentation/widgets/app_tab_shell', 'packages/eduma_web/features/main/presentation/widgets/main_home_notices', 'packages/eduma_web/features/profile/presentation/widgets/profile_edit_dialog', 'packages/eduma_web/features/profile/presentation/widgets/profile_password_dialog', 'packages/eduma_web/features/profile/presentation/widgets/profile_account_dialogs'], (function load__packages__eduma_web__features__profile__presentation__pages__profile_page(dart_sdk, packages__jaspr__client, packages__eduma_web__features__auth__logic__auth_actions, packages__eduma_web__features__profile__data__profile_models, packages__eduma_web__features__main__data__main_preferences, packages__eduma_web__features__main__data__main_space, packages__eduma_web__features__profile__presentation__widgets__profile_settings_groups, packages__eduma_web__core__presentation__theme_controller, packages__eduma_web__core__data__eduma_memory_cache, packages__eduma_web__features__profile__logic__profile_actions, packages__eduma_web__features__main__logic__main_actions, packages__eduma_web__core__presentation__eduma_icons, packages__eduma_web__features__profile__presentation__widgets__profile_hero_widgets, packages__eduma_web__core__presentation__desktop_scaffolds, packages__eduma_web__features__main__presentation__widgets__app_tab_shell, packages__eduma_web__features__main__presentation__widgets__main_home_notices, packages__eduma_web__features__profile__presentation__widgets__profile_edit_dialog, packages__eduma_web__features__profile__presentation__widgets__profile_password_dialog, packages__eduma_web__features__profile__presentation__widgets__profile_account_dialogs) {
+define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/logic/auth_actions', 'packages/eduma_web/features/profile/data/profile_models', 'packages/eduma_web/features/main/data/main_preferences', 'packages/eduma_web/features/main/data/main_space', 'packages/eduma_web/features/profile/presentation/widgets/profile_settings_groups', 'packages/eduma_web/core/presentation/theme_controller', 'packages/eduma_web/core/data/eduma_memory_cache', 'packages/eduma_web/features/profile/logic/profile_actions', 'packages/eduma_web/features/main/logic/main_actions', 'packages/eduma_web/core/presentation/eduma_icons', 'packages/eduma_web/features/profile/presentation/widgets/profile_hero_widgets', 'packages/eduma_web/core/presentation/desktop_scaffolds', 'packages/eduma_web/features/main/presentation/widgets/app_tab_shell', 'packages/eduma_web/features/main/presentation/widgets/main_home_notices', 'packages/eduma_web/features/profile/presentation/widgets/profile_edit_dialog', 'packages/eduma_web/features/profile/presentation/widgets/profile_password_dialog', 'packages/eduma_web/features/profile/presentation/widgets/profile_account_dialogs', 'packages/eduma_web/core/presentation/eduma_confirm_dialog'], (function load__packages__eduma_web__features__profile__presentation__pages__profile_page(dart_sdk, packages__jaspr__client, packages__eduma_web__features__auth__logic__auth_actions, packages__eduma_web__features__profile__data__profile_models, packages__eduma_web__features__main__data__main_preferences, packages__eduma_web__features__main__data__main_space, packages__eduma_web__features__profile__presentation__widgets__profile_settings_groups, packages__eduma_web__core__presentation__theme_controller, packages__eduma_web__core__data__eduma_memory_cache, packages__eduma_web__features__profile__logic__profile_actions, packages__eduma_web__features__main__logic__main_actions, packages__eduma_web__core__presentation__eduma_icons, packages__eduma_web__features__profile__presentation__widgets__profile_hero_widgets, packages__eduma_web__core__presentation__desktop_scaffolds, packages__eduma_web__features__main__presentation__widgets__app_tab_shell, packages__eduma_web__features__main__presentation__widgets__main_home_notices, packages__eduma_web__features__profile__presentation__widgets__profile_edit_dialog, packages__eduma_web__features__profile__presentation__widgets__profile_password_dialog, packages__eduma_web__features__profile__presentation__widgets__profile_account_dialogs, packages__eduma_web__core__presentation__eduma_confirm_dialog) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
@@ -30,6 +30,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
   const profile_edit_dialog = packages__eduma_web__features__profile__presentation__widgets__profile_edit_dialog.eduma_web__features__profile__presentation__widgets__profile_edit_dialog;
   const profile_password_dialog = packages__eduma_web__features__profile__presentation__widgets__profile_password_dialog.eduma_web__features__profile__presentation__widgets__profile_password_dialog;
   const profile_account_dialogs = packages__eduma_web__features__profile__presentation__widgets__profile_account_dialogs.eduma_web__features__profile__presentation__widgets__profile_account_dialogs;
+  const eduma_confirm_dialog = packages__eduma_web__core__presentation__eduma_confirm_dialog.eduma_web__core__presentation__eduma_confirm_dialog;
   var profile_page = Object.create(dart.library);
   var $_get = dartx._get;
   var $trim = dartx.trim;
@@ -144,9 +145,15 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
     },
     get C10() {
       return C[10] = dart.constList(T.Component(), []);
+    },
+    get C11() {
+      return C[11] = dart.staticTearoff(auth_actions.AuthActions, "package:eduma_web/features/auth/logic/auth_actions.dart:AuthActions", 'signOut');
+    },
+    get C12() {
+      return C[12] = dart.staticTearoff(profile_actions.ProfileActions, "package:eduma_web/features/profile/logic/profile_actions.dart:ProfileActions", 'signOutAllDevices');
     }
   });
-  var C = Array(11).fill(void 0);
+  var C = Array(13).fill(void 0);
   var I = [
     "package:eduma_web/features/profile/presentation/pages/profile_page.dart",
     "package:eduma_web/features/auth/data/auth_api.dart",
@@ -207,6 +214,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
   var _aboutYouOpen = dart.privateName(profile_page, "_aboutYouOpen");
   var _passwordOpen = dart.privateName(profile_page, "_passwordOpen");
   var _deleteAccountOpen = dart.privateName(profile_page, "_deleteAccountOpen");
+  var _confirmSignOutOpen = dart.privateName(profile_page, "_confirmSignOutOpen");
+  var _confirmSignOutAllOpen = dart.privateName(profile_page, "_confirmSignOutAllOpen");
   var _signingOut = dart.privateName(profile_page, "_signingOut");
   var _notice = dart.privateName(profile_page, "_notice");
   var _noticeIsError = dart.privateName(profile_page, "_noticeIsError");
@@ -220,6 +229,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
   var _updatePrivacy = dart.privateName(profile_page, "_updatePrivacy");
   var _signOut = dart.privateName(profile_page, "_signOut");
   var _signOutAllDevices = dart.privateName(profile_page, "_signOutAllDevices");
+  var _signedOut = dart.privateName(profile_page, "_signedOut");
   var _buildGroups = dart.privateName(profile_page, "_buildGroups");
   var _panelGroupsContent = dart.privateName(profile_page, "_panelGroupsContent");
   profile_page._ProfilePageState = class _ProfilePageState extends framework.State {
@@ -485,72 +495,19 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
       return async._asyncStartSync(t$36async_updatePrivacy, t$completer);
     }
     [_signOut]() {
-      let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue;
-      var t$36async_signOut = async._wrapJsFunctionForAsync((t$errorCode, t$result) => {
-        if (t$errorCode === 1) return async._asyncRethrow(t$result, t$completer);
-        while (true)
-          switch (t$goto) {
-            case 0:
-              // Function start
-              if (this[_signingOut]) {
-                // goto return
-                t$goto = 2;
-                break;
-              }
-              this.setState(dart.fn(() => this[_signingOut] = true, T.VoidTovoid()));
-              t$goto = 3;
-              return async._asyncAwait(auth_actions.AuthActions.signOut(), t$36async_signOut, t$completer);
-            case 3:
-              // returning from await.
-              if (!this.mounted) {
-                // goto return
-                t$goto = 2;
-                break;
-              }
-              this.setState(dart.fn(() => {
-                this[_session] = null;
-                this[_signingOut] = false;
-              }, T.VoidTovoid()));
-            case 2:
-              // return
-              return async._asyncReturn(t$returnValue, t$completer);
-          }
-      });
-      return async._asyncStartSync(t$36async_signOut, t$completer);
+      if (this[_signingOut]) return;
+      this.setState(dart.fn(() => this[_confirmSignOutOpen] = true, T.VoidTovoid()));
     }
     [_signOutAllDevices]() {
-      let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue;
-      var t$36async_signOutAllDevices = async._wrapJsFunctionForAsync((t$errorCode, t$result) => {
-        if (t$errorCode === 1) return async._asyncRethrow(t$result, t$completer);
-        while (true)
-          switch (t$goto) {
-            case 0:
-              // Function start
-              if (this[_signingOut]) {
-                // goto return
-                t$goto = 2;
-                break;
-              }
-              this.setState(dart.fn(() => this[_signingOut] = true, T.VoidTovoid()));
-              t$goto = 3;
-              return async._asyncAwait(profile_actions.ProfileActions.signOutAllDevices(), t$36async_signOutAllDevices, t$completer);
-            case 3:
-              // returning from await.
-              if (!this.mounted) {
-                // goto return
-                t$goto = 2;
-                break;
-              }
-              this.setState(dart.fn(() => {
-                this[_session] = null;
-                this[_signingOut] = false;
-              }, T.VoidTovoid()));
-            case 2:
-              // return
-              return async._asyncReturn(t$returnValue, t$completer);
-          }
-      });
-      return async._asyncStartSync(t$36async_signOutAllDevices, t$completer);
+      if (this[_signingOut]) return;
+      this.setState(dart.fn(() => this[_confirmSignOutAllOpen] = true, T.VoidTovoid()));
+    }
+    [_signedOut]() {
+      if (!this.mounted) return;
+      this.setState(dart.fn(() => {
+        this[_session] = null;
+        this[_signingOut] = false;
+      }, T.VoidTovoid()));
     }
     [_buildGroups](email) {
       let t$363, t$363$, t$363$0, t$363$1, t$363$2, t$363$3, t$363$4, t$363$5, t$363$6;
@@ -569,7 +526,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
         return t$363;
       })();
       let model = new profile_settings_groups.ProfileSettingsViewModel.new({email: email, aboutYou: aboutParts[$join](" · "), spaceGridView: this[_prefs].spaceGridView, spaceSort: this[_prefs].spaceSort, allowSpaceAdds: this[_allowSpaceAdds], showPresence: this[_showPresence], personalization: this[_personalization], aiAccess: this[_aiAccess], autoZoom: this[_autoZoom], elementSheet: this[_elementSheet], checklistProgress: this[_checklistProgress], autoApproveAi: this[_autoApproveAi], themeMode: this[_themeMode], signingOut: this[_signingOut]});
-      let actions = new profile_settings_groups.ProfileSettingsActions.new({onEditProfile: dart.fn(() => this.setState(dart.fn(() => this[_editOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onEditAboutYou: dart.fn(() => this.setState(dart.fn(() => this[_aboutYouOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onChangePassword: dart.fn(() => this.setState(dart.fn(() => this[_passwordOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onSignOut: dart.fn(() => async.unawaited(this[_signOut]()), T.VoidTovoid()), onSignOutAll: dart.fn(() => async.unawaited(this[_signOutAllDevices]()), T.VoidTovoid()), onDeleteAccount: dart.fn(() => this.setState(dart.fn(() => this[_deleteAccountOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onToggleGridView: dart.fn(val => async.unawaited(this[_setGridView](val)), T.boolTovoid()), onCycleSort: dart.fn(() => async.unawaited(this[_cycleSort]()), T.VoidTovoid()), onToggleAllowSpaceAdds: dart.fn(val => async.unawaited(this[_updatePrivacy]({allowSpaceAdds: val})), T.boolTovoid()), onToggleShowPresence: dart.fn(val => async.unawaited(this[_updatePrivacy]({showPresence: val})), T.boolTovoid()), onTogglePersonalization: dart.fn(val => async.unawaited(this[_updatePrivacy]({personalization: val})), T.boolTovoid()), onCycleAiAccess: dart.fn(() => {
+      let actions = new profile_settings_groups.ProfileSettingsActions.new({onEditProfile: dart.fn(() => this.setState(dart.fn(() => this[_editOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onEditAboutYou: dart.fn(() => this.setState(dart.fn(() => this[_aboutYouOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onChangePassword: dart.fn(() => this.setState(dart.fn(() => this[_passwordOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onSignOut: dart.tearoff(this, null, _signOut), onSignOutAll: dart.tearoff(this, null, _signOutAllDevices), onDeleteAccount: dart.fn(() => this.setState(dart.fn(() => this[_deleteAccountOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onToggleGridView: dart.fn(val => async.unawaited(this[_setGridView](val)), T.boolTovoid()), onCycleSort: dart.fn(() => async.unawaited(this[_cycleSort]()), T.VoidTovoid()), onToggleAllowSpaceAdds: dart.fn(val => async.unawaited(this[_updatePrivacy]({allowSpaceAdds: val})), T.boolTovoid()), onToggleShowPresence: dart.fn(val => async.unawaited(this[_updatePrivacy]({showPresence: val})), T.boolTovoid()), onTogglePersonalization: dart.fn(val => async.unawaited(this[_updatePrivacy]({personalization: val})), T.boolTovoid()), onCycleAiAccess: dart.fn(() => {
           let order = C[9] || CT.C9;
           let next = order[$_get]((order[$indexOf](this[_aiAccess]) + 1)[$modulo](order[$length]));
           async.unawaited(this[_updatePrivacy]({aiAccess: next}));
@@ -625,7 +582,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
           this[_searchQuery] = "";
         }, T.VoidTovoid())), T.VoidTovoid())});
       t$3610$0 = "eduma-profile-root";
-      return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$368$1 = "eduma-profile__desktop-only", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [desktop_scaffolds.desktopSplitScaffold({classes: "eduma-profile-split", hero: profile_hero_widgets.profileDesktopHero({session: session, stats: this[_stats], onEditProfile: dart.fn(() => this.setState(dart.fn(() => this[_editOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onPhotoAction: dart.fn(() => this[_showNotice]("Avatar upload opens in the mobile & desktop Eduma app."), T.VoidTovoid()), onSignOut: dart.fn(() => async.unawaited(this[_signOut]()), T.VoidTovoid())}), body: (t$368$0 = "eduma-profile-panel", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366$2 = "eduma-profile-panel__sticky", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366$1 = "eduma-profile-panel__inner", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366$0 = "eduma-profile-panel__title", new html.h1.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Profile & Settings")]), {classes: t$366$0})), tabBar]), {classes: t$366$1}))]), {classes: t$366$2})), (t$368$ = "eduma-profile-panel__scroll", new html.div.new((() => {
+      return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$368$1 = "eduma-profile__desktop-only", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [desktop_scaffolds.desktopSplitScaffold({classes: "eduma-profile-split", hero: profile_hero_widgets.profileDesktopHero({onRefresh: dart.fn(() => async.unawaited(this[_load]()), T.VoidTovoid()), session: session, stats: this[_stats], onEditProfile: dart.fn(() => this.setState(dart.fn(() => this[_editOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onPhotoAction: dart.fn(() => this[_showNotice]("Avatar upload opens in the mobile & desktop Eduma app."), T.VoidTovoid()), onSignOut: dart.tearoff(this, null, _signOut)}), body: (t$368$0 = "eduma-profile-panel", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366$2 = "eduma-profile-panel__sticky", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366$1 = "eduma-profile-panel__inner", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366$0 = "eduma-profile-panel__title", new html.h1.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Profile & Settings")]), {classes: t$366$0})), tabBar]), {classes: t$366$1}))]), {classes: t$366$2})), (t$368$ = "eduma-profile-panel__scroll", new html.div.new((() => {
                 let t$366 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
                 {
                   let t$36$350$350 = this[_notice];
@@ -654,7 +611,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
             if (!(this[_searching] && this[_searchQuery][$trim]()[$isNotEmpty]) && this[_activeTab] === profile_settings_groups.ProfileTabSection.profile) t$368[$addAll](_interceptors.JSArray.of(T.JSArrayOfComponent(), [profile_hero_widgets.profileMobileHeaderCard({session: session, onEditProfile: dart.fn(() => this.setState(dart.fn(() => this[_editOpen] = true, T.VoidTovoid())), T.VoidTovoid()), onPhotoAction: dart.fn(() => this[_showNotice]("Avatar upload opens in the mobile & desktop Eduma app."), T.VoidTovoid())}), profile_hero_widgets.profileStatsRow(this[_stats])]));
             t$368[$addAll](groupsContent);
             return t$368;
-          })(), {classes: t$3610}))]), {classes: t$3610$})), new profile_edit_dialog.ProfileEditDialog.new({open: this[_editOpen], currentName: session.name, currentUsername: username, onClose: dart.fn(() => this.setState(dart.fn(() => this[_editOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onSaved: dart.fn(updated => this.setState(dart.fn(() => {
+          })(), {classes: t$3610}))]), {classes: t$3610$})), new profile_edit_dialog.ProfileEditDialog.new({open: this[_editOpen], currentName: session.name, currentUsername: username, email: email, onClose: dart.fn(() => this.setState(dart.fn(() => this[_editOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onSaved: dart.fn(updated => this.setState(dart.fn(() => {
             this[_session] = new auth_api.EdumaSession.new({user: updated, accessToken: session.accessToken, refreshToken: session.refreshToken});
             this[_syncPrivacyFromUser](updated);
             this[_notice] = "Profile updated.";
@@ -667,7 +624,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
             this[_session] = new auth_api.EdumaSession.new({user: updated, accessToken: session.accessToken, refreshToken: session.refreshToken});
             this[_notice] = "Academic profile updated.";
             this[_noticeIsError] = false;
-          }, T.VoidTovoid())), T.MapOfString$dynamicTovoid())}), new profile_account_dialogs.ProfileDeleteAccountDialog.new({open: this[_deleteAccountOpen], onClose: dart.fn(() => this.setState(dart.fn(() => this[_deleteAccountOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onDeleted: dart.fn(() => this.setState(dart.fn(() => this[_session] = null, T.VoidTovoid())), T.VoidTovoid())})]), {classes: t$3610$0});
+          }, T.VoidTovoid())), T.MapOfString$dynamicTovoid())}), new eduma_confirm_dialog.EdumaConfirmDialog.new({id: "eduma-sign-out-dialog", open: this[_confirmSignOutOpen], title: "Log Out", message: "Are you sure you want to log out of Eduma?", confirmLabel: "Log Out", destructive: true, onConfirm: C[11] || CT.C11, onConfirmed: dart.tearoff(this, null, _signedOut), onClose: dart.fn(() => this.setState(dart.fn(() => this[_confirmSignOutOpen] = false, T.VoidTovoid())), T.VoidTovoid())}), new eduma_confirm_dialog.EdumaConfirmDialog.new({id: "eduma-sign-out-all-dialog", open: this[_confirmSignOutAllOpen], title: "Sign out of all devices?", message: "This ends every Eduma session: your phones, computers, the web and the WhatsApp bot, this device included. You can sign back in right after.", confirmLabel: "End all session", destructive: true, onConfirm: C[12] || CT.C12, onConfirmed: dart.tearoff(this, null, _signedOut), onClose: dart.fn(() => this.setState(dart.fn(() => this[_confirmSignOutAllOpen] = false, T.VoidTovoid())), T.VoidTovoid())}), new profile_account_dialogs.ProfileDeleteAccountDialog.new({open: this[_deleteAccountOpen], onClose: dart.fn(() => this.setState(dart.fn(() => this[_deleteAccountOpen] = false, T.VoidTovoid())), T.VoidTovoid()), onDeleted: dart.fn(() => this.setState(dart.fn(() => this[_session] = null, T.VoidTovoid())), T.VoidTovoid())})]), {classes: t$3610$0});
     }
     static ['_#new#tearOff']() {
       return new profile_page._ProfilePageState.new(T._ProfilePageState());
@@ -697,6 +654,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
     this[_aboutYouOpen] = false;
     this[_passwordOpen] = false;
     this[_deleteAccountOpen] = false;
+    this[_confirmSignOutOpen] = false;
+    this[_confirmSignOutAllOpen] = false;
     this[_signingOut] = false;
     this[_notice] = null;
     this[_noticeIsError] = false;
@@ -712,8 +671,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
     [_setGridView]: _ti => T.boolToFutureOfvoid(),
     [_cycleSort]: _ti => T.VoidToFutureOfvoid(),
     [_updatePrivacy]: _ti => T.__ToFutureOfvoid(),
-    [_signOut]: _ti => T.VoidToFutureOfvoid(),
-    [_signOutAllDevices]: _ti => T.VoidToFutureOfvoid(),
+    [_signOut]: _ti => T.VoidTovoid(),
+    [_signOutAllDevices]: _ti => T.VoidTovoid(),
+    [_signedOut]: _ti => T.VoidTovoid(),
     [_buildGroups]: _ti => T.StringToListOfProfileSettingsGroupData(),
     [_panelGroupsContent]: _ti => T.__ToListOfComponent(),
     build: _ti => T.BuildContextToComponent()
@@ -728,6 +688,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
     [_updatePrivacy]: "package:eduma_web/features/profile/presentation/pages/profile_page.dart:_ProfilePageState",
     [_signOut]: "package:eduma_web/features/profile/presentation/pages/profile_page.dart:_ProfilePageState",
     [_signOutAllDevices]: "package:eduma_web/features/profile/presentation/pages/profile_page.dart:_ProfilePageState",
+    [_signedOut]: "package:eduma_web/features/profile/presentation/pages/profile_page.dart:_ProfilePageState",
     [_buildGroups]: "package:eduma_web/features/profile/presentation/pages/profile_page.dart:_ProfilePageState",
     [_panelGroupsContent]: "package:eduma_web/features/profile/presentation/pages/profile_page.dart:_ProfilePageState",
     build: "package:eduma_web/features/profile/presentation/pages/profile_page.dart:_ProfilePageState"
@@ -866,6 +827,18 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
       isFinal: false,
       libraryUri: I[2]
     },
+    [_confirmSignOutOpen]: {
+      type: _ti => T.bool(),
+      isConst: false,
+      isFinal: false,
+      libraryUri: I[2]
+    },
+    [_confirmSignOutAllOpen]: {
+      type: _ti => T.bool(),
+      isConst: false,
+      isFinal: false,
+      libraryUri: I[2]
+    },
     [_signingOut]: {
       type: _ti => T.bool(),
       isConst: false,
@@ -892,7 +865,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/auth/l
   dart.trackLibraries("packages/eduma_web/features/profile/presentation/pages/profile_page", {
     "package:eduma_web/features/profile/presentation/pages/profile_page.dart": profile_page
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["profile_page.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA4BsC;IAAmB;;;QAH9B;AAAnB,qFAAmB,GAAG;;EAAE;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;UA4CS;AAL/B;AACA,oBAAU;AAChB,UAAI,OAAO;AACiB,QAAT,wDAAoB,AAAQ,OAAD;AAC5C,mCAAqB,AAAQ,OAAD;AAC5B,wBAAgD,QAAtB,AAAS,2DAAA;;AAErC,sBAAU;IACZ;;+HAEa;;;;;;;;;;cACX,cAAS;AACP,wCAAkB,AAAS;AAC3B,sCAAgB;;;;cAIA;uCAAkB;;;cAA5B;mBACD;gBAAS;;;;;kBACV,oBAAO;gBACT,cAAS,cAAM,iBAAW;gBAC1B;;;;;cAEe,AAAS,wDAAW,AAAQ,oBAAD;cAC5C,2BAAqB,AAAQ,oBAAD;cAC5B,cAAS,qCAAM,iBAAW,0BAAO;cACjB;uCAAa,+BAAc,wDAC1B,4CACH,4CACG,AAAY,sDAAW,QAAC,oBAAM;;;cAHzC;mBAKD;gBAAS;;;;;cACR,yBAAuB,8BAAX,AAAO,oBAAA,QAAC;cACpB,qBAAmB,sBAAX,AAAO,oBAAA,QAAC;cACL,4DAAwB,kBAAK;cAC9C,cAAS;AACP,+BAAS,wBAAK;AACd,+BAAoB,6BAAX,AAAO,0BAAA,QAAC;AACjB,oBAAI,4BAAS;AACX,mCAAW,qCACH,4BAAS,eACF,AAAQ,0BAAD,4BACN,AAAQ,0BAAD;AAEvB,6CAAqB,4BAAS;;;;;cA5BpC;;;;;;;;;gBA+B6B;qBACtB;kBAAS;;;;;gBACd,cAAS,qCAAM,sBAAgB,AAAM,wBAAD;;gBAC7B;qBACF;kBAAS;;;;;gBACd,cAAS,cAAM,sBAAgB;;;;;cApCjC;;;;;;;;kBAsCM,cACF,cAAS;AACP,wCAAkB;;;;AAxCxB;;;;;AA4CF;;;;;;YAlDa;IAkDb;2BAE+C;UAEtB,OAAkD,QACpD,SAAiB,SAAwD,SACtE,SAAgE,SAC/D;AAJnB,qBAA+B,aAApB,AAAI,IAAA,QAAC,kBAA4C,aAApB,AAAI,IAAA,QAAC;AACnD,+BAAkF,SAAT,mBAA/B,QAAvB,AAAI,IAAA,QAAC,mBAAD,gBAAsB,AAAQ,QAAA,QAAC,oBAA/B,SAAkD,iBAAY,OAAZ;AACzE,6BAAuG,UAAT,mBAA7B,WAA3B,UAArB,AAAI,IAAA,QAAC,iBAAD,kBAAoB,AAAI,IAAA,QAAC,qBAAzB,UAAiB,kBAA8B,AAAQ,QAAA,QAAC,kBAAvC,WAAwD,kBAAY,OAAZ;AAC9F,gCAAiG,UAAT,mBAArC,UAA/B,AAAI,IAAA,QAAC,2BAAD,kBAA8B,AAAI,IAAA,QAAC,8BAAnC,WAAgE,kBAAY,OAAZ;AAClF,sBAAsD,AAAO,UAAlB,UAA5B,AAAI,IAAA,QAAC,wBAAD,kBAA2B,QAA3B;AACzB,wBAAa,AAAU,AAAU,SAAX,KAAI,UAAU,AAAU,SAAD,KAAI,WAAY,SAAS,GAAG;IAC3E;kBAEwB;UAAe;AACrC,oBAAS;AACP,wBAAU,OAAO;AACjB,+BAAiB,OAAO;;IAE5B;mBAE+B;oCAAlB;;;;;;;cACX,cAAS,cAAM,eAAS,6DAAmC,IAAI,aAAa,AAAO;cACnF;uCAAkB,2CAAkB,IAAI;;;;AAC1C;;;YAHa;IAGb;;oCAEa;;;;;;;;cACL;cACA,kBAAO,AAAK,gBAAA,QAAuC,CAArC,AAAM,gBAAD,WAAS,AAAO,0BAAa,YAAK,AAAM,gBAAD;cAChE,cAAS,qCAAM,eAAS,6DAAmC,AAAO,uCAA0B,uBAAI;cAChG;uCAAkB,uCAAc,eAAI;;;;AACtC;;;YALa;IAKb;;UAGQ;UACA;UACA;UACE;4GAJG;;;;;;;;;;;cAML,uBAAY;cACZ,0BAAe;cACf,sBAAW;cACX,oBAAS;cACf,cAAS;AACP,oBAAI,cAAc,UAAU,wBAAkB,cAAc;AAC5D,oBAAI,YAAY,UAAU,sBAAgB,YAAY;AACtD,oBAAI,eAAe,UAAU,yBAAmB,eAAe;AAC/D,oBAAI,QAAQ,UAAU,kBAAY,QAAQ;;;cAG1C;uCAAqB,yEACH,cAAc,gBAChB,YAAY,0BACF,eAAe,uBAClB,QAAQ;;;;;cALjC;;;;;;cAOS;;qBACF;;kBAAS;;;gBACd,cAAS;AACP,0CAAkB,4BAAS;AAC3B,wCAAgB,+BAAY;AAC5B,2CAAmB,2BAAQ;AAC3B,oCAAY,yBAAM;;gBAEpB,kBAAY,kDAAiD;;;;cAf/D;;;;;;;;;;;AAiBF;;;;;;YAjCa;IAiCb;;8EAEa;;;;;;;kBACP;;gBAAa;;;cACjB,cAAS,cAAM,oBAAc;cAC7B;uCAAkB;;;mBACb;;gBAAS;;;cACd,cAAS;AACP,iCAAW;AACX,oCAAc;;;;AAElB;;;YATa;IASb;;8EAEa;;;;;;;kBACP;;gBAAa;;;cACjB,cAAS,cAAM,oBAAc;cAC7B;uCAAqB;;;mBAChB;;gBAAS;;;cACd,cAAS;AACP,iCAAW;AACX,oCAAc;;;;AAElB;;;YATa;IASb;mBAEmD;iBACpC,QACW,SAGC,SAAiB,SAG7B,SAAS,SACb,SAAK;AARR,kBAAsB,kDAAf,OAAA,AAAU;AACjB,qBAAoC,UAAR,UAAd,AAAI,IAAA,QAAC,UAAD,kBAAa,KAAb;AAClB,uBAAa,AAAuB,gBAAhB,2BAA2B,QAAQ;AACvD,sBAAY,AAAW,UAAD,oBAAc,AAAW,UAAD,OAAO,MAAG,WAAU,QAAQ;AAC1E,sBAAkE,UAAR,WAAtB,UAArB,AAAI,IAAA,QAAC,iBAAD,kBAAoB,AAAI,IAAA,QAAC,gBAAzB,UAAiB,kBAAyB,KAAzB;AACpC,iBAAO,AAAI,IAAA,QAAC;AACZ,qBAAgB,aAAL,IAAI,IAC8B,UAAR,WAArB,UAAb,AAAI,IAAA,QAAC,SAAD,kBAAY,AAAI,IAAA,QAAC,eAAjB,UAAS,kBAAwB,KAAxB,qBACkB,UAAR,WAAlB,UAAL,IAAI,EAAJ,kBAAQ,AAAI,IAAA,QAAC,YAAb,UAAK,kBAAqB,KAArB;AACR,uBAAa;;AACjB,YAAI,AAAU,SAAD,eADI,AACS,WAAA,SAAS;AACnC,YAAI,AAAU,SAAD,eAFI,AAES,WAAA,SAAS;AACnC,YAAI,AAAS,QAAD,eAHK,AAGQ,WAAA,QAAQ;cAHhB;;AAKb,kBAAQ,iEACL,KAAK,YACF,AAAW,UAAD,QAAM,uBACX,AAAO,uCACX,AAAO,wCACF,qCACF,sCACG,kCACP,2BACA,+BACI,wCACK,yCACJ,iCACJ,8BACC;AAER,oBAAU,uEACC,cAAM,cAAS,cAAM,kBAAY,yDAChC,cAAM,cAAS,cAAM,sBAAgB,2DACnC,cAAM,cAAS,cAAM,sBAAgB,oDAC5C,cAAM,gBAAU,kDACb,cAAM,gBAAU,+DACb,cAAM,cAAS,cAAM,2BAAqB,2DACzC,QAAC,OAAQ,gBAAU,mBAAa,GAAG,kCACxC,cAAM,gBAAU,8DACL,QAAC,OAAQ,gBAAU,sCAA+B,GAAG,4CACvD,QAAC,OAAQ,gBAAU,oCAA6B,GAAG,+CAChD,QAAC,OAAQ,gBAAU,uCAAgC,GAAG,uCAC9D;AACT;AACA,qBAAO,AAAK,KAAA,QAAgC,CAA9B,AAAM,KAAD,WAAS,mBAAa,YAAK,AAAM,KAAD;AACzD,0BAAU,gCAAyB,IAAI;8CAEvB;AACV,qBAA4B,gDAAU;AACvB,0DAAU,IAAI;AACnC,wBAAS,cAAM,mBAAa,IAAI;AAChC,4BAAY,uBAAoB,IAAI;8CAEpB,QAAC,OAAQ,cAAS,cAAM,kBAAY,GAAG,2DACnC,QAAC,OAAQ,cAAS,cAAM,sBAAgB,GAAG,gEACtC,QAAC,OAAQ,cAAS,cAAM,2BAAqB,GAAG,4DACpD,QAAC,OAAQ,cAAS,cAAM,uBAAiB,GAAG,mDACrD,QAAC,OAAQ,kBAAY,GAAG;AAExC,YAAO,4DAAkC,KAAK,WAAW,OAAO;IAClE;;UAYqB;UATH;UACF;UAC0B;AAElC,8BAAoB,AAAW,oBAAG,AAAa,AAAO;AAC5D,UAAI,iBAAiB;AACb,sBAAU,oDAA4B,SAAS,EAAE;AACvD,YAAI,AAAQ,OAAD;AACT,gBAAO,4DACQ,+BAAb,iBAA4C,kDAC1C,sBAAqB,sCAAc,MACnC,oBAAO,kDAAC,sBAAM,4BACd,eAAE,kDAAC,sBAAM,sEAHE;;AAOjB,cAAO;;AAAC,mBAAW,QAAS,QAAO;AAAE,YAA9B,WAA8B,oDAA4B,KAAK;gBAA/D;;;AAEH,sBAAY,AAAU,SAAD,SAAO,QAAC,SAAU,AAAM,AAAI,KAAL,SAAQ;AAC1D,YAAO;;AACL,YAAI,AAAW,qBAAG,sDAAa,UAAU,KAAK,wBADzC,AAEH,WAAA,uDACS,KAAK,aACD,cAAM,cAAS,cAAM,yBAAmB;AAEvD,iBAAW,QAAS,UAAS;AAAE,UAN1B,WAM0B,oDAA4B,KAAK;cAN3D;;IAQT;UAG6B;UAmBN,OACG,QAoCA,SADD,SADF,SAQI,OAFJ,QAPI,SAVV,SA+BE,SACA,QANF,SA5BK;AAxCd,oBAAU;AAChB,UAAI,AAAQ,OAAD;AACT,cAAO,gDACE,oCACO,eACR,kDACJ,2CACW,sBACO,qCACF,qCACE,cAAM,gBAAU,0CACvB,QAAC;;AAMZ,iBAAO,AAAQ,OAAD;AACd,kBAAiC,UAAR,QAAd,AAAI,IAAA,QAAC,UAAD,gBAAa,KAAb;AACf,qBAAuC,UAAR,SAAjB,AAAI,IAAA,QAAC,aAAD,iBAAgB,KAAhB;AAClB,uBAAqC,YAAxB,AAAI,IAAA,QAAC,oBAAsB;AACxC,sBAAY,mBAAa,KAAK;AAC9B,0BAAgB,kCACb,KAAK,cACA,UAAU,aACX,SAAS;AAEhB,mBAAS,+CACF,6BACA,+BACE,iCACA,QAAC,OAAQ,cAAS,cAAM,mBAAa,GAAG,iEACtC,cAAM,cAAS,cAAM,mBAAa,wDAClC,QAAC,OAAQ,cAAS,cAAM,qBAAe,GAAG,qDAC3C,cAAM,cAAS;AAC3B,6BAAa;AACb,+BAAe;;AAInB,iBAAoB;YAAb,kBAAmC,6DAE3B,+BAAb,iBAA4C,kDAC1C,iDACW,6BACH,kDACK,OAAO,SACT,6BACQ,cAAM,cAAS,cAAM,kBAAY,wDACjC,cAAM,kBAAY,uFACtB,cAAM,gBAAU,uDAEV,uBAAb,iBAAoC,6DAC3B,+BAAb,iBAA4C,6DAC7B,8BAAb,iBAA2C,6DAC7B,8BAAZ,gBAA0C,kDAAC,sBAAM,mCAArC,YACZ,MAAM,cAFK,wBADF,sBAMA,+BAAb,iBAA4C;;;AACtC;;AAAmB;AAAvB,wBAAI;AAAmB,4BAAnB;AACW,sBAF2B,oBAE3B,+BAAb,iBAA4C,kDAAC,iCAAe,GAAG,YAAW,oCAA7D;;;;AACZ,gBAHuC,eAGvC,aAAa;sBAH0B;8BAA/B,uBAPI,0BAVV,uBA0BA,8BAAb,iBAA2C,kDACzC,qCACS,oCACO,sBAEH,qCAAb,iBAAkD,kDAAC,MAAM,cAA5C,sBACA,8BAAb,iBAA2C;;;AACrC;;AAAmB;AAAvB,oBAAI;AAAmB,wBAAnB;AAAyB,kBADY,WACZ,iCAAe,GAAG,YAAW;;;;AAC1D,kBAAM,oBAAc,AAAa,AAAO,6CAAe,AAAW,qBAAG,mDAF5B,AAEyC,eAAA,kDAChF,uDACW,OAAO,iBACD,cAAM,cAAS,cAAM,kBAAY,wDACjC,cAAM,kBAAY,8EAEnC,qCAAgB;AAEf,YAVsC,eAUtC,aAAa;kBAVyB;0BAA9B,uBANF,YAmBb,qDACQ,8BACO,AAAQ,OAAD,wBACH,QAAQ,WAChB,cAAM,cAAS,cAAM,kBAAY,mDACjC,QAAC,WAAY,cAAS;AAC7B,6BAAW,qCACH,OAAO,eACA,AAAQ,OAAD,4BACN,AAAQ,OAAD;AAEvB,uCAAqB,OAAO;AAC5B,4BAAU;AACV,mCAAiB;iEAGrB,6DACQ,4BACC,KAAK,WACH,cAAM,cAAS,cAAM,sBAAgB,qDACnC,QAAC,gBAAiB,cAAS;AACpC,6BAAW,YAAY;AACvB,4BAAU;AACV,mCAAiB;0DAGrB,6DACQ,2BACA,AAAQ,OAAD,gBACJ,cAAM,cAAS,cAAM,sBAAgB,mDACrC,QAAC,WAAY,cAAS;AAC7B,6BAAW,qCACH,OAAO,eACA,AAAQ,OAAD,4BACN,AAAQ,OAAD;AAEvB,4BAAU;AACV,mCAAiB;iEAGrB,kEACQ,mCACG,cAAM,cAAS,cAAM,2BAAqB,qDACxC,cAAM,cAAS,cAAM,iBAAW,uDA1F3B;IA6FtB;;;;;;;AAvZc,qBAAuB;AAChC,4BAA8B,AAAe;AAC1C;AAEK;AACO;AACF,uBAAa;AAC1B,uBAAa;AACX,yBAAe;AACjB,6BAAmB;AAGnB,4BAAkB;AAClB,0BAAgB;AAChB,6BAAmB;AACjB,sBAAY;AACd,sBAAY;AACZ,0BAAgB;AAChB,+BAAqB;AACrB,2BAAiB;AACf,uBAAkC;AAEpC,sBAAY;AACZ,0BAAgB;AAChB,0BAAgB;AAChB,+BAAqB;AACrB,wBAAc;AACX;AACH,2BAAiB;;;EA4XxB","file":"profile_page.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["profile_page.dart"],"names":[],"mappings":"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","file":"profile_page.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__profile__presentation__pages__profile_page: profile_page

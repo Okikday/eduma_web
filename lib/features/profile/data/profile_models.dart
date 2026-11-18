@@ -22,9 +22,7 @@ class ProfileStats {
   }
 
   factory ProfileStats.fromMap(Map<String, dynamic> map) {
-    final source = map['stats'] is Map
-        ? Map<String, dynamic>.from(map['stats'] as Map)
-        : map;
+    final source = map['stats'] is Map ? Map<String, dynamic>.from(map['stats'] as Map) : map;
     return ProfileStats(
       notebooks: _int(source['notebooks'] ?? source['pages'] ?? source['canvases']),
       spaces: _int(source['spaces']),
@@ -109,8 +107,5 @@ abstract final class ChangePasswordLogic {
     required String codeInput,
     required String password,
     required String confirm,
-  }) =>
-      tokenFrom(codeInput) != null &&
-      password.length >= minLength &&
-      password == confirm;
+  }) => tokenFrom(codeInput) != null && password.length >= minLength && password == confirm;
 }

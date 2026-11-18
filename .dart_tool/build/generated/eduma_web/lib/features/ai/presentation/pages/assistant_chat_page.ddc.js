@@ -2,30 +2,49 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/features/ai/presentation/pages/assistant_chat_page
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/eduma_web/core/presentation/flutter_embedded_page', 'packages/jaspr/client'], (function load__packages__eduma_web__features__ai__presentation__pages__assistant_chat_page(dart_sdk, packages__eduma_web__core__presentation__flutter_embedded_page, packages__jaspr__client) {
+define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/core/presentation/flutter_embedded_page', 'packages/eduma_web/core/presentation/eduma_link', 'packages/eduma_web/features/main/presentation/pages/main_home'], (function load__packages__eduma_web__features__ai__presentation__pages__assistant_chat_page(dart_sdk, packages__jaspr__client, packages__eduma_web__core__presentation__flutter_embedded_page, packages__eduma_web__core__presentation__eduma_link, packages__eduma_web__features__main__presentation__pages__main_home) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
+  const async = dart_sdk.async;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const flutter_embedded_page = packages__eduma_web__core__presentation__flutter_embedded_page.eduma_web__core__presentation__flutter_embedded_page;
   const framework = packages__jaspr__client.jaspr__src__framework__framework;
+  const flutter_embedded_page = packages__eduma_web__core__presentation__flutter_embedded_page.eduma_web__core__presentation__flutter_embedded_page;
+  const eduma_link = packages__eduma_web__core__presentation__eduma_link.eduma_web__core__presentation__eduma_link;
+  const main_home = packages__eduma_web__features__main__presentation__pages__main_home.eduma_web__features__main__presentation__pages__main_home;
   var assistant_chat_page = Object.create(dart.library);
   var T = {
+    _AssistantChatPageState: () => (T._AssistantChatPageState = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__ai__presentation__pages__assistant_chat_page|_AssistantChatPageState", true)))(),
     __ToAssistantChatPage: () => (T.__ToAssistantChatPage = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__ai__presentation__pages__assistant_chat_page|AssistantChatPage({key:jaspr__src__framework__framework|Key?})", true)))(),
+    VoidToStateOfAssistantChatPage: () => (T.VoidToStateOfAssistantChatPage = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|State<eduma_web__features__ai__presentation__pages__assistant_chat_page|AssistantChatPage>()", true)))(),
+    FutureOfvoid: () => (T.FutureOfvoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "async|Future<~>", true)))(),
+    void: () => (T.void = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~", true)))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~()", true)))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Null()", true)))(),
+    VoidTo_AssistantChatPageState: () => (T.VoidTo_AssistantChatPageState = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__ai__presentation__pages__assistant_chat_page|_AssistantChatPageState()", true)))(),
     BuildContextToComponent: () => (T.BuildContextToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component(jaspr__src__framework__framework|BuildContext)", true)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const(Object.setPrototypeOf({
+        [Component_key]: null,
+        [MainHomePage_initialJoinCode]: ""
+      }, main_home.MainHomePage.prototype));
+    }
+  });
+  var C = [void 0];
   var I = ["package:eduma_web/features/ai/presentation/pages/assistant_chat_page.dart"];
-  assistant_chat_page.AssistantChatPage = class AssistantChatPage extends framework.StatelessComponent {
+  assistant_chat_page.AssistantChatPage = class AssistantChatPage extends framework.StatefulComponent {
     static ['_#new#tearOff'](opts) {
       let key = opts && 'key' in opts ? opts.key : null;
       return new assistant_chat_page.AssistantChatPage.new({key: key});
     }
-    build(context) {
-      return flutter_embedded_page.flutterEmbeddedPage({title: "New AI chat", route: "/assistantNewChat"});
+    createState() {
+      return new assistant_chat_page._AssistantChatPageState.new(T._AssistantChatPageState());
     }
   };
   (assistant_chat_page.AssistantChatPage.new = function(opts) {
@@ -36,17 +55,52 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/flutter_embedded_page'
   dart.lazyFn(assistant_chat_page.AssistantChatPage['_#new#tearOff'], () => T.__ToAssistantChatPage());
   dart.addRtiResources(assistant_chat_page.AssistantChatPage, ["eduma_web__features__ai__presentation__pages__assistant_chat_page|AssistantChatPage"]);
   dart.setMethodSignature(assistant_chat_page.AssistantChatPage, () => dart.global.Object.setPrototypeOf({
-    build: _ti => T.BuildContextToComponent()
+    createState: _ti => T.VoidToStateOfAssistantChatPage()
   }, dart.getMethods(dart.global.Object.getPrototypeOf(assistant_chat_page.AssistantChatPage))));
-  dart.setMethodsImmediateTargetSignature(assistant_chat_page.AssistantChatPage, () => dart.global.Object.setPrototypeOf({build: "package:eduma_web/features/ai/presentation/pages/assistant_chat_page.dart:AssistantChatPage"}, dart.getMethodsImmediateTargets(dart.global.Object.getPrototypeOf(assistant_chat_page.AssistantChatPage))));
+  dart.setMethodsImmediateTargetSignature(assistant_chat_page.AssistantChatPage, () => dart.global.Object.setPrototypeOf({createState: "package:eduma_web/features/ai/presentation/pages/assistant_chat_page.dart:AssistantChatPage"}, dart.getMethodsImmediateTargets(dart.global.Object.getPrototypeOf(assistant_chat_page.AssistantChatPage))));
   dart.setLibraryUri(assistant_chat_page.AssistantChatPage, I[0]);
+  var Component_key = dart.privateName(framework, "Component.key");
+  var MainHomePage_initialJoinCode = dart.privateName(main_home, "MainHomePage.initialJoinCode");
+  assistant_chat_page._AssistantChatPageState = class _AssistantChatPageState extends framework.State {
+    initState() {
+      super.initState();
+      async.Future.microtask(T.FutureOfvoid(), dart.fn(() => {
+        if (!this.mounted) return;
+        flutter_embedded_page.openAiChatOverlay(this.context, {onClosed: dart.fn(() => {
+            if (this.mounted) eduma_link.edumaNavigate(this.context, "/main", {replace: true});
+          }, T.VoidTovoid())});
+      }, T.VoidToNull()));
+    }
+    build(context) {
+      return C[0] || CT.C0;
+    }
+    static ['_#new#tearOff']() {
+      return new assistant_chat_page._AssistantChatPageState.new(T._AssistantChatPageState());
+    }
+  };
+  (assistant_chat_page._AssistantChatPageState.new = function(_ti) {
+    this.$ti = this.$ti || _ti || dart.getReifiedType(this);
+    dart.global.Object.getPrototypeOf(assistant_chat_page._AssistantChatPageState).new.call(this, null);
+    ;
+  }).prototype = assistant_chat_page._AssistantChatPageState.prototype;
+  dart.lazyFn(assistant_chat_page._AssistantChatPageState['_#new#tearOff'], () => T.VoidTo_AssistantChatPageState());
+  dart.addRtiResources(assistant_chat_page._AssistantChatPageState, ["eduma_web__features__ai__presentation__pages__assistant_chat_page|_AssistantChatPageState"]);
+  dart.setMethodSignature(assistant_chat_page._AssistantChatPageState, () => dart.global.Object.setPrototypeOf({
+    build: _ti => T.BuildContextToComponent()
+  }, dart.getMethods(dart.global.Object.getPrototypeOf(assistant_chat_page._AssistantChatPageState))));
+  dart.setMethodsImmediateTargetSignature(assistant_chat_page._AssistantChatPageState, () => dart.global.Object.setPrototypeOf({
+    initState: "package:eduma_web/features/ai/presentation/pages/assistant_chat_page.dart:_AssistantChatPageState",
+    build: "package:eduma_web/features/ai/presentation/pages/assistant_chat_page.dart:_AssistantChatPageState"
+  }, dart.getMethodsImmediateTargets(dart.global.Object.getPrototypeOf(assistant_chat_page._AssistantChatPageState))));
+  dart.setLibraryUri(assistant_chat_page._AssistantChatPageState, I[0]);
   (function() {
   }).prototype = assistant_chat_page;
-  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"eduma_web__features__ai__presentation__pages__assistant_chat_page|AssistantChatPage":{"jaspr__src__framework__framework|StatelessComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatelessComponent":{"jaspr__src__framework__framework|Component":[]}}'));
+  dart.moduleConstCaches.set("packages/eduma_web/features/ai/presentation/pages/assistant_chat_page", C);
+  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"eduma_web__features__ai__presentation__pages__assistant_chat_page|_AssistantChatPageState":{"State.T":"eduma_web__features__ai__presentation__pages__assistant_chat_page|AssistantChatPage","jaspr__src__framework__framework|State":["eduma_web__features__ai__presentation__pages__assistant_chat_page|AssistantChatPage"]},"jaspr__src__framework__framework|State":{"State.T":"1"},"eduma_web__features__ai__presentation__pages__assistant_chat_page|AssistantChatPage":{"jaspr__src__framework__framework|StatefulComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatefulComponent":{"jaspr__src__framework__framework|Component":[]},"async|Future":{"Future.T":"1"}}'));
   dart.trackLibraries("packages/eduma_web/features/ai/presentation/pages/assistant_chat_page", {
     "package:eduma_web/features/ai/presentation/pages/assistant_chat_page.dart": assistant_chat_page
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["assistant_chat_page.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;UAQ+B;AAAY,+DAChC,sBACA;IACR;;;QAN8B;AAAzB,kGAAyB,GAAG;;EAAE","file":"assistant_chat_page.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["assistant_chat_page.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAY4C;IAAyB;;;QAHpC;AAAzB,kGAAyB,GAAG;;EAAE;;;;;;;;;;;;AAS5B;AACN,+CAAuB;AACrB,aAAK,cAAS;AACd,gDACE,yBACU;AACR,gBAAI,cAAS,yBAAc,cAAS,mBAAkB;;;IAI9D;UAG6B;AAAY;IAAoB;;;;;;;;;EAC/D","file":"assistant_chat_page.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__ai__presentation__pages__assistant_chat_page: assistant_chat_page

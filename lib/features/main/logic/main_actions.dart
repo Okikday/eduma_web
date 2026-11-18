@@ -34,8 +34,7 @@ abstract final class MainActions {
     currentUserId: currentUserId,
   );
 
-  static Future<MainSpacePreview> previewInvite(String input) =>
-      MainApi.instance.previewInvite(input);
+  static Future<MainSpacePreview> previewInvite(String input) => MainApi.instance.previewInvite(input);
 
   static Future<MainSpaceJoinResult> joinSpace(
     String input, {

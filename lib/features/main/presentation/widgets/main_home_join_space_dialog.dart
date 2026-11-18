@@ -171,6 +171,7 @@ class _MainHomeJoinSpaceDialogState extends State<MainHomeJoinSpaceDialog> {
       id: _dialogId,
       classes: 'eduma-modal',
       attributes: {
+        ...WebDialogHelper.openAttr(component.open),
         'aria-labelledby': 'join-space-title',
         'closedby': 'any',
       },
@@ -256,13 +257,6 @@ class _MainHomeJoinSpaceDialogState extends State<MainHomeJoinSpaceDialog> {
               )
           else ...[
             button(
-              classes: 'eduma-modal__btn',
-              type: ButtonType.button,
-              disabled: _joining,
-              onClick: component.onClose,
-              [.text('Cancel')],
-            ),
-            button(
               classes: 'eduma-modal__btn eduma-modal__btn--primary',
               type: ButtonType.button,
               disabled: SpaceInviteLink.extractCode(_code).isEmpty || _joining,
@@ -278,18 +272,14 @@ class _MainHomeJoinSpaceDialogState extends State<MainHomeJoinSpaceDialog> {
 
 Component _previewCard(MainSpacePreview preview) => div(classes: 'eduma-modal__preview', [
   div(classes: 'eduma-modal__preview-cover', [
-    if (preview.coverUrl case final cover?)
-      img(src: cover, alt: '')
-    else
-      mainHomeIcon(.people, size: 32),
+    if (preview.coverUrl case final cover?) img(src: cover, alt: '') else mainHomeIcon(.people, size: 32),
   ]),
   div(classes: 'eduma-modal__preview-body', [
     div(classes: 'eduma-modal__preview-title', [
       span([.text(preview.title)]),
       if (preview.isVerified) mainHomeIcon(.verified, size: 16),
     ]),
-    if (preview.description case final description?)
-      p(classes: 'eduma-modal__preview-desc', [.text(description)]),
+    if (preview.description case final description?) p(classes: 'eduma-modal__preview-desc', [.text(description)]),
     if (preview.ownerName.isNotEmpty || preview.memberCount > 0)
       div(classes: 'eduma-modal__preview-meta', [
         if (preview.ownerName.isNotEmpty)

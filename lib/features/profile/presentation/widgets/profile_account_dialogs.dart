@@ -104,6 +104,7 @@ class _ProfileAboutYouDialogState extends State<ProfileAboutYouDialog> {
     id: _dialogId,
     classes: 'eduma-modal',
     attributes: {
+      ...WebDialogHelper.openAttr(component.open),
       'closedby': 'any',
       'aria-labelledby': 'eduma-about-you-title',
     },
@@ -171,8 +172,7 @@ class _ProfileAboutYouDialogState extends State<ProfileAboutYouDialog> {
                 onInput: (value) => setState(() => _level = value),
               ),
             ]),
-            if (_error case final msg?)
-              p(classes: 'eduma-modal__error', attributes: {'role': 'alert'}, [.text(msg)]),
+            if (_error case final msg?) p(classes: 'eduma-modal__error', attributes: {'role': 'alert'}, [.text(msg)]),
           ]),
           div(classes: 'eduma-modal__footer', [
             button(
@@ -274,6 +274,7 @@ class _ProfileDeleteAccountDialogState extends State<ProfileDeleteAccountDialog>
       id: _dialogId,
       classes: 'eduma-modal',
       attributes: {
+        ...WebDialogHelper.openAttr(component.open),
         'closedby': 'any',
         'aria-labelledby': 'eduma-delete-account-title',
       },
@@ -320,8 +321,7 @@ class _ProfileDeleteAccountDialogState extends State<ProfileDeleteAccountDialog>
                   }),
                 ),
               ]),
-              if (_error case final msg?)
-                p(classes: 'eduma-modal__error', attributes: {'role': 'alert'}, [.text(msg)]),
+              if (_error case final msg?) p(classes: 'eduma-modal__error', attributes: {'role': 'alert'}, [.text(msg)]),
             ]),
             div(classes: 'eduma-modal__footer', [
               button(

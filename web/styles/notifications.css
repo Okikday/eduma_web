@@ -283,3 +283,32 @@
 .eduma-notifications__text-btn--danger:hover {
   color: var(--eduma-danger);
 }
+
+/* The source rows show no inline actions; on pointer devices the secondary
+   actions (open space, mark read, delete) float in at the row's top-right on
+   hover/focus. Invite accept/decline stay inline. */
+@media (hover: hover) {
+  .eduma-notifications__item {
+    position: relative;
+  }
+
+  .eduma-notifications__actions:not(:has(.eduma-notifications__invite-btn, .eduma-notifications__decline-btn)) {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    margin: 0;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--eduma-surface);
+    box-shadow: var(--eduma-card-shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 120ms ease;
+  }
+
+  .eduma-notifications__item:hover .eduma-notifications__actions,
+  .eduma-notifications__actions:focus-within {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

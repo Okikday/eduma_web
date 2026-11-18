@@ -6,7 +6,6 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/eduma_link', 'packages
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
-  const js_util = dart_sdk.js_util;
   const _interceptors = dart_sdk._interceptors;
   const _js_helper = dart_sdk._js_helper;
   const dart = dart_sdk.dart;
@@ -17,8 +16,8 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/eduma_link', 'packages
   const framework = packages__jaspr__client.jaspr__src__framework__framework;
   const eduma_icons = packages__eduma_web__core__presentation__eduma_icons.eduma_web__core__presentation__eduma_icons;
   var desktop_scaffolds = Object.create(dart.library);
-  var $isNotEmpty = dartx.isNotEmpty;
   var $isEmpty = dartx.isEmpty;
+  var $isNotEmpty = dartx.isNotEmpty;
   var $join = dartx.join;
   var $trim = dartx.trim;
   var $addAll = dartx.addAll;
@@ -26,13 +25,6 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/eduma_link', 'packages
     VoidToString: () => (T.VoidToString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String()", true)))(),
     DesktopPillVariant: () => (T.DesktopPillVariant = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__core__presentation__desktop_scaffolds|DesktopPillVariant", true)))(),
     ListOfDesktopPillVariant: () => (T.ListOfDesktopPillVariant = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|List<eduma_web__core__presentation__desktop_scaffolds|DesktopPillVariant>", true)))(),
-    String: () => (T.String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String", true)))(),
-    JSObject: () => (T.JSObject = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
-    int: () => (T.int = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|int", true)))(),
-    JSObject$1: () => (T.JSObject$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
-    JSObject$2: () => (T.JSObject$2 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
-    JSObject$3: () => (T.JSObject$3 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
-    Object: () => (T.Object = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Object", true)))(),
     BuildContext__Tovoid: () => (T.BuildContext__Tovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(jaspr__src__framework__framework|BuildContext{fallbackHref:core|String})", true)))(),
     JSArrayOfComponent: () => (T.JSArrayOfComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<jaspr__src__framework__framework|Component>", true)))(),
     __ToComponent: () => (T.__ToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({body!jaspr__src__framework__framework|Component,classes:core|String,hero!jaspr__src__framework__framework|Component})", true)))(),
@@ -137,55 +129,39 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/eduma_link', 'packages
       return C[5] || CT.C5;
     }
   });
-  var _is = dart.privateName(dart_rti, "_is");
   desktop_scaffolds.navigateBackOrFallback = function navigateBackOrFallback(context, opts) {
     let fallbackHref = opts && 'fallbackHref' in opts ? opts.fallbackHref : "/main";
-    let referrer = js_util.getProperty(T.String(), js_util.getProperty(T.JSObject(), dart.global, "document"), "referrer");
-    if (js_util.getProperty(T.int(), js_util.getProperty(T.JSObject$1(), js_util.getProperty(T.JSObject$2(), dart.global, "window"), "history"), "length") > 1 && referrer[$isNotEmpty]) {
-      try {
-        let refUri = core.Uri.parse(referrer);
-        if (refUri.host === js_util.getProperty(T.String(), js_util.getProperty(T.JSObject$3(), js_util.getProperty(T.JSObject$2(), dart.global, "window"), "location"), "host")) {
-          js_util.getProperty(T.JSObject$1(), js_util.getProperty(T.JSObject$2(), dart.global, "window"), "history").back();
-          return;
-        }
-      } catch (t$36$35e) {
-        let _$35wc0$35formal = dart.getThrown(t$36$35e);
-        if (T.Object()[_is](_$35wc0$35formal)) {
-        } else
-          throw t$36$35e;
-      }
-    }
-    eduma_link.edumaNavigate(context, fallbackHref);
+    return eduma_link.edumaBack(context, {fallbackHref: fallbackHref});
   };
   dart.lazyFn(desktop_scaffolds.navigateBackOrFallback, () => T.BuildContext__Tovoid());
   desktop_scaffolds.desktopSplitScaffold = function desktopSplitScaffold(opts) {
-    let t$363, t$363$, t$363$0;
+    let t$362, t$362$, t$362$0;
     let hero = opts && 'hero' in opts ? opts.hero : null;
     let body = opts && 'body' in opts ? opts.body : null;
     let classes = opts && 'classes' in opts ? opts.classes : "";
-    t$363$0 = classes[$isEmpty] ? "eduma-split" : "eduma-split " + classes;
-    return new html.main_.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$363 = "eduma-split__hero", new html.aside.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [hero]), {classes: t$363})), (t$363$ = "eduma-split__body", new html.section.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [body]), {classes: t$363$}))]), {classes: t$363$0});
+    t$362$0 = classes[$isEmpty] ? "eduma-split" : "eduma-split " + classes;
+    return new html.main_.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$362 = "eduma-split__hero", new html.aside.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [hero]), {classes: t$362})), (t$362$ = "eduma-split__body", new html.section.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [body]), {classes: t$362$}))]), {classes: t$362$0});
   };
   dart.lazyFn(desktop_scaffolds.desktopSplitScaffold, () => T.__ToComponent());
   desktop_scaffolds.desktopHeroPane = function desktopHeroPane(opts) {
-    let t$364, t$365, t$364$, t$365$, t$364$0, t$365$0, t$364$1, t$364$2, t$364$3, t$364$4, t$364$5;
+    let t$363, t$364, t$363$, t$364$, t$363$0, t$364$0, t$363$1, t$363$2, t$363$3, t$363$4, t$363$5;
     let backdrop = opts && 'backdrop' in opts ? opts.backdrop : null;
     let leading = opts && 'leading' in opts ? opts.leading : null;
     let trailing = opts && 'trailing' in opts ? opts.trailing : null;
     let bottomContent = opts && 'bottomContent' in opts ? opts.bottomContent : null;
     let classes = opts && 'classes' in opts ? opts.classes : "";
-    t$364$5 = classes[$isEmpty] ? "eduma-hero-pane" : "eduma-hero-pane " + classes;
+    t$363$5 = classes[$isEmpty] ? "eduma-hero-pane" : "eduma-hero-pane " + classes;
     return new html.div.new((() => {
-      let t$363 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$364 = "eduma-hero-pane__backdrop", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [backdrop]), {classes: t$364})), (t$364$ = "eduma-hero-pane__top-scrim", t$365 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$364$, attributes: t$365})), (t$364$0 = "eduma-hero-pane__bottom-scrim", t$365$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$364$0, attributes: t$365$})), (t$364$1 = "eduma-hero-pane__right-fade", t$365$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$364$1, attributes: t$365$0}))]);
-      if (leading != null) t$363.push((t$364$2 = "eduma-hero-pane__leading", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [leading]), {classes: t$364$2})));
-      if (trailing != null) t$363.push((t$364$3 = "eduma-hero-pane__trailing", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [trailing]), {classes: t$364$3})));
-      t$363.push((t$364$4 = "eduma-hero-pane__content", new html.div.new(bottomContent, {classes: t$364$4})));
-      return t$363;
-    })(), {classes: t$364$5});
+      let t$362 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$363 = "eduma-hero-pane__backdrop", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [backdrop]), {classes: t$363})), (t$363$ = "eduma-hero-pane__top-scrim", t$364 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$363$, attributes: t$364})), (t$363$0 = "eduma-hero-pane__bottom-scrim", t$364$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$363$0, attributes: t$364$})), (t$363$1 = "eduma-hero-pane__right-fade", t$364$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$363$1, attributes: t$364$0}))]);
+      if (leading != null) t$362.push((t$363$2 = "eduma-hero-pane__leading", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [leading]), {classes: t$363$2})));
+      if (trailing != null) t$362.push((t$363$3 = "eduma-hero-pane__trailing", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [trailing]), {classes: t$363$3})));
+      t$362.push((t$363$4 = "eduma-hero-pane__content", new html.div.new(bottomContent, {classes: t$363$4})));
+      return t$362;
+    })(), {classes: t$363$5});
   };
   dart.lazyFn(desktop_scaffolds.desktopHeroPane, () => T.__ToComponent$1());
   desktop_scaffolds.desktopHeroButton = function desktopHeroButton(opts) {
-    let t$369, t$368, t$367, t$366, t$365;
+    let t$368, t$367, t$366, t$365, t$364;
     let icon = opts && 'icon' in opts ? opts.icon : null;
     let label = opts && 'label' in opts ? opts.label : null;
     let onPressed = opts && 'onPressed' in opts ? opts.onPressed : null;
@@ -194,34 +170,34 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/eduma_link', 'packages
     let disabled = opts && 'disabled' in opts ? opts.disabled : false;
     let classes = opts && 'classes' in opts ? opts.classes : "";
     let cls = (() => {
-      let t$364 = _interceptors.JSArray.of(T.JSArrayOfString(), ["eduma-hero-btn"]);
-      if (active) t$364.push("is-active");
-      if (classes[$isNotEmpty]) t$364.push(classes);
-      return t$364;
+      let t$363 = _interceptors.JSArray.of(T.JSArrayOfString(), ["eduma-hero-btn"]);
+      if (active) t$363.push("is-active");
+      if (classes[$isNotEmpty]) t$363.push(classes);
+      return t$363;
     })()[$join](" ");
     let child = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 20})]);
     if (href != null) {
       return eduma_link.edumaLink({to: href, classes: cls, attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", label, "title", label]), children: child});
     }
-    t$365 = cls;
-    t$366 = html.ButtonType.button;
-    t$367 = disabled;
-    t$368 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", label, "title", label]);
-    t$369 = onPressed;
-    return new html.button.new(child, {classes: t$365, type: t$366, disabled: t$367, attributes: t$368, onClick: t$369});
+    t$364 = cls;
+    t$365 = html.ButtonType.button;
+    t$366 = disabled;
+    t$367 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", label, "title", label]);
+    t$368 = onPressed;
+    return new html.button.new(child, {classes: t$364, type: t$365, disabled: t$366, attributes: t$367, onClick: t$368});
   };
   dart.lazyFn(desktop_scaffolds.desktopHeroButton, () => T.__ToComponent$2());
   desktop_scaffolds.desktopHeroBackButton = function desktopHeroBackButton(opts) {
     let fallbackHref = opts && 'fallbackHref' in opts ? opts.fallbackHref : "/main";
     let onPressed = opts && 'onPressed' in opts ? opts.onPressed : null;
     return new basic.Builder.new({builder: dart.fn(context => {
-        let t$365;
-        return desktop_scaffolds.desktopHeroButton({icon: eduma_icons.EdumaIcons.back, label: "Go back", onPressed: (t$365 = onPressed, t$365 == null ? dart.fn(() => desktop_scaffolds.navigateBackOrFallback(context, {fallbackHref: fallbackHref}), T.VoidTovoid()) : t$365)});
+        let t$364;
+        return desktop_scaffolds.desktopHeroButton({icon: eduma_icons.EdumaIcons.arrowLeft, label: "Go back", onPressed: (t$364 = onPressed, t$364 == null ? dart.fn(() => desktop_scaffolds.navigateBackOrFallback(context, {fallbackHref: fallbackHref}), T.VoidTovoid()) : t$364)});
       }, T.BuildContextToComponent())});
   };
   dart.lazyFn(desktop_scaffolds.desktopHeroBackButton, () => T.__ToComponent$3());
   desktop_scaffolds.desktopPillButton = function desktopPillButton(opts) {
-    let t$369, t$368, t$367, t$366;
+    let t$368, t$367, t$366, t$365;
     let icon = opts && 'icon' in opts ? opts.icon : null;
     let label = opts && 'label' in opts ? opts.label : null;
     let variant = opts && 'variant' in opts ? opts.variant : C[0] || CT.C0;
@@ -230,50 +206,50 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/eduma_link', 'packages
     let disabled = opts && 'disabled' in opts ? opts.disabled : false;
     let classes = opts && 'classes' in opts ? opts.classes : "";
     let cls = (() => {
-      let t$365 = _interceptors.JSArray.of(T.JSArrayOfString(), ["eduma-desktop-pill", "eduma-desktop-pill--" + core['EnumName|get#name'](variant)]);
-      if (classes[$isNotEmpty]) t$365.push(classes);
-      return t$365;
+      let t$364 = _interceptors.JSArray.of(T.JSArrayOfString(), ["eduma-desktop-pill", "eduma-desktop-pill--" + core['EnumName|get#name'](variant)]);
+      if (classes[$isNotEmpty]) t$364.push(classes);
+      return t$364;
     })()[$join](" ");
     let content = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 18}), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(label)]))]);
     if (href != null) {
       return eduma_link.edumaLink({to: href, classes: cls, children: content});
     }
-    t$366 = cls;
-    t$367 = html.ButtonType.button;
-    t$368 = disabled;
-    t$369 = onPressed;
-    return new html.button.new(content, {classes: t$366, type: t$367, disabled: t$368, onClick: t$369});
+    t$365 = cls;
+    t$366 = html.ButtonType.button;
+    t$367 = disabled;
+    t$368 = onPressed;
+    return new html.button.new(content, {classes: t$365, type: t$366, disabled: t$367, onClick: t$368});
   };
   dart.lazyFn(desktop_scaffolds.desktopPillButton, () => T.__ToComponent$4());
   desktop_scaffolds.pureAppBar = function pureAppBar(opts) {
-    let t$367, t$368, t$368$, t$368$0, t$368$1, t$368$2, t$368$3;
+    let t$366, t$367, t$367$, t$367$0, t$367$1, t$367$2, t$367$3;
     let title = opts && 'title' in opts ? opts.title : null;
     let subtitle = opts && 'subtitle' in opts ? opts.subtitle : null;
     let leading = opts && 'leading' in opts ? opts.leading : null;
     let trailing = opts && 'trailing' in opts ? opts.trailing : null;
     let fallbackHref = opts && 'fallbackHref' in opts ? opts.fallbackHref : "/main";
     let onBack = opts && 'onBack' in opts ? opts.onBack : null;
-    t$368$3 = "eduma-pure-appbar";
-    return new html.header.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$368$2 = "eduma-pure-appbar__inner", new html.div.new((() => {
-        let t$366 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$367 = leading, t$367 == null ? new basic.Builder.new({builder: dart.fn(context => {
-              let t$368, t$3611, t$3610, t$369, t$368$;
-              t$368$ = "eduma-app-back-btn";
-              t$369 = html.ButtonType.button;
-              t$3610 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Go back", "title", "Go back"]);
-              t$3611 = (t$368 = onBack, t$368 == null ? dart.fn(() => desktop_scaffolds.navigateBackOrFallback(context, {fallbackHref: fallbackHref}), T.VoidTovoid()) : t$368);
-              return new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.back, {size: 20})]), {classes: t$368$, type: t$369, attributes: t$3610, onClick: t$3611});
-            }, T.BuildContextTobutton())}) : t$367), (t$368$0 = "eduma-pure-appbar__titles", new html.div.new((() => {
-            let t$367 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$368 = "eduma-pure-appbar__title", new html.h1.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(title)]), {classes: t$368}))]);
-            if (subtitle != null && subtitle[$trim]()[$isNotEmpty]) t$367.push((t$368$ = "eduma-pure-appbar__subtitle", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(subtitle)]), {classes: t$368$})));
-            return t$367;
-          })(), {classes: t$368$0}))]);
-        if (trailing != null) t$366.push((t$368$1 = "eduma-pure-appbar__trailing", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [trailing]), {classes: t$368$1})));
-        return t$366;
-      })(), {classes: t$368$2}))]), {classes: t$368$3});
+    t$367$3 = "eduma-pure-appbar";
+    return new html.header.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$367$2 = "eduma-pure-appbar__inner", new html.div.new((() => {
+        let t$365 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366 = leading, t$366 == null ? new basic.Builder.new({builder: dart.fn(context => {
+              let t$367, t$3610, t$369, t$368, t$367$;
+              t$367$ = "eduma-app-back-btn";
+              t$368 = html.ButtonType.button;
+              t$369 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Go back", "title", "Go back"]);
+              t$3610 = (t$367 = onBack, t$367 == null ? dart.fn(() => desktop_scaffolds.navigateBackOrFallback(context, {fallbackHref: fallbackHref}), T.VoidTovoid()) : t$367);
+              return new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.back, {size: 20})]), {classes: t$367$, type: t$368, attributes: t$369, onClick: t$3610});
+            }, T.BuildContextTobutton())}) : t$366), (t$367$0 = "eduma-pure-appbar__titles", new html.div.new((() => {
+            let t$366 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$367 = "eduma-pure-appbar__title", new html.h1.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(title)]), {classes: t$367}))]);
+            if (subtitle != null && subtitle[$trim]()[$isNotEmpty]) t$366.push((t$367$ = "eduma-pure-appbar__subtitle", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(subtitle)]), {classes: t$367$})));
+            return t$366;
+          })(), {classes: t$367$0}))]);
+        if (trailing != null) t$365.push((t$367$1 = "eduma-pure-appbar__trailing", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [trailing]), {classes: t$367$1})));
+        return t$365;
+      })(), {classes: t$367$2}))]), {classes: t$367$3});
   };
   dart.lazyFn(desktop_scaffolds.pureAppBar, () => T.__ToComponent$5());
   desktop_scaffolds.adaptivePageScaffold = function adaptivePageScaffold(opts) {
-    let t$3611, t$3611$, t$3611$0;
+    let t$3610, t$3610$, t$3610$0;
     let title = opts && 'title' in opts ? opts.title : null;
     let subtitle = opts && 'subtitle' in opts ? opts.subtitle : null;
     let leading = opts && 'leading' in opts ? opts.leading : null;
@@ -288,73 +264,73 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/eduma_link', 'packages
     let fallbackHref = opts && 'fallbackHref' in opts ? opts.fallbackHref : "/main";
     let onBack = opts && 'onBack' in opts ? opts.onBack : null;
     let cls = (() => {
-      let t$368 = _interceptors.JSArray.of(T.JSArrayOfString(), ["eduma-adaptive-page"]);
-      if (maxWidth >= 800) t$368.push("eduma-adaptive-page--wide");
-      if (showEdges) t$368.push("has-edges");
-      if (fullBleed) t$368.push("is-full-bleed");
-      if (classes[$isNotEmpty]) t$368.push(classes);
-      return t$368;
+      let t$367 = _interceptors.JSArray.of(T.JSArrayOfString(), ["eduma-adaptive-page"]);
+      if (maxWidth >= 800) t$367.push("eduma-adaptive-page--wide");
+      if (showEdges) t$367.push("has-edges");
+      if (fullBleed) t$367.push("is-full-bleed");
+      if (classes[$isNotEmpty]) t$367.push(classes);
+      return t$367;
     })()[$join](" ");
-    t$3611$0 = cls;
+    t$3610$0 = cls;
     return new html.main_.new((() => {
-      let t$369 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3611$ = "eduma-adaptive-page__column", new html.div.new((() => {
-          let t$3610 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [desktop_scaffolds.pureAppBar({title: title, subtitle: subtitle, leading: leading, trailing: trailing, fallbackHref: fallbackHref, onBack: onBack}), (t$3611 = "eduma-adaptive-page__body", new html.div.new(body, {classes: t$3611}))]);
-          if (bottomFloatingBar != null) t$3610.push(bottomFloatingBar);
-          return t$3610;
-        })(), {classes: t$3611$}))]);
-      t$369[$addAll](overlays);
-      return t$369;
-    })(), {classes: t$3611$0});
+      let t$368 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3610$ = "eduma-adaptive-page__column", new html.div.new((() => {
+          let t$369 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [desktop_scaffolds.pureAppBar({title: title, subtitle: subtitle, leading: leading, trailing: trailing, fallbackHref: fallbackHref, onBack: onBack}), (t$3610 = "eduma-adaptive-page__body", new html.div.new(body, {classes: t$3610}))]);
+          if (bottomFloatingBar != null) t$369.push(bottomFloatingBar);
+          return t$369;
+        })(), {classes: t$3610$}))]);
+      t$368[$addAll](overlays);
+      return t$368;
+    })(), {classes: t$3610$0});
   };
   dart.lazyFn(desktop_scaffolds.adaptivePageScaffold, () => T.__ToComponent$6());
   desktop_scaffolds.desktopPinnedPageHeader = function desktopPinnedPageHeader(opts) {
-    let t$3614, t$3614$, t$3614$0, t$3614$1, t$3614$2;
+    let t$3613, t$3613$, t$3613$0, t$3613$1, t$3613$2;
     let title = opts && 'title' in opts ? opts.title : null;
     let subtitle = opts && 'subtitle' in opts ? opts.subtitle : null;
     let leading = opts && 'leading' in opts ? opts.leading : null;
     let actions = opts && 'actions' in opts ? opts.actions : C[6] || CT.C6;
     let classes = opts && 'classes' in opts ? opts.classes : "";
-    t$3614$2 = classes[$isEmpty] ? "eduma-desktop-header" : "eduma-desktop-header " + classes;
+    t$3613$2 = classes[$isEmpty] ? "eduma-desktop-header" : "eduma-desktop-header " + classes;
     return new html.header.new((() => {
-      let t$3611 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3614$0 = "eduma-desktop-header__lead", new html.div.new((() => {
-          let t$3612 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+      let t$3610 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3613$0 = "eduma-desktop-header__lead", new html.div.new((() => {
+          let t$3611 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
           if (leading != null)
-            t$3612.push(leading);
+            t$3611.push(leading);
           else
-            t$3612[$addAll]((() => {
-              let t$3613 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3614 = "eduma-desktop-header__title", new html.h1.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(title)]), {classes: t$3614}))]);
-              if (subtitle != null && subtitle[$trim]()[$isNotEmpty]) t$3613.push((t$3614$ = "eduma-desktop-header__subtitle", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(subtitle)]), {classes: t$3614$})));
-              return t$3613;
+            t$3611[$addAll]((() => {
+              let t$3612 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3613 = "eduma-desktop-header__title", new html.h1.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(title)]), {classes: t$3613}))]);
+              if (subtitle != null && subtitle[$trim]()[$isNotEmpty]) t$3612.push((t$3613$ = "eduma-desktop-header__subtitle", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(subtitle)]), {classes: t$3613$})));
+              return t$3612;
             })());
-          return t$3612;
-        })(), {classes: t$3614$0}))]);
-      if (actions[$isNotEmpty]) t$3611.push((t$3614$1 = "eduma-desktop-header__actions", new html.div.new(actions, {classes: t$3614$1})));
-      return t$3611;
-    })(), {classes: t$3614$2});
+          return t$3611;
+        })(), {classes: t$3613$0}))]);
+      if (actions[$isNotEmpty]) t$3610.push((t$3613$1 = "eduma-desktop-header__actions", new html.div.new(actions, {classes: t$3613$1})));
+      return t$3610;
+    })(), {classes: t$3613$2});
   };
   dart.lazyFn(desktop_scaffolds.desktopPinnedPageHeader, () => T.__ToComponent$7());
   desktop_scaffolds.desktopQuickNoteFab = function desktopQuickNoteFab(opts) {
-    let t$3617, t$3616, t$3615, t$3614;
+    let t$3616, t$3615, t$3614, t$3613;
     let tooltip = opts && 'tooltip' in opts ? opts.tooltip : "Quick note";
     let onPressed = opts && 'onPressed' in opts ? opts.onPressed : null;
     if (onPressed == null) {
       return eduma_link.edumaLink({to: "/spacePageStatic", classes: "eduma-quick-note-fab", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", tooltip, "title", tooltip]), children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.quickNote, {size: 25})])});
     }
-    t$3614 = "eduma-quick-note-fab";
-    t$3615 = html.ButtonType.button;
-    t$3616 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", tooltip, "title", tooltip]);
-    t$3617 = onPressed;
-    return new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.quickNote, {size: 25})]), {classes: t$3614, type: t$3615, attributes: t$3616, onClick: t$3617});
+    t$3613 = "eduma-quick-note-fab";
+    t$3614 = html.ButtonType.button;
+    t$3615 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", tooltip, "title", tooltip]);
+    t$3616 = onPressed;
+    return new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.quickNote, {size: 25})]), {classes: t$3613, type: t$3614, attributes: t$3615, onClick: t$3616});
   };
   dart.lazyFn(desktop_scaffolds.desktopQuickNoteFab, () => T.__ToComponent$8());
   (function() {
   }).prototype = desktop_scaffolds;
   dart.moduleConstCaches.set("packages/eduma_web/core/presentation/desktop_scaffolds", C);
-  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"eduma_web__core__presentation__desktop_scaffolds|DesktopPillVariant":{"core|_Enum":[],"core|Enum":[]},"core|_Enum":{"core|Enum":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"core|int":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|num":{"Comparable.T":"core|num","core|Comparable":["core|num"]},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"jaspr__src__dom__html__html|button":{"jaspr__src__framework__framework|StatelessComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatelessComponent":{"jaspr__src__framework__framework|Component":[]}}'));
+  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"eduma_web__core__presentation__desktop_scaffolds|DesktopPillVariant":{"core|_Enum":[],"core|Enum":[]},"core|_Enum":{"core|Enum":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"jaspr__src__dom__html__html|button":{"jaspr__src__framework__framework|StatelessComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatelessComponent":{"jaspr__src__framework__framework|Component":[]},"core|int":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|num":{"Comparable.T":"core|num","core|Comparable":["core|num"]}}'));
   dart.trackLibraries("packages/eduma_web/core/presentation/desktop_scaffolds", {
     "package:eduma_web/core/presentation/desktop_scaffolds.dart": desktop_scaffolds
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["desktop_scaffolds.dart"],"names":[],"mappings":"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","file":"desktop_scaffolds.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["desktop_scaffolds.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAOK;;;;;;;;;;;;;;MAAqB,4CAAO;;;MAAE,0CAAK;;;MAAE,6CAAQ;;;MAAE,0CAAK;;;MAAE,0CAAK;;;MAA3D,2CAAM;;;;6EAI8B;QAAiB;AACtD,gCAAU,OAAO,iBAAgB,YAAY;EAAC;;;QAY/B,OACE,QAHM;QAJN;QACA;QACZ;AACH,IACqB,UAAhB,AAAQ,OAAD,aAAW,gBAAgB,iBAAc,OAAO;UAD5D,oBAEJ,2DACiB,qBAAf,mBAAoC,kDAAC,IAAI,cAA1B,oBACE,qBAAjB,qBAAsC,kDAAC,IAAI,cAA1B,uBAHM;EAK1B;;;QAegB,OAC2C,OAA1C,QAC6C,QAA7C,SAC2C,SAA3C,SACoB,SACC,SACtB,SARU;QANN;QACR;QACA;QACc;QAClB;AACH,IACqB,UAAhB,AAAQ,OAAD,aAAW,oBAAoB,qBAAkB,OAAO;UADpE,kBAEJ;6EACe,6BAAb,iBAA0C,kDAAC,QAAQ,cAAtC,oBACC,sCAA0C,iEAAC,eAAe,UAAxE,kBAAiF,gEAAnE,oBAA0C,qBAC1C,0CAA6C,iEAAC,eAAe,UAA3E,kBAAoF,gEAAtE,qBAA6C,sBAC7C,yCAA2C,iEAAC,eAAe,UAAzE,kBAAkF,gEAApE,qBAA2C;AACzD,UAAI,OAAO,UALb,AAKoC,sBAAA,4BAAb,iBAAyC,kDAAC,OAAO,cAApC;AAClC,UAAI,QAAQ,UANd,AAMqC,sBAAA,6BAAb,iBAA0C,kDAAC,QAAQ,cAAtC;AACtB,MAPf,sBAOe,4BAAb,iBAAyC,aAAa,YAAzC;YAPf;oBADyB;EAU1B;;;QA+BY,OADG,OADF,OADO,OADR;QAvBK;QACA;QACF;QACN;QACH;QACA;QACE;AAED,cAAM,AAIV;iEAHA;AACA,UAAI,MAAM,EAFA,AAEE,WAAA;AACZ,UAAI,AAAQ,OAAD,eAHD,AAGc,WAAA,OAAO;YAHrB;gBAIL;AACD,gBAAQ,kDAAC,sBAAU,IAAI,SAAQ;AACrC,QAAI,IAAI;AACN,YAAO,2BACD,IAAI,WACC,GAAG,cACA,iEAAC,cAAc,KAAK,EAAE,SAAS,KAAK,cACtC,KAAK;;AAGnB,YACW,GAAG;YACK;YACP,QAAQ;YACN,iEAAC,cAAc,KAAK,EAAE,SAAS,KAAK;YACvC,SAAS;UALb,qBAML,KAAK,YALI,aACQ,iBACP,mBACE,gBACH;EAGb;;;QAKS;QACO;AACV,2CACK,QAAC;YAGG;AAHS,0DACH,yCACV,uBACc,QAAV,SAAS,EAAT,gBAAa,cAAM,yCAAuB,OAAO,iBAAgB,YAAY,sBAA7E;;EAEd;;;QA6BY,OADC,OADO,OADR;QArBK;QACA;QACG;QACX;QACM;QACT;QACE;AAED,cAAM,AAIV;iEAHA,sBACA,yBAA+B,0BAAR,OAAO;AAC9B,UAAI,AAAQ,OAAD,eAHD,AAGc,WAAA,OAAO;YAHrB;gBAIL;AACD,kBAAU,kDACd,sBAAU,IAAI,SAAQ,MACtB,kBAAK,kDAAC,sBAAM,KAAK;AAEnB,QAAI,IAAI;AACN,YAAO,2BAAc,IAAI,WAAW,GAAG,YAAY,OAAO;;AAE5D,YACW,GAAG;YACK;YACP,QAAQ;YACT,SAAS;UAJb,qBAKL,OAAO,YAJE,aACQ,iBACP,gBACD;EAGb;;;QAeM,OAWc,OAEC,QAHF,SAKsB,SAhBxB,SAFN;QAPO;QACR;QACG;QACA;QACJ;QACO;AACV,cACK;UADL,qBAEJ,6DACe,4BAAb,iBAAyC;uEAC/B,QAAR,OAAO,EAAP,gBACI,gCACW,QAAC;kBAIC,OAAO,QADJ,OADK,OADR;AADW,uBACX;sBACQ;sBACL,iEAAC,cAAc,WAAW,SAAS;wBAC/B,QAAP,MAAM,EAAN,gBAAU,cAAM,yCAAuB,OAAO,iBAAgB,YAAY,sBAA1E;oBAJW,qBAKpB,kDAAC,sBAAqB,oCAAY,kBAJzB,cACQ,mBACL,gBACI;6CANxB,mBAUa,6BAAb,iBAA0C;mFAC5B,4BAAZ,gBAAwC,kDAAC,sBAAM,KAAK,eAAxC;AACZ,gBAAI,QAAQ,YAAY,AAAS,AAAO,QAAR,wBAFQ,AAG3B,qBAAA,+BAAX,eAA0C,kDAAC,sBAAM,QAAQ,eAA9C;kBAH2B;0BAA7B;AAKb,YAAI,QAAQ,UAhB2B,AAgBJ,sBAAA,+BAAb,iBAA4C,kDAAC,QAAQ,cAAxC;cAhBI;sBAA5B,wBAFN;EAqBV;;;QAsCoB,QATF,SAFN;QAtBK;QACR;QACG;QACA;QACP;QACC;QACoB;QACT;QACL;QACN;QACE;QACA;QACO;AAER,cAAM,AAMV;iEALA;AACA,UAAI,QAAQ,IAAI,KAFN,AAEW,WAAA;AACrB,UAAI,SAAS,EAHH,AAGK,WAAA;AACf,UAAI,SAAS,EAJH,AAIK,WAAA;AACf,UAAI,AAAQ,OAAD,eALD,AAKc,WAAA,OAAO;YALrB;gBAML;AACP,eACW,GAAG;UADP,oBAEL;+EACe,+BAAb,iBAA4C;wEAC1C,qCACS,KAAK,YACF,QAAQ,WACT,OAAO,YACN,QAAQ,gBACJ,YAAY,UAClB,MAAM,cAEH,6BAAb,iBAA0C,IAAI,YAAjC;AACb,cAAI,iBAAiB,UAVqB,AAUX,WAAA,iBAAiB;gBAVN;wBAA/B;AAYV,MAbL,eAaK,QAAQ;YAbb;oBADS;EAiBb;;;QAiBoB,QAEC,SANJ,UASwB,UAXd;QANT;QACR;QACG;QACK;QACT;AACH,IACqB,WAAhB,AAAQ,OAAD,aAAW,yBAAyB,0BAAuB,OAAO;UAD9E,qBAEJ;iFACe,8BAAb,iBAA2C;;AACzC,cAAI,OAAO;AACT,YAFuC,YAEvC,OAAO;;AACD,YAHiC,gBAGjC;uFACM,+BAAZ,gBAA2C,kDAAC,sBAAM,KAAK,eAA3C;AACZ,kBAAI,QAAQ,YAAY,AAAS,AAAO,QAAR,wBAF1B,AAGO,uBAAA,kCAAX,eAA6C,kDAAC,sBAAM,QAAQ,eAAjD;oBAHP;;gBAHiC;wBAA9B;AASb,UAAI,AAAQ,OAAD,eAVb,AAUuC,wBAAA,iCAAb,iBAA8C,OAAO,YAAxC;YAVvC;oBADyB;EAa1B;;;QAoBY,QADG,QADK,QADR;QAZJ;QACO;AAEd,QAAI,AAAU,SAAD;AACX,YAAO,2BACD,6BACK,oCACG,iEAAC,cAAc,OAAO,EAAE,SAAS,OAAO,cAC1C,kDAAC,sBAAqB,yCAAiB;;AAGrD,aACW;aACQ;aACL,iEAAC,cAAc,OAAO,EAAE,SAAS,OAAO;aAC3C,SAAS;UAJb,qBAKL,kDAAC,sBAAqB,yCAAiB,kBAJ9B,cACQ,oBACL,iBACH;EAGb","file":"desktop_scaffolds.ddc.js"}');
   // Exports:
   return {
     eduma_web__core__presentation__desktop_scaffolds: desktop_scaffolds

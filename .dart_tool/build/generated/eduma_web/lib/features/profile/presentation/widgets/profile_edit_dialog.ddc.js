@@ -2,11 +2,12 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/features/profile/presentation/widgets/profile_edit_dialog
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/presentation/widgets/web_dialog_helper', 'packages/eduma_web/features/profile/data/profile_models', 'packages/eduma_web/features/profile/logic/profile_actions', 'packages/eduma_web/features/main/presentation/widgets/main_home_icons'], (function load__packages__eduma_web__features__profile__presentation__widgets__profile_edit_dialog(dart_sdk, packages__jaspr__client, packages__eduma_web__features__main__presentation__widgets__web_dialog_helper, packages__eduma_web__features__profile__data__profile_models, packages__eduma_web__features__profile__logic__profile_actions, packages__eduma_web__features__main__presentation__widgets__main_home_icons) {
+define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/presentation/widgets/web_dialog_helper', 'packages/eduma_web/features/profile/data/profile_models', 'packages/eduma_web/features/profile/logic/profile_actions', 'packages/eduma_web/core/presentation/eduma_icons'], (function load__packages__eduma_web__features__profile__presentation__widgets__profile_edit_dialog(dart_sdk, packages__jaspr__client, packages__eduma_web__features__main__presentation__widgets__web_dialog_helper, packages__eduma_web__features__profile__data__profile_models, packages__eduma_web__features__profile__logic__profile_actions, packages__eduma_web__core__presentation__eduma_icons) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
   const async = dart_sdk.async;
+  const collection = dart_sdk.collection;
   const _js_helper = dart_sdk._js_helper;
   const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
@@ -16,54 +17,44 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
   const web_dialog_helper = packages__eduma_web__features__main__presentation__widgets__web_dialog_helper.eduma_web__features__main__presentation__widgets__web_dialog_helper;
   const profile_models = packages__eduma_web__features__profile__data__profile_models.eduma_web__features__profile__data__profile_models;
   const profile_actions = packages__eduma_web__features__profile__logic__profile_actions.eduma_web__features__profile__logic__profile_actions;
-  const main_home_icons = packages__eduma_web__features__main__presentation__widgets__main_home_icons.eduma_web__features__main__presentation__widgets__main_home_icons;
+  const eduma_icons = packages__eduma_web__core__presentation__eduma_icons.eduma_web__core__presentation__eduma_icons;
   var profile_edit_dialog = Object.create(dart.library);
+  var $_set = dartx._set;
   var T = {
     _ProfileEditDialogState: () => (T._ProfileEditDialogState = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__profile__presentation__widgets__profile_edit_dialog|_ProfileEditDialogState", true)))(),
-    __ToProfileEditDialog: () => (T.__ToProfileEditDialog = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__profile__presentation__widgets__profile_edit_dialog|ProfileEditDialog({currentName!core|String,currentUsername!core|String,key:jaspr__src__framework__framework|Key?,onClose!~(),onSaved!~(core|Map<core|String,@>),open!core|bool})", true)))(),
+    __ToProfileEditDialog: () => (T.__ToProfileEditDialog = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__profile__presentation__widgets__profile_edit_dialog|ProfileEditDialog({currentName!core|String,currentUsername!core|String,email!core|String,key:jaspr__src__framework__framework|Key?,onClose!~(),onSaved!~(core|Map<core|String,@>),open!core|bool})", true)))(),
     VoidToStateOfProfileEditDialog: () => (T.VoidToStateOfProfileEditDialog = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|State<eduma_web__features__profile__presentation__widgets__profile_edit_dialog|ProfileEditDialog>()", true)))(),
     bool: () => (T.bool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool", true)))(),
     String: () => (T.String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String", true)))(),
     VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~()", true)))(),
     MapOfString$dynamicTovoid: () => (T.MapOfString$dynamicTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(core|Map<core|String,@>)", true)))(),
     ProfileEditDialog: () => (T.ProfileEditDialog = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__profile__presentation__widgets__profile_edit_dialog|ProfileEditDialog", true)))(),
-    void: () => (T.void = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~", true)))(),
-    VoidToFutureOfvoid: () => (T.VoidToFutureOfvoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "async|Future<~>()", true)))(),
     Object: () => (T.Object = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Object", true)))(),
     AuthApiException: () => (T.AuthApiException = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__auth__data__auth_api|AuthApiException", true)))(),
-    IdentityMapOfString$String: () => (T.IdentityMapOfString$String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,core|String>", true)))(),
+    void: () => (T.void = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~", true)))(),
+    LinkedHashMapOfString$String: () => (T.LinkedHashMapOfString$String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "collection|LinkedHashMap<core|String,core|String>", true)))(),
     JSObjectTovoid: () => (T.JSObjectTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(_interceptors|JSObject)", true)))(),
     IdentityMapOfString$JSObjectTovoid: () => (T.IdentityMapOfString$JSObjectTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,~(_interceptors|JSObject)>", true)))(),
     JSArrayOfComponent: () => (T.JSArrayOfComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<jaspr__src__framework__framework|Component>", true)))(),
     inputOfString: () => (T.inputOfString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__dom__html__html|input<core|String>", true)))(),
+    IdentityMapOfString$String: () => (T.IdentityMapOfString$String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,core|String>", true)))(),
     StringTovoid: () => (T.StringTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(core|String)", true)))(),
     VoidTo_ProfileEditDialogState: () => (T.VoidTo_ProfileEditDialogState = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__profile__presentation__widgets__profile_edit_dialog|_ProfileEditDialogState()", true)))(),
+    VoidToFutureOfvoid: () => (T.VoidToFutureOfvoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "async|Future<~>()", true)))(),
     BuildContextToComponent: () => (T.BuildContextToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component(jaspr__src__framework__framework|BuildContext)", true)))(),
-    Duration: () => (T.Duration = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Duration", true)))(),
-    boolN: () => (T.boolN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool?", true)))(),
-    StringN: () => (T.StringN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String?", true)))(),
-    TimerN: () => (T.TimerN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "async|Timer?", true)))(),
-    int: () => (T.int = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|int", true)))()
+    StringN: () => (T.StringN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String?", true)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
-  dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const(Object.setPrototypeOf({
-        [Duration__duration]: 300000
-      }, core.Duration.prototype));
-    }
-  });
-  var C = [void 0];
   var I = [
     "package:eduma_web/features/profile/presentation/widgets/profile_edit_dialog.dart",
-    "dart:core",
-    "dart:async"
+    "dart:core"
   ];
   var open = dart.privateName(profile_edit_dialog, "ProfileEditDialog.open");
   var currentName = dart.privateName(profile_edit_dialog, "ProfileEditDialog.currentName");
   var currentUsername = dart.privateName(profile_edit_dialog, "ProfileEditDialog.currentUsername");
+  var email = dart.privateName(profile_edit_dialog, "ProfileEditDialog.email");
   var onClose = dart.privateName(profile_edit_dialog, "ProfileEditDialog.onClose");
   var onSaved = dart.privateName(profile_edit_dialog, "ProfileEditDialog.onSaved");
   profile_edit_dialog.ProfileEditDialog = class ProfileEditDialog extends framework.StatefulComponent {
@@ -85,6 +76,12 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
     set currentUsername(value) {
       super.currentUsername = value;
     }
+    get email() {
+      return this[email];
+    }
+    set email(value) {
+      super.email = value;
+    }
     get onClose() {
       return this[onClose];
     }
@@ -101,10 +98,11 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
       let open = opts && 'open' in opts ? opts.open : null;
       let currentName = opts && 'currentName' in opts ? opts.currentName : null;
       let currentUsername = opts && 'currentUsername' in opts ? opts.currentUsername : null;
+      let email = opts && 'email' in opts ? opts.email : null;
       let onClose = opts && 'onClose' in opts ? opts.onClose : null;
       let onSaved = opts && 'onSaved' in opts ? opts.onSaved : null;
       let key = opts && 'key' in opts ? opts.key : null;
-      return new profile_edit_dialog.ProfileEditDialog.new({open: open, currentName: currentName, currentUsername: currentUsername, onClose: onClose, onSaved: onSaved, key: key});
+      return new profile_edit_dialog.ProfileEditDialog.new({open: open, currentName: currentName, currentUsername: currentUsername, email: email, onClose: onClose, onSaved: onSaved, key: key});
     }
     createState() {
       return new profile_edit_dialog._ProfileEditDialogState.new(T._ProfileEditDialogState());
@@ -114,12 +112,14 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
     let open$ = opts && 'open' in opts ? opts.open : null;
     let currentName$ = opts && 'currentName' in opts ? opts.currentName : null;
     let currentUsername$ = opts && 'currentUsername' in opts ? opts.currentUsername : null;
+    let email$ = opts && 'email' in opts ? opts.email : null;
     let onClose$ = opts && 'onClose' in opts ? opts.onClose : null;
     let onSaved$ = opts && 'onSaved' in opts ? opts.onSaved : null;
     let key = opts && 'key' in opts ? opts.key : null;
     this[open] = open$;
     this[currentName] = currentName$;
     this[currentUsername] = currentUsername$;
+    this[email] = email$;
     this[onClose] = onClose$;
     this[onSaved] = onSaved$;
     dart.global.Object.getPrototypeOf(profile_edit_dialog.ProfileEditDialog).new.call(this, {key: key});
@@ -151,6 +151,12 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
       isFinal: true,
       libraryUri: I[1]
     },
+    email: {
+      type: _ti => T.String(),
+      isConst: false,
+      isFinal: true,
+      libraryUri: I[1]
+    },
     onClose: {
       type: _ti => T.VoidTovoid(),
       isConst: false,
@@ -163,21 +169,13 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
     }
   }, dart.getFields(dart.global.Object.getPrototypeOf(profile_edit_dialog.ProfileEditDialog))));
   var _name = dart.privateName(profile_edit_dialog, "_name");
-  var _username = dart.privateName(profile_edit_dialog, "_username");
-  var _checking = dart.privateName(profile_edit_dialog, "_checking");
-  var _available = dart.privateName(profile_edit_dialog, "_available");
-  var _usernameError = dart.privateName(profile_edit_dialog, "_usernameError");
   var _saving = dart.privateName(profile_edit_dialog, "_saving");
   var _error = dart.privateName(profile_edit_dialog, "_error");
-  var _debounce = dart.privateName(profile_edit_dialog, "_debounce");
-  var _checkSeq = dart.privateName(profile_edit_dialog, "_checkSeq");
   var _resetFromComponent = dart.privateName(profile_edit_dialog, "_resetFromComponent");
   var _as = dart.privateName(dart_rti, "_as");
-  var _onUsernameInput = dart.privateName(profile_edit_dialog, "_onUsernameInput");
   var _dismiss = dart.privateName(profile_edit_dialog, "_dismiss");
   var _is = dart.privateName(dart_rti, "_is");
   var _submit = dart.privateName(profile_edit_dialog, "_submit");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
   profile_edit_dialog._ProfileEditDialogState = class _ProfileEditDialogState extends framework.State {
     initState() {
       super.initState();
@@ -192,87 +190,10 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
       }
       web_dialog_helper.WebDialogHelper.syncOpen("eduma-edit-profile-dialog", this.component.open);
     }
-    dispose() {
-      let t$360;
-      t$360 = this[_debounce];
-      t$360 == null ? null : t$360.cancel();
-      super.dispose();
-    }
     [_resetFromComponent]() {
-      let t$360;
-      t$360 = this[_debounce];
-      t$360 == null ? null : t$360.cancel();
-      this[_checkSeq] = this[_checkSeq] + 1;
       this[_name] = this.component.currentName;
-      this[_username] = this.component.currentUsername;
-      this[_checking] = false;
-      this[_available] = null;
-      this[_usernameError] = null;
       this[_saving] = false;
       this[_error] = null;
-    }
-    [_onUsernameInput](raw) {
-      let t$360;
-      t$360 = this[_debounce];
-      t$360 == null ? null : t$360.cancel();
-      let seq = this[_checkSeq] = this[_checkSeq] + 1;
-      this.setState(dart.fn(() => {
-        this[_username] = raw;
-        this[_error] = null;
-      }, T.VoidTovoid()));
-      if (!profile_models.EditProfileLogic.usernameChanged(raw, this.component.currentUsername)) {
-        this.setState(dart.fn(() => {
-          this[_checking] = false;
-          this[_available] = null;
-          this[_usernameError] = null;
-        }, T.VoidTovoid()));
-        return;
-      }
-      let problem = profile_models.EditProfileLogic.usernameProblem(raw, this.component.currentUsername);
-      if (problem != null) {
-        this.setState(dart.fn(() => {
-          this[_checking] = false;
-          this[_available] = false;
-          this[_usernameError] = problem;
-        }, T.VoidTovoid()));
-        return;
-      }
-      this.setState(dart.fn(() => {
-        this[_checking] = true;
-        this[_available] = null;
-        this[_usernameError] = null;
-      }, T.VoidTovoid()));
-      this[_debounce] = async.Timer.new(profile_edit_dialog._ProfileEditDialogState._checkDelay, dart.fn(() => {
-        let t$goto = 0, t$completer = async._makeAsyncAwaitCompleter(T.void()), t$returnValue, asyncScope = Object.create(null);
-        var t$36asyncBody = async._wrapJsFunctionForAsync((t$errorCode, t$result) => {
-          if (t$errorCode === 1) return async._asyncRethrow(t$result, t$completer);
-          while (true)
-            switch (t$goto) {
-              case 0:
-                // Function start
-                asyncScope = Object.create(null);
-                t$goto = 2;
-                return async._asyncAwait(profile_actions.ProfileActions.checkUsername(raw), t$36asyncBody, t$completer);
-              case 2:
-                // returning from await.
-                asyncScope.result = t$result;
-                if (!this.mounted || seq !== this[_checkSeq]) {
-                  // goto return
-                  t$goto = 3;
-                  break;
-                }
-                this.setState(dart.fn((capturedAsyncScope => () => {
-                  this[_checking] = false;
-                  this[_available] = capturedAsyncScope.result === true;
-                  this[_usernameError] = capturedAsyncScope.result === false ? "Username is already taken." : null;
-                })(asyncScope), T.VoidTovoid()));
-              case 3:
-                // return
-                return async._asyncReturn(t$returnValue, t$completer);
-            }
-        });
-        return async._asyncStartSync(t$36asyncBody, t$completer);
-      }, T.VoidToFutureOfvoid()));
     }
     [_dismiss]() {
       if (this[_saving]) return;
@@ -296,7 +217,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
                 t$goto = 2;
                 break;
               }
-              asyncScope.canSave = profile_models.EditProfileLogic.canSave({name: this[_name], currentName: this.component.currentName, username: this[_username], currentUsername: this.component.currentUsername, usernameAvailable: this[_available], isCheckingUsername: this[_checking]});
+              asyncScope.canSave = profile_models.EditProfileLogic.canSave({name: this[_name], currentName: this.component.currentName, username: this.component.currentUsername, currentUsername: this.component.currentUsername, usernameAvailable: null, isCheckingUsername: false});
               if (!asyncScope.canSave) {
                 // goto return
                 t$goto = 2;
@@ -307,9 +228,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
                 this[_error] = null;
               }, T.VoidTovoid()));
               t$handler = 4;
-              asyncScope$2.changedUsername = profile_models.EditProfileLogic.usernameChanged(this[_username], this.component.currentUsername);
               t$goto = 7;
-              return async._asyncAwait(profile_actions.ProfileActions.updateProfile({name: this[_name], username: asyncScope$2.changedUsername ? this[_username] : null}), t$36async_submit, t$completer);
+              return async._asyncAwait(profile_actions.ProfileActions.updateProfile({name: this[_name]}), t$36async_submit, t$completer);
             case 7:
               // returning from await.
               asyncScope$2.updated = t$result;
@@ -381,42 +301,39 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
       return async._asyncStartSync(t$36async_submit, t$completer);
     }
     build(context) {
-      let t$362, t$362$, t$365, t$364, t$363, t$362$0, t$362$1, t$363$, t$363$0, t$364$, t$364$0, t$364$1, t$364$2, t$364$3, t$366, t$365$, t$365$0, t$368, t$367, t$366$, t$365$1, t$367$, t$366$0, t$365$2, t$365$3, t$365$4, t$368$, t$367$0, t$366$1, t$365$5;
-      let canSave = profile_models.EditProfileLogic.canSave({name: this[_name], currentName: this.component.currentName, username: this[_username], currentUsername: this.component.currentUsername, usernameAvailable: this[_available], isCheckingUsername: this[_checking]});
-      t$365$5 = "eduma-edit-profile-dialog";
-      t$366$1 = "eduma-modal";
-      t$367$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["closedby", "any", "aria-labelledby", "eduma-edit-profile-title"]);
-      t$368$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["close", dart.fn(_$35wc0$35formal => {
+      let t$363, t$363$, t$363$0, t$364, t$364$, t$364$0, t$364$1, t$364$2, t$364$3, t$366, t$365, t$365$, t$367, t$366$, t$365$0, t$365$1, t$365$2, t$368, t$367$, t$366$0, t$365$3;
+      let canSave = profile_models.EditProfileLogic.canSave({name: this[_name], currentName: this.component.currentName, username: this.component.currentUsername, currentUsername: this.component.currentUsername, usernameAvailable: null, isCheckingUsername: false});
+      t$365$3 = "eduma-edit-profile-dialog";
+      t$366$0 = "eduma-modal";
+      t$367$ = (() => {
+        let t$362 = collection.LinkedHashMap.of(T.LinkedHashMapOfString$String(), web_dialog_helper.WebDialogHelper.openAttr(this.component.open));
+        t$362[$_set]("closedby", "any");
+        t$362[$_set]("aria-labelledby", "eduma-edit-profile-title");
+        return t$362;
+      })();
+      t$368 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["close", dart.fn(_$35wc0$35formal => {
           if (this.component.open) this[_dismiss]();
         }, T.JSObjectTovoid())]);
-      return new html.dialog.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$362$1 = "eduma-modal__header", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$362$ = "eduma-modal__title", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$362 = "eduma-edit-profile-title", new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Edit profile")]), {id: t$362})), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Update how your name and handle appear to space members.")]))]), {classes: t$362$})), (t$362$0 = "eduma-modal__close", t$363 = html.ButtonType.button, t$364 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close dialog"]), t$365 = dart.tearoff(this, null, _dismiss), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_icons.mainHomeIcon(main_home_icons.MainHomeIcon.close, {size: 18})]), {classes: t$362$0, type: t$363, attributes: t$364, onClick: t$365}))]), {classes: t$362$1})), (t$365$4 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["submit", dart.fn(event => {
+      return new html.dialog.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$363$0 = "eduma-modal__header", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$363$ = "eduma-modal__title", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$363 = "eduma-edit-profile-title", new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Edit Profile")]), {id: t$363})), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Update your name as it appears to instructors and space members")]))]), {classes: t$363$}))]), {classes: t$363$0})), (t$365$2 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["submit", dart.fn(event => {
             event.preventDefault();
             async.unawaited(this[_submit]());
-          }, T.JSObjectTovoid())]), new html.form.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$365$0 = "eduma-modal__body", new html.div.new((() => {
-            let t$362 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$363$0 = "eduma-modal__field", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$363$ = "eduma-profile-name", new html.label.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Display name")]), {htmlFor: t$363$})), new html.input.new(T.inputOfString(), {id: "eduma-profile-name", classes: "eduma-modal__input", type: html.InputType.text, value: this[_name], disabled: this[_saving], attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["autofocus", "true"]), onInput: dart.fn(value => this.setState(dart.fn(() => {
-                    this[_name] = value;
-                    this[_error] = null;
-                  }, T.VoidTovoid())), T.StringTovoid())})]), {classes: t$363$0})), (t$364$3 = "eduma-modal__field", new html.div.new((() => {
-                let t$363 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$364$ = "eduma-profile-username", new html.label.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Username")]), {htmlFor: t$364$})), new html.input.new(T.inputOfString(), {id: "eduma-profile-username", classes: "eduma-modal__input", type: html.InputType.text, value: this[_username], disabled: this[_saving], attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["placeholder", "username"]), onInput: dart.tearoff(this, null, _onUsernameInput)})]);
-                if (this[_checking])
-                  t$363.push((t$364$0 = "eduma-modal__hint", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Checking availability…")]), {classes: t$364$0})));
-                else if (this[_usernameError] != null)
-                  t$363.push((t$364$1 = "eduma-modal__error", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(dart.nullCheck(this[_usernameError]))]), {classes: t$364$1})));
-                else if (this[_available] === true) t$363.push((t$364$2 = "eduma-profile__hint-ok", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Username is available.")]), {classes: t$364$2})));
-                return t$363;
-              })(), {classes: t$364$3}))]);
+          }, T.JSObjectTovoid())]), new html.form.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$365$ = "eduma-modal__body", new html.div.new((() => {
+            let t$363 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$364$0 = "eduma-modal__field", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$364 = "eduma-profile-name", new html.label.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Full Name")]), {htmlFor: t$364})), (t$364$ = "eduma-modal__input-wrap", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.user, {size: 20}), new html.input.new(T.inputOfString(), {id: "eduma-profile-name", classes: "eduma-modal__input", type: html.InputType.text, value: this[_name], disabled: this[_saving], attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["placeholder", "Enter your name", "autocomplete", "name"]), onInput: dart.fn(value => this.setState(dart.fn(() => {
+                      this[_name] = value;
+                      this[_error] = null;
+                    }, T.VoidTovoid())), T.StringTovoid())})]), {classes: t$364$}))]), {classes: t$364$0})), (t$364$3 = "eduma-modal__field", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$364$1 = "eduma-profile-email", new html.label.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Email")]), {htmlFor: t$364$1})), (t$364$2 = "eduma-modal__input-wrap", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.mail, {size: 20}), new html.input.new(T.inputOfString(), {id: "eduma-profile-email", classes: "eduma-modal__input", type: html.InputType.email, value: this.component.email, disabled: true, attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["readonly", ""])})]), {classes: t$364$2}))]), {classes: t$364$3}))]);
             {
               let t$36$350$350 = this[_error];
               {
                 let msg = null;
                 if (t$36$350$350 != null) {
                   msg = t$36$350$350;
-                  t$362.push((t$365$ = "eduma-modal__error", t$366 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "alert"]), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(msg)]), {classes: t$365$, attributes: t$366})));
+                  t$363.push((t$365 = "eduma-modal__error", t$366 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "alert"]), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(msg)]), {classes: t$365, attributes: t$366})));
                 }
               }
             }
-            return t$362;
-          })(), {classes: t$365$0})), (t$365$3 = "eduma-modal__footer", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$365$1 = "eduma-modal__btn", t$366$ = html.ButtonType.button, t$367 = this[_saving], t$368 = dart.tearoff(this, null, _dismiss), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Cancel")]), {classes: t$365$1, type: t$366$, disabled: t$367, onClick: t$368})), (t$365$2 = "eduma-modal__btn eduma-modal__btn--primary", t$366$0 = html.ButtonType.submit, t$367$ = this[_saving] || !canSave, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(this[_saving] ? "Saving…" : "Save changes")]), {classes: t$365$2, type: t$366$0, disabled: t$367$}))]), {classes: t$365$3}))]), {events: t$365$4}))]), {id: t$365$5, classes: t$366$1, attributes: t$367$0, events: t$368$});
+            return t$363;
+          })(), {classes: t$365$})), (t$365$1 = "eduma-modal__footer", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$365$0 = "eduma-modal__btn eduma-modal__btn--primary", t$366$ = html.ButtonType.submit, t$367 = this[_saving] || !canSave, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(this[_saving] ? "Saving…" : "Save Changes")]), {classes: t$365$0, type: t$366$, disabled: t$367}))]), {classes: t$365$1}))]), {events: t$365$2}))]), {id: t$365$3, classes: t$366$0, attributes: t$367$, events: t$368});
     }
     static ['_#new#tearOff']() {
       return new profile_edit_dialog._ProfileEditDialogState.new(T._ProfileEditDialogState());
@@ -425,14 +342,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
   (profile_edit_dialog._ProfileEditDialogState.new = function(_ti) {
     this.$ti = this.$ti || _ti || dart.getReifiedType(this);
     this[_name] = "";
-    this[_username] = "";
-    this[_checking] = false;
-    this[_available] = null;
-    this[_usernameError] = null;
     this[_saving] = false;
     this[_error] = null;
-    this[_debounce] = null;
-    this[_checkSeq] = 0;
     dart.global.Object.getPrototypeOf(profile_edit_dialog._ProfileEditDialogState).new.call(this, null);
     ;
   }).prototype = profile_edit_dialog._ProfileEditDialogState.prototype;
@@ -440,7 +351,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
   dart.addRtiResources(profile_edit_dialog._ProfileEditDialogState, ["eduma_web__features__profile__presentation__widgets__profile_edit_dialog|_ProfileEditDialogState"]);
   dart.setMethodSignature(profile_edit_dialog._ProfileEditDialogState, () => dart.global.Object.setPrototypeOf({
     [_resetFromComponent]: _ti => T.VoidTovoid(),
-    [_onUsernameInput]: _ti => T.StringTovoid(),
     [_dismiss]: _ti => T.VoidTovoid(),
     [_submit]: _ti => T.VoidToFutureOfvoid(),
     build: _ti => T.BuildContextToComponent()
@@ -448,9 +358,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
   dart.setMethodsImmediateTargetSignature(profile_edit_dialog._ProfileEditDialogState, () => dart.global.Object.setPrototypeOf({
     initState: "package:eduma_web/features/profile/presentation/widgets/profile_edit_dialog.dart:_ProfileEditDialogState",
     didUpdateComponent: "package:eduma_web/features/profile/presentation/widgets/profile_edit_dialog.dart:_ProfileEditDialogState",
-    dispose: "package:eduma_web/features/profile/presentation/widgets/profile_edit_dialog.dart:_ProfileEditDialogState",
     [_resetFromComponent]: "package:eduma_web/features/profile/presentation/widgets/profile_edit_dialog.dart:_ProfileEditDialogState",
-    [_onUsernameInput]: "package:eduma_web/features/profile/presentation/widgets/profile_edit_dialog.dart:_ProfileEditDialogState",
     [_dismiss]: "package:eduma_web/features/profile/presentation/widgets/profile_edit_dialog.dart:_ProfileEditDialogState",
     [_submit]: "package:eduma_web/features/profile/presentation/widgets/profile_edit_dialog.dart:_ProfileEditDialogState",
     build: "package:eduma_web/features/profile/presentation/widgets/profile_edit_dialog.dart:_ProfileEditDialogState"
@@ -459,30 +367,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
   dart.setFieldSignature(profile_edit_dialog._ProfileEditDialogState, () => dart.global.Object.setPrototypeOf({
     [_name]: {
       type: _ti => T.String(),
-      isConst: false,
-      isFinal: false,
-      libraryUri: I[1]
-    },
-    [_username]: {
-      type: _ti => T.String(),
-      isConst: false,
-      isFinal: false,
-      libraryUri: I[1]
-    },
-    [_checking]: {
-      type: _ti => T.bool(),
-      isConst: false,
-      isFinal: false,
-      libraryUri: I[1]
-    },
-    [_available]: {
-      type: _ti => T.boolN(),
-      isConst: false,
-      isFinal: false,
-      libraryUri: I[1]
-    },
-    [_usernameError]: {
-      type: _ti => T.StringN(),
       isConst: false,
       isFinal: false,
       libraryUri: I[1]
@@ -498,37 +382,21 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
       isConst: false,
       isFinal: false,
       libraryUri: I[1]
-    },
-    [_debounce]: {
-      type: _ti => T.TimerN(),
-      isConst: false,
-      isFinal: false,
-      libraryUri: I[2]
-    },
-    [_checkSeq]: {
-      type: _ti => T.int(),
-      isConst: false,
-      isFinal: false,
-      libraryUri: I[1]
     }
   }, dart.getFields(dart.global.Object.getPrototypeOf(profile_edit_dialog._ProfileEditDialogState))));
-  dart.setStaticFieldSignature(profile_edit_dialog._ProfileEditDialogState, () => ['_dialogId', '_checkDelay']);
+  dart.setStaticFieldSignature(profile_edit_dialog._ProfileEditDialogState, () => ['_dialogId']);
   dart.defineLazy(profile_edit_dialog._ProfileEditDialogState, {
     /*profile_edit_dialog._ProfileEditDialogState._dialogId*/get _dialogId() {
       return "eduma-edit-profile-dialog";
-    },
-    /*profile_edit_dialog._ProfileEditDialogState._checkDelay*/get _checkDelay() {
-      return C[0] || CT.C0;
     }
   });
   (function() {
   }).prototype = profile_edit_dialog;
-  dart.moduleConstCaches.set("packages/eduma_web/features/profile/presentation/widgets/profile_edit_dialog", C);
-  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"eduma_web__features__profile__presentation__widgets__profile_edit_dialog|_ProfileEditDialogState":{"State.T":"eduma_web__features__profile__presentation__widgets__profile_edit_dialog|ProfileEditDialog","jaspr__src__framework__framework|State":["eduma_web__features__profile__presentation__widgets__profile_edit_dialog|ProfileEditDialog"]},"jaspr__src__framework__framework|State":{"State.T":"1"},"eduma_web__features__profile__presentation__widgets__profile_edit_dialog|ProfileEditDialog":{"jaspr__src__framework__framework|StatefulComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatefulComponent":{"jaspr__src__framework__framework|Component":[]},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"core|Map":{"Map.K":"1","Map.V":"2"},"async|Future":{"Future.T":"1"},"eduma_web__features__auth__data__auth_api|AuthApiException":{"core|Exception":[]},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"jaspr__src__dom__html__html|input":{"input.T":"1","jaspr__src__framework__framework|StatelessComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatelessComponent":{"jaspr__src__framework__framework|Component":[]},"core|Duration":{"Comparable.T":"core|Duration","core|Comparable":["core|Duration"]},"core|int":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|num":{"Comparable.T":"core|num","core|Comparable":["core|num"]}}'));
+  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"eduma_web__features__profile__presentation__widgets__profile_edit_dialog|_ProfileEditDialogState":{"State.T":"eduma_web__features__profile__presentation__widgets__profile_edit_dialog|ProfileEditDialog","jaspr__src__framework__framework|State":["eduma_web__features__profile__presentation__widgets__profile_edit_dialog|ProfileEditDialog"]},"jaspr__src__framework__framework|State":{"State.T":"1"},"eduma_web__features__profile__presentation__widgets__profile_edit_dialog|ProfileEditDialog":{"jaspr__src__framework__framework|StatefulComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatefulComponent":{"jaspr__src__framework__framework|Component":[]},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"core|Map":{"Map.K":"1","Map.V":"2"},"eduma_web__features__auth__data__auth_api|AuthApiException":{"core|Exception":[]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"jaspr__src__dom__html__html|input":{"input.T":"1","jaspr__src__framework__framework|StatelessComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatelessComponent":{"jaspr__src__framework__framework|Component":[]},"async|Future":{"Future.T":"1"}}'));
   dart.trackLibraries("packages/eduma_web/features/profile/presentation/widgets/profile_edit_dialog", {
     "package:eduma_web/features/profile/presentation/widgets/profile_edit_dialog.dart": profile_edit_dialog
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["profile_edit_dialog.dart"],"names":[],"mappings":"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","file":"profile_edit_dialog.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["profile_edit_dialog.dart"],"names":[],"mappings":"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","file":"profile_edit_dialog.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__profile__presentation__widgets__profile_edit_dialog: profile_edit_dialog

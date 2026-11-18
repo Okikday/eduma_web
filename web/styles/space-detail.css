@@ -618,31 +618,33 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 16px;
 }
 
 .space-detail__glass-role {
+  /* AppBadge glass / md, solid on web. */
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
+  gap: 4px;
+  padding: 5px 10px;
   border-radius: 999px;
-  border: 1px solid rgb(255 255 255 / 22%);
-  background: rgb(255 255 255 / 14%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  font-size: 12.5px;
+  border: 1px solid rgb(255 255 255 / 18%);
+  background: rgb(0 0 0 / 40%);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+  font-size: 12px;
   font-weight: 700;
   color: #ffffff;
 }
 
 .space-detail__hero-title {
+  /* DesktopHeroTitle: clamp(30, 7.5% of the column, 46), w800. */
   margin: 0;
-  font-size: 30px;
+  font-size: clamp(30px, 3.4vw, 46px);
   font-weight: 800;
-  line-height: 1.14;
-  letter-spacing: -0.5px;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   color: #ffffff;
+  text-shadow: 0 2px 18px rgb(0 0 0 / 35%);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -656,8 +658,9 @@
 }
 
 .space-detail__hero-desc {
-  margin: 0;
-  font-size: 14.5px;
+  margin: -4px 0 0;
+  font-size: 15px;
+  font-weight: 500;
   line-height: 1.5;
   color: rgb(255 255 255 / 86%);
   display: -webkit-box;
@@ -670,21 +673,22 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
-  margin-left: -8px;
+  gap: 4px;
+  margin: 10px 0 0 -8px;
 }
 
 .space-detail__fact-btn,
 .space-detail__fact-static {
+  /* DesktopHeroMetaItem: 16px icon @78%, 14.5 / w600 @92%, chevron @70%. */
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 6px 10px;
+  gap: 8px;
+  padding: 6px 8px;
   border: 0;
   border-radius: 10px;
   background: transparent;
   font: inherit;
-  font-size: 13px;
+  font-size: 14.5px;
   font-weight: 600;
   color: rgb(255 255 255 / 92%);
 }
@@ -731,7 +735,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 /* Mobile compact hero + SpaceMetaSection */
@@ -896,8 +900,9 @@
 }
 
 .space-detail__pane-inner {
-  max-width: 800px;
-  margin: 0 auto;
+  /* The source's content pane fills its half of the window. */
+  max-width: none;
+  margin: 0;
 }
 
 .space-detail__pane-toolbar {
@@ -917,25 +922,24 @@
 }
 
 .space-detail__seg {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* AppSegmentedTabs: outlined track, content-sized tabs. */
+  display: flex;
+  flex: none;
   padding: 3px;
   border-radius: 999px;
-  background: rgb(218 218 228 / 52%);
-  border: 0;
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: 300px;
+  background: transparent;
+  border: 1px solid var(--eduma-border-strong);
   height: 38px;
 }
 
 .space-detail__seg-btn {
+  padding: 0 14px;
   border: 0;
   border-radius: 999px;
   background: transparent;
   color: var(--eduma-text-muted);
   font: inherit;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 140ms ease, color 140ms ease, box-shadow 140ms ease;
@@ -945,7 +949,7 @@
   background: var(--eduma-primary);
   color: #ffffff;
   font-weight: 700;
-  box-shadow: 0 2px 8px rgb(75 36 210 / 32%);
+  box-shadow: none;
 }
 
 .space-detail__toolbar-spacer {
@@ -955,8 +959,8 @@
 .space-detail__toolbar-search {
   height: 38px;
   padding: 0 12px;
-  border-radius: 999px;
-  border: 1px solid var(--eduma-card-border);
+  border-radius: 10px;
+  border: 0;
   background: var(--eduma-surface);
   display: flex;
   align-items: center;
@@ -966,8 +970,9 @@
 
 .space-detail__toolbar-search--desktop {
   display: none;
-  flex: 1 1 180px;
-  max-width: 290px;
+  flex: 0 1 240px;
+  min-width: 120px;
+  margin-left: auto;
 }
 
 .space-detail__toolbar-search--mobile {
@@ -981,7 +986,7 @@
   border: 0;
   background: transparent;
   font: inherit;
-  font-size: 13.5px;
+  font-size: 15px;
   color: var(--eduma-text);
   outline: none;
 }
@@ -1008,8 +1013,8 @@
   height: 38px;
   flex: 0 0 38px;
   border-radius: 999px;
-  border: 1px solid var(--eduma-card-border);
-  background: var(--eduma-surface);
+  border: 1px solid var(--eduma-border-strong);
+  background: transparent;
   color: var(--eduma-text-secondary);
   display: grid;
   place-items: center;
@@ -1930,7 +1935,6 @@ button.space-detail__item-card {
 
   .space-detail__seg {
     flex: 0 0 auto;
-    width: 248px;
   }
 
   .space-detail__toolbar-spacer {
@@ -1951,6 +1955,49 @@ button.space-detail__item-card {
   }
 
   .space-detail__pane-body {
-    padding: 16px 24px 36px;
+    padding: 14px 20px 36px;
+  }
+}
+.space-detail__fact-btn > .eduma-icon:first-child {
+  color: rgb(255 255 255 / 78%);
+}
+
+.space-detail__fact-btn .space-detail__fact-chevron {
+  margin-left: -4px;
+  color: rgb(255 255 255 / 70%);
+}
+
+.space-detail__fact-btn:hover {
+  background: rgb(255 255 255 / 10%);
+}
+
+/* PersonalSpaceBadge (AppBadge xs, white). */
+.space-detail__personal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 35%);
+  background: rgb(255 255 255 / 14%);
+  color: #ffffff;
+  font-size: 9.5px;
+  font-weight: 700;
+}
+
+.space-detail__hero-pane .eduma-desktop-pill {
+  height: 44px;
+}
+
+/* The source page tile shows no options button; it appears on hover/focus. */
+@media (hover: hover) {
+  .space-detail__page-actions:not(.space-detail__page-actions--grid) .space-detail__more-btn {
+    opacity: 0;
+    transition: opacity 120ms ease;
+  }
+
+  :is(li, article, div):hover > .space-detail__page-actions .space-detail__more-btn,
+  .space-detail__page-actions:focus-within .space-detail__more-btn {
+    opacity: 1;
   }
 }

@@ -309,6 +309,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
       return adaptivePageScaffold(
         title: 'Notifications',
         maxWidth: 640,
+        fullBleed: true,
         fallbackHref: '/home',
         body: [
           appSessionGateBody(
@@ -328,6 +329,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
     return adaptivePageScaffold(
       title: 'Notifications',
       maxWidth: 640,
+      fullBleed: true,
       fallbackHref: '/home',
       classes: 'eduma-notifications-page',
       trailing: button(

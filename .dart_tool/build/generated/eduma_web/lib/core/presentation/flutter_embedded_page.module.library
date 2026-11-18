@@ -1,1 +1,1 @@
-{"isEntrypoint":true,"deps":["jaspr|lib/dom.dart","jaspr|lib/jaspr.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}
+{"isEntrypoint":true,"deps":["jaspr|lib/dom.dart","jaspr|lib/jaspr.dart","eduma_web|lib/core/presentation/eduma_link.dart","eduma_web|lib/core/presentation/flutter_host.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}

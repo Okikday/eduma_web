@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["web|lib/web.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":["async","js_interop"],"hasMain":false}

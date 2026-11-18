@@ -84,7 +84,7 @@ define(['dart_sdk'], (function load__packages__eduma_web__features__main__logic_
   dart.trackLibraries("packages/eduma_web/features/main/logic/space_invite_link", {
     "package:eduma_web/features/main/logic/space_invite_link.dart": space_invite_link
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["space_invite_link.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;0BAUsC,QAAe;AAC3C,wBAAc,AAAO,MAAD,gBAAc,gBAAO,QAAS;AACxD,YAAS,YAAW,cAAY,yBAAgB,AAAW,UAAD;IAC5D;uBAGiC;AACzB,oBAAU,AAAM,KAAD;AACrB,UAAI,AAAQ,OAAD,YAAU,MAAO;AACtB,mBAAS,AAAQ,OAAD,WAAS;AAC/B,UAAI,MAAM,GAAG,GAAG,MAAO,QAAO;AACxB,iBAAO,AAAQ,OAAD,aAAW,MAAM,GAAG,AAAS;AACjD,YAAO,AAAK,AAAwB,AAAM,KAA/B,SAAO,gBAAO;IAC3B;;UAKO;UAFkC;UAAoB;AAC3D,UAAI,AAAW,UAAD,KAAI,KAAK,MAAO;AAC9B,UAAiB,AAAO,AAAc,CAA5B,QAAL,IAAI,EAAJ,gBAAQ,KAAR,oCAAoC;AACvC,cAAO;;AAET,YAAO;IACT;;;;EACF;;;;;;;;;;;;;;MA7Be,iDAAe;;;MAEf,sDAAoB","file":"space_invite_link.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["space_invite_link.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;0BASsC,QAAe;AAC3C,wBAAc,AAAO,MAAD,gBAAc,gBAAO,QAAS;AACxD,YAAS,YAAW,cAAY,yBAAgB,AAAW,UAAD;IAC5D;uBAGiC;AACzB,oBAAU,AAAM,KAAD;AACrB,UAAI,AAAQ,OAAD,YAAU,MAAO;AACtB,mBAAS,AAAQ,OAAD,WAAS;AAC/B,UAAI,MAAM,GAAG,GAAG,MAAO,QAAO;AACxB,iBAAO,AAAQ,OAAD,aAAW,MAAM,GAAG,AAAS;AACjD,YAAO,AAAK,AAAwB,AAAM,KAA/B,SAAO,gBAAO;IAC3B;;UAKO;UAFkC;UAAoB;AAC3D,UAAI,AAAW,UAAD,KAAI,KAAK,MAAO;AAC9B,UAAiB,AAAO,AAAc,CAA5B,QAAL,IAAI,EAAJ,gBAAQ,KAAR,oCAAoC;AACvC,cAAO;;AAET,YAAO;IACT;;;;EACF;;;;;;;;;;;;;;MA5Be,iDAAe;;;MAEf,sDAAoB","file":"space_invite_link.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__main__logic__space_invite_link: space_invite_link

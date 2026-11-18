@@ -2,12 +2,13 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/features/auth/logic/auth_actions
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/eduma_web/core/data/eduma_memory_cache'], (function load__packages__eduma_web__features__auth__logic__auth_actions(dart_sdk, packages__eduma_web__core__data__eduma_memory_cache) {
+define(['dart_sdk', 'packages/eduma_web/core/presentation/flutter_host', 'packages/eduma_web/core/data/eduma_memory_cache'], (function load__packages__eduma_web__features__auth__logic__auth_actions(dart_sdk, packages__eduma_web__core__presentation__flutter_host, packages__eduma_web__core__data__eduma_memory_cache) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
+  const flutter_host = packages__eduma_web__core__presentation__flutter_host.eduma_web__core__presentation__flutter_host;
   const auth_api = packages__eduma_web__core__data__eduma_memory_cache.eduma_web__features__auth__data__auth_api;
   var auth_actions = Object.create(dart.library);
   var T = {
@@ -95,6 +96,7 @@ define(['dart_sdk', 'packages/eduma_web/core/data/eduma_memory_cache'], (functio
       return auth_actions.AuthActions._api.saveUpdatedUserProfile(rawUser);
     }
     static signOut() {
+      flutter_host.FlutterHost.dispose();
       return auth_actions.AuthActions._api.signOut();
     }
     static scrubTokenFromAddressBar() {
@@ -150,7 +152,7 @@ define(['dart_sdk', 'packages/eduma_web/core/data/eduma_memory_cache'], (functio
   dart.trackLibraries("packages/eduma_web/features/auth/logic/auth_actions", {
     "package:eduma_web/features/auth/logic/auth_actions.dart": auth_actions
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["auth_actions.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAauC,YAAA,AAAK;IAAiB;;AAEhB,YAAA,AAAK;IAAc;;UAG5C;UACA;AACZ,YAAA,AAAK,8CAAc,KAAK,YAAY,QAAQ;IAAC;wBAG1C;UACC;AACJ,YAAA,AAAK,sDAAsB,OAAO,gBAAgB,YAAY;IAAC;;UAGnD;UACA;UACA;UACA;UACA;AACZ,YAAA,AAAK,+CACH,IAAI,YACA,QAAQ,SACX,KAAK,YACF,QAAQ,gBACJ,YAAY;IAC3B;gCAEyD;AAAU,YAAA,AAAK,oDAAqB,KAAK;IAAC;gCAEpD;AAAU,YAAA,AAAK,oDAAqB,KAAK;IAAC;;UAGxE;UACA;AACZ,YAAA,AAAK,qDAAqB,KAAK,eAAe,WAAW;IAAC;;UAG9C;UACT;UACA;AACH,YAAA,AAAK,kDAAkB,IAAI,SAAS,KAAK,SAAS,KAAK;IAAC;;UAEf;AAAgB,YAAA,AAAK,0DAA0B,KAAK;IAAC;yBAE1D;AAAa,YAAA,AAAK,6CAAc,QAAQ;IAAC;0BAEzB;AAAS,YAAA,AAAK,8CAAe,IAAI;IAAC;;UAE1C;AAC9C,YAAA,AAAK,6DAA6B,YAAY;IAAC;kCAG5B;AAClB,YAAA,AAAK,sDAAuB,OAAO;IAAC;;AAER,YAAA,AAAK;IAAS;;AAEL,YAAA,AAAK;IAA0B;;;;EAC3E;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA7De,6BAAI;YAAgB","file":"auth_actions.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["auth_actions.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAcuC,YAAA,AAAK;IAAiB;;AAEhB,YAAA,AAAK;IAAc;;UAG5C;UACA;AACZ,YAAA,AAAK,8CAAc,KAAK,YAAY,QAAQ;IAAC;wBAG1C;UACC;AACJ,YAAA,AAAK,sDAAsB,OAAO,gBAAgB,YAAY;IAAC;;UAGnD;UACA;UACA;UACA;UACA;AACZ,YAAA,AAAK,+CACH,IAAI,YACA,QAAQ,SACX,KAAK,YACF,QAAQ,gBACJ,YAAY;IAC3B;gCAEyD;AAAU,YAAA,AAAK,oDAAqB,KAAK;IAAC;gCAEpD;AAAU,YAAA,AAAK,oDAAqB,KAAK;IAAC;;UAGxE;UACA;AACZ,YAAA,AAAK,qDAAqB,KAAK,eAAe,WAAW;IAAC;;UAG9C;UACT;UACA;AACH,YAAA,AAAK,kDAAkB,IAAI,SAAS,KAAK,SAAS,KAAK;IAAC;;UAEf;AAAgB,YAAA,AAAK,0DAA0B,KAAK;IAAC;yBAE1D;AAAa,YAAA,AAAK,6CAAc,QAAQ;IAAC;0BAEzB;AAAS,YAAA,AAAK,8CAAe,IAAI;IAAC;;UAE1C;AAC9C,YAAA,AAAK,6DAA6B,YAAY;IAAC;kCAG5B;AAClB,YAAA,AAAK,sDAAuB,OAAO;IAAC;;AAG3B;AACZ,YAAO,AAAK;IACd;;AAE0C,YAAA,AAAK;IAA0B;;;;EAC3E;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MAhEe,6BAAI;YAAgB","file":"auth_actions.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__auth__logic__auth_actions: auth_actions

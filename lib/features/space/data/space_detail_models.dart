@@ -412,9 +412,7 @@ class SpaceEvent {
   factory SpaceEvent.fromMap(Map<String, dynamic> map, {String fallbackSpaceId = ''}) {
     final start = DateTime.tryParse('${map['startTime'] ?? map['start'] ?? ''}')?.toLocal() ?? DateTime.now();
     final parsedEnd = DateTime.tryParse('${map['endTime'] ?? map['end'] ?? ''}')?.toLocal();
-    final end = parsedEnd != null && parsedEnd.isAfter(start)
-        ? parsedEnd
-        : start.add(const Duration(hours: 1));
+    final end = parsedEnd != null && parsedEnd.isAfter(start) ? parsedEnd : start.add(const Duration(hours: 1));
     return SpaceEvent(
       id: '${map['_id'] ?? map['id'] ?? ''}'.trim(),
       spaceId: _optionalText(map['spaceId']) ?? fallbackSpaceId,

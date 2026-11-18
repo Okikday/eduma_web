@@ -56,9 +56,7 @@ class StaticPageSection {
 
     return StaticPageSection(
       id: '${map['id'] ?? map['_id'] ?? 'sec_$index'}',
-      name: rawName.isEmpty || _isPlaceholder(rawName)
-          ? 'Section ${index + 1}'
-          : rawName,
+      name: rawName.isEmpty || _isPlaceholder(rawName) ? 'Section ${index + 1}' : rawName,
       lines: lines,
       updatedAt: DateTime.tryParse('${map['updatedAt'] ?? ''}'),
     );
@@ -114,9 +112,7 @@ class DynamicCanvasCard {
     ];
 
     final meta = '${map['metadata'] ?? ''}'.trim();
-    final refUrl = meta.startsWith('http://') || meta.startsWith('https://')
-        ? meta
-        : null;
+    final refUrl = meta.startsWith('http://') || meta.startsWith('https://') ? meta : null;
 
     return DynamicCanvasCard(
       id: '${map['id'] ?? map['_id'] ?? 'el_$index'}',
@@ -160,8 +156,7 @@ class FullSpacePageData {
           if (s is Map) Map<String, dynamic>.from(s),
     ];
     final sections = [
-      for (var i = 0; i < rawSecs.length; i++)
-        StaticPageSection.fromMap(rawSecs[i], index: i),
+      for (var i = 0; i < rawSecs.length; i++) StaticPageSection.fromMap(rawSecs[i], index: i),
     ];
 
     final rawEls = [
@@ -170,8 +165,7 @@ class FullSpacePageData {
           if (e is Map) Map<String, dynamic>.from(e),
     ];
     final elements = [
-      for (var i = 0; i < rawEls.length; i++)
-        DynamicCanvasCard.fromMap(rawEls[i], index: i),
+      for (var i = 0; i < rawEls.length; i++) DynamicCanvasCard.fromMap(rawEls[i], index: i),
     ];
 
     return FullSpacePageData(
@@ -287,9 +281,7 @@ List<StaticDisplayLine> _linesFromBlocks(List<dynamic> blocks) {
             StaticDisplayLine(
               kind: kind,
               text: part.trim(),
-              url: '${raw['metadata'] ?? ''}'.trim().startsWith('http')
-                  ? '${raw['metadata']}'.trim()
-                  : null,
+              url: '${raw['metadata'] ?? ''}'.trim().startsWith('http') ? '${raw['metadata']}'.trim() : null,
             ),
           );
         }

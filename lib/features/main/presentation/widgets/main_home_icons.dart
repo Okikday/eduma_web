@@ -103,25 +103,25 @@ Component mainHomeIcon(
   int size = 20,
   bool active = false,
   String? label,
-}) => edumaIcon(_toEdumaIcon(icon, active: active), size: size, label: label);
+}) => edumaIcon(
+  _toEdumaIcon(icon, active: active),
+  size: size,
+  label: label,
+);
 
 Object _toEdumaIcon(MainHomeIcon icon, {bool active = false}) => switch (icon) {
   .home => active ? EdumaIcons.navBarHomeActive : EdumaIcons.navBarHome,
   .homeSolid => EdumaIcons.navBarHomeActive,
-  .calendar =>
-    active ? EdumaIcons.navBarCalendarActive : EdumaIcons.navBarCalendar,
+  .calendar => active ? EdumaIcons.navBarCalendarActive : EdumaIcons.navBarCalendar,
   .calendar1 => EdumaIcons.calendar,
   .calendarSolid => EdumaIcons.navBarCalendarActive,
   .book => EdumaIcons.navRailLibrary,
-  .library || .libraries =>
-    active ? EdumaIcons.navBarLibraryActive : EdumaIcons.navBarLibrary,
+  .library || .libraries => active ? EdumaIcons.navBarLibraryActive : EdumaIcons.navBarLibrary,
   .railHome => active ? EdumaIcons.navRailHomeActive : EdumaIcons.navRailHome,
   .railHomeSolid => EdumaIcons.navRailHomeActive,
-  .railCalendar =>
-    active ? EdumaIcons.navRailCalendarActive : EdumaIcons.navRailCalendar,
+  .railCalendar => active ? EdumaIcons.navRailCalendarActive : EdumaIcons.navRailCalendar,
   .railCalendarSolid => EdumaIcons.navRailCalendarActive,
-  .railBook || .railLibrary =>
-    active ? EdumaIcons.navRailLibraryActive : EdumaIcons.navRailLibrary,
+  .railBook || .railLibrary => active ? EdumaIcons.navRailLibraryActive : EdumaIcons.navRailLibrary,
   .railBookSolid => EdumaIcons.navRailLibraryActive,
   .railNotifications => EdumaIcons.navRailNotifications,
   .notifications => EdumaIcons.notifications,

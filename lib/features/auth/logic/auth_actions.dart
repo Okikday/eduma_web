@@ -1,3 +1,4 @@
+import '../../../core/presentation/flutter_host.dart';
 import '../data/auth_api.dart';
 
 export '../data/auth_api.dart'
@@ -67,7 +68,10 @@ abstract final class AuthActions {
     Map<String, dynamic> rawUser,
   ) => _api.saveUpdatedUserProfile(rawUser);
 
-  static Future<void> signOut() => _api.signOut();
+  static Future<void> signOut() {
+    FlutterHost.dispose();
+    return _api.signOut();
+  }
 
   static void scrubTokenFromAddressBar() => _api.scrubTokenFromAddressBar();
 }

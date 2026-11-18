@@ -2,11 +2,12 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/features/profile/presentation/widgets/profile_password_dialog
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/presentation/widgets/web_dialog_helper', 'packages/eduma_web/features/profile/logic/profile_actions', 'packages/eduma_web/features/profile/data/profile_models', 'packages/eduma_web/features/main/presentation/widgets/main_home_icons'], (function load__packages__eduma_web__features__profile__presentation__widgets__profile_password_dialog(dart_sdk, packages__jaspr__client, packages__eduma_web__features__main__presentation__widgets__web_dialog_helper, packages__eduma_web__features__profile__logic__profile_actions, packages__eduma_web__features__profile__data__profile_models, packages__eduma_web__features__main__presentation__widgets__main_home_icons) {
+define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/presentation/widgets/web_dialog_helper', 'packages/eduma_web/features/profile/logic/profile_actions', 'packages/eduma_web/features/profile/data/profile_models', 'packages/eduma_web/core/presentation/eduma_icons'], (function load__packages__eduma_web__features__profile__presentation__widgets__profile_password_dialog(dart_sdk, packages__jaspr__client, packages__eduma_web__features__main__presentation__widgets__web_dialog_helper, packages__eduma_web__features__profile__logic__profile_actions, packages__eduma_web__features__profile__data__profile_models, packages__eduma_web__core__presentation__eduma_icons) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
   const async = dart_sdk.async;
+  const collection = dart_sdk.collection;
   const _js_helper = dart_sdk._js_helper;
   const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
@@ -16,10 +17,12 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
   const web_dialog_helper = packages__eduma_web__features__main__presentation__widgets__web_dialog_helper.eduma_web__features__main__presentation__widgets__web_dialog_helper;
   const profile_actions = packages__eduma_web__features__profile__logic__profile_actions.eduma_web__features__profile__logic__profile_actions;
   const profile_models = packages__eduma_web__features__profile__data__profile_models.eduma_web__features__profile__data__profile_models;
-  const main_home_icons = packages__eduma_web__features__main__presentation__widgets__main_home_icons.eduma_web__features__main__presentation__widgets__main_home_icons;
+  const eduma_icons = packages__eduma_web__core__presentation__eduma_icons.eduma_web__core__presentation__eduma_icons;
   var profile_password_dialog = Object.create(dart.library);
   var $trim = dartx.trim;
   var $isEmpty = dartx.isEmpty;
+  var $_set = dartx._set;
+  var $addAll = dartx.addAll;
   var T = {
     _ProfilePasswordDialogState: () => (T._ProfilePasswordDialogState = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__profile__presentation__widgets__profile_password_dialog|_ProfilePasswordDialogState", true)))(),
     __ToProfilePasswordDialog: () => (T.__ToProfilePasswordDialog = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__profile__presentation__widgets__profile_password_dialog|ProfilePasswordDialog({email!core|String,key:jaspr__src__framework__framework|Key?,onChanged!~(eduma_web__features__auth__data__auth_api|EdumaSession),onClose!~(),open!core|bool})", true)))(),
@@ -32,15 +35,17 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
     Object: () => (T.Object = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Object", true)))(),
     AuthApiException: () => (T.AuthApiException = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__auth__data__auth_api|AuthApiException", true)))(),
     void: () => (T.void = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~", true)))(),
-    IdentityMapOfString$String: () => (T.IdentityMapOfString$String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,core|String>", true)))(),
+    LinkedHashMapOfString$String: () => (T.LinkedHashMapOfString$String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "collection|LinkedHashMap<core|String,core|String>", true)))(),
     JSObjectTovoid: () => (T.JSObjectTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(_interceptors|JSObject)", true)))(),
     IdentityMapOfString$JSObjectTovoid: () => (T.IdentityMapOfString$JSObjectTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,~(_interceptors|JSObject)>", true)))(),
     JSArrayOfComponent: () => (T.JSArrayOfComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<jaspr__src__framework__framework|Component>", true)))(),
-    inputOfString: () => (T.inputOfString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__dom__html__html|input<core|String>", true)))(),
+    IdentityMapOfString$String: () => (T.IdentityMapOfString$String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,core|String>", true)))(),
     StringTovoid: () => (T.StringTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(core|String)", true)))(),
+    inputOfString: () => (T.inputOfString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__dom__html__html|input<core|String>", true)))(),
     VoidTo_ProfilePasswordDialogState: () => (T.VoidTo_ProfilePasswordDialogState = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__profile__presentation__widgets__profile_password_dialog|_ProfilePasswordDialogState()", true)))(),
     VoidToFutureOfvoid: () => (T.VoidToFutureOfvoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "async|Future<~>()", true)))(),
     BuildContextToComponent: () => (T.BuildContextToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component(jaspr__src__framework__framework|BuildContext)", true)))(),
+    __ToComponent: () => (T.__ToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({autocomplete!core|String,hint!core|String,icon!core|Object,id!core|String,onInput!~(core|String),title!core|String,type!jaspr__src__dom__html__html|InputType,value!core|String})", true)))(),
     StringN: () => (T.StringN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String?", true)))()
   };
   const CT = Object.create({
@@ -141,13 +146,13 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
   var _sendingCode = dart.privateName(profile_password_dialog, "_sendingCode");
   var _codeSent = dart.privateName(profile_password_dialog, "_codeSent");
   var _saving = dart.privateName(profile_password_dialog, "_saving");
-  var _statusMessage = dart.privateName(profile_password_dialog, "_statusMessage");
   var _error = dart.privateName(profile_password_dialog, "_error");
   var _as = dart.privateName(dart_rti, "_as");
   var _dismiss = dart.privateName(profile_password_dialog, "_dismiss");
   var _is = dart.privateName(dart_rti, "_is");
   var _sendCode = dart.privateName(profile_password_dialog, "_sendCode");
   var _submit = dart.privateName(profile_password_dialog, "_submit");
+  var _field = dart.privateName(profile_password_dialog, "_field");
   profile_password_dialog._ProfilePasswordDialogState = class _ProfilePasswordDialogState extends framework.State {
     initState() {
       super.initState();
@@ -164,7 +169,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
           this[_sendingCode] = false;
           this[_codeSent] = false;
           this[_saving] = false;
-          this[_statusMessage] = null;
           this[_error] = null;
         }, T.VoidTovoid()));
       }
@@ -194,7 +198,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
               this.setState(dart.fn(() => {
                 this[_sendingCode] = true;
                 this[_error] = null;
-                this[_statusMessage] = null;
               }, T.VoidTovoid()));
               t$handler = 4;
               t$goto = 7;
@@ -209,7 +212,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
               }
               this.setState(dart.fn(() => {
                 this[_codeSent] = true;
-                this[_statusMessage] = "Sent a reset code to " + this.component.email + ".";
               }, T.VoidTovoid()));
               t$next.push(6);
               // goto finally
@@ -367,64 +369,88 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
       return async._asyncStartSync(t$36async_submit, t$completer);
     }
     build(context) {
-      let t$364, t$364$, t$367, t$366, t$365, t$364$0, t$364$1, t$367$, t$366$, t$365$, t$365$0, t$366$0, t$366$1, t$366$2, t$366$3, t$366$4, t$366$5, t$366$6, t$367$0, t$369, t$368, t$368$, t$3611, t$3610, t$369$, t$368$0, t$3610$, t$369$0, t$368$1, t$368$2, t$368$3, t$3611$, t$3610$0, t$369$1, t$368$4;
+      let t$366, t$366$, t$366$0, t$369, t$368, t$368$, t$368$0, t$368$1, t$3610, t$369$, t$368$2, t$368$3, t$368$4, t$368$5, t$368$6, t$3611, t$3610$, t$3611$, t$3611$0, t$3613, t$3612, t$3611$1, t$3613$, t$3612$, t$3611$2, t$3611$3, t$3611$4, t$3614, t$3613$0, t$3612$0, t$3611$5;
       let problem = profile_models.ChangePasswordLogic.passwordProblem(this[_password], this[_confirm]);
       let canSubmit = profile_models.ChangePasswordLogic.canSubmit({codeInput: this[_resetInput], password: this[_password], confirm: this[_confirm]});
-      t$368$4 = "eduma-password-dialog";
-      t$369$1 = "eduma-modal";
-      t$3610$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["closedby", "any", "aria-labelledby", "eduma-password-dialog-title"]);
-      t$3611$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["close", dart.fn(_$35wc0$35formal => {
+      t$3611$5 = "eduma-password-dialog";
+      t$3612$0 = "eduma-modal";
+      t$3613$0 = (() => {
+        let t$364 = collection.LinkedHashMap.of(T.LinkedHashMapOfString$String(), web_dialog_helper.WebDialogHelper.openAttr(this.component.open));
+        t$364[$_set]("closedby", "any");
+        t$364[$_set]("aria-labelledby", "eduma-password-dialog-title");
+        return t$364;
+      })();
+      t$3614 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["close", dart.fn(_$35wc0$35formal => {
           if (this.component.open) this[_dismiss]();
         }, T.JSObjectTovoid())]);
-      return new html.dialog.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$364$1 = "eduma-modal__header", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$364$ = "eduma-modal__title", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$364 = "eduma-password-dialog-title", new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Password & security")]), {id: t$364})), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Request a one-time code to " + this.component.email + ", then set a new password.")]))]), {classes: t$364$})), (t$364$0 = "eduma-modal__close", t$365 = html.ButtonType.button, t$366 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close dialog"]), t$367 = dart.tearoff(this, null, _dismiss), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_icons.mainHomeIcon(main_home_icons.MainHomeIcon.close, {size: 18})]), {classes: t$364$0, type: t$365, attributes: t$366, onClick: t$367}))]), {classes: t$364$1})), (t$368$3 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["submit", dart.fn(event => {
-            event.preventDefault();
-            async.unawaited(this[_submit]());
-          }, T.JSObjectTovoid())]), new html.form.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$368$ = "eduma-modal__body", new html.div.new((() => {
-            let t$364 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$365$0 = "eduma-profile__code-row", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$365$ = "main-home__action-button", t$366$ = html.ButtonType.button, t$367$ = this[_sendingCode] || this[_saving], new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_icons.mainHomeIcon(main_home_icons.MainHomeIcon.email, {size: 15}), new framework.Text.__(this[_sendingCode] ? "Sending…" : this[_codeSent] ? "Resend code" : "Email verification code")]), {classes: t$365$, type: t$366$, disabled: t$367$, onClick: dart.fn(() => async.unawaited(this[_sendCode]()), T.VoidTovoid())}))]), {classes: t$365$0}))]);
-            {
-              let t$36$350$350 = this[_statusMessage];
+      return new html.dialog.new((() => {
+        let t$365 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+        if (!this[_codeSent])
+          t$365[$addAll](_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366$0 = "eduma-modal__header", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366$ = "eduma-modal__title", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366 = "eduma-password-dialog-title", new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Change password")]), {id: t$366})), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("We'll email you a code to confirm it's you.")]))]), {classes: t$366$}))]), {classes: t$366$0})), (t$368$1 = "eduma-modal__body", new html.div.new((() => {
+              let t$366 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
               {
-                let status = null;
-                if (t$36$350$350 != null) {
-                  status = t$36$350$350;
-                  t$364.push((t$366$0 = "eduma-profile__hint-ok", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(status)]), {classes: t$366$0})));
+                let t$36$350$350 = this[_error];
+                {
+                  let msg = null;
+                  if (t$36$350$350 != null) {
+                    msg = t$36$350$350;
+                    t$366.push((t$368 = "eduma-modal__error", t$369 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "alert"]), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(msg)]), {classes: t$368, attributes: t$369})));
+                  }
                 }
               }
-            }
-            t$364.push((t$366$2 = "eduma-modal__field", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366$1 = "eduma-pw-code", new html.label.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Reset code or link")]), {htmlFor: t$366$1})), new html.input.new(T.inputOfString(), {id: "eduma-pw-code", classes: "eduma-modal__input", type: html.InputType.text, value: this[_resetInput], disabled: this[_saving], attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["placeholder", "Paste reset code or link"]), onInput: dart.fn(value => this.setState(dart.fn(() => {
-                  this[_resetInput] = value;
-                  this[_error] = null;
-                }, T.VoidTovoid())), T.StringTovoid())})]), {classes: t$366$2})));
-            t$364.push((t$366$4 = "eduma-modal__field", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366$3 = "eduma-pw-new", new html.label.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("New password")]), {htmlFor: t$366$3})), new html.input.new(T.inputOfString(), {id: "eduma-pw-new", classes: "eduma-modal__input", type: html.InputType.password, value: this[_password], disabled: this[_saving], attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["placeholder", "At least 8 characters"]), onInput: dart.fn(value => this.setState(dart.fn(() => {
-                  this[_password] = value;
-                  this[_error] = null;
-                }, T.VoidTovoid())), T.StringTovoid())})]), {classes: t$366$4})));
-            t$364.push((t$366$6 = "eduma-modal__field", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$366$5 = "eduma-pw-confirm", new html.label.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Confirm new password")]), {htmlFor: t$366$5})), new html.input.new(T.inputOfString(), {id: "eduma-pw-confirm", classes: "eduma-modal__input", type: html.InputType.password, value: this[_confirm], disabled: this[_saving], attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["placeholder", "Repeat new password"]), onInput: dart.fn(value => this.setState(dart.fn(() => {
-                  this[_confirm] = value;
-                  this[_error] = null;
-                }, T.VoidTovoid())), T.StringTovoid())})]), {classes: t$366$6})));
-            {
-              let t$36$351$350 = problem;
-              {
-                let pMsg = null;
-                if (t$36$351$350 != null) {
-                  pMsg = t$36$351$350;
-                  t$364.push((t$367$0 = "eduma-modal__error", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(pMsg)]), {classes: t$367$0})));
+              t$366.push((t$368$ = "eduma-modal__copy", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(this.component.email[$trim]()[$isEmpty] ? "Your account has no email address." : "The code goes to " + this.component.email + ".")]), {classes: t$368$})));
+              t$366.push((t$368$0 = "eduma-modal__copy", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Saving the new password signs you out on your other devices and the WhatsApp bot. This device stays signed in.")]), {classes: t$368$0})));
+              return t$366;
+            })(), {classes: t$368$1})), (t$368$3 = "eduma-modal__footer", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$368$2 = "eduma-modal__btn eduma-modal__btn--primary", t$369$ = html.ButtonType.button, t$3610 = this[_sendingCode] || this.component.email[$trim]()[$isEmpty], new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(this[_sendingCode] ? "Sending…" : "Email me a code")]), {classes: t$368$2, type: t$369$, disabled: t$3610, onClick: dart.fn(() => async.unawaited(this[_sendCode]()), T.VoidTovoid())}))]), {classes: t$368$3}))]));
+        else
+          t$365[$addAll](_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$368$6 = "eduma-modal__header", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$368$5 = "eduma-modal__title", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$368$4 = "eduma-password-dialog-title", new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Enter the code")]), {id: t$368$4})), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("We sent it to " + this.component.email + ". Check spam too.")]))]), {classes: t$368$5}))]), {classes: t$368$6})), (t$3611$4 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["submit", dart.fn(event => {
+                event.preventDefault();
+                async.unawaited(this[_submit]());
+              }, T.JSObjectTovoid())]), new html.form.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3611$0 = "eduma-modal__body", new html.div.new((() => {
+                let t$368 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+                {
+                  let t$36$351$350 = this[_error];
+                  {
+                    let msg = null;
+                    if (t$36$351$350 != null) {
+                      msg = t$36$351$350;
+                      t$368.push((t$3610$ = "eduma-modal__error", t$3611 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "alert"]), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(msg)]), {classes: t$3610$, attributes: t$3611})));
+                    }
+                  }
                 }
-              }
-            }
-            {
-              let t$36$352$350 = this[_error];
-              {
-                let msg = null;
-                if (t$36$352$350 != null) {
-                  msg = t$36$352$350;
-                  t$364.push((t$368 = "eduma-modal__error", t$369 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "alert"]), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(msg)]), {classes: t$368, attributes: t$369})));
+                t$368.push(this[_field]({id: "eduma-pw-code", title: "Code", hint: "The code or link from the email", icon: eduma_icons.EdumaIcons.sms, value: this[_resetInput], type: html.InputType.text, onInput: dart.fn(value => this[_resetInput] = value, T.StringTovoid()), autocomplete: "one-time-code"}));
+                t$368.push(this[_field]({id: "eduma-pw-new", title: "New password", hint: "At least 8 characters", icon: eduma_icons.EdumaIcons.lock, value: this[_password], type: html.InputType.password, onInput: dart.fn(value => this[_password] = value, T.StringTovoid()), autocomplete: "new-password"}));
+                t$368.push(this[_field]({id: "eduma-pw-confirm", title: "Repeat new password", hint: "Type it again", icon: eduma_icons.EdumaIcons.lock, value: this[_confirm], type: html.InputType.password, onInput: dart.fn(value => this[_confirm] = value, T.StringTovoid()), autocomplete: "new-password"}));
+                {
+                  let t$36$352$350 = problem;
+                  {
+                    let pMsg = null;
+                    if (t$36$352$350 != null) {
+                      pMsg = t$36$352$350;
+                      t$368.push((t$3611$ = "eduma-modal__hint", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(pMsg)]), {classes: t$3611$})));
+                    }
+                  }
                 }
-              }
-            }
-            return t$364;
-          })(), {classes: t$368$})), (t$368$2 = "eduma-modal__footer", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$368$0 = "eduma-modal__btn", t$369$ = html.ButtonType.button, t$3610 = this[_saving], t$3611 = dart.tearoff(this, null, _dismiss), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Cancel")]), {classes: t$368$0, type: t$369$, disabled: t$3610, onClick: t$3611})), (t$368$1 = "eduma-modal__btn eduma-modal__btn--primary", t$369$0 = html.ButtonType.submit, t$3610$ = this[_saving] || !canSubmit, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(this[_saving] ? "Updating…" : "Update password")]), {classes: t$368$1, type: t$369$0, disabled: t$3610$}))]), {classes: t$368$2}))]), {events: t$368$3}))]), {id: t$368$4, classes: t$369$1, attributes: t$3610$0, events: t$3611$});
+                return t$368;
+              })(), {classes: t$3611$0})), (t$3611$3 = "eduma-modal__footer", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3611$1 = "eduma-modal__btn", t$3612 = html.ButtonType.button, t$3613 = this[_sendingCode] || this[_saving], new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(this[_sendingCode] ? "Sending…" : "New code")]), {classes: t$3611$1, type: t$3612, disabled: t$3613, onClick: dart.fn(() => async.unawaited(this[_sendCode]()), T.VoidTovoid())})), (t$3611$2 = "eduma-modal__btn eduma-modal__btn--primary", t$3612$ = html.ButtonType.submit, t$3613$ = this[_saving] || !canSubmit, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(this[_saving] ? "Saving…" : "Change password")]), {classes: t$3611$2, type: t$3612$, disabled: t$3613$}))]), {classes: t$3611$3}))]), {events: t$3611$4}))]));
+        return t$365;
+      })(), {id: t$3611$5, classes: t$3612$0, attributes: t$3613$0, events: t$3614});
+    }
+    [_field](opts) {
+      let t$3611, t$3611$, t$3611$0;
+      let id = opts && 'id' in opts ? opts.id : null;
+      let title = opts && 'title' in opts ? opts.title : null;
+      let hint = opts && 'hint' in opts ? opts.hint : null;
+      let icon = opts && 'icon' in opts ? opts.icon : null;
+      let value = opts && 'value' in opts ? opts.value : null;
+      let type = opts && 'type' in opts ? opts.type : null;
+      let onInput = opts && 'onInput' in opts ? opts.onInput : null;
+      let autocomplete = opts && 'autocomplete' in opts ? opts.autocomplete : null;
+      t$3611$0 = "eduma-modal__field";
+      return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3611 = id, new html.label.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(title)]), {htmlFor: t$3611})), (t$3611$ = "eduma-modal__input-wrap", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 20}), new html.input.new(T.inputOfString(), {id: id, classes: "eduma-modal__input", type: type, value: value, disabled: this[_saving], attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["placeholder", hint, "autocomplete", autocomplete]), onInput: dart.fn(next => this.setState(dart.fn(() => {
+              onInput(next);
+              this[_error] = null;
+            }, T.VoidTovoid())), T.StringTovoid())})]), {classes: t$3611$}))]), {classes: t$3611$0});
     }
     static ['_#new#tearOff']() {
       return new profile_password_dialog._ProfilePasswordDialogState.new(T._ProfilePasswordDialogState());
@@ -438,7 +464,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
     this[_sendingCode] = false;
     this[_codeSent] = false;
     this[_saving] = false;
-    this[_statusMessage] = null;
     this[_error] = null;
     dart.global.Object.getPrototypeOf(profile_password_dialog._ProfilePasswordDialogState).new.call(this, null);
     ;
@@ -449,7 +474,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
     [_dismiss]: _ti => T.VoidTovoid(),
     [_sendCode]: _ti => T.VoidToFutureOfvoid(),
     [_submit]: _ti => T.VoidToFutureOfvoid(),
-    build: _ti => T.BuildContextToComponent()
+    build: _ti => T.BuildContextToComponent(),
+    [_field]: _ti => T.__ToComponent()
   }, dart.getMethods(dart.global.Object.getPrototypeOf(profile_password_dialog._ProfilePasswordDialogState))));
   dart.setMethodsImmediateTargetSignature(profile_password_dialog._ProfilePasswordDialogState, () => dart.global.Object.setPrototypeOf({
     initState: "package:eduma_web/features/profile/presentation/widgets/profile_password_dialog.dart:_ProfilePasswordDialogState",
@@ -457,7 +483,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
     [_dismiss]: "package:eduma_web/features/profile/presentation/widgets/profile_password_dialog.dart:_ProfilePasswordDialogState",
     [_sendCode]: "package:eduma_web/features/profile/presentation/widgets/profile_password_dialog.dart:_ProfilePasswordDialogState",
     [_submit]: "package:eduma_web/features/profile/presentation/widgets/profile_password_dialog.dart:_ProfilePasswordDialogState",
-    build: "package:eduma_web/features/profile/presentation/widgets/profile_password_dialog.dart:_ProfilePasswordDialogState"
+    build: "package:eduma_web/features/profile/presentation/widgets/profile_password_dialog.dart:_ProfilePasswordDialogState",
+    [_field]: "package:eduma_web/features/profile/presentation/widgets/profile_password_dialog.dart:_ProfilePasswordDialogState"
   }, dart.getMethodsImmediateTargets(dart.global.Object.getPrototypeOf(profile_password_dialog._ProfilePasswordDialogState))));
   dart.setLibraryUri(profile_password_dialog._ProfilePasswordDialogState, I[0]);
   dart.setFieldSignature(profile_password_dialog._ProfilePasswordDialogState, () => dart.global.Object.setPrototypeOf({
@@ -497,12 +524,6 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
       isFinal: false,
       libraryUri: I[1]
     },
-    [_statusMessage]: {
-      type: _ti => T.StringN(),
-      isConst: false,
-      isFinal: false,
-      libraryUri: I[1]
-    },
     [_error]: {
       type: _ti => T.StringN(),
       isConst: false,
@@ -518,11 +539,11 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/p
   });
   (function() {
   }).prototype = profile_password_dialog;
-  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"eduma_web__features__profile__presentation__widgets__profile_password_dialog|_ProfilePasswordDialogState":{"State.T":"eduma_web__features__profile__presentation__widgets__profile_password_dialog|ProfilePasswordDialog","jaspr__src__framework__framework|State":["eduma_web__features__profile__presentation__widgets__profile_password_dialog|ProfilePasswordDialog"]},"jaspr__src__framework__framework|State":{"State.T":"1"},"eduma_web__features__profile__presentation__widgets__profile_password_dialog|ProfilePasswordDialog":{"jaspr__src__framework__framework|StatefulComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatefulComponent":{"jaspr__src__framework__framework|Component":[]},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"eduma_web__features__auth__data__auth_api|AuthApiException":{"core|Exception":[]},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"jaspr__src__dom__html__html|input":{"input.T":"1","jaspr__src__framework__framework|StatelessComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatelessComponent":{"jaspr__src__framework__framework|Component":[]},"async|Future":{"Future.T":"1"}}'));
+  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"eduma_web__features__profile__presentation__widgets__profile_password_dialog|_ProfilePasswordDialogState":{"State.T":"eduma_web__features__profile__presentation__widgets__profile_password_dialog|ProfilePasswordDialog","jaspr__src__framework__framework|State":["eduma_web__features__profile__presentation__widgets__profile_password_dialog|ProfilePasswordDialog"]},"jaspr__src__framework__framework|State":{"State.T":"1"},"eduma_web__features__profile__presentation__widgets__profile_password_dialog|ProfilePasswordDialog":{"jaspr__src__framework__framework|StatefulComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatefulComponent":{"jaspr__src__framework__framework|Component":[]},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"eduma_web__features__auth__data__auth_api|AuthApiException":{"core|Exception":[]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_interceptors|JSArray":{"JSArray.E":"1","_interceptors|JavaScriptObject":[],"List.E":"1","core|List":["1"],"JSIndexable.E":"1","_interceptors|JSIndexable":["1"],"_js_helper|TrustedGetRuntimeType":[],"_interceptors|Interceptor":[],"_interceptors|JSObject":[],"Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JavaScriptObject":{"_interceptors|Interceptor":[],"_interceptors|JSObject":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"_interceptors|JSIndexable":{"JSIndexable.E":"1"},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"jaspr__src__dom__html__html|input":{"input.T":"1","jaspr__src__framework__framework|StatelessComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatelessComponent":{"jaspr__src__framework__framework|Component":[]},"async|Future":{"Future.T":"1"},"jaspr__src__dom__html__html|InputType":{"core|_Enum":[],"core|Enum":[]},"core|_Enum":{"core|Enum":[]}}'));
   dart.trackLibraries("packages/eduma_web/features/profile/presentation/widgets/profile_password_dialog", {
     "package:eduma_web/features/profile/presentation/widgets/profile_password_dialog.dart": profile_password_dialog
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["profile_password_dialog.dart"],"names":[],"mappings":"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","file":"profile_password_dialog.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["profile_password_dialog.dart"],"names":[],"mappings":"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","file":"profile_password_dialog.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__profile__presentation__widgets__profile_password_dialog: profile_password_dialog

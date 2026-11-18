@@ -1,6 +1,5 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-import 'package:web/web.dart' as web;
 
 import 'eduma_icons.dart';
 import 'eduma_link.dart';
@@ -10,19 +9,8 @@ enum DesktopPillVariant { primary, tonal, outlined, glass, light }
 
 /// Triggers browser back navigation when history exists, otherwise navigates
 /// safely to [fallbackHref].
-void navigateBackOrFallback(BuildContext context, {String fallbackHref = '/main'}) {
-  final referrer = web.document.referrer;
-  if (web.window.history.length > 1 && referrer.isNotEmpty) {
-    try {
-      final refUri = Uri.parse(referrer);
-      if (refUri.host == web.window.location.host) {
-        web.window.history.back();
-        return;
-      }
-    } catch (_) {}
-  }
-  edumaNavigate(context, fallbackHref);
-}
+void navigateBackOrFallback(BuildContext context, {String fallbackHref = '/main'}) =>
+    edumaBack(context, fallbackHref: fallbackHref);
 
 /// 50/50 desktop split layout (`>= 1024px`): sticky full-height hero on the
 /// left with right-edge dissolve into `var(--eduma-bg)`, and scrollable
@@ -103,7 +91,7 @@ Component desktopHeroBackButton({
   VoidCallback? onPressed,
 }) => Builder(
   builder: (context) => desktopHeroButton(
-    icon: EdumaIcons.back,
+    icon: EdumaIcons.arrowLeft,
     label: 'Go back',
     onPressed: onPressed ?? () => navigateBackOrFallback(context, fallbackHref: fallbackHref),
   ),

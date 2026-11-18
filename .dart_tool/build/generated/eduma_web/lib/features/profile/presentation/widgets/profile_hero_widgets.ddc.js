@@ -33,7 +33,7 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/eduma_icons', 'package
     StringToObject: () => (T.StringToObject = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Object(core|String)", true)))(),
     JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<core|String>", true)))(),
     JSArrayOfComponent: () => (T.JSArrayOfComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<jaspr__src__framework__framework|Component>", true)))(),
-    __ToComponent: () => (T.__ToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({onEditProfile!~(),onPhotoAction!~(),onSignOut!~(),session!eduma_web__features__auth__data__auth_api|EdumaSession,stats!eduma_web__features__profile__data__profile_models|ProfileStats})", true)))(),
+    __ToComponent: () => (T.__ToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({onEditProfile!~(),onPhotoAction!~(),onRefresh:~()?,onSignOut!~(),refreshing:core|bool,session!eduma_web__features__auth__data__auth_api|EdumaSession,stats!eduma_web__features__profile__data__profile_models|ProfileStats})", true)))(),
     IdentityMapOfString$String: () => (T.IdentityMapOfString$String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,core|String>", true)))(),
     __ToComponent$1: () => (T.__ToComponent$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({avatarUrl:core|String?,initials!core|String})", true)))(),
     __ToComponent$2: () => (T.__ToComponent$2 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({icon!core|Object,label!core|String})", true)))(),
@@ -94,12 +94,14 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/eduma_icons', 'package
   };
   dart.lazyFn(profile_hero_widgets._roleIcon, () => T.StringToObject());
   profile_hero_widgets.profileDesktopHero = function profileDesktopHero(opts) {
-    let t$364, t$364$, t$364$0, t$365, t$367, t$368, t$368$, t$368$0, t$368$1, t$369, t$369$;
+    let t$364, t$364$, t$364$0, t$366, t$368, t$369, t$369$, t$369$0, t$369$1, t$3610, t$3610$;
     let session = opts && 'session' in opts ? opts.session : null;
     let stats = opts && 'stats' in opts ? opts.stats : null;
     let onEditProfile = opts && 'onEditProfile' in opts ? opts.onEditProfile : null;
     let onPhotoAction = opts && 'onPhotoAction' in opts ? opts.onPhotoAction : null;
     let onSignOut = opts && 'onSignOut' in opts ? opts.onSignOut : null;
+    let onRefresh = opts && 'onRefresh' in opts ? opts.onRefresh : null;
+    let refreshing = opts && 'refreshing' in opts ? opts.refreshing : false;
     let user = session.user;
     let displayName = session.name[$trim]()[$isEmpty] ? "Eduma Learner" : session.name[$trim]();
     let initials = main_home_helpers.mainHomeInitials(displayName);
@@ -115,108 +117,113 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/eduma_icons', 'package
       if (email[$isNotEmpty]) t$364.push(email);
       return t$364;
     })()[$join]("  ·  ");
-    return desktop_scaffolds.desktopHeroPane({backdrop: profile_hero_widgets._heroBackdrop({initials: initials, avatarUrl: avatarUrl}), leading: desktop_scaffolds.desktopHeroBackButton({fallbackHref: "/home"}), trailing: (t$365 = "eduma-profile__hero-corner", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [desktop_scaffolds.desktopHeroButton({icon: eduma_icons.EdumaIcons.camera, label: "Change photo", onPressed: onPhotoAction})]), {classes: t$365})), bottomContent: _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$369$ = "eduma-profile__hero-details", new html.div.new((() => {
-          let t$365 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$367 = "eduma-profile__fact-chips", new html.div.new((() => {
-              let t$366 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
-              if (role[$isNotEmpty]) t$366.push(profile_hero_widgets._factChip({icon: profile_hero_widgets._roleIcon(role), label: role[$_get](0)[$toUpperCase]() + role[$substring](1)}));
-              if (isVerified) t$366.push(profile_hero_widgets._factChip({icon: eduma_icons.EdumaIcons.verify, label: "Verified"}));
-              if (memberSince != null) t$366.push(profile_hero_widgets._factChip({icon: eduma_icons.EdumaIcons.calendarTick, label: memberSince}));
-              return t$366;
-            })(), {classes: t$367})), (t$368$0 = "eduma-profile__hero-name-row", new html.div.new((() => {
-              let t$367 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$368 = "eduma-profile__hero-name", new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(displayName)]), {classes: t$368}))]);
-              if (isVerified) t$367.push((t$368$ = "eduma-profile__verified-gold", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.verify, {size: 22})]), {classes: t$368$})));
+    return desktop_scaffolds.desktopHeroPane({backdrop: profile_hero_widgets._heroBackdrop({initials: initials, avatarUrl: avatarUrl}), leading: desktop_scaffolds.desktopHeroBackButton({fallbackHref: "/home"}), trailing: (t$366 = "eduma-profile__hero-corner", new html.div.new((() => {
+        let t$365 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+        if (onRefresh != null) t$365.push(desktop_scaffolds.desktopHeroButton({icon: eduma_icons.EdumaIcons.refresh, label: refreshing ? "Refreshing…" : "Refresh profile", disabled: refreshing, classes: refreshing ? "is-spinning" : "", onPressed: onRefresh}));
+        t$365.push(desktop_scaffolds.desktopHeroButton({icon: eduma_icons.EdumaIcons.camera, label: "Change photo", onPressed: onPhotoAction}));
+        return t$365;
+      })(), {classes: t$366})), bottomContent: _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3610$ = "eduma-profile__hero-details", new html.div.new((() => {
+          let t$366 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$368 = "eduma-profile__fact-chips", new html.div.new((() => {
+              let t$367 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+              if (role[$isNotEmpty]) t$367.push(profile_hero_widgets._factChip({icon: profile_hero_widgets._roleIcon(role), label: role[$_get](0)[$toUpperCase]() + role[$substring](1)}));
+              if (isVerified) t$367.push(profile_hero_widgets._factChip({icon: eduma_icons.EdumaIcons.verify, label: "Verified"}));
+              if (memberSince != null) t$367.push(profile_hero_widgets._factChip({icon: eduma_icons.EdumaIcons.calendarTick, label: memberSince}));
               return t$367;
-            })(), {classes: t$368$0}))]);
-          if (handleLine[$isNotEmpty]) t$365.push((t$368$1 = "eduma-profile__hero-handle", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(handleLine)]), {classes: t$368$1})));
-          t$365.push(profile_hero_widgets.profileStatsRow(stats, {frosted: true}));
-          t$365.push((t$369 = "eduma-profile__hero-actions", new html.div.new((() => {
-            let t$368 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.edit, label: "Edit profile", variant: desktop_scaffolds.DesktopPillVariant.light, onPressed: onEditProfile})]);
+            })(), {classes: t$368})), (t$369$0 = "eduma-profile__hero-name-row", new html.div.new((() => {
+              let t$368 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$369 = "eduma-profile__hero-name", new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(displayName)]), {classes: t$369}))]);
+              if (dart.equals(user[$_get]("isVerified"), true)) t$368.push((t$369$ = "eduma-profile__verified-gold", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.verify, {size: 22})]), {classes: t$369$})));
+              return t$368;
+            })(), {classes: t$369$0}))]);
+          if (handleLine[$isNotEmpty]) t$366.push((t$369$1 = "eduma-profile__hero-handle", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(handleLine)]), {classes: t$369$1})));
+          t$366.push(profile_hero_widgets.profileStatsRow(stats, {frosted: true}));
+          t$366.push((t$3610 = "eduma-profile__hero-actions", new html.div.new((() => {
+            let t$369 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.edit, label: "Edit profile", variant: desktop_scaffolds.DesktopPillVariant.light, onPressed: onEditProfile})]);
             if (!isVerified)
-              t$368.push(desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.key, label: "Verify email", variant: desktop_scaffolds.DesktopPillVariant.glass, href: "/verify-email"}));
+              t$369.push(desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.key, label: "Verify email", variant: desktop_scaffolds.DesktopPillVariant.glass, href: "/verify-email"}));
             else
-              t$368.push(desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.camera, label: "Change photo", variant: desktop_scaffolds.DesktopPillVariant.glass, onPressed: onPhotoAction}));
-            t$368.push(desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.logout, label: "Log out", variant: desktop_scaffolds.DesktopPillVariant.glass, onPressed: onSignOut}));
-            return t$368;
-          })(), {classes: t$369})));
-          return t$365;
-        })(), {classes: t$369$}))])});
+              t$369.push(desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.camera, label: "Change photo", variant: desktop_scaffolds.DesktopPillVariant.glass, onPressed: onPhotoAction}));
+            t$369.push(desktop_scaffolds.desktopPillButton({icon: eduma_icons.EdumaIcons.logout, label: "Log out", variant: desktop_scaffolds.DesktopPillVariant.glass, onPressed: onSignOut}));
+            return t$369;
+          })(), {classes: t$3610})));
+          return t$366;
+        })(), {classes: t$3610$}))])});
   };
   dart.lazyFn(profile_hero_widgets.profileDesktopHero, () => T.__ToComponent());
   profile_hero_widgets._heroBackdrop = function _heroBackdrop(opts) {
-    let t$3611, t$3610, t$3611$, t$3610$, t$3610$0, t$3610$1, t$3610$2;
+    let t$3612, t$3611, t$3612$, t$3611$, t$3611$0, t$3611$1, t$3611$2;
     let initials = opts && 'initials' in opts ? opts.initials : null;
     let avatarUrl = opts && 'avatarUrl' in opts ? opts.avatarUrl : null;
-    t$3610$2 = "eduma-profile__backdrop";
+    t$3611$2 = "eduma-profile__backdrop";
     return new html.div.new((() => {
-      let t$369 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3610$1 = "eduma-profile__monogram-bg", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3610 = "eduma-profile__glow-tr", t$3611 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$3610, attributes: t$3611})), (t$3610$ = "eduma-profile__glow-bl", t$3611$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$3610$, attributes: t$3611$})), (t$3610$0 = "eduma-profile__monogram-ring", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(initials[$isEmpty] ? "?" : initials)]))]), {classes: t$3610$0}))]), {classes: t$3610$1}))]);
-      if (avatarUrl != null) t$369.push(new html.img.new({src: avatarUrl, alt: "Profile photo", classes: "eduma-profile__photo-img"}));
-      return t$369;
-    })(), {classes: t$3610$2});
+      let t$3610 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3611$1 = "eduma-profile__monogram-bg", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3611 = "eduma-profile__glow-tr", t$3612 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$3611, attributes: t$3612})), (t$3611$ = "eduma-profile__glow-bl", t$3612$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$3611$, attributes: t$3612$})), (t$3611$0 = "eduma-profile__monogram-ring", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(initials[$isEmpty] ? "?" : initials)]))]), {classes: t$3611$0}))]), {classes: t$3611$1}))]);
+      if (avatarUrl != null) t$3610.push(new html.img.new({src: avatarUrl, alt: "Profile photo", classes: "eduma-profile__photo-img"}));
+      return t$3610;
+    })(), {classes: t$3611$2});
   };
   dart.lazyFn(profile_hero_widgets._heroBackdrop, () => T.__ToComponent$1());
   profile_hero_widgets._factChip = function _factChip(opts) {
-    let t$3610;
+    let t$3611;
     let icon = opts && 'icon' in opts ? opts.icon : null;
     let label = opts && 'label' in opts ? opts.label : null;
-    t$3610 = "eduma-profile__fact-chip";
-    return new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 14}), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(label)]))]), {classes: t$3610});
+    t$3611 = "eduma-profile__fact-chip";
+    return new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 14}), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(label)]))]), {classes: t$3611});
   };
   dart.lazyFn(profile_hero_widgets._factChip, () => T.__ToComponent$2());
   profile_hero_widgets.profileMobileHeaderCard = function profileMobileHeaderCard(opts) {
-    let t$3610, t$3610$, t$3611, t$3612, t$3611$, t$3614, t$3613, t$3612$, t$3611$0, t$3613$, t$3616, t$3615, t$3614$, t$3613$0, t$3613$1, t$3613$2, t$3613$3, t$3613$4, t$3613$5;
+    let t$3611, t$3611$, t$3612, t$3613, t$3612$, t$3615, t$3614, t$3613$, t$3612$0, t$3614$, t$3617, t$3616, t$3615$, t$3614$0, t$3614$1, t$3614$2, t$3614$3, t$3614$4, t$3614$5;
     let session = opts && 'session' in opts ? opts.session : null;
     let onEditProfile = opts && 'onEditProfile' in opts ? opts.onEditProfile : null;
     let onPhotoAction = opts && 'onPhotoAction' in opts ? opts.onPhotoAction : null;
     let user = session.user;
     let displayName = session.name[$trim]()[$isEmpty] ? "Eduma Learner" : session.name[$trim]();
     let initials = main_home_helpers.mainHomeInitials(displayName);
-    let avatarUrl = main_home_helpers.mainHomeSafeImageUrl((t$3610 = user[$_get]("avatarUrl"), t$3610 == null ? user[$_get]("profilePic") : t$3610));
-    let username = dart.str((t$3610$ = user[$_get]("username"), t$3610$ == null ? "" : t$3610$))[$trim]();
+    let avatarUrl = main_home_helpers.mainHomeSafeImageUrl((t$3611 = user[$_get]("avatarUrl"), t$3611 == null ? user[$_get]("profilePic") : t$3611));
+    let username = dart.str((t$3611$ = user[$_get]("username"), t$3611$ == null ? "" : t$3611$))[$trim]();
     let role = session.role[$trim]()[$toUpperCase]();
     let isVerified = dart.equals(user[$_get]("isEmailVerified"), true);
-    t$3613$5 = "eduma-profile__mobile-card";
-    return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3611$0 = "eduma-profile__mobile-avatar-btn", t$3612$ = html.ButtonType.button, t$3613 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Change photo"]), t$3614 = onPhotoAction, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3611 = "eduma-profile__mobile-avatar", new html.span.new((() => {
-          let t$3610 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+    t$3614$5 = "eduma-profile__mobile-card";
+    return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3612$0 = "eduma-profile__mobile-avatar-btn", t$3613$ = html.ButtonType.button, t$3614 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Change photo"]), t$3615 = onPhotoAction, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3612 = "eduma-profile__mobile-avatar", new html.span.new((() => {
+          let t$3611 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
           if (avatarUrl != null)
-            t$3610.push(new html.img.new({src: avatarUrl, alt: displayName}));
+            t$3611.push(new html.img.new({src: avatarUrl, alt: displayName}));
           else
-            t$3610.push(new framework.Text.__(initials[$isEmpty] ? "?" : initials));
-          return t$3610;
-        })(), {classes: t$3611})), (t$3611$ = "eduma-profile__camera-badge", t$3612 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.camera, {size: 14})]), {classes: t$3611$, attributes: t$3612}))]), {classes: t$3611$0, type: t$3612$, attributes: t$3613, onClick: t$3614})), (t$3613$4 = "eduma-profile__mobile-meta", new html.div.new((() => {
-        let t$3611 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3613$1 = "eduma-profile__name-row", new html.div.new((() => {
-            let t$3612 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(displayName)]))]);
-            if (isVerified) t$3612.push((t$3613$ = "eduma-profile__verified-gold", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.verify, {size: 18})]), {classes: t$3613$})));
-            t$3612.push((t$3613$0 = "eduma-profile__inline-edit", t$3614$ = html.ButtonType.button, t$3615 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Edit profile"]), t$3616 = onEditProfile, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.edit, {size: 16})]), {classes: t$3613$0, type: t$3614$, attributes: t$3615, onClick: t$3616})));
-            return t$3612;
-          })(), {classes: t$3613$1}))]);
-        if (username[$isNotEmpty]) t$3611.push((t$3613$2 = "eduma-profile__handle", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("@" + username)]), {classes: t$3613$2})));
-        if (role[$isNotEmpty]) t$3611.push((t$3613$3 = "eduma-profile__role-pill", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(role)]), {classes: t$3613$3})));
-        return t$3611;
-      })(), {classes: t$3613$4}))]), {classes: t$3613$5});
+            t$3611.push(new framework.Text.__(initials[$isEmpty] ? "?" : initials));
+          return t$3611;
+        })(), {classes: t$3612})), (t$3612$ = "eduma-profile__camera-badge", t$3613 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.camera, {size: 14})]), {classes: t$3612$, attributes: t$3613}))]), {classes: t$3612$0, type: t$3613$, attributes: t$3614, onClick: t$3615})), (t$3614$4 = "eduma-profile__mobile-meta", new html.div.new((() => {
+        let t$3612 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3614$1 = "eduma-profile__name-row", new html.div.new((() => {
+            let t$3613 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(displayName)]))]);
+            if (isVerified) t$3613.push((t$3614$ = "eduma-profile__verified-gold", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.verify, {size: 18})]), {classes: t$3614$})));
+            t$3613.push((t$3614$0 = "eduma-profile__inline-edit", t$3615$ = html.ButtonType.button, t$3616 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Edit profile"]), t$3617 = onEditProfile, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.edit, {size: 16})]), {classes: t$3614$0, type: t$3615$, attributes: t$3616, onClick: t$3617})));
+            return t$3613;
+          })(), {classes: t$3614$1}))]);
+        if (username[$isNotEmpty]) t$3612.push((t$3614$2 = "eduma-profile__handle", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("@" + username)]), {classes: t$3614$2})));
+        if (role[$isNotEmpty]) t$3612.push((t$3614$3 = "eduma-profile__role-pill", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(role)]), {classes: t$3614$3})));
+        return t$3612;
+      })(), {classes: t$3614$4}))]), {classes: t$3614$5});
   };
   dart.lazyFn(profile_hero_widgets.profileMobileHeaderCard, () => T.__ToComponent$3());
   profile_hero_widgets.profileStatsRow = function profileStatsRow(stats, opts) {
-    let t$3615, t$3614, t$3615$, t$3614$, t$3614$0;
+    let t$3616, t$3615, t$3616$, t$3615$, t$3615$0;
     let frosted = opts && 'frosted' in opts ? opts.frosted : false;
-    t$3614$0 = frosted ? "eduma-profile__stats is-frosted" : "eduma-profile__stats is-colored";
+    t$3615$0 = frosted ? "eduma-profile__stats is-frosted" : "eduma-profile__stats is-colored";
     return new html.section.new((() => {
-      let t$3613 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
-      if (stats.notebooks > 0) t$3613[$addAll](_interceptors.JSArray.of(T.JSArrayOfComponent(), [profile_hero_widgets._statTile("Notebooks", dart.strSafe(stats.notebooks)), (t$3614 = "eduma-profile__stat-divider", t$3615 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$3614, attributes: t$3615}))]));
-      t$3613.push(profile_hero_widgets._statTile("Time studied", stats.formattedStudyTime));
-      t$3613.push((t$3614$ = "eduma-profile__stat-divider", t$3615$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$3614$, attributes: t$3615$})));
-      t$3613.push(profile_hero_widgets._statTile("Spaces", dart.strSafe(stats.spaces)));
-      return t$3613;
-    })(), {classes: t$3614$0});
+      let t$3614 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+      if (stats.notebooks > 0) t$3614[$addAll](_interceptors.JSArray.of(T.JSArrayOfComponent(), [profile_hero_widgets._statTile("Notebooks", dart.strSafe(stats.notebooks)), (t$3615 = "eduma-profile__stat-divider", t$3616 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$3615, attributes: t$3616}))]));
+      t$3614.push(profile_hero_widgets._statTile("Time studied", stats.formattedStudyTime));
+      t$3614.push((t$3615$ = "eduma-profile__stat-divider", t$3616$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$3615$, attributes: t$3616$})));
+      t$3614.push(profile_hero_widgets._statTile("Spaces", dart.strSafe(stats.spaces)));
+      return t$3614;
+    })(), {classes: t$3615$0});
   };
   dart.lazyFn(profile_hero_widgets.profileStatsRow, () => T.ProfileStats__ToComponent());
   profile_hero_widgets._statTile = function _statTile(labelText, value) {
-    let t$3614, t$3614$;
-    t$3614$ = "eduma-profile__stat-card";
-    return new html.article.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.strong.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(value)])), (t$3614 = "eduma-profile__stat-label", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(labelText)]), {classes: t$3614}))]), {classes: t$3614$});
+    let t$3615, t$3615$;
+    t$3615$ = "eduma-profile__stat-card";
+    return new html.article.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.strong.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(value)])), (t$3615 = "eduma-profile__stat-label", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(labelText)]), {classes: t$3615}))]), {classes: t$3615$});
   };
   dart.lazyFn(profile_hero_widgets._statTile, () => T.StringAndStringToComponent());
   profile_hero_widgets.profileTabBar = function profileTabBar(opts) {
-    let t$3617, t$3616, t$3615, t$3614, t$3614$, t$3614$0, t$3617$, t$3616$, t$3615$, t$3616$0, t$3615$0, t$3618, t$3617$0, t$3616$1, t$3615$1, t$3615$2;
+    let t$3618, t$3617, t$3616, t$3615, t$3615$, t$3615$0, t$3618$, t$3617$, t$3616$, t$3617$0, t$3616$0, t$3619, t$3618$0, t$3617$1, t$3616$1, t$3616$2;
     let activeTab = opts && 'activeTab' in opts ? opts.activeTab : null;
     let searching = opts && 'searching' in opts ? opts.searching : null;
     let searchQuery = opts && 'searchQuery' in opts ? opts.searchQuery : null;
@@ -225,24 +232,24 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/eduma_icons', 'package
     let onSearchInput = opts && 'onSearchInput' in opts ? opts.onSearchInput : null;
     let onStopSearch = opts && 'onStopSearch' in opts ? opts.onStopSearch : null;
     if (searching) {
-      t$3614$0 = "eduma-profile__tabbar";
-      return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3614$ = "eduma-profile__search-pill", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.search, {size: 18}), new html.input.new(T.inputOfString(), {classes: "eduma-profile__search-input", type: html.InputType.search, value: searchQuery, attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["placeholder", "Search settings, labs, theme…", "autofocus", "true"]), onInput: onSearchInput}), (t$3614 = "eduma-profile__search-close", t$3615 = html.ButtonType.button, t$3616 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close search"]), t$3617 = onStopSearch, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 16})]), {classes: t$3614, type: t$3615, attributes: t$3616, onClick: t$3617}))]), {classes: t$3614$}))]), {classes: t$3614$0});
+      t$3615$0 = "eduma-profile__tabbar";
+      return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3615$ = "eduma-profile__search-pill", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.search, {size: 18}), new html.input.new(T.inputOfString(), {classes: "eduma-profile__search-input", type: html.InputType.search, value: searchQuery, attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["placeholder", "Search settings, labs, theme…", "autofocus", "true"]), onInput: onSearchInput}), (t$3615 = "eduma-profile__search-close", t$3616 = html.ButtonType.button, t$3617 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Close search"]), t$3618 = onStopSearch, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closePlain, {size: 16})]), {classes: t$3615, type: t$3616, attributes: t$3617, onClick: t$3618}))]), {classes: t$3615$}))]), {classes: t$3615$0});
     }
-    t$3615$2 = "eduma-profile__tabbar";
-    return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3615$0 = "eduma-profile__segmented", t$3616$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "tablist"]), new html.div.new((() => {
-        let t$3614 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+    t$3616$2 = "eduma-profile__tabbar";
+    return new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3616$0 = "eduma-profile__segmented", t$3617$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "tablist"]), new html.div.new((() => {
+        let t$3615 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
         for (let tab of profile_settings_groups.ProfileTabSection.values)
-          t$3614.push((t$3615$ = tab === activeTab ? "eduma-profile__seg-btn is-active" : "eduma-profile__seg-btn", t$3616$ = html.ButtonType.button, t$3617$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "tab", "aria-selected", dart.strSafe(tab === activeTab)]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(tab.label)]), {classes: t$3615$, type: t$3616$, attributes: t$3617$, onClick: dart.fn(() => onSelectTab(tab), T.VoidTovoid())})));
-        return t$3614;
-      })(), {classes: t$3615$0, attributes: t$3616$0})), (t$3615$1 = "eduma-profile__search-toggle", t$3616$1 = html.ButtonType.button, t$3617$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Search settings", "title", "Search settings"]), t$3618 = onStartSearch, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.search, {size: 20})]), {classes: t$3615$1, type: t$3616$1, attributes: t$3617$0, onClick: t$3618}))]), {classes: t$3615$2});
+          t$3615.push((t$3616$ = tab === activeTab ? "eduma-profile__seg-btn is-active" : "eduma-profile__seg-btn", t$3617$ = html.ButtonType.button, t$3618$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "tab", "aria-selected", dart.strSafe(tab === activeTab)]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(tab.label)]), {classes: t$3616$, type: t$3617$, attributes: t$3618$, onClick: dart.fn(() => onSelectTab(tab), T.VoidTovoid())})));
+        return t$3615;
+      })(), {classes: t$3616$0, attributes: t$3617$0})), (t$3616$1 = "eduma-profile__search-toggle", t$3617$1 = html.ButtonType.button, t$3618$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Search settings", "title", "Search settings"]), t$3619 = onStartSearch, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.search, {size: 20})]), {classes: t$3616$1, type: t$3617$1, attributes: t$3618$0, onClick: t$3619}))]), {classes: t$3616$2});
   };
   dart.lazyFn(profile_hero_widgets.profileTabBar, () => T.__ToComponent$4());
   profile_hero_widgets.profileVerificationBanner = function profileVerificationBanner(opts) {
-    let t$3615, t$3615$, t$3615$0, t$3618, t$3617, t$3616, t$3615$1, t$3615$2;
+    let t$3616, t$3616$, t$3616$0, t$3619, t$3618, t$3617, t$3616$1, t$3616$2;
     let email = opts && 'email' in opts ? opts.email : null;
     let onDismiss = opts && 'onDismiss' in opts ? opts.onDismiss : null;
-    t$3615$2 = "eduma-profile__verify-banner";
-    return new html.aside.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3615 = "eduma-profile__verify-icon", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.smsTracking, {size: 20})]), {classes: t$3615})), (t$3615$0 = "eduma-profile__verify-copy", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.strong.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Verify your email")])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(email[$isEmpty] ? "Enter the 6-digit code we emailed you to confirm your email address." : "We sent a 6-digit code to " + email + ". Enter it to confirm your email address.")])), (t$3615$ = "eduma-profile__verify-actions", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_link.edumaLink({to: "/verify-email", classes: "eduma-profile__verify-cta", children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.key, {size: 14}), new framework.Text.__("Enter code")])})]), {classes: t$3615$}))]), {classes: t$3615$0})), (t$3615$1 = "eduma-profile__verify-dismiss", t$3616 = html.ButtonType.button, t$3617 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Not now", "title", "Not now"]), t$3618 = onDismiss, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closeCircle, {size: 18})]), {classes: t$3615$1, type: t$3616, attributes: t$3617, onClick: t$3618}))]), {classes: t$3615$2});
+    t$3616$2 = "eduma-profile__verify-banner";
+    return new html.aside.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3616 = "eduma-profile__verify-icon", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.smsTracking, {size: 20})]), {classes: t$3616})), (t$3616$0 = "eduma-profile__verify-copy", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.strong.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Verify your email")])), new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(email[$isEmpty] ? "Enter the 6-digit code we emailed you to confirm your email address." : "We sent a 6-digit code to " + email + ". Enter it to confirm your email address.")])), (t$3616$ = "eduma-profile__verify-actions", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_link.edumaLink({to: "/verify-email", classes: "eduma-profile__verify-cta", children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.key, {size: 14}), new framework.Text.__("Enter code")])})]), {classes: t$3616$}))]), {classes: t$3616$0})), (t$3616$1 = "eduma-profile__verify-dismiss", t$3617 = html.ButtonType.button, t$3618 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Not now", "title", "Not now"]), t$3619 = onDismiss, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.closeCircle, {size: 18})]), {classes: t$3616$1, type: t$3617, attributes: t$3618, onClick: t$3619}))]), {classes: t$3616$2});
   };
   dart.lazyFn(profile_hero_widgets.profileVerificationBanner, () => T.__ToComponent$5());
   dart.defineLazy(profile_hero_widgets, {
@@ -257,7 +264,7 @@ define(['dart_sdk', 'packages/eduma_web/core/presentation/eduma_icons', 'package
   dart.trackLibraries("packages/eduma_web/features/profile/presentation/widgets/profile_hero_widgets", {
     "package:eduma_web/features/profile/presentation/widgets/profile_hero_widgets.dart": profile_hero_widgets
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["profile_hero_widgets.dart"],"names":[],"mappings":"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","file":"profile_hero_widgets.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["profile_hero_widgets.dart"],"names":[],"mappings":"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","file":"profile_hero_widgets.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__profile__presentation__widgets__profile_hero_widgets: profile_hero_widgets

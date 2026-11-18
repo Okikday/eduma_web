@@ -1,3 +1,4 @@
+import '../../../../core/presentation/eduma_sheet_dialog.dart';
 import 'dart:js_interop';
 
 import 'package:jaspr/dom.dart';
@@ -91,7 +92,7 @@ Component spaceDetailTabToolbar({
 
   const labels = ['Pages', 'Assets', 'Events'];
   final searchPlaceholder = switch (activeTabIndex) {
-    0 => 'Search pages, checklists, images, links…',
+    0 => 'Search pages…',
     1 => 'Search assets',
     _ => 'Search events',
   };
@@ -215,23 +216,6 @@ Component spaceDetailTabToolbar({
             ),
           ],
         ]),
-      if (activeTabIndex < 2)
-        button(
-          classes: 'space-detail__tool-btn space-detail__view-toggle',
-          type: ButtonType.button,
-          attributes: {
-            'aria-label': gridView ? 'Switch to list view' : 'Switch to grid view',
-            'aria-pressed': '$gridView',
-            'title': gridView ? 'Switch to list view' : 'Switch to grid view',
-          },
-          onClick: onToggleView,
-          [
-            edumaIcon(
-              gridView ? EdumaIcons.list : EdumaIcons.element3,
-              size: 17,
-            ),
-          ],
-        ),
       if (activeTabIndex == 0 && visiblePagesCount > 0 && canManagePages)
         button(
           classes: 'space-detail__tool-btn space-detail__tool-btn--select',
@@ -420,14 +404,14 @@ Component spaceDetailAssetsTab({
   if (visible.isEmpty) {
     return div(classes: 'space-detail__empty-pane', [
       span(classes: 'space-detail__empty-icon', [
-        edumaIcon(term.isEmpty ? EdumaIcons.folderOpen : EdumaIcons.search, size: 26),
+        edumaIcon(term.isEmpty ? EdumaIcons.folderOpen : EdumaIcons.searchStatus, size: 26),
       ]),
-      h3([.text(term.isEmpty ? 'No assets yet' : 'No matching assets')]),
+      h3([.text(term.isEmpty ? 'No Assets In Space' : 'No Matching Assets')]),
       p([
         .text(
           term.isEmpty
-              ? 'Files and links added to pages in this space will appear here.'
-              : 'Try another file name or clear your search.',
+              ? 'Documents, diagrams, code snippets, and resources uploaded to pages will appear here for quick access.'
+              : 'Try adjusting your search query or filter criteria to find the asset.',
         ),
       ]),
     ]);
@@ -628,53 +612,36 @@ Component spaceMembersModal({
   required VoidCallback onOpenInvite,
   required void Function(SpaceMember member, bool promote) onToggleAdmin,
   required ValueChanged<SpaceMember> onRemoveMember,
-}) {
-  if (!open) return .fragment([]);
-  return div(
-    classes: 'space-detail__modal-backdrop',
-    attributes: {'role': 'dialog', 'aria-modal': 'true', 'aria-label': 'Space members'},
-    [
-      div(classes: 'space-detail__modal-card', [
-        div(classes: 'space-detail__modal-head', [
-          div([
-            h2([.text('Members (${members.length})')]),
-            p([.text('People with access to this space')]),
-          ]),
-          div(classes: 'space-detail__modal-head-actions', [
-            if (canInvite)
-              desktopPillButton(
-                icon: EdumaIcons.userAdd,
-                label: 'Invite',
-                variant: .tonal,
-                onPressed: () {
-                  onClose();
-                  onOpenInvite();
-                },
-              ),
-            button(
-              classes: 'space-detail__modal-close',
-              type: ButtonType.button,
-              attributes: {'aria-label': 'Close members', 'title': 'Close'},
-              onClick: onClose,
-              [edumaIcon(EdumaIcons.closePlain, size: 18)],
-            ),
-          ]),
-        ]),
-        div(classes: 'space-detail__modal-body', [
-          spaceDetailMembersTab(
-            members: members,
-            currentUserId: currentUserId,
-            canManageMembers: canManageMembers,
-            isOwner: isOwner,
-            mutatingMemberIds: mutatingMemberIds,
-            onToggleAdmin: onToggleAdmin,
-            onRemoveMember: onRemoveMember,
-          ),
-        ]),
-      ]),
-    ],
-  );
-}
+}) => EdumaSheetDialog(
+  id: 'space-members-dialog',
+  open: open,
+  title: 'Members (${members.length})',
+  subtitle: 'People with access to this space',
+  onClose: onClose,
+  actions: [
+    if (canInvite)
+      desktopPillButton(
+        icon: EdumaIcons.userAdd,
+        label: 'Invite',
+        variant: .tonal,
+        onPressed: () {
+          onClose();
+          onOpenInvite();
+        },
+      ),
+  ],
+  body: [
+    spaceDetailMembersTab(
+      members: members,
+      currentUserId: currentUserId,
+      canManageMembers: canManageMembers,
+      isOwner: isOwner,
+      mutatingMemberIds: mutatingMemberIds,
+      onToggleAdmin: onToggleAdmin,
+      onRemoveMember: onRemoveMember,
+    ),
+  ],
+);
 
 /// Modal list matching `ArchivedPagesSheet` in `../eduma`.
 Component spaceArchivedPagesModal({
@@ -685,83 +652,57 @@ Component spaceArchivedPagesModal({
   required VoidCallback onClose,
   required ValueChanged<SpacePage> onRestorePage,
   required ValueChanged<SpacePage> onDeletePage,
-}) {
-  if (!open) return .fragment([]);
-  return div(
-    classes: 'space-detail__modal-backdrop',
-    attributes: {'role': 'dialog', 'aria-modal': 'true', 'aria-label': 'Archived pages'},
-    [
-      div(classes: 'space-detail__modal-card', [
-        div(classes: 'space-detail__modal-head', [
-          div([
-            h2([.text('Archived pages')]),
-            p([
-              .text(
-                archivedPages.isEmpty
-                    ? 'Hidden from the Pages tab'
-                    : '${archivedPages.length} hidden from the Pages tab',
-              ),
-            ]),
-          ]),
-          button(
-            classes: 'space-detail__modal-close',
-            type: ButtonType.button,
-            attributes: {
-              'aria-label': 'Close archived pages',
-              'title': 'Close',
-            },
-            onClick: onClose,
-            [edumaIcon(EdumaIcons.closePlain, size: 18)],
-          ),
+}) => EdumaSheetDialog(
+  id: 'space-archived-dialog',
+  open: open,
+  title: 'Archived pages',
+  subtitle: archivedPages.isEmpty ? 'Hidden from the Pages tab' : '${archivedPages.length} hidden from the Pages tab',
+  onClose: onClose,
+  body: [
+    if (archivedPages.isEmpty)
+      div(classes: 'space-detail__empty-pane', [
+        span(classes: 'space-detail__empty-icon', [
+          edumaIcon(EdumaIcons.archive, size: 24),
         ]),
-        div(classes: 'space-detail__modal-body', [
-          if (archivedPages.isEmpty)
-            div(classes: 'space-detail__empty-pane', [
-              span(classes: 'space-detail__empty-icon', [
-                edumaIcon(EdumaIcons.archive, size: 24),
+        h3([.text('Nothing archived')]),
+        p([.text('Archive a page from its options to tuck it away without deleting it.')]),
+      ])
+    else
+      div(classes: 'space-detail__cards-list', [
+        for (final page in archivedPages)
+          div(classes: 'space-detail__item-card', [
+            div(classes: 'space-detail__card-body', [
+              strong(classes: 'space-detail__card-title', [.text(page.title)]),
+              span(classes: 'space-detail__card-meta', [
+                .text(
+                  page.updatedAt == null
+                      ? page.pageType.label
+                      : '${page.pageType.label} • ${_formatMonthDay(page.updatedAt!)}',
+                ),
               ]),
-              h3([.text('Nothing archived')]),
-              p([.text('Archive a page from its options to tuck it away without deleting it.')]),
-            ])
-          else
-            div(classes: 'space-detail__cards-list', [
-              for (final page in archivedPages)
-                div(classes: 'space-detail__item-card', [
-                  div(classes: 'space-detail__card-body', [
-                    strong(classes: 'space-detail__card-title', [.text(page.title)]),
-                    span(classes: 'space-detail__card-meta', [
-                      .text(
-                        page.updatedAt == null
-                            ? page.pageType.label
-                            : '${page.pageType.label} • ${_formatMonthDay(page.updatedAt!)}',
-                      ),
-                    ]),
-                  ]),
-                  if (canManagePages) ...[
-                    button(
-                      classes: 'space-detail__icon-btn',
-                      type: ButtonType.button,
-                      disabled: mutatingPageIds.contains(page.id),
-                      attributes: {'title': 'Restore', 'aria-label': 'Restore ${page.title}'},
-                      onClick: () => onRestorePage(page),
-                      [edumaIcon(EdumaIcons.refresh, size: 16)],
-                    ),
-                    button(
-                      classes: 'space-detail__icon-btn space-detail__icon-btn--danger',
-                      type: ButtonType.button,
-                      disabled: mutatingPageIds.contains(page.id),
-                      attributes: {'title': 'Delete', 'aria-label': 'Delete ${page.title}'},
-                      onClick: () => onDeletePage(page),
-                      [edumaIcon(EdumaIcons.delete, size: 16)],
-                    ),
-                  ],
-                ]),
             ]),
-        ]),
+            if (canManagePages) ...[
+              button(
+                classes: 'space-detail__icon-btn',
+                type: ButtonType.button,
+                disabled: mutatingPageIds.contains(page.id),
+                attributes: {'title': 'Restore', 'aria-label': 'Restore ${page.title}'},
+                onClick: () => onRestorePage(page),
+                [edumaIcon(EdumaIcons.refresh, size: 16)],
+              ),
+              button(
+                classes: 'space-detail__icon-btn space-detail__icon-btn--danger',
+                type: ButtonType.button,
+                disabled: mutatingPageIds.contains(page.id),
+                attributes: {'title': 'Delete', 'aria-label': 'Delete ${page.title}'},
+                onClick: () => onDeletePage(page),
+                [edumaIcon(EdumaIcons.delete, size: 16)],
+              ),
+            ],
+          ]),
       ]),
-    ],
-  );
-}
+  ],
+);
 
 const _shortMonths = [
   'Jan',

@@ -138,8 +138,7 @@ class _CalendarAgendaPanelState extends State<CalendarAgendaPanel> {
 
   void _selectDate(DateTime date) {
     final day = _dayOnly(date);
-    final monthChanged =
-        day.year != _visibleMonth.year || day.month != _visibleMonth.month;
+    final monthChanged = day.year != _visibleMonth.year || day.month != _visibleMonth.month;
     setState(() {
       _selectedDate = day;
       _visibleMonth = _monthOnly(day);
@@ -156,8 +155,7 @@ class _CalendarAgendaPanelState extends State<CalendarAgendaPanel> {
     _selectDate(DateTime(target.year, target.month, clampedDay));
   }
 
-  void _shiftDay(int delta) =>
-      _selectDate(_selectedDate.add(Duration(days: delta)));
+  void _shiftDay(int delta) => _selectDate(_selectedDate.add(Duration(days: delta)));
 
   @override
   Component build(BuildContext context) {
@@ -272,8 +270,7 @@ class _CalendarAgendaPanelState extends State<CalendarAgendaPanel> {
               ),
             ])
           else
-            for (var i = 0; i < dayEvents.length; i++)
-              _agendaEventCard(dayEvents[i], index: i),
+            for (var i = 0; i < dayEvents.length; i++) _agendaEventCard(dayEvents[i], index: i),
         ]),
         CalendarCreateDialog(
           open: _createOpen,
@@ -313,9 +310,7 @@ class _CalendarAgendaPanelState extends State<CalendarAgendaPanel> {
       [
         span(classes: 'eduma-agenda-day__num', [.text('${day.day}')]),
         span(
-          classes: isBusy && inMonth
-              ? 'eduma-agenda-day__dot is-busy'
-              : 'eduma-agenda-day__dot',
+          classes: isBusy && inMonth ? 'eduma-agenda-day__dot is-busy' : 'eduma-agenda-day__dot',
           [],
         ),
       ],
@@ -324,20 +319,17 @@ class _CalendarAgendaPanelState extends State<CalendarAgendaPanel> {
 
   Component _agendaEventCard(CalendarEvent event, {required int index}) {
     final pastel = CalendarScheduleLogic.pastelStyleFor(event, indexOverride: index);
-    final timeRange =
-        '${formatShortClock(event.startTime)} – ${formatShortClock(event.endTime)}';
+    final timeRange = '${formatShortClock(event.startTime)} – ${formatShortClock(event.endTime)}';
     return edumaLink(
       to: '/calendarTab',
       classes: 'eduma-agenda-event',
       attributes: {
-        'style':
-            '--agenda-fill: ${pastel.fill}; --agenda-bar: ${pastel.accentBar}; --agenda-ink: ${pastel.text};',
+        'style': '--agenda-fill: ${pastel.fill}; --agenda-bar: ${pastel.accentBar}; --agenda-ink: ${pastel.text};',
       },
       children: [
         span(classes: 'eduma-agenda-event__bar', attributes: {'aria-hidden': 'true'}, []),
         div(classes: 'eduma-agenda-event__body', [
-          if (event.subject.isNotEmpty)
-            span(classes: 'eduma-agenda-event__subject', [.text(event.subject)]),
+          if (event.subject.isNotEmpty) span(classes: 'eduma-agenda-event__subject', [.text(event.subject)]),
           strong(classes: 'eduma-agenda-event__title', [.text(event.title)]),
           span(classes: 'eduma-agenda-event__time', [.text(timeRange)]),
         ]),

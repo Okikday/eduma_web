@@ -201,6 +201,7 @@ class _StreakPageState extends State<StreakPage> {
     return adaptivePageScaffold(
       title: 'Streak',
       maxWidth: 1120,
+      fullBleed: true, // Source web: popup pages render full-window (no ReadableWidth).
       fallbackHref: '/home',
       body: [
         div(classes: 'eduma-streak', [_buildContent()]),

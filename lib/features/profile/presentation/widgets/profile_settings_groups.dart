@@ -181,9 +181,7 @@ List<ProfileSettingsGroupData> buildProfileSettingsGroups({
         ProfileSettingsItemData(
           icon: EdumaIcons.teacher,
           title: 'About you',
-          subtitle: model.aboutYou.isEmpty
-              ? 'Add your school, level and goals'
-              : model.aboutYou,
+          subtitle: model.aboutYou.isEmpty ? 'Add your school, level and goals' : model.aboutYou,
           keywords: const ['school', 'level', 'onboarding', 'goals', 'profile'],
           onTap: actions.onEditAboutYou,
         ),
@@ -219,9 +217,7 @@ List<ProfileSettingsGroupData> buildProfileSettingsGroups({
         ProfileSettingsItemData(
           icon: EdumaIcons.eye,
           title: "Show when I'm active",
-          subtitle: model.showPresence
-              ? 'Others see you on pages you have open'
-              : 'Hide your presence on open pages',
+          subtitle: model.showPresence ? 'Others see you on pages you have open' : 'Hide your presence on open pages',
           keywords: const ['presence', 'online', 'active', 'status'],
           switchValue: model.showPresence,
           onToggle: actions.onToggleShowPresence,
@@ -229,9 +225,7 @@ List<ProfileSettingsGroupData> buildProfileSettingsGroups({
         ProfileSettingsItemData(
           icon: EdumaIcons.userTag,
           title: 'Personalization',
-          subtitle: model.personalization
-              ? 'Eduma may personalize your experience'
-              : 'Personalization is turned off',
+          subtitle: model.personalization ? 'Eduma may personalize your experience' : 'Personalization is turned off',
           keywords: const ['personalize', 'ai', 'memory', 'privacy'],
           switchValue: model.personalization,
           onToggle: actions.onTogglePersonalization,
@@ -354,7 +348,8 @@ List<ProfileSettingsGroupData> buildProfileSettingsGroups({
           title: 'WhatsApp',
           subtitle: 'Not linked · Send files to Eduma from WhatsApp',
           keywords: const ['whatsapp', 'bot', 'link', 'phone'],
-          onTap: () => actions.onShowNotice('Link your WhatsApp number in the mobile app to send study files directly.'),
+          onTap: () =>
+              actions.onShowNotice('Link your WhatsApp number in the mobile app to send study files directly.'),
         ),
       ],
     ),
@@ -446,8 +441,8 @@ List<ProfileSettingsGroupData> filterProfileSettingsGroups(
   if (lower.isEmpty) return groups;
   return [
     for (final group in groups)
-      if (group.items.where((item) => item.matches(lower, group.caption.toLowerCase())).toList()
-          case final matched when matched.isNotEmpty)
+      if (group.items.where((item) => item.matches(lower, group.caption.toLowerCase())).toList() case final matched
+          when matched.isNotEmpty)
         ProfileSettingsGroupData(
           caption: group.caption,
           tab: group.tab,

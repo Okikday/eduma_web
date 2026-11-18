@@ -2,7 +2,7 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/features/main/presentation/widgets/main_home_navigation
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 'packages/eduma_web/core/presentation/eduma_link', 'packages/eduma_web/core/presentation/eduma_icons', 'packages/eduma_web/features/main/presentation/widgets/main_home_helpers'], (function load__packages__eduma_web__features__main__presentation__widgets__main_home_navigation(dart_sdk, packages__jaspr__client, packages__jaspr__src__client__utils, packages__eduma_web__core__presentation__eduma_link, packages__eduma_web__core__presentation__eduma_icons, packages__eduma_web__features__main__presentation__widgets__main_home_helpers) {
+define(['dart_sdk', 'packages/jaspr/client', 'packages/eduma_web/features/main/presentation/widgets/web_dialog_helper', 'packages/jaspr/src/client/utils', 'packages/eduma_web/core/presentation/eduma_link', 'packages/eduma_web/core/presentation/eduma_icons', 'packages/eduma_web/core/presentation/flutter_embedded_page', 'packages/eduma_web/features/main/presentation/widgets/main_home_helpers'], (function load__packages__eduma_web__features__main__presentation__widgets__main_home_navigation(dart_sdk, packages__jaspr__client, packages__eduma_web__features__main__presentation__widgets__web_dialog_helper, packages__jaspr__src__client__utils, packages__eduma_web__core__presentation__eduma_link, packages__eduma_web__core__presentation__eduma_icons, packages__eduma_web__core__presentation__flutter_embedded_page, packages__eduma_web__features__main__presentation__widgets__main_home_helpers) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
@@ -14,14 +14,15 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
   const dartx = dart_sdk.dartx;
   const framework = packages__jaspr__client.jaspr__src__framework__framework;
   const html = packages__jaspr__client.jaspr__src__dom__html__html;
+  const web_dialog_helper = packages__eduma_web__features__main__presentation__widgets__web_dialog_helper.eduma_web__features__main__presentation__widgets__web_dialog_helper;
   const styles = packages__jaspr__src__client__utils.jaspr__src__dom__styles__styles;
   const eduma_link = packages__eduma_web__core__presentation__eduma_link.eduma_web__core__presentation__eduma_link;
   const eduma_icons = packages__eduma_web__core__presentation__eduma_icons.eduma_web__core__presentation__eduma_icons;
+  const flutter_embedded_page = packages__eduma_web__core__presentation__flutter_embedded_page.eduma_web__core__presentation__flutter_embedded_page;
   const main_home_helpers = packages__eduma_web__features__main__presentation__widgets__main_home_helpers.eduma_web__features__main__presentation__widgets__main_home_helpers;
   var main_home_navigation = Object.create(dart.library);
-  var $toDouble = dartx.toDouble;
-  var $round = dartx.round;
   var $clamp = dartx.clamp;
+  var $round = dartx.round;
   var $join = dartx.join;
   var $isNotEmpty = dartx.isNotEmpty;
   var $isEmpty = dartx.isEmpty;
@@ -41,6 +42,9 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
     ListOfComponent: () => (T.ListOfComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|List<jaspr__src__framework__framework|Component>", true)))(),
     GlobalNodeKeyOfJSObject: () => (T.GlobalNodeKeyOfJSObject = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|GlobalNodeKey<_interceptors|JSObject>", true)))(),
     JSObject: () => (T.JSObject = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
+    JSObject$1: () => (T.JSObject$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
+    JSObject$2: () => (T.JSObject$2 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
+    Object: () => (T.Object = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Object", true)))(),
     VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~()", true)))(),
     String: () => (T.String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String", true)))(),
     JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<core|String>", true)))(),
@@ -48,7 +52,10 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
     JSArrayOfComponent: () => (T.JSArrayOfComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<jaspr__src__framework__framework|Component>", true)))(),
     JSObjectTovoid: () => (T.JSObjectTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(_interceptors|JSObject)", true)))(),
     IdentityMapOfString$JSObjectTovoid: () => (T.IdentityMapOfString$JSObjectTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,~(_interceptors|JSObject)>", true)))(),
+    VoidToint: () => (T.VoidToint = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|int()", true)))(),
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool()", true)))(),
     VoidTo_MainHomeDesktopRailState: () => (T.VoidTo_MainHomeDesktopRailState = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "eduma_web__features__main__presentation__widgets__main_home_navigation|_MainHomeDesktopRailState()", true)))(),
+    boolTovoid: () => (T.boolTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(core|bool)", true)))(),
     JSObjectTovoid$1: () => (T.JSObjectTovoid$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(_interceptors|JSObject)", true)))(),
     JSObjectTovoid$2: () => (T.JSObjectTovoid$2 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(_interceptors|JSObject)", true)))(),
     BuildContextToComponent: () => (T.BuildContextToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component(jaspr__src__framework__framework|BuildContext)", true)))(),
@@ -61,7 +68,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
     __ToComponent: () => (T.__ToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({active!core|bool,icon!core|Object,label!core|String,to!core|String})", true)))(),
     __ToComponent$1: () => (T.__ToComponent$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({emptyMessage:core|String?,items!core|List<jaspr__src__framework__framework|Component>,onSeeAll:~()?,seeAllHref:core|String?,title!core|String})", true)))(),
     JSObjectN: () => (T.JSObjectN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject?", true)))(),
-    JSObject$1: () => (T.JSObject$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
+    JSObject$3: () => (T.JSObject$3 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
     JSArrayOfStatelessComponent: () => (T.JSArrayOfStatelessComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSArray<jaspr__src__framework__framework|StatelessComponent>", true)))(),
     __ToComponent$2: () => (T.__ToComponent$2 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({href:core|String?,icon!core|Object,onClick:~()?,previewUrl:core|String?,subtitle:core|String?,title!core|String})", true)))(),
     __ToComponent$3: () => (T.__ToComponent$3 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({desktopFirstName!core|String,firstName!core|String,greeting!core|String,now!core|DateTime,onOpenCreateSpace!~(),onOpenJoinSpace!~(),session!eduma_web__features__auth__data__auth_api|EdumaSession,streakDays:core|int?,unreadNotifications:core|int})", true)))(),
@@ -269,11 +276,59 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
   var _pointerStartX = dart.privateName(main_home_navigation, "_pointerStartX");
   var _widthAtPointerStart = dart.privateName(main_home_navigation, "_widthAtPointerStart");
   var _resizeHandleKey = dart.privateName(main_home_navigation, "_resizeHandleKey");
+  var _is = dart.privateName(dart_rti, "_is");
+  var _saveWidth = dart.privateName(main_home_navigation, "_saveWidth");
+  var _setCollapsed = dart.privateName(main_home_navigation, "_setCollapsed");
   var _startResize = dart.privateName(main_home_navigation, "_startResize");
   var _resizeFromPointer = dart.privateName(main_home_navigation, "_resizeFromPointer");
   var _stopResize = dart.privateName(main_home_navigation, "_stopResize");
   var _resizeFromKeyboard = dart.privateName(main_home_navigation, "_resizeFromKeyboard");
   main_home_navigation._MainHomeDesktopRailState = class _MainHomeDesktopRailState extends framework.State {
+    static _readWidth() {
+      let t$362;
+      try {
+        let saved = core.int.tryParse((t$362 = dart_rti._asStringQ(js_util.getProperty(T.JSObject$1(), js_util.getProperty(T.JSObject$2(), dart.global, "window"), "localStorage").getItem("eduma.rail.width")), t$362 == null ? "" : t$362));
+        if (saved != null) return saved[$clamp](200, 440);
+      } catch (t$36$35e) {
+        let _$35wc0$35formal = dart.getThrown(t$36$35e);
+        if (T.Object()[_is](_$35wc0$35formal)) {
+        } else
+          throw t$36$35e;
+      }
+      return 264;
+    }
+    static _readCollapsed() {
+      try {
+        return dart_rti._asStringQ(js_util.getProperty(T.JSObject$1(), js_util.getProperty(T.JSObject$2(), dart.global, "window"), "localStorage").getItem("eduma.rail.collapsed")) === "true";
+      } catch (t$36$35e) {
+        let _$35wc0$35formal = dart.getThrown(t$36$35e);
+        if (T.Object()[_is](_$35wc0$35formal)) {
+          return false;
+        } else
+          throw t$36$35e;
+      }
+    }
+    [_saveWidth]() {
+      try {
+        js_util.getProperty(T.JSObject$1(), js_util.getProperty(T.JSObject$2(), dart.global, "window"), "localStorage").setItem("eduma.rail.width", dart.strSafe(this[_width]));
+      } catch (t$36$35e) {
+        let _$35wc0$35formal = dart.getThrown(t$36$35e);
+        if (T.Object()[_is](_$35wc0$35formal)) {
+        } else
+          throw t$36$35e;
+      }
+    }
+    [_setCollapsed](collapsed) {
+      this.setState(dart.fn(() => this[_collapsed] = collapsed, T.VoidTovoid()));
+      try {
+        js_util.getProperty(T.JSObject$1(), js_util.getProperty(T.JSObject$2(), dart.global, "window"), "localStorage").setItem("eduma.rail.collapsed", dart.strSafe(collapsed));
+      } catch (t$36$35e) {
+        let _$35wc0$35formal = dart.getThrown(t$36$35e);
+        if (T.Object()[_is](_$35wc0$35formal)) {
+        } else
+          throw t$36$35e;
+      }
+    }
     [_startResize](event) {
       if (this[_collapsed] || js_util.getProperty(T.int(), event, "button") !== 0) return;
       event.preventDefault();
@@ -281,7 +336,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
       let handle = this[_resizeHandleKey].currentNode;
       if (handle == null) return;
       this[_activePointerId] = js_util.getProperty(T.int(), event, "pointerId");
-      this[_pointerStartX] = js_util.getProperty(T.int(), event, "clientX")[$toDouble]();
+      this[_pointerStartX] = web_dialog_helper.pointerClientX(event);
       this[_widthAtPointerStart] = this[_width];
       handle.setPointerCapture(js_util.getProperty(T.int(), event, "pointerId"));
       this.setState(dart.fn(() => {
@@ -290,8 +345,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
     [_resizeFromPointer](event) {
       if (this[_activePointerId] !== js_util.getProperty(T.int(), event, "pointerId")) return;
       event.preventDefault();
-      let delta = (js_util.getProperty(T.int(), event, "clientX") - this[_pointerStartX])[$round]();
-      let nextWidth = (this[_widthAtPointerStart] + delta)[$clamp](250, 380);
+      let delta = (web_dialog_helper.pointerClientX(event) - this[_pointerStartX])[$round]();
+      let nextWidth = (this[_widthAtPointerStart] + delta)[$clamp](200, 440);
       if (nextWidth !== this[_width]) {
         this.setState(dart.fn(() => this[_width] = nextWidth, T.VoidTovoid()));
       }
@@ -301,11 +356,12 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
         this[_activePointerId] = null;
         this.setState(dart.fn(() => {
         }, T.VoidTovoid()));
+        this[_saveWidth]();
       }
     }
     [_resizeFromKeyboard](event) {
       let nextWidth = (() => {
-        let t$362 = null;
+        let t$366 = null;
         let t$36$350$350 = js_util.getProperty(T.String(), event, "key");
         let t$36$350$351 = "ArrowLeft";
         let t$36$350$353 = "ArrowRight";
@@ -314,68 +370,69 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
         L0: {
           {
             if ("ArrowLeft" === t$36$350$350) {
-              t$362 = this[_width] - 10;
+              t$366 = this[_width] - 10;
               break L0;
             }
           }
           {
             if ("ArrowRight" === t$36$350$350) {
-              t$362 = this[_width] + 10;
+              t$366 = this[_width] + 10;
               break L0;
             }
           }
           {
             if ("Home" === t$36$350$350) {
-              t$362 = 250;
+              t$366 = 200;
               break L0;
             }
           }
           {
             if ("End" === t$36$350$350) {
-              t$362 = 380;
+              t$366 = 440;
               break L0;
             }
           }
           {
             {
-              t$362 = null;
+              t$366 = null;
               break L0;
             }
           }
         }
-        return t$362;
+        return t$366;
       })();
       if (nextWidth == null) return;
       event.preventDefault();
-      let clampedWidth = nextWidth[$clamp](250, 380);
+      let clampedWidth = nextWidth[$clamp](200, 440);
       if (clampedWidth !== this[_width]) {
         this.setState(dart.fn(() => this[_width] = clampedWidth, T.VoidTovoid()));
+        this[_saveWidth]();
       }
     }
     build(context) {
-      let t$3610, t$3610$, t$3610$0, t$3612, t$3611, t$3611$, t$3612$, t$3611$0, t$3614, t$3613, t$3612$0, t$3611$1, t$3613$, t$3612$1, t$3611$2, t$3613$0, t$3612$2, t$3611$3;
+      let t$3614, t$3614$, t$3614$0, t$3616, t$3615, t$3617, t$3616$, t$3615$, t$3615$0, t$3616$0, t$3615$1, t$3618, t$3617$, t$3616$1, t$3615$2, t$3617$0, t$3616$2, t$3615$3, t$3617$1, t$3616$3, t$3615$4;
       let activeTab = this.component.activeTab;
       let unreadNotifications = this.component.unreadNotifications;
       let railClasses = (() => {
-        let t$368 = _interceptors.JSArray.of(T.JSArrayOfString(), ["main-home__rail"]);
-        if (this[_collapsed]) t$368.push("is-collapsed");
-        if (this[_activePointerId] != null) t$368.push("is-resizing");
-        return t$368;
+        let t$3612 = _interceptors.JSArray.of(T.JSArrayOfString(), ["main-home__rail"]);
+        if (this[_collapsed]) t$3612.push("is-collapsed");
+        if (this[_activePointerId] != null) t$3612.push("is-resizing");
+        return t$3612;
       })()[$join](" ");
-      t$3611$3 = railClasses;
-      t$3612$2 = new styles._Styles.new({raw: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["width", this[_collapsed] ? "0px" : dart.strSafe(this[_width]) + "px", "flex-basis", this[_collapsed] ? "0px" : dart.strSafe(this[_width]) + "px"])});
-      t$3613$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Main navigation"]);
-      return new html.nav.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3611$0 = "main-home-rail-inner", t$3612$ = "main-home__rail-inner", new html.div.new((() => {
-          let t$369 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_link.edumaLink({to: "/main", classes: "main-home__rail-logo", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Eduma home"]), children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.img.new({src: "assets/logo/logo.png", alt: "Eduma"})])}), (t$3610 = "main-home__rail-items", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation._railItem({label: "Home", to: "/main", icon: activeTab === main_home_navigation.MainNavTab.home ? eduma_icons.EdumaIcons.navRailHomeActive : eduma_icons.EdumaIcons.navRailHome, active: activeTab === main_home_navigation.MainNavTab.home}), main_home_navigation._railItem({label: "Calendar", to: "/calendarTab", icon: activeTab === main_home_navigation.MainNavTab.calendar ? eduma_icons.EdumaIcons.navRailCalendarActive : eduma_icons.EdumaIcons.navRailCalendar, active: activeTab === main_home_navigation.MainNavTab.calendar}), main_home_navigation._railItem({label: "Library", to: "/libraryTab", icon: activeTab === main_home_navigation.MainNavTab.library ? eduma_icons.EdumaIcons.navRailLibraryActive : eduma_icons.EdumaIcons.navRailLibrary, active: activeTab === main_home_navigation.MainNavTab.library})]), {classes: t$3610}))]);
-          if (this.component.sidebarContent[$isNotEmpty]) t$369.push((t$3610$ = "main-home__rail-context", new html.div.new(this.component.sidebarContent, {classes: t$3610$})));
-          if (this.component.sidebarContent[$isEmpty]) t$369.push((t$3610$0 = "main-home__rail-spacer", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$3610$0})));
-          t$369.push((t$3611$ = "main-home__rail-footer", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_link.edumaLink({to: "/notifications", classes: activeTab === main_home_navigation.MainNavTab.notifications ? "main-home__rail-notif is-active" : "main-home__rail-notif", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", unreadNotifications > 0 ? "Notifications (" + dart.strSafe(unreadNotifications) + " unread)" : "Notifications", "title", "Notifications"]), children: (() => {
-                let t$3610 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.navRailNotifications, {size: 22})]);
-                if (unreadNotifications > 0) t$3610.push((t$3611 = "eduma-nav-badge eduma-nav-badge--rail", t$3612 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", dart.strSafe(unreadNotifications) + " unread"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(unreadNotifications > 99 ? "99+" : dart.strSafe(unreadNotifications))]), {classes: t$3611, attributes: t$3612})));
-                return t$3610;
-              })()}), eduma_link.edumaLink({to: "/assistantChat", classes: "main-home__rail-ai-chat", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Start a new AI chat", "title", "New AI chat"]), children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.messages2, {size: 21})])}), main_home_navigation._profileAvatarLink(this.component.session, {classes: activeTab === main_home_navigation.MainNavTab.profile ? "main-home__rail-profile is-active" : "main-home__rail-profile", sizePx: 42})]), {classes: t$3611$})));
-          return t$369;
-        })(), {id: t$3611$0, classes: t$3612$})), (t$3611$1 = this[_resizeHandleKey], t$3612$0 = "main-home__rail-resize-handle", t$3613 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "separator", "aria-label", "Resize navigation sidebar", "aria-controls", "main-home-rail-inner", "aria-orientation", "vertical", "aria-valuemin", "250", "aria-valuemax", "380", "aria-valuenow", dart.strSafe(this[_width]), "title", "Drag to resize sidebar", "tabindex", "0"]), t$3614 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["pointerdown", dart.fn(event => this[_startResize](event), T.JSObjectTovoid()), "pointermove", dart.fn(event => this[_resizeFromPointer](event), T.JSObjectTovoid()), "pointerup", dart.fn(event => this[_stopResize](event), T.JSObjectTovoid()), "pointercancel", dart.fn(event => this[_stopResize](event), T.JSObjectTovoid()), "keydown", dart.fn(event => this[_resizeFromKeyboard](event), T.JSObjectTovoid())]), new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {key: t$3611$1, classes: t$3612$0, attributes: t$3613, events: t$3614})), (t$3611$2 = "main-home__rail-toggle", t$3612$1 = html.ButtonType.button, t$3613$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", this[_collapsed] ? "Expand navigation" : "Collapse navigation", "aria-controls", "main-home-rail-inner", "aria-expanded", dart.strSafe(!this[_collapsed]), "title", this[_collapsed] ? "Expand navigation" : "Collapse navigation"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(this[_collapsed] ? eduma_icons.EdumaIcons.panelLeftOpen : eduma_icons.EdumaIcons.panelLeftClose, {size: 16})]), {classes: t$3611$2, type: t$3612$1, attributes: t$3613$, onClick: dart.fn(() => this.setState(dart.fn(() => this[_collapsed] = !this[_collapsed], T.VoidTovoid())), T.VoidTovoid())}))]), {classes: t$3611$3, styles: t$3612$2, attributes: t$3613$0});
+      t$3615$4 = railClasses;
+      t$3616$3 = new styles._Styles.new({raw: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["width", this[_collapsed] ? "0px" : dart.strSafe(this[_width]) + "px", "flex-basis", this[_collapsed] ? "0px" : dart.strSafe(this[_width]) + "px"])});
+      t$3617$1 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Main navigation"]);
+      return new html.nav.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3615$1 = "main-home-rail-inner", t$3616$0 = "main-home__rail-inner", new html.div.new((() => {
+          let t$3613 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_link.edumaLink({to: "/main", classes: "main-home__rail-logo", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Eduma home"]), children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.img.new({src: "assets/logo/logo.png", alt: "Eduma"})])}), (t$3614 = "main-home__rail-items", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation._railItem({label: "Home", to: "/main", icon: activeTab === main_home_navigation.MainNavTab.home ? eduma_icons.EdumaIcons.navRailHomeActive : eduma_icons.EdumaIcons.navRailHome, active: activeTab === main_home_navigation.MainNavTab.home}), main_home_navigation._railItem({label: "Calendar", to: "/calendarTab", icon: activeTab === main_home_navigation.MainNavTab.calendar ? eduma_icons.EdumaIcons.navRailCalendarActive : eduma_icons.EdumaIcons.navRailCalendar, active: activeTab === main_home_navigation.MainNavTab.calendar}), main_home_navigation._railItem({label: "Library", to: "/libraryTab", icon: activeTab === main_home_navigation.MainNavTab.library ? eduma_icons.EdumaIcons.navRailLibraryActive : eduma_icons.EdumaIcons.navRailLibrary, active: activeTab === main_home_navigation.MainNavTab.library})]), {classes: t$3614}))]);
+          if (this.component.sidebarContent[$isNotEmpty]) t$3613.push((t$3614$ = "main-home__rail-context", new html.div.new(this.component.sidebarContent, {classes: t$3614$})));
+          if (this.component.sidebarContent[$isEmpty]) t$3613.push((t$3614$0 = "main-home__rail-spacer", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {classes: t$3614$0})));
+          t$3613.push((t$3615$0 = "main-home__rail-footer", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_link.edumaLink({to: "/notifications", classes: activeTab === main_home_navigation.MainNavTab.notifications ? "main-home__rail-notif is-active" : "main-home__rail-notif", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", unreadNotifications > 0 ? "Notifications (" + dart.strSafe(unreadNotifications) + " unread)" : "Notifications", "title", "Notifications"]), children: (() => {
+                let t$3614 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.navRailNotifications, {size: 22})]);
+                if (unreadNotifications > 0) t$3614.push((t$3615 = "eduma-nav-badge eduma-nav-badge--rail", t$3616 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", dart.strSafe(unreadNotifications) + " unread"]), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(unreadNotifications > 99 ? "99+" : dart.strSafe(unreadNotifications))]), {classes: t$3615, attributes: t$3616})));
+                return t$3614;
+              })()}), (t$3615$ = "main-home__rail-ai-chat", t$3616$ = html.ButtonType.button, t$3617 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Start a new AI chat", "title", "New AI chat"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.sparkles, {size: 21})]), {classes: t$3615$, type: t$3616$, attributes: t$3617, onClick: dart.fn(() => flutter_embedded_page.openAiChatOverlay(context), T.VoidTovoid())})), main_home_navigation._profileAvatarLink(this.component.session, {classes: activeTab === main_home_navigation.MainNavTab.profile ? "main-home__rail-profile is-active" : "main-home__rail-profile", sizePx: 42})]), {classes: t$3615$0})));
+          return t$3613;
+        })(), {id: t$3615$1, classes: t$3616$0})), (t$3615$2 = this[_resizeHandleKey], t$3616$1 = "main-home__rail-resize-handle", t$3617$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["role", "separator", "aria-label", "Resize navigation sidebar", "aria-controls", "main-home-rail-inner", "aria-orientation", "vertical", "aria-valuemin", "200", "aria-valuemax", "440", "aria-valuenow", dart.strSafe(this[_width]), "title", "Drag to resize sidebar", "tabindex", "0"]), t$3618 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["pointerdown", dart.fn(event => this[_startResize](event), T.JSObjectTovoid()), "pointermove", dart.fn(event => this[_resizeFromPointer](event), T.JSObjectTovoid()), "pointerup", dart.fn(event => this[_stopResize](event), T.JSObjectTovoid()), "pointercancel", dart.fn(event => this[_stopResize](event), T.JSObjectTovoid()), "keydown", dart.fn(event => this[_resizeFromKeyboard](event), T.JSObjectTovoid())]), new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), []), {key: t$3615$2, classes: t$3616$1, attributes: t$3617$, events: t$3618})), (t$3615$3 = "main-home__rail-toggle", t$3616$2 = html.ButtonType.button, t$3617$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", this[_collapsed] ? "Expand navigation" : "Collapse navigation", "aria-controls", "main-home-rail-inner", "aria-expanded", dart.strSafe(!this[_collapsed]), "title", this[_collapsed] ? "Expand navigation" : "Collapse navigation"]), new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(this[_collapsed] ? eduma_icons.EdumaIcons.panelLeftOpen : eduma_icons.EdumaIcons.panelLeftClose, {size: 16})]), {classes: t$3615$3, type: t$3616$2, attributes: t$3617$0, onClick: dart.fn(() => this[_setCollapsed](!this[_collapsed]), T.VoidTovoid())}))]), {classes: t$3615$4, styles: t$3616$3, attributes: t$3617$1});
     }
     static ['_#new#tearOff']() {
       return new main_home_navigation._MainHomeDesktopRailState.new(T._MainHomeDesktopRailState());
@@ -383,8 +440,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
   };
   (main_home_navigation._MainHomeDesktopRailState.new = function(_ti) {
     this.$ti = this.$ti || _ti || dart.getReifiedType(this);
-    this[_collapsed] = false;
-    this[_width] = 264;
+    this[_collapsed] = main_home_navigation._MainHomeDesktopRailState._readCollapsed();
+    this[_width] = main_home_navigation._MainHomeDesktopRailState._readWidth();
     this[_activePointerId] = null;
     this[_pointerStartX] = 0.0;
     this[_widthAtPointerStart] = 264;
@@ -392,9 +449,13 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
     dart.global.Object.getPrototypeOf(main_home_navigation._MainHomeDesktopRailState).new.call(this, null);
     ;
   }).prototype = main_home_navigation._MainHomeDesktopRailState.prototype;
+  dart.lazyFn(main_home_navigation._MainHomeDesktopRailState._readWidth, () => T.VoidToint());
+  dart.lazyFn(main_home_navigation._MainHomeDesktopRailState._readCollapsed, () => T.VoidTobool());
   dart.lazyFn(main_home_navigation._MainHomeDesktopRailState['_#new#tearOff'], () => T.VoidTo_MainHomeDesktopRailState());
   dart.addRtiResources(main_home_navigation._MainHomeDesktopRailState, ["eduma_web__features__main__presentation__widgets__main_home_navigation|_MainHomeDesktopRailState"]);
   dart.setMethodSignature(main_home_navigation._MainHomeDesktopRailState, () => dart.global.Object.setPrototypeOf({
+    [_saveWidth]: _ti => T.VoidTovoid(),
+    [_setCollapsed]: _ti => T.boolTovoid(),
     [_startResize]: _ti => T.JSObjectTovoid$1(),
     [_resizeFromPointer]: _ti => T.JSObjectTovoid$1(),
     [_stopResize]: _ti => T.JSObjectTovoid$1(),
@@ -402,12 +463,17 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
     build: _ti => T.BuildContextToComponent()
   }, dart.getMethods(dart.global.Object.getPrototypeOf(main_home_navigation._MainHomeDesktopRailState))));
   dart.setMethodsImmediateTargetSignature(main_home_navigation._MainHomeDesktopRailState, () => dart.global.Object.setPrototypeOf({
+    _readWidth: "package:eduma_web/features/main/presentation/widgets/main_home_navigation.dart:_MainHomeDesktopRailState",
+    _readCollapsed: "package:eduma_web/features/main/presentation/widgets/main_home_navigation.dart:_MainHomeDesktopRailState",
+    [_saveWidth]: "package:eduma_web/features/main/presentation/widgets/main_home_navigation.dart:_MainHomeDesktopRailState",
+    [_setCollapsed]: "package:eduma_web/features/main/presentation/widgets/main_home_navigation.dart:_MainHomeDesktopRailState",
     [_startResize]: "package:eduma_web/features/main/presentation/widgets/main_home_navigation.dart:_MainHomeDesktopRailState",
     [_resizeFromPointer]: "package:eduma_web/features/main/presentation/widgets/main_home_navigation.dart:_MainHomeDesktopRailState",
     [_stopResize]: "package:eduma_web/features/main/presentation/widgets/main_home_navigation.dart:_MainHomeDesktopRailState",
     [_resizeFromKeyboard]: "package:eduma_web/features/main/presentation/widgets/main_home_navigation.dart:_MainHomeDesktopRailState",
     build: "package:eduma_web/features/main/presentation/widgets/main_home_navigation.dart:_MainHomeDesktopRailState"
   }, dart.getMethodsImmediateTargets(dart.global.Object.getPrototypeOf(main_home_navigation._MainHomeDesktopRailState))));
+  dart.setStaticMethodSignature(main_home_navigation._MainHomeDesktopRailState, () => ['_readWidth', '_readCollapsed']);
   dart.setLibraryUri(main_home_navigation._MainHomeDesktopRailState, I[0]);
   dart.setFieldSignature(main_home_navigation._MainHomeDesktopRailState, () => dart.global.Object.setPrototypeOf({
     [_collapsed]: {
@@ -447,13 +513,19 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
       libraryUri: I[3]
     }
   }, dart.getFields(dart.global.Object.getPrototypeOf(main_home_navigation._MainHomeDesktopRailState))));
-  dart.setStaticFieldSignature(main_home_navigation._MainHomeDesktopRailState, () => ['_minWidth', '_maxWidth']);
+  dart.setStaticFieldSignature(main_home_navigation._MainHomeDesktopRailState, () => ['_minWidth', '_maxWidth', '_widthKey', '_collapsedKey']);
   dart.defineLazy(main_home_navigation._MainHomeDesktopRailState, {
     /*main_home_navigation._MainHomeDesktopRailState._minWidth*/get _minWidth() {
-      return 250;
+      return 200;
     },
     /*main_home_navigation._MainHomeDesktopRailState._maxWidth*/get _maxWidth() {
-      return 380;
+      return 440;
+    },
+    /*main_home_navigation._MainHomeDesktopRailState._widthKey*/get _widthKey() {
+      return "eduma.rail.width";
+    },
+    /*main_home_navigation._MainHomeDesktopRailState._collapsedKey*/get _collapsedKey() {
+      return "eduma.rail.collapsed";
     }
   });
   main_home_navigation.mainHomeDesktopRail = function mainHomeDesktopRail(session, opts) {
@@ -464,65 +536,65 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
   };
   dart.lazyFn(main_home_navigation.mainHomeDesktopRail, () => T.EdumaSession__ToComponent());
   main_home_navigation._railItem = function _railItem(opts) {
-    let t$3612, t$3612$;
+    let t$3616, t$3616$;
     let label = opts && 'label' in opts ? opts.label : null;
     let to = opts && 'to' in opts ? opts.to : null;
     let icon = opts && 'icon' in opts ? opts.icon : null;
     let active = opts && 'active' in opts ? opts.active : null;
     return eduma_link.edumaLink({to: to, classes: active ? "main-home__rail-item is-active" : "main-home__rail-item", attributes: (() => {
-        let t$3611 = new _js_helper.IdentityMap.new(T.IdentityMapOfString$String());
-        t$3611[$_set]("aria-label", label);
-        t$3611[$_set]("title", label);
-        if (active) t$3611[$_set]("aria-current", "page");
-        return t$3611;
-      })(), children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3612 = "main-home__rail-pill", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 22})]), {classes: t$3612})), (t$3612$ = "main-home__rail-label", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(label)]), {classes: t$3612$}))])});
+        let t$3615 = new _js_helper.IdentityMap.new(T.IdentityMapOfString$String());
+        t$3615[$_set]("aria-label", label);
+        t$3615[$_set]("title", label);
+        if (active) t$3615[$_set]("aria-current", "page");
+        return t$3615;
+      })(), children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3616 = "main-home__rail-pill", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 22})]), {classes: t$3616})), (t$3616$ = "main-home__rail-label", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(label)]), {classes: t$3616$}))])});
   };
   dart.lazyFn(main_home_navigation._railItem, () => T.__ToComponent());
   main_home_navigation.mainHomeRailSection = function mainHomeRailSection(opts) {
-    let t$3615, t$3614, t$3613, t$3612, t$3614$, t$3614$0, t$3614$1, t$3615$, t$3614$2;
+    let t$3619, t$3618, t$3617, t$3616, t$3618$, t$3618$0, t$3618$1, t$3619$, t$3618$2;
     let title = opts && 'title' in opts ? opts.title : null;
     let items = opts && 'items' in opts ? opts.items : null;
     let seeAllHref = opts && 'seeAllHref' in opts ? opts.seeAllHref : null;
     let onSeeAll = opts && 'onSeeAll' in opts ? opts.onSeeAll : null;
     let emptyMessage = opts && 'emptyMessage' in opts ? opts.emptyMessage : null;
-    let action = seeAllHref == null ? onSeeAll == null ? null : (t$3612 = "main-home__rail-see-all", t$3613 = html.ButtonType.button, t$3614 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["title", "See all " + title]), t$3615 = onSeeAll, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("See all"), eduma_icons.edumaIcon(eduma_icons.EdumaIcons.chevronRight, {size: 13})]), {classes: t$3612, type: t$3613, attributes: t$3614, onClick: t$3615})) : eduma_link.edumaLink({to: seeAllHref, classes: "main-home__rail-see-all", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["title", "See all " + title]), children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("See all"), eduma_icons.edumaIcon(eduma_icons.EdumaIcons.chevronRight, {size: 13})])});
-    t$3614$2 = "main-home__rail-section";
-    t$3615$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", title]);
+    let action = seeAllHref == null ? onSeeAll == null ? null : (t$3616 = "main-home__rail-see-all", t$3617 = html.ButtonType.button, t$3618 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["title", "See all " + title]), t$3619 = onSeeAll, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("See all"), eduma_icons.edumaIcon(eduma_icons.EdumaIcons.chevronRight, {size: 13})]), {classes: t$3616, type: t$3617, attributes: t$3618, onClick: t$3619})) : eduma_link.edumaLink({to: seeAllHref, classes: "main-home__rail-see-all", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["title", "See all " + title]), children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("See all"), eduma_icons.edumaIcon(eduma_icons.EdumaIcons.chevronRight, {size: 13})])});
+    t$3618$2 = "main-home__rail-section";
+    t$3619$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", title]);
     return new html.section.new((() => {
-      let t$3612 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3614$ = "main-home__rail-section-heading", new html.div.new((() => {
-          let t$3613 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(title)]))]);
-          if (action != null) t$3613.push(action);
-          return t$3613;
-        })(), {classes: t$3614$}))]);
+      let t$3616 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3618$ = "main-home__rail-section-heading", new html.div.new((() => {
+          let t$3617 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.h2.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(title)]))]);
+          if (action != null) t$3617.push(action);
+          return t$3617;
+        })(), {classes: t$3618$}))]);
       if (items[$isNotEmpty])
-        t$3612.push((t$3614$0 = "main-home__rail-section-items", new html.div.new(items, {classes: t$3614$0})));
-      else if (emptyMessage != null) t$3612.push((t$3614$1 = "main-home__rail-empty", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(emptyMessage)]), {classes: t$3614$1})));
-      return t$3612;
-    })(), {classes: t$3614$2, attributes: t$3615$});
+        t$3616.push((t$3618$0 = "main-home__rail-section-items", new html.div.new(items, {classes: t$3618$0})));
+      else if (emptyMessage != null) t$3616.push((t$3618$1 = "main-home__rail-empty", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(emptyMessage)]), {classes: t$3618$1})));
+      return t$3616;
+    })(), {classes: t$3618$2, attributes: t$3619$});
   };
   dart.lazyFn(main_home_navigation.mainHomeRailSection, () => T.__ToComponent$1());
   main_home_navigation.mainHomeRailItem = function mainHomeRailItem(opts) {
-    let t$3615, t$3616, t$3620, t$3619, t$3618, t$3617;
+    let t$3619, t$3620, t$3624, t$3623, t$3622, t$3621;
     let icon = opts && 'icon' in opts ? opts.icon : null;
     let title = opts && 'title' in opts ? opts.title : null;
     let subtitle = opts && 'subtitle' in opts ? opts.subtitle : null;
     let previewUrl = opts && 'previewUrl' in opts ? opts.previewUrl : null;
     let href = opts && 'href' in opts ? opts.href : null;
     let onClick = opts && 'onClick' in opts ? opts.onClick : null;
-    let children = _interceptors.JSArray.of(T.JSArrayOfStatelessComponent(), [(t$3615 = "main-home__rail-item-icon", new html.span.new((() => {
-        let t$3614 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 17})]);
-        if (previewUrl != null) t$3614.push(new html.img.new({src: previewUrl, alt: "", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true", "draggable", "false", "loading", "lazy"]), events: new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["error", dart.fn(event => {
+    let children = _interceptors.JSArray.of(T.JSArrayOfStatelessComponent(), [(t$3619 = "main-home__rail-item-icon", new html.span.new((() => {
+        let t$3618 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 17})]);
+        if (previewUrl != null) t$3618.push(new html.img.new({src: previewUrl, alt: "", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-hidden", "true", "draggable", "false", "loading", "lazy"]), events: new _js_helper.IdentityMap.from(T.IdentityMapOfString$JSObjectTovoid(), ["error", dart.fn(event => {
               let target = js_util.getProperty(T.JSObjectN(), event, "currentTarget");
               if (target != null && target != null && js_interop['JSAnyUtilityExtension|instanceOfString'](target, "HTMLElement")) {
-                js_util.getProperty(T.JSObject$1(), target, "style").display = "none";
+                js_util.getProperty(T.JSObject$3(), target, "style").display = "none";
               }
             }, T.JSObjectTovoid())])}));
-        return t$3614;
-      })(), {classes: t$3615})), (t$3616 = "main-home__rail-item-copy", new html.div.new((() => {
-        let t$3615 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.strong.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(title)]))]);
-        if (subtitle != null && subtitle[$isNotEmpty]) t$3615.push(new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(subtitle)])));
-        return t$3615;
-      })(), {classes: t$3616}))]);
+        return t$3618;
+      })(), {classes: t$3619})), (t$3620 = "main-home__rail-item-copy", new html.div.new((() => {
+        let t$3619 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [new html.strong.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(title)]))]);
+        if (subtitle != null && subtitle[$isNotEmpty]) t$3619.push(new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(subtitle)])));
+        return t$3619;
+      })(), {classes: t$3620}))]);
     let attributes = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["title", title, "aria-label", title]);
     {
       let t$36$350$350 = href;
@@ -536,15 +608,15 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
         }
       }
     }
-    t$3617 = "main-home__rail-link";
-    t$3618 = html.ButtonType.button;
-    t$3619 = attributes;
-    t$3620 = onClick;
-    return new html.button.new(children, {classes: t$3617, type: t$3618, attributes: t$3619, onClick: t$3620});
+    t$3621 = "main-home__rail-link";
+    t$3622 = html.ButtonType.button;
+    t$3623 = attributes;
+    t$3624 = onClick;
+    return new html.button.new(children, {classes: t$3621, type: t$3622, attributes: t$3623, onClick: t$3624});
   };
   dart.lazyFn(main_home_navigation.mainHomeRailItem, () => T.__ToComponent$2());
   main_home_navigation.mainHomeHeader = function mainHomeHeader(opts) {
-    let t$3617, t$3617$, t$3617$0, t$3617$1, t$3617$2, t$3617$3, t$3617$4, t$3617$5, t$3617$6, t$3617$7, t$3617$8, t$3619, t$3618, t$3617$9, t$3619$, t$3618$, t$3617$10, t$3617$11, t$3617$12, t$3617$13;
+    let t$3621, t$3621$, t$3621$0, t$3621$1, t$3621$2, t$3621$3, t$3621$4, t$3621$5, t$3621$6, t$3621$7, t$3621$8, t$3623, t$3622, t$3621$9, t$3623$, t$3622$, t$3621$10, t$3621$11, t$3621$12, t$3621$13;
     let session = opts && 'session' in opts ? opts.session : null;
     let firstName = opts && 'firstName' in opts ? opts.firstName : null;
     let greeting = opts && 'greeting' in opts ? opts.greeting : null;
@@ -556,11 +628,11 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
     let streakDays = opts && 'streakDays' in opts ? opts.streakDays : null;
     let greetingTitle = desktopFirstName[$isEmpty] ? greeting : greeting + ", " + desktopFirstName;
     let mobileName = firstName[$isEmpty] ? "Friend" : firstName;
-    let rawRole = dart.str((t$3617 = session.user[$_get]("role"), t$3617 == null ? "student" : t$3617))[$trim]();
+    let rawRole = dart.str((t$3621 = session.user[$_get]("role"), t$3621 == null ? "student" : t$3621))[$trim]();
     let roleLabel = (rawRole[$isEmpty] ? "STUDENT" : rawRole)[$toUpperCase]();
     let badgeText = unreadNotifications > 99 ? "99+" : dart.strSafe(unreadNotifications);
-    t$3617$13 = "main-home__header";
-    return new html.header.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3617$5 = "main-home__mobile-topbar", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3617$2 = "main-home__mobile-brand", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation._profileAvatarLink(session, {classes: "main-home__mobile-avatar", sizePx: 44}), (t$3617$1 = "main-home__mobile-greeting", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3617$ = "main-home__mobile-hello", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Hi, " + mobileName)]), {classes: t$3617$})), (t$3617$0 = "main-home__mobile-role", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(roleLabel)]), {classes: t$3617$0}))]), {classes: t$3617$1}))]), {classes: t$3617$2})), (t$3617$4 = "main-home__mobile-topbar-actions", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation._streakChip(streakDays), (t$3617$3 = "main-home__mobile-notif-pill", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation._topCircleRouteLink({to: "/notifications", icon: unreadNotifications > 0 ? eduma_icons.EdumaIcons.notificationsSolid : eduma_icons.EdumaIcons.notificationsSquare, label: unreadNotifications > 0 ? "Notifications (" + dart.strSafe(unreadNotifications) + " unread)" : "Notifications", badge: unreadNotifications > 0 ? badgeText : null})]), {classes: t$3617$3}))]), {classes: t$3617$4}))]), {classes: t$3617$5})), (t$3617$12 = "main-home__desktop-head", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3617$8 = "main-home__desktop-title-col", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3617$6 = "main-home__desktop-title", new html.h1.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(greetingTitle)]), {classes: t$3617$6})), (t$3617$7 = "main-home__desktop-subtitle", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(main_home_navigation._formatWeekdayDayMonth(now))]), {classes: t$3617$7}))]), {classes: t$3617$8})), (t$3617$11 = "main-home__header-actions", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation._streakChip(streakDays), (t$3617$9 = "eduma-desktop-pill eduma-desktop-pill--tonal main-home__header-pill", t$3618 = html.ButtonType.button, t$3619 = onOpenJoinSpace, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.login, {size: 18}), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Join space")]))]), {classes: t$3617$9, type: t$3618, onClick: t$3619})), (t$3617$10 = "eduma-desktop-pill eduma-desktop-pill--primary main-home__header-pill", t$3618$ = html.ButtonType.button, t$3619$ = onOpenCreateSpace, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.add, {size: 18}), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Create space")]))]), {classes: t$3617$10, type: t$3618$, onClick: t$3619$}))]), {classes: t$3617$11}))]), {classes: t$3617$12}))]), {classes: t$3617$13});
+    t$3621$13 = "main-home__header";
+    return new html.header.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3621$5 = "main-home__mobile-topbar", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3621$2 = "main-home__mobile-brand", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation._profileAvatarLink(session, {classes: "main-home__mobile-avatar", sizePx: 44}), (t$3621$1 = "main-home__mobile-greeting", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3621$ = "main-home__mobile-hello", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Hi, " + mobileName)]), {classes: t$3621$})), (t$3621$0 = "main-home__mobile-role", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(roleLabel)]), {classes: t$3621$0}))]), {classes: t$3621$1}))]), {classes: t$3621$2})), (t$3621$4 = "main-home__mobile-topbar-actions", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation._streakChip(streakDays), (t$3621$3 = "main-home__mobile-notif-pill", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation._topCircleRouteLink({to: "/notifications", icon: unreadNotifications > 0 ? eduma_icons.EdumaIcons.notificationsSolid : eduma_icons.EdumaIcons.notificationsSquare, label: unreadNotifications > 0 ? "Notifications (" + dart.strSafe(unreadNotifications) + " unread)" : "Notifications", badge: unreadNotifications > 0 ? badgeText : null})]), {classes: t$3621$3}))]), {classes: t$3621$4}))]), {classes: t$3621$5})), (t$3621$12 = "main-home__desktop-head", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3621$8 = "main-home__desktop-title-col", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3621$6 = "main-home__desktop-title", new html.h1.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(greetingTitle)]), {classes: t$3621$6})), (t$3621$7 = "main-home__desktop-subtitle", new html.p.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(main_home_navigation._formatWeekdayDayMonth(now))]), {classes: t$3621$7}))]), {classes: t$3621$8})), (t$3621$11 = "main-home__header-actions", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation._streakChip(streakDays), (t$3621$9 = "eduma-desktop-pill eduma-desktop-pill--tonal main-home__header-pill", t$3622 = html.ButtonType.button, t$3623 = onOpenJoinSpace, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.login, {size: 18}), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Join space")]))]), {classes: t$3621$9, type: t$3622, onClick: t$3623})), (t$3621$10 = "eduma-desktop-pill eduma-desktop-pill--primary main-home__header-pill", t$3622$ = html.ButtonType.button, t$3623$ = onOpenCreateSpace, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.add, {size: 18}), new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Create space")]))]), {classes: t$3621$10, type: t$3622$, onClick: t$3623$}))]), {classes: t$3621$11}))]), {classes: t$3621$12}))]), {classes: t$3621$13});
   };
   dart.lazyFn(main_home_navigation.mainHomeHeader, () => T.__ToComponent$3());
   main_home_navigation._formatWeekdayDayMonth = function _formatWeekdayDayMonth(date) {
@@ -568,31 +640,31 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
   };
   dart.lazyFn(main_home_navigation._formatWeekdayDayMonth, () => T.DateTimeToString());
   main_home_navigation._streakChip = function _streakChip(streakDays) {
-    let t$3617;
-    let count = (t$3617 = streakDays, t$3617 == null ? 0 : t$3617);
+    let t$3621;
+    let count = (t$3621 = streakDays, t$3621 == null ? 0 : t$3621);
     let lit = count > 0;
     return eduma_link.edumaLink({to: "/streak", classes: lit ? "main-home__streak-chip is-lit is-active" : "main-home__streak-chip", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Study streak"]), children: (() => {
-        let t$3617 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(lit ? eduma_icons.EdumaIcons.streakSolid : eduma_icons.EdumaIcons.streak, {size: 19})]);
-        if (lit) t$3617.push(new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(dart.strSafe(count))])));
-        return t$3617;
+        let t$3621 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(lit ? eduma_icons.EdumaIcons.streakSolid : eduma_icons.EdumaIcons.streak, {size: 19})]);
+        if (lit) t$3621.push(new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(dart.strSafe(count))])));
+        return t$3621;
       })()});
   };
   dart.lazyFn(main_home_navigation._streakChip, () => T.intNToComponent());
   main_home_navigation._topCircleRouteLink = function _topCircleRouteLink(opts) {
-    let t$3619;
+    let t$3623;
     let to = opts && 'to' in opts ? opts.to : null;
     let icon = opts && 'icon' in opts ? opts.icon : null;
     let label = opts && 'label' in opts ? opts.label : null;
     let badge = opts && 'badge' in opts ? opts.badge : null;
     return eduma_link.edumaLink({to: to, classes: "main-home__mobile-notif-btn eduma-nav-badge-anchor", attributes: new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", label, "title", label]), children: (() => {
-        let t$3618 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 22})]);
-        if (badge != null) t$3618.push((t$3619 = "eduma-nav-badge", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(badge)]), {classes: t$3619})));
-        return t$3618;
+        let t$3622 = _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 22})]);
+        if (badge != null) t$3622.push((t$3623 = "eduma-nav-badge", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(badge)]), {classes: t$3623})));
+        return t$3622;
       })()});
   };
   dart.lazyFn(main_home_navigation._topCircleRouteLink, () => T.__ToComponent$4());
   main_home_navigation.mainHomeMobileNavigation = function mainHomeMobileNavigation(opts) {
-    let t$3619, t$3620, t$3619$;
+    let t$3623, t$3624, t$3623$;
     let activeTab = opts && 'activeTab' in opts ? opts.activeTab : C[0] || CT.C0;
     let hasSpaces = opts && 'hasSpaces' in opts ? opts.hasSpaces : false;
     let hasRecentCanvases = opts && 'hasRecentCanvases' in opts ? opts.hasRecentCanvases : false;
@@ -600,77 +672,77 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
     let onOpenCreateSpace = opts && 'onOpenCreateSpace' in opts ? opts.onOpenCreateSpace : null;
     let onOpenJoinSpace = opts && 'onOpenJoinSpace' in opts ? opts.onOpenJoinSpace : null;
     let onPrimaryAction = opts && 'onPrimaryAction' in opts ? opts.onPrimaryAction : null;
-    t$3619$ = "main-home__mobile-nav";
-    t$3620 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Mobile navigation"]);
-    return new html.nav.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3619 = "main-home__mobile-tab-bar", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation._mobileTabLink({label: "Home", to: "/main", icon: activeTab === main_home_navigation.MainNavTab.home ? eduma_icons.EdumaIcons.navBarHomeActive : eduma_icons.EdumaIcons.navBarHome, active: activeTab === main_home_navigation.MainNavTab.home}), main_home_navigation._mobileTabLink({label: "Calendar", to: "/calendarTab", icon: activeTab === main_home_navigation.MainNavTab.calendar ? eduma_icons.EdumaIcons.navBarCalendarActive : eduma_icons.EdumaIcons.navBarCalendar, active: activeTab === main_home_navigation.MainNavTab.calendar}), main_home_navigation._mobileTabLink({label: "Library", to: "/libraryTab", icon: activeTab === main_home_navigation.MainNavTab.library ? eduma_icons.EdumaIcons.navBarLibraryActive : eduma_icons.EdumaIcons.navBarLibrary, active: activeTab === main_home_navigation.MainNavTab.library})]), {classes: t$3619})), main_home_navigation._contextualMobileFab({activeTab: activeTab, showActionsMenu: showActionsMenu, onOpenCreateSpace: onOpenCreateSpace, onOpenJoinSpace: onOpenJoinSpace, onPrimaryAction: onPrimaryAction})]), {classes: t$3619$, attributes: t$3620});
+    t$3623$ = "main-home__mobile-nav";
+    t$3624 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Mobile navigation"]);
+    return new html.nav.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3623 = "main-home__mobile-tab-bar", new html.div.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [main_home_navigation._mobileTabLink({label: "Home", to: "/main", icon: activeTab === main_home_navigation.MainNavTab.home ? eduma_icons.EdumaIcons.navBarHomeActive : eduma_icons.EdumaIcons.navBarHome, active: activeTab === main_home_navigation.MainNavTab.home}), main_home_navigation._mobileTabLink({label: "Calendar", to: "/calendarTab", icon: activeTab === main_home_navigation.MainNavTab.calendar ? eduma_icons.EdumaIcons.navBarCalendarActive : eduma_icons.EdumaIcons.navBarCalendar, active: activeTab === main_home_navigation.MainNavTab.calendar}), main_home_navigation._mobileTabLink({label: "Library", to: "/libraryTab", icon: activeTab === main_home_navigation.MainNavTab.library ? eduma_icons.EdumaIcons.navBarLibraryActive : eduma_icons.EdumaIcons.navBarLibrary, active: activeTab === main_home_navigation.MainNavTab.library})]), {classes: t$3623})), main_home_navigation._contextualMobileFab({activeTab: activeTab, showActionsMenu: showActionsMenu, onOpenCreateSpace: onOpenCreateSpace, onOpenJoinSpace: onOpenJoinSpace, onPrimaryAction: onPrimaryAction})]), {classes: t$3623$, attributes: t$3624});
   };
   dart.lazyFn(main_home_navigation.mainHomeMobileNavigation, () => T.__ToComponent$5());
   main_home_navigation._mobileTabLink = function _mobileTabLink(opts) {
-    let t$3620, t$3620$;
+    let t$3624, t$3624$;
     let label = opts && 'label' in opts ? opts.label : null;
     let to = opts && 'to' in opts ? opts.to : null;
     let icon = opts && 'icon' in opts ? opts.icon : null;
     let active = opts && 'active' in opts ? opts.active : null;
     return eduma_link.edumaLink({to: to, classes: active ? "main-home__mobile-nav-item is-active" : "main-home__mobile-nav-item", attributes: (() => {
-        let t$3619 = new _js_helper.IdentityMap.new(T.IdentityMapOfString$String());
-        t$3619[$_set]("aria-label", label);
-        if (active) t$3619[$_set]("aria-current", "page");
-        return t$3619;
-      })(), children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3620 = "main-home__mobile-nav-icon", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 20})]), {classes: t$3620})), (t$3620$ = "main-home__mobile-nav-text", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(label)]), {classes: t$3620$}))])});
+        let t$3623 = new _js_helper.IdentityMap.new(T.IdentityMapOfString$String());
+        t$3623[$_set]("aria-label", label);
+        if (active) t$3623[$_set]("aria-current", "page");
+        return t$3623;
+      })(), children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3624 = "main-home__mobile-nav-icon", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(icon, {size: 20})]), {classes: t$3624})), (t$3624$ = "main-home__mobile-nav-text", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__(label)]), {classes: t$3624$}))])});
   };
   dart.lazyFn(main_home_navigation._mobileTabLink, () => T.__ToComponent());
   main_home_navigation._contextualMobileFab = function _contextualMobileFab(opts) {
-    let t$3620, t$3623, t$3622, t$3621, t$3620$, t$3620$0, t$3623$, t$3622$, t$3621$, t$3620$1, t$3621$0, t$3620$2, t$3621$1, t$3623$0, t$3622$0, t$3621$2, t$3621$3, t$3623$1, t$3622$1, t$3621$4, t$3621$5, t$3621$6, t$3621$7, t$3621$8, t$3621$9, t$3621$10, t$3624, t$3623$2, t$3622$2, t$3621$11;
+    let t$3624, t$3627, t$3626, t$3625, t$3624$, t$3624$0, t$3627$, t$3626$, t$3625$, t$3624$1, t$3625$0, t$3624$2, t$3625$1, t$3627$0, t$3626$0, t$3625$2, t$3625$3, t$3627$1, t$3626$1, t$3625$4, t$3625$5, t$3625$6, t$3625$7, t$3625$8, t$3625$9, t$3625$10, t$3628, t$3627$2, t$3626$2, t$3625$11;
     let activeTab = opts && 'activeTab' in opts ? opts.activeTab : null;
     let showActionsMenu = opts && 'showActionsMenu' in opts ? opts.showActionsMenu : null;
     let onOpenCreateSpace = opts && 'onOpenCreateSpace' in opts ? opts.onOpenCreateSpace : null;
     let onOpenJoinSpace = opts && 'onOpenJoinSpace' in opts ? opts.onOpenJoinSpace : null;
     let onPrimaryAction = opts && 'onPrimaryAction' in opts ? opts.onPrimaryAction : null;
     if (activeTab === main_home_navigation.MainNavTab.calendar) {
-      t$3620$ = "main-home__mobile-fab";
-      t$3621 = html.ButtonType.button;
-      t$3622 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "New event", "title", "New event"]);
-      t$3623 = (t$3620 = onPrimaryAction, t$3620 == null ? dart.fn(() => {
-      }, T.VoidTovoid()) : t$3620);
-      return new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.fabNewEvent, {size: 20})]), {classes: t$3620$, type: t$3621, attributes: t$3622, onClick: t$3623});
+      t$3624$ = "main-home__mobile-fab";
+      t$3625 = html.ButtonType.button;
+      t$3626 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "New event", "title", "New event"]);
+      t$3627 = (t$3624 = onPrimaryAction, t$3624 == null ? dart.fn(() => {
+      }, T.VoidTovoid()) : t$3624);
+      return new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.fabNewEvent, {size: 20})]), {classes: t$3624$, type: t$3625, attributes: t$3626, onClick: t$3627});
     }
     if (activeTab === main_home_navigation.MainNavTab.library) {
-      t$3620$1 = "main-home__mobile-fab";
-      t$3621$ = html.ButtonType.button;
-      t$3622$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Add to library", "title", "Add to library"]);
-      t$3623$ = (t$3620$0 = onPrimaryAction, t$3620$0 == null ? dart.fn(() => {
-      }, T.VoidTovoid()) : t$3620$0);
-      return new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.fabAddLibrary, {size: 20})]), {classes: t$3620$1, type: t$3621$, attributes: t$3622$, onClick: t$3623$});
+      t$3624$1 = "main-home__mobile-fab";
+      t$3625$ = html.ButtonType.button;
+      t$3626$ = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Add to library", "title", "Add to library"]);
+      t$3627$ = (t$3624$0 = onPrimaryAction, t$3624$0 == null ? dart.fn(() => {
+      }, T.VoidTovoid()) : t$3624$0);
+      return new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.fabAddLibrary, {size: 20})]), {classes: t$3624$1, type: t$3625$, attributes: t$3626$, onClick: t$3627$});
     }
     if (showActionsMenu) {
-      t$3621$8 = "main-home__mobile-action-menu";
-      return new html.details.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3620$2 = "main-home__mobile-fab main-home__mobile-action-trigger", t$3621$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Space actions"]), new html.summary.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.fabCreateSpace, {size: 20})]), {classes: t$3620$2, attributes: t$3621$0})), (t$3621$7 = "main-home__mobile-actions", new html.div.new((() => {
-          let t$3620 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
-          if (onOpenCreateSpace != null) t$3620.push((t$3621$2 = "main-home__mobile-action-item", t$3622$0 = html.ButtonType.button, t$3623$0 = onOpenCreateSpace, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.add, {size: 18}), (t$3621$1 = "main-home__mobile-action-copy", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Create Space")]), {classes: t$3621$1}))]), {classes: t$3621$2, type: t$3622$0, onClick: t$3623$0})));
-          if (onOpenJoinSpace != null) t$3620.push((t$3621$4 = "main-home__mobile-action-item", t$3622$1 = html.ButtonType.button, t$3623$1 = onOpenJoinSpace, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.login, {size: 18}), (t$3621$3 = "main-home__mobile-action-copy", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Join Space")]), {classes: t$3621$3}))]), {classes: t$3621$4, type: t$3622$1, onClick: t$3623$1})));
-          t$3620.push(eduma_link.edumaLink({to: "/assistantHistory", classes: "main-home__mobile-action-item", children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.sparkles, {size: 18}), (t$3621$5 = "main-home__mobile-action-copy", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("AI chats")]), {classes: t$3621$5}))])}));
-          t$3620.push(eduma_link.edumaLink({to: "/recentCanvasesSeeAll", classes: "main-home__mobile-action-item", children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.canvas, {size: 18}), (t$3621$6 = "main-home__mobile-action-copy", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Recent pages")]), {classes: t$3621$6}))])}));
-          return t$3620;
-        })(), {classes: t$3621$7}))]), {classes: t$3621$8});
+      t$3625$8 = "main-home__mobile-action-menu";
+      return new html.details.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [(t$3624$2 = "main-home__mobile-fab main-home__mobile-action-trigger", t$3625$0 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Space actions"]), new html.summary.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.fabCreateSpace, {size: 20})]), {classes: t$3624$2, attributes: t$3625$0})), (t$3625$7 = "main-home__mobile-actions", new html.div.new((() => {
+          let t$3624 = _interceptors.JSArray.of(T.JSArrayOfComponent(), []);
+          if (onOpenCreateSpace != null) t$3624.push((t$3625$2 = "main-home__mobile-action-item", t$3626$0 = html.ButtonType.button, t$3627$0 = onOpenCreateSpace, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.add, {size: 18}), (t$3625$1 = "main-home__mobile-action-copy", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Create Space")]), {classes: t$3625$1}))]), {classes: t$3625$2, type: t$3626$0, onClick: t$3627$0})));
+          if (onOpenJoinSpace != null) t$3624.push((t$3625$4 = "main-home__mobile-action-item", t$3626$1 = html.ButtonType.button, t$3627$1 = onOpenJoinSpace, new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.login, {size: 18}), (t$3625$3 = "main-home__mobile-action-copy", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Join Space")]), {classes: t$3625$3}))]), {classes: t$3625$4, type: t$3626$1, onClick: t$3627$1})));
+          t$3624.push(eduma_link.edumaLink({to: "/assistantHistory", classes: "main-home__mobile-action-item", children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.sparkles, {size: 18}), (t$3625$5 = "main-home__mobile-action-copy", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("AI chats")]), {classes: t$3625$5}))])}));
+          t$3624.push(eduma_link.edumaLink({to: "/recentCanvasesSeeAll", classes: "main-home__mobile-action-item", children: _interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.canvas, {size: 18}), (t$3625$6 = "main-home__mobile-action-copy", new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [new framework.Text.__("Recent pages")]), {classes: t$3625$6}))])}));
+          return t$3624;
+        })(), {classes: t$3625$7}))]), {classes: t$3625$8});
     }
-    t$3621$11 = "main-home__mobile-fab";
-    t$3622$2 = html.ButtonType.button;
-    t$3623$2 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Create Space"]);
-    t$3624 = (t$3621$10 = (t$3621$9 = onOpenCreateSpace, t$3621$9 == null ? onPrimaryAction : t$3621$9), t$3621$10 == null ? dart.fn(() => {
-    }, T.VoidTovoid()) : t$3621$10);
-    return new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.fabCreateSpace, {size: 20})]), {classes: t$3621$11, type: t$3622$2, attributes: t$3623$2, onClick: t$3624});
+    t$3625$11 = "main-home__mobile-fab";
+    t$3626$2 = html.ButtonType.button;
+    t$3627$2 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["aria-label", "Create Space"]);
+    t$3628 = (t$3625$10 = (t$3625$9 = onOpenCreateSpace, t$3625$9 == null ? onPrimaryAction : t$3625$9), t$3625$10 == null ? dart.fn(() => {
+    }, T.VoidTovoid()) : t$3625$10);
+    return new html.button.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.fabCreateSpace, {size: 20})]), {classes: t$3625$11, type: t$3626$2, attributes: t$3627$2, onClick: t$3628});
   };
   dart.lazyFn(main_home_navigation._contextualMobileFab, () => T.__ToComponent$6());
   main_home_navigation.mainHomeAvatar = function mainHomeAvatar(session, opts) {
-    let t$3621, t$3622, t$3621$;
+    let t$3625, t$3626, t$3625$;
     let sizePx = opts && 'sizePx' in opts ? opts.sizePx : 44;
-    let avatarUrl = main_home_helpers.mainHomeSafeImageUrl((t$3621 = session.user[$_get]("profilePic"), t$3621 == null ? session.user[$_get]("avatarUrl") : t$3621));
+    let avatarUrl = main_home_helpers.mainHomeSafeImageUrl((t$3625 = session.user[$_get]("profilePic"), t$3625 == null ? session.user[$_get]("avatarUrl") : t$3625));
     if (avatarUrl != null) {
       return new html.img.new({classes: "main-home__avatar", src: avatarUrl, alt: session.name, width: sizePx, height: sizePx});
     }
-    t$3621$ = "main-home__avatar main-home__avatar--icon";
-    t$3622 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["style", "width: " + dart.strSafe(sizePx) + "px; height: " + dart.strSafe(sizePx) + "px;"]);
-    return new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.user, {size: (sizePx * 0.5)[$round]()})]), {classes: t$3621$, attributes: t$3622});
+    t$3625$ = "main-home__avatar main-home__avatar--icon";
+    t$3626 = new _js_helper.IdentityMap.from(T.IdentityMapOfString$String(), ["style", "width: " + dart.strSafe(sizePx) + "px; height: " + dart.strSafe(sizePx) + "px;"]);
+    return new html.span.new(_interceptors.JSArray.of(T.JSArrayOfComponent(), [eduma_icons.edumaIcon(eduma_icons.EdumaIcons.user, {size: (sizePx * 0.5)[$round]()})]), {classes: t$3625$, attributes: t$3626});
   };
   dart.lazyFn(main_home_navigation.mainHomeAvatar, () => T.EdumaSession__ToComponent$1());
   main_home_navigation._profileAvatarLink = function _profileAvatarLink(session, opts) {
@@ -694,7 +766,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr/src/client/utils', 
   dart.trackLibraries("packages/eduma_web/features/main/presentation/widgets/main_home_navigation", {
     "package:eduma_web/features/main/presentation/widgets/main_home_navigation.dart": main_home_navigation
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["main_home_navigation.dart"],"names":[],"mappings":"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","file":"main_home_navigation.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["main_home_navigation.dart"],"names":[],"mappings":"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","file":"main_home_navigation.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__main__presentation__widgets__main_home_navigation: main_home_navigation

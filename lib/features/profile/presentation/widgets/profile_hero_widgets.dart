@@ -43,6 +43,8 @@ Component profileDesktopHero({
   required VoidCallback onEditProfile,
   required VoidCallback onPhotoAction,
   required VoidCallback onSignOut,
+  VoidCallback? onRefresh,
+  bool refreshing = false,
 }) {
   final user = session.user;
   final displayName = session.name.trim().isEmpty ? 'Eduma Learner' : session.name.trim();
@@ -62,6 +64,14 @@ Component profileDesktopHero({
     backdrop: _heroBackdrop(initials: initials, avatarUrl: avatarUrl),
     leading: desktopHeroBackButton(fallbackHref: '/home'),
     trailing: div(classes: 'eduma-profile__hero-corner', [
+      if (onRefresh != null)
+        desktopHeroButton(
+          icon: EdumaIcons.refresh,
+          label: refreshing ? 'Refreshing…' : 'Refresh profile',
+          disabled: refreshing,
+          classes: refreshing ? 'is-spinning' : '',
+          onPressed: onRefresh,
+        ),
       desktopHeroButton(
         icon: EdumaIcons.camera,
         label: 'Change photo',
@@ -81,7 +91,8 @@ Component profileDesktopHero({
         ]),
         div(classes: 'eduma-profile__hero-name-row', [
           h2(classes: 'eduma-profile__hero-name', [.text(displayName)]),
-          if (isVerified)
+          // VerifiedKind.user: an officially verified account, not a verified email.
+          if (user['isVerified'] == true)
             span(classes: 'eduma-profile__verified-gold', [
               edumaIcon(EdumaIcons.verify, size: 22),
             ]),

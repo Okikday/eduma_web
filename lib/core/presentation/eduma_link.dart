@@ -5,6 +5,44 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:web/web.dart' as web;
 
+/// Counts navigations pushed inside this app (vs. the page the tab opened
+/// on), so "back" can return to the previous in-app screen instead of
+/// leaving the site, and fall back to a sensible screen otherwise.
+abstract final class EdumaHistory {
+  static int _depth = 0;
+  static bool _listening = false;
+
+  static void _ensureListening() {
+    if (_listening) return;
+    _listening = true;
+    // Browser back/forward: assume back (the common case) so the count never
+    // claims history that isn't there.
+    web.window.addEventListener(
+      'popstate',
+      ((web.Event _) {
+        if (_depth > 0) _depth--;
+      }).toJS,
+    );
+  }
+
+  static void markPush() {
+    _ensureListening();
+    _depth++;
+  }
+
+  /// Whether a browser "back" stays inside this app.
+  static bool get canGoBack => _depth > 0;
+}
+
+/// Goes back to the previous in-app screen, or to [fallbackHref].
+void edumaBack(BuildContext context, {String fallbackHref = '/main'}) {
+  if (EdumaHistory.canGoBack) {
+    web.window.history.back();
+  } else {
+    edumaNavigate(context, fallbackHref, replace: true);
+  }
+}
+
 bool _isPlainPrimaryClick(web.Event rawEvent) {
   if (!rawEvent.isA<web.MouseEvent>()) return true;
   final event = rawEvent as web.MouseEvent;
@@ -45,6 +83,7 @@ Component edumaLink({
           final router = Router.maybeOf(context);
           if (router != null) {
             event.preventDefault();
+            EdumaHistory.markPush();
             router.push(to);
           }
         },
@@ -66,6 +105,7 @@ void edumaNavigate(
     if (replace) {
       router.replace(to);
     } else {
+      EdumaHistory.markPush();
       router.push(to);
     }
     return;

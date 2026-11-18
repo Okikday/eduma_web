@@ -2,12 +2,13 @@
 // Version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on "macos_x64"
 // Module: packages/eduma_web/features/profile/logic/profile_actions
 // Flags: enableAsserts(true)
-define(['dart_sdk', 'packages/eduma_web/features/profile/data/profile_api'], (function load__packages__eduma_web__features__profile__logic__profile_actions(dart_sdk, packages__eduma_web__features__profile__data__profile_api) {
+define(['dart_sdk', 'packages/eduma_web/core/presentation/flutter_host', 'packages/eduma_web/features/profile/data/profile_api'], (function load__packages__eduma_web__features__profile__logic__profile_actions(dart_sdk, packages__eduma_web__core__presentation__flutter_host, packages__eduma_web__features__profile__data__profile_api) {
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
+  const flutter_host = packages__eduma_web__core__presentation__flutter_host.eduma_web__core__presentation__flutter_host;
   const profile_api = packages__eduma_web__features__profile__data__profile_api.eduma_web__features__profile__data__profile_api;
   var profile_actions = Object.create(dart.library);
   var T = {
@@ -67,6 +68,7 @@ define(['dart_sdk', 'packages/eduma_web/features/profile/data/profile_api'], (fu
       return profile_actions.ProfileActions._api.updateLearnerProfile({level: level, fieldOfStudy: fieldOfStudy, school: school});
     }
     static signOutAllDevices() {
+      flutter_host.FlutterHost.dispose();
       return profile_actions.ProfileActions._api.signOutAllDevices();
     }
     static deleteAccount() {
@@ -113,7 +115,7 @@ define(['dart_sdk', 'packages/eduma_web/features/profile/data/profile_api'], (fu
   dart.trackLibraries("packages/eduma_web/features/profile/logic/profile_actions", {
     "package:eduma_web/features/profile/logic/profile_actions.dart": profile_actions
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["profile_actions.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAS6C,YAAA,AAAK;IAAW;;AAEP,YAAA,AAAK;IAAW;;UAGlD;UACR;AACJ,YAAA,AAAK,0DAAoB,IAAI,YAAY,QAAQ;IAAC;yBAEd;AAAa,YAAA,AAAK,mDAAc,QAAQ;IAAC;;UAG3E;UACA;UACA;UACE;AACJ,YAAA,AAAK,+EACO,cAAc,gBAChB,YAAY,0BACF,sBAAsB,uBACzB,mBAAmB;IACzC;iCAEgD;AAAU,YAAA,AAAK,2DAAsB,KAAK;IAAC;;UAG1E;UACA;UACA;AACZ,YAAA,AAAK,oEACF,KAAK,iBACG,aAAa,eACf,WAAW;IACzB;;UAGS;UACA;UACA;AACJ,YAAA,AAAK,kEACF,KAAK,gBACE,YAAY,UAClB,MAAM;IACf;;AAE0C,YAAA,AAAK;IAAmB;;AAE5B,YAAA,AAAK;IAAe;;;;EAC7D;;;;;;;;;;;;;;;;;;;;;;;;;;;;MAlDe,mCAAI;YAAc","file":"profile_actions.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["profile_actions.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAU6C,YAAA,AAAK;IAAW;;AAEP,YAAA,AAAK;IAAW;;UAGlD;UACR;AACJ,YAAA,AAAK,0DAAoB,IAAI,YAAY,QAAQ;IAAC;yBAEd;AAAa,YAAA,AAAK,mDAAc,QAAQ;IAAC;;UAG3E;UACA;UACA;UACE;AACJ,YAAA,AAAK,+EACO,cAAc,gBAChB,YAAY,0BACF,sBAAsB,uBACzB,mBAAmB;IACzC;iCAEgD;AAAU,YAAA,AAAK,2DAAsB,KAAK;IAAC;;UAG1E;UACA;UACA;AACZ,YAAA,AAAK,oEACF,KAAK,iBACG,aAAa,eACf,WAAW;IACzB;;UAGS;UACA;UACA;AACJ,YAAA,AAAK,kEACF,KAAK,gBACE,YAAY,UAClB,MAAM;IACf;;AAGa;AACZ,YAAO,AAAK;IACd;;AAEuC,YAAA,AAAK;IAAe;;;;EAC7D;;;;;;;;;;;;;;;;;;;;;;;;;;;;MArDe,mCAAI;YAAc","file":"profile_actions.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__profile__logic__profile_actions: profile_actions

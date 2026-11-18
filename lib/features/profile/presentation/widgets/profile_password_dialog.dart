@@ -4,7 +4,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../../../auth/data/auth_api.dart';
-import '../../../main/presentation/widgets/main_home_icons.dart';
+import '../../../../core/presentation/eduma_icons.dart';
 import '../../../main/presentation/widgets/web_dialog_helper.dart';
 import '../../logic/profile_actions.dart';
 
@@ -36,7 +36,6 @@ class _ProfilePasswordDialogState extends State<ProfilePasswordDialog> {
   bool _sendingCode = false;
   bool _codeSent = false;
   bool _saving = false;
-  String? _statusMessage;
   String? _error;
 
   @override
@@ -56,7 +55,6 @@ class _ProfilePasswordDialogState extends State<ProfilePasswordDialog> {
         _sendingCode = false;
         _codeSent = false;
         _saving = false;
-        _statusMessage = null;
         _error = null;
       });
     }
@@ -74,14 +72,12 @@ class _ProfilePasswordDialogState extends State<ProfilePasswordDialog> {
     setState(() {
       _sendingCode = true;
       _error = null;
-      _statusMessage = null;
     });
     try {
       await ProfileActions.sendPasswordResetCode(component.email);
       if (!mounted) return;
       setState(() {
         _codeSent = true;
-        _statusMessage = 'Sent a reset code to ${component.email}.';
       });
     } on AuthApiException catch (error) {
       if (!mounted) return;
@@ -143,6 +139,7 @@ class _ProfilePasswordDialogState extends State<ProfilePasswordDialog> {
       id: _dialogId,
       classes: 'eduma-modal',
       attributes: {
+        ...WebDialogHelper.openAttr(component.open),
         'closedby': 'any',
         'aria-labelledby': 'eduma-password-dialog-title',
       },
@@ -152,116 +149,137 @@ class _ProfilePasswordDialogState extends State<ProfilePasswordDialog> {
         },
       },
       [
-        div(classes: 'eduma-modal__header', [
-          div(classes: 'eduma-modal__title', [
-            h2(id: 'eduma-password-dialog-title', [.text('Password & security')]),
-            p([.text('Request a one-time code to ${component.email}, then set a new password.')]),
+        // Two steps like `ChangePasswordSheet` in ../eduma: an intro that
+        // emails the code, then the code and the new password.
+        if (!_codeSent) ...[
+          div(classes: 'eduma-modal__header', [
+            div(classes: 'eduma-modal__title', [
+              h2(id: 'eduma-password-dialog-title', [.text('Change password')]),
+              p([.text("We'll email you a code to confirm it's you.")]),
+            ]),
           ]),
-          button(
-            classes: 'eduma-modal__close',
-            type: ButtonType.button,
-            attributes: {'aria-label': 'Close dialog'},
-            onClick: _dismiss,
-            [mainHomeIcon(.close, size: 18)],
-          ),
-        ]),
-        form(
-          events: {
-            'submit': (event) {
-              event.preventDefault();
-              unawaited(_submit());
+          div(classes: 'eduma-modal__body', [
+            if (_error case final msg?) p(classes: 'eduma-modal__error', attributes: {'role': 'alert'}, [.text(msg)]),
+            p(classes: 'eduma-modal__copy', [
+              .text(
+                component.email.trim().isEmpty
+                    ? 'Your account has no email address.'
+                    : 'The code goes to ${component.email}.',
+              ),
+            ]),
+            p(classes: 'eduma-modal__copy', [
+              .text(
+                'Saving the new password signs you out on your other devices and the WhatsApp bot. '
+                'This device stays signed in.',
+              ),
+            ]),
+          ]),
+          div(classes: 'eduma-modal__footer', [
+            button(
+              classes: 'eduma-modal__btn eduma-modal__btn--primary',
+              type: ButtonType.button,
+              disabled: _sendingCode || component.email.trim().isEmpty,
+              onClick: () => unawaited(_sendCode()),
+              [.text(_sendingCode ? 'Sending…' : 'Email me a code')],
+            ),
+          ]),
+        ] else ...[
+          div(classes: 'eduma-modal__header', [
+            div(classes: 'eduma-modal__title', [
+              h2(id: 'eduma-password-dialog-title', [.text('Enter the code')]),
+              p([.text('We sent it to ${component.email}. Check spam too.')]),
+            ]),
+          ]),
+          form(
+            events: {
+              'submit': (event) {
+                event.preventDefault();
+                unawaited(_submit());
+              },
             },
-          },
-          [
-            div(classes: 'eduma-modal__body', [
-              div(classes: 'eduma-profile__code-row', [
+            [
+              div(classes: 'eduma-modal__body', [
+                if (_error case final msg?)
+                  p(classes: 'eduma-modal__error', attributes: {'role': 'alert'}, [.text(msg)]),
+                _field(
+                  id: 'eduma-pw-code',
+                  title: 'Code',
+                  hint: 'The code or link from the email',
+                  icon: EdumaIcons.sms,
+                  value: _resetInput,
+                  type: InputType.text,
+                  onInput: (value) => _resetInput = value,
+                  autocomplete: 'one-time-code',
+                ),
+                _field(
+                  id: 'eduma-pw-new',
+                  title: 'New password',
+                  hint: 'At least 8 characters',
+                  icon: EdumaIcons.lock,
+                  value: _password,
+                  type: InputType.password,
+                  onInput: (value) => _password = value,
+                  autocomplete: 'new-password',
+                ),
+                _field(
+                  id: 'eduma-pw-confirm',
+                  title: 'Repeat new password',
+                  hint: 'Type it again',
+                  icon: EdumaIcons.lock,
+                  value: _confirm,
+                  type: InputType.password,
+                  onInput: (value) => _confirm = value,
+                  autocomplete: 'new-password',
+                ),
+                if (problem case final pMsg?) p(classes: 'eduma-modal__hint', [.text(pMsg)]),
+              ]),
+              div(classes: 'eduma-modal__footer', [
                 button(
-                  classes: 'main-home__action-button',
+                  classes: 'eduma-modal__btn',
                   type: ButtonType.button,
                   disabled: _sendingCode || _saving,
                   onClick: () => unawaited(_sendCode()),
-                  [
-                    mainHomeIcon(.email, size: 15),
-                    .text(
-                      _sendingCode
-                          ? 'Sending…'
-                          : _codeSent
-                          ? 'Resend code'
-                          : 'Email verification code',
-                    ),
-                  ],
+                  [.text(_sendingCode ? 'Sending…' : 'New code')],
+                ),
+                button(
+                  classes: 'eduma-modal__btn eduma-modal__btn--primary',
+                  type: ButtonType.submit,
+                  disabled: _saving || !canSubmit,
+                  [.text(_saving ? 'Saving…' : 'Change password')],
                 ),
               ]),
-              if (_statusMessage case final status?)
-                p(classes: 'eduma-profile__hint-ok', [.text(status)]),
-              div(classes: 'eduma-modal__field', [
-                label(htmlFor: 'eduma-pw-code', [.text('Reset code or link')]),
-                input<String>(
-                  id: 'eduma-pw-code',
-                  classes: 'eduma-modal__input',
-                  type: InputType.text,
-                  value: _resetInput,
-                  disabled: _saving,
-                  attributes: {'placeholder': 'Paste reset code or link'},
-                  onInput: (value) => setState(() {
-                    _resetInput = value;
-                    _error = null;
-                  }),
-                ),
-              ]),
-              div(classes: 'eduma-modal__field', [
-                label(htmlFor: 'eduma-pw-new', [.text('New password')]),
-                input<String>(
-                  id: 'eduma-pw-new',
-                  classes: 'eduma-modal__input',
-                  type: InputType.password,
-                  value: _password,
-                  disabled: _saving,
-                  attributes: {'placeholder': 'At least 8 characters'},
-                  onInput: (value) => setState(() {
-                    _password = value;
-                    _error = null;
-                  }),
-                ),
-              ]),
-              div(classes: 'eduma-modal__field', [
-                label(htmlFor: 'eduma-pw-confirm', [.text('Confirm new password')]),
-                input<String>(
-                  id: 'eduma-pw-confirm',
-                  classes: 'eduma-modal__input',
-                  type: InputType.password,
-                  value: _confirm,
-                  disabled: _saving,
-                  attributes: {'placeholder': 'Repeat new password'},
-                  onInput: (value) => setState(() {
-                    _confirm = value;
-                    _error = null;
-                  }),
-                ),
-              ]),
-              if (problem case final pMsg?)
-                p(classes: 'eduma-modal__error', [.text(pMsg)]),
-              if (_error case final msg?)
-                p(classes: 'eduma-modal__error', attributes: {'role': 'alert'}, [.text(msg)]),
-            ]),
-            div(classes: 'eduma-modal__footer', [
-              button(
-                classes: 'eduma-modal__btn',
-                type: ButtonType.button,
-                disabled: _saving,
-                onClick: _dismiss,
-                [.text('Cancel')],
-              ),
-              button(
-                classes: 'eduma-modal__btn eduma-modal__btn--primary',
-                type: ButtonType.submit,
-                disabled: _saving || !canSubmit,
-                [.text(_saving ? 'Updating…' : 'Update password')],
-              ),
-            ]),
-          ],
-        ),
+            ],
+          ),
+        ],
       ],
     );
   }
+
+  Component _field({
+    required String id,
+    required String title,
+    required String hint,
+    required Object icon,
+    required String value,
+    required InputType type,
+    required void Function(String) onInput,
+    required String autocomplete,
+  }) => div(classes: 'eduma-modal__field', [
+    label(htmlFor: id, [.text(title)]),
+    div(classes: 'eduma-modal__input-wrap', [
+      edumaIcon(icon, size: 20),
+      input<String>(
+        id: id,
+        classes: 'eduma-modal__input',
+        type: type,
+        value: value,
+        disabled: _saving,
+        attributes: {'placeholder': hint, 'autocomplete': autocomplete},
+        onInput: (next) => setState(() {
+          onInput(next);
+          _error = null;
+        }),
+      ),
+    ]),
+  ]);
 }

@@ -1,3 +1,4 @@
+import '../../../core/presentation/flutter_host.dart';
 import '../../auth/data/auth_api.dart';
 import '../data/profile_api.dart';
 import '../data/profile_models.dart';
@@ -52,7 +53,10 @@ abstract final class ProfileActions {
     school: school,
   );
 
-  static Future<void> signOutAllDevices() => _api.signOutAllDevices();
+  static Future<void> signOutAllDevices() {
+    FlutterHost.dispose();
+    return _api.signOutAllDevices();
+  }
 
   static Future<void> deleteAccount() => _api.deleteAccount();
 }

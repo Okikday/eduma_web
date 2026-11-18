@@ -221,9 +221,7 @@ class MainApi {
         '/spaces/join',
         body: {'inviteCode': code},
       );
-      final raw = payload['data'] is Map
-          ? Map<String, dynamic>.from(payload['data'] as Map)
-          : payload;
+      final raw = payload['data'] is Map ? Map<String, dynamic>.from(payload['data'] as Map) : payload;
       return MainSpaceJoinResult.fromMap(raw, currentUserId: currentUserId);
     } on AuthApiException catch (error) {
       final expired = SpaceInviteLink.expiredErrorMessage(

@@ -7,25 +7,32 @@ define(['dart_sdk'], (function load__packages__eduma_web__features__main__presen
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
   const js_util = dart_sdk.js_util;
+  const _js_helper = dart_sdk._js_helper;
+  const js_interop = dart_sdk.js_interop;
+  const js_interop_unsafe = dart_sdk.js_interop_unsafe;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
   var web_dialog_helper = Object.create(dart.library);
   var $toLowerCase = dartx.toLowerCase;
+  var $_set = dartx._set;
   var T = {
     JSObject: () => (T.JSObject = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
     JSObjectN: () => (T.JSObjectN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject?", true)))(),
     String: () => (T.String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|String", true)))(),
+    IdentityMapOfString$String: () => (T.IdentityMapOfString$String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,core|String>", true)))(),
     bool: () => (T.bool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool", true)))(),
     JSObject$1: () => (T.JSObject$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
-    int: () => (T.int = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|int", true)))(),
     double: () => (T.double = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|double", true)))(),
     JSObjectTobool: () => (T.JSObjectTobool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool(_interceptors|JSObject)", true)))(),
     JSObjectToNull: () => (T.JSObjectToNull = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Null(_interceptors|JSObject)", true)))(),
     StringToJSObjectN: () => (T.StringToJSObjectN = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject?(core|String)", true)))(),
+    boolToMapOfString$String: () => (T.boolToMapOfString$String = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Map<core|String,core|String>(core|bool)", true)))(),
     StringAndboolTovoid: () => (T.StringAndboolTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(core|String,core|bool)", true)))(),
     StringTovoid: () => (T.StringTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(core|String)", true)))(),
     JSObjectTovoid: () => (T.JSObjectTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(_interceptors|JSObject)", true)))(),
-    ExpandoOfbool: () => (T.ExpandoOfbool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Expando<core|bool>", true)))()
+    ExpandoOfbool: () => (T.ExpandoOfbool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Expando<core|bool>", true)))(),
+    double$1: () => (T.double$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|double", true)))(),
+    JSObjectTodouble: () => (T.JSObjectTodouble = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|double(_interceptors|JSObject)", true)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -43,11 +50,21 @@ define(['dart_sdk'], (function load__packages__eduma_web__features__main__presen
       }
       return null;
     }
+    static openAttr(open) {
+      return (() => {
+        let t$360 = new _js_helper.IdentityMap.new(T.IdentityMapOfString$String());
+        if (open) t$360[$_set]("open", "");
+        return t$360;
+      })();
+    }
     static syncOpen(id, shouldBeOpen) {
       let dialog = web_dialog_helper.WebDialogHelper.dialogById(id);
       if (dialog == null) return;
       web_dialog_helper.WebDialogHelper._installLightDismissFallback(dialog);
       if (shouldBeOpen) {
+        if (js_util.getProperty(T.bool(), dialog, "open") && !dart_rti._asBool(dialog.matches(":modal"))) {
+          dialog.removeAttribute("open");
+        }
         if (!js_util.getProperty(T.bool(), dialog, "open")) {
           dialog.returnValue = "";
           dialog.showModal();
@@ -77,8 +94,8 @@ define(['dart_sdk'], (function load__packages__eduma_web__features__main__presen
       let pressedOutside = false;
       function isOutside(event) {
         let rect = T.JSObject$1()[_as](dialog.getBoundingClientRect());
-        let x = js_util.getProperty(T.int(), event, "clientX");
-        let y = js_util.getProperty(T.int(), event, "clientY");
+        let x = web_dialog_helper.pointerClientX(event);
+        let y = web_dialog_helper.pointerClientY(event);
         return x < js_util.getProperty(T.double(), rect, "left") || x > js_util.getProperty(T.double(), rect, "right") || y < js_util.getProperty(T.double(), rect, "top") || y > js_util.getProperty(T.double(), rect, "bottom");
       }
       dart.fn(isOutside, T.JSObjectTobool());
@@ -106,6 +123,7 @@ define(['dart_sdk'], (function load__packages__eduma_web__features__main__presen
     ;
   }).prototype = web_dialog_helper.WebDialogHelper.prototype;
   dart.lazyFn(web_dialog_helper.WebDialogHelper.dialogById, () => T.StringToJSObjectN());
+  dart.lazyFn(web_dialog_helper.WebDialogHelper.openAttr, () => T.boolToMapOfString$String());
   dart.lazyFn(web_dialog_helper.WebDialogHelper.syncOpen, () => T.StringAndboolTovoid());
   dart.lazyFn(web_dialog_helper.WebDialogHelper.resetReturnValue, () => T.StringTovoid());
   dart.lazyFn(web_dialog_helper.WebDialogHelper.closeDetailsById, () => T.StringTovoid());
@@ -113,12 +131,13 @@ define(['dart_sdk'], (function load__packages__eduma_web__features__main__presen
   dart.addRtiResources(web_dialog_helper.WebDialogHelper, ["eduma_web__features__main__presentation__widgets__web_dialog_helper|WebDialogHelper"]);
   dart.setMethodsImmediateTargetSignature(web_dialog_helper.WebDialogHelper, () => dart.global.Object.setPrototypeOf({
     dialogById: "package:eduma_web/features/main/presentation/widgets/web_dialog_helper.dart:WebDialogHelper",
+    openAttr: "package:eduma_web/features/main/presentation/widgets/web_dialog_helper.dart:WebDialogHelper",
     syncOpen: "package:eduma_web/features/main/presentation/widgets/web_dialog_helper.dart:WebDialogHelper",
     resetReturnValue: "package:eduma_web/features/main/presentation/widgets/web_dialog_helper.dart:WebDialogHelper",
     closeDetailsById: "package:eduma_web/features/main/presentation/widgets/web_dialog_helper.dart:WebDialogHelper",
     _installLightDismissFallback: "package:eduma_web/features/main/presentation/widgets/web_dialog_helper.dart:WebDialogHelper"
   }, dart.getMethodsImmediateTargets(dart.global.Object.getPrototypeOf(web_dialog_helper.WebDialogHelper))));
-  dart.setStaticMethodSignature(web_dialog_helper.WebDialogHelper, () => ['dialogById', 'syncOpen', 'resetReturnValue', 'closeDetailsById', '_installLightDismissFallback']);
+  dart.setStaticMethodSignature(web_dialog_helper.WebDialogHelper, () => ['dialogById', 'openAttr', 'syncOpen', 'resetReturnValue', 'closeDetailsById', '_installLightDismissFallback']);
   dart.setLibraryUri(web_dialog_helper.WebDialogHelper, I[0]);
   dart.setStaticFieldSignature(web_dialog_helper.WebDialogHelper, () => ['_boundFallbacks']);
   dart.defineLazy(web_dialog_helper.WebDialogHelper, {
@@ -126,13 +145,21 @@ define(['dart_sdk'], (function load__packages__eduma_web__features__main__presen
       return new core.Expando.new(T.ExpandoOfbool(), "edumaDialogLightDismiss");
     }
   });
+  web_dialog_helper.pointerClientX = function pointerClientX(event) {
+    return js_interop['JSNumberToNumber|get#toDartDouble'](js_interop_unsafe['JSObjectUnsafeUtilExtension|getProperty'](T.double$1(), event, js_interop['StringToJSString|get#toJS']("clientX")));
+  };
+  dart.lazyFn(web_dialog_helper.pointerClientX, () => T.JSObjectTodouble());
+  web_dialog_helper.pointerClientY = function pointerClientY(event) {
+    return js_interop['JSNumberToNumber|get#toDartDouble'](js_interop_unsafe['JSObjectUnsafeUtilExtension|getProperty'](T.double$1(), event, js_interop['StringToJSString|get#toJS']("clientY")));
+  };
+  dart.lazyFn(web_dialog_helper.pointerClientY, () => T.JSObjectTodouble());
   (function() {
   }).prototype = web_dialog_helper;
-  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"core|int":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|num":{"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|double":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|Expando":{"Expando.T":"1"}}'));
+  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"core|Comparable":{"Comparable.T":"1"},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"core|double":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|num":{"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|Expando":{"Expando.T":"1"}}'));
   dart.trackLibraries("packages/eduma_web/features/main/presentation/widgets/web_dialog_helper", {
     "package:eduma_web/features/main/presentation/widgets/web_dialog_helper.dart": web_dialog_helper
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["web_dialog_helper.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;sBASkD;AACxC,oBAAuB,mBAAT,0EAAwB,EAAE;AAC9C,UAAI,OAAO,YAAoB,AAAQ,AAAc,gCAA9B,OAAO,iCAA0B;AACtD,cAAO,QAAO;;AAEhB,YAAO;IACT;oBAE4B,IAAS;AAC7B,mBAAS,6CAAW,EAAE;AAC5B,UAAI,AAAO,MAAD,UAAU;AACpB,qEAA6B,MAAM;AACnC,UAAI,YAAY;AACd,aAAY,8BAAP,MAAM;AACF,UAAP,MAAM,eAAe;AACd,UAAP,MAAM;;;AAGR,YAAW,8BAAP,MAAM;AACD,UAAP,MAAM;cACD,KAAW,iBAAP,MAAM,SAAS;AAEjB,UAAP,MAAM;AACC,UAAP,MAAM;;;IAGZ;4BAEoC;AAC5B,mBAAS,6CAAW,EAAE;AAC5B,UAAI,MAAM,UAAU,AAAO,MAAD,eAAe;IAC3C;4BAEoC;AAC5B,oBAAuB,mBAAT,0EAAwB,EAAE;AAC9C,UAAI,OAAO,YAAoB,AAAQ,AAAc,gCAA9B,OAAO,iCAA0B;AAClB,QAAnC,OAAO,QAAmC;;IAE/C;wCAE+D;AAC7D,UAAI,AAAe,AAAS,uDAAR,MAAM,MAAK,MAAM;AACtB,MAAf,uDAAgB,MAAM,EAAI;AAEtB,2BAAiB;AACrB,eAAK,UAA2B;AACxB,mBAAc,oBAAP,MAAM;AACb,gBAAU,6BAAN,KAAK;AACT,gBAAU,6BAAN,KAAK;AACf,cAAO,AAAgD,EAA/C,GAAQ,gCAAL,IAAI,aAAS,CAAC,GAAQ,gCAAL,IAAI,cAAU,CAAC,GAAQ,gCAAL,IAAI,YAAQ,CAAC,GAAQ,gCAAL,IAAI;;;AAG7D,MAAP,MAAM,kBACJ,WAOG,uBANF,QAAW;AACJ,uBAAW,GAAG;AACpB,YAAa,AAAI,gCAAb,QAAQ,aAAQ,YAAmB,8BAAP,MAAM;AAC3B,UAAT,QAAQ;AACD,UAAP,MAAM;;;AAIL,MAAP,MAAM,kBACJ,eAIG,uBAHF,QAAW;AACJ,sBAAU,GAAG;AACnB,yBAAwB,AAAK,8BAAZ,MAAM,aAAS,SAAS,CAAC,OAAO;;AAG9C,MAAP,MAAM,kBACJ,aAOG,uBANF,QAAW;AACJ,sBAAU,GAAG;AACnB,YAAI,cAAc,IAAI,SAAS,CAAC,OAAO,KAAY,8BAAP,MAAM;AACzC,UAAP,MAAM;;AAER,yBAAiB;;IAGvB;;;;EACF;;;;;;;;;;;;;;;;;;MAlFe,iDAAe;YAAG,yCAAc","file":"web_dialog_helper.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["web_dialog_helper.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;sBAgBkD;AACxC,oBAAuB,mBAAT,0EAAwB,EAAE;AAC9C,UAAI,OAAO,YAAoB,AAAQ,AAAc,gCAA9B,OAAO,iCAA0B;AACtD,cAAO,QAAO;;AAEhB,YAAO;IACT;oBAMyC;AAAS;;AAAC,YAAI,IAAI,EAAT,AAAiB,aAAN,QAAQ;cAAnB;;IAAsB;oBAE5C,IAAS;AAC7B,mBAAS,6CAAW,EAAE;AAC5B,UAAI,AAAO,MAAD,UAAU;AACpB,qEAA6B,MAAM;AACnC,UAAI,YAAY;AACd,YAAW,8BAAP,MAAM,cAAiB,iBAAP,MAAM,SAAS;AAG1B,UAAP,MAAM,iBAAiB;;AAEzB,aAAY,8BAAP,MAAM;AACF,UAAP,MAAM,eAAe;AACd,UAAP,MAAM;;;AAGR,YAAW,8BAAP,MAAM;AACD,UAAP,MAAM;cACD,KAAW,iBAAP,MAAM,SAAS;AAEjB,UAAP,MAAM;AACC,UAAP,MAAM;;;IAGZ;4BAEoC;AAC5B,mBAAS,6CAAW,EAAE;AAC5B,UAAI,MAAM,UAAU,AAAO,MAAD,eAAe;IAC3C;4BAEoC;AAC5B,oBAAuB,mBAAT,0EAAwB,EAAE;AAC9C,UAAI,OAAO,YAAoB,AAAQ,AAAc,gCAA9B,OAAO,iCAA0B;AAClB,QAAnC,OAAO,QAAmC;;IAE/C;wCAE+D;AAC7D,UAAI,AAAe,AAAS,uDAAR,MAAM,MAAK,MAAM;AACtB,MAAf,uDAAgB,MAAM,EAAI;AAEtB,2BAAiB;AACrB,eAAK,UAA2B;AACxB,mBAAc,oBAAP,MAAM;AACb,gBAAI,iCAAe,KAAK;AACxB,gBAAI,iCAAe,KAAK;AAC9B,cAAO,AAAgD,EAA/C,GAAQ,gCAAL,IAAI,aAAS,CAAC,GAAQ,gCAAL,IAAI,cAAU,CAAC,GAAQ,gCAAL,IAAI,YAAQ,CAAC,GAAQ,gCAAL,IAAI;;;AAG7D,MAAP,MAAM,kBACJ,WAOG,uBANF,QAAW;AACJ,uBAAW,GAAG;AACpB,YAAa,AAAI,gCAAb,QAAQ,aAAQ,YAAmB,8BAAP,MAAM;AAC3B,UAAT,QAAQ;AACD,UAAP,MAAM;;;AAIL,MAAP,MAAM,kBACJ,eAIG,uBAHF,QAAW;AACJ,sBAAU,GAAG;AACnB,yBAAwB,AAAK,8BAAZ,MAAM,aAAS,SAAS,CAAC,OAAO;;AAG9C,MAAP,MAAM,kBACJ,aAOG,uBANF,QAAW;AACJ,sBAAU,GAAG;AACnB,YAAI,cAAc,IAAI,SAAS,CAAC,OAAO,KAAY,8BAAP,MAAM;AACzC,UAAP,MAAM;;AAER,yBAAiB;;IAGvB;;;;EACF;;;;;;;;;;;;;;;;;;;;MA7Fe,iDAAe;YAAG,yCAAc;;;6DANV;AAAU,UAA0D,iDAAtC,2EAAnB,KAAK,EAA8C,wCAAV;EAA4B;;6DAChF;AAAU,UAA0D,iDAAtC,2EAAnB,KAAK,EAA8C,wCAAV;EAA4B","file":"web_dialog_helper.ddc.js"}');
   // Exports:
   return {
     eduma_web__features__main__presentation__widgets__web_dialog_helper: web_dialog_helper

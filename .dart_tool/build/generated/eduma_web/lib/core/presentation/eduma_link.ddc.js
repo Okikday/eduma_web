@@ -6,8 +6,8 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr_router/jaspr_router
   'use strict';
   const dart_rti = dart_sdk.dart_rti;
   const core = dart_sdk.core;
-  const js_interop = dart_sdk.js_interop;
   const js_util = dart_sdk.js_util;
+  const js_interop = dart_sdk.js_interop;
   const _js_helper = dart_sdk._js_helper;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
@@ -20,20 +20,77 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr_router/jaspr_router
   var $startsWith = dartx.startsWith;
   var $_set = dartx._set;
   var T = {
-    int: () => (T.int = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|int", true)))(),
+    JSObjectToNull: () => (T.JSObjectToNull = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|Null(_interceptors|JSObject)", true)))(),
+    JSObject: () => (T.JSObject = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~()", true)))(),
     bool: () => (T.bool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool", true)))(),
+    int: () => (T.int = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|int", true)))(),
+    JSObject$1: () => (T.JSObject$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
+    BuildContext__Tovoid: () => (T.BuildContext__Tovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(jaspr__src__framework__framework|BuildContext{fallbackHref:core|String})", true)))(),
     JSObjectTobool: () => (T.JSObjectTobool = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "core|bool(_interceptors|JSObject)", true)))(),
     IdentityMapOfString$JSObjectTovoid: () => (T.IdentityMapOfString$JSObjectTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_js_helper|IdentityMap<core|String,~(_interceptors|JSObject)>", true)))(),
     JSObjectTovoid: () => (T.JSObjectTovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(_interceptors|JSObject)", true)))(),
     BuildContextToa: () => (T.BuildContextToa = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__dom__html__html|a(jaspr__src__framework__framework|BuildContext)", true)))(),
     __ToComponent: () => (T.__ToComponent = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "jaspr__src__framework__framework|Component({attributes:core|Map<core|String,core|String>?,children!core|List<jaspr__src__framework__framework|Component>,classes:core|String?,onClick:~()?,onContextMenu:~(_interceptors|JSObject)?,target:jaspr__src__dom__html__html|Target?,to!core|String})", true)))(),
-    JSObject: () => (T.JSObject = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
-    JSObject$1: () => (T.JSObject$1 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
+    JSObject$2: () => (T.JSObject$2 = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "_interceptors|JSObject", true)))(),
     BuildContextAndString__Tovoid: () => (T.BuildContextAndString__Tovoid = dart.constFn(dart_rti._Universe.eval(dart.typeUniverse, "~(jaspr__src__framework__framework|BuildContext,core|String{replace:core|bool})", true)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
+  var I = [
+    "package:eduma_web/core/presentation/eduma_link.dart",
+    "dart:core"
+  ];
+  eduma_link.EdumaHistory = class EdumaHistory extends core.Object {
+    static _ensureListening() {
+      if (eduma_link.EdumaHistory._listening) return;
+      eduma_link.EdumaHistory._listening = true;
+      js_util.getProperty(T.JSObject(), dart.global, "window").addEventListener("popstate", js_util._functionToJS1(dart.fn(_$35wc0$35formal => {
+        if (eduma_link.EdumaHistory._depth > 0) eduma_link.EdumaHistory._depth = eduma_link.EdumaHistory._depth - 1;
+      }, T.JSObjectToNull())));
+    }
+    static markPush() {
+      eduma_link.EdumaHistory._ensureListening();
+      eduma_link.EdumaHistory._depth = eduma_link.EdumaHistory._depth + 1;
+    }
+    static get canGoBack() {
+      return eduma_link.EdumaHistory._depth > 0;
+    }
+  };
+  (eduma_link.EdumaHistory.new = function() {
+    ;
+  }).prototype = eduma_link.EdumaHistory.prototype;
+  dart.lazyFn(eduma_link.EdumaHistory._ensureListening, () => T.VoidTovoid());
+  dart.lazyFn(eduma_link.EdumaHistory.markPush, () => T.VoidTovoid());
+  dart.addRtiResources(eduma_link.EdumaHistory, ["eduma_web__core__presentation__eduma_link|EdumaHistory"]);
+  dart.setMethodsImmediateTargetSignature(eduma_link.EdumaHistory, () => dart.global.Object.setPrototypeOf({
+    _ensureListening: "package:eduma_web/core/presentation/eduma_link.dart:EdumaHistory",
+    markPush: "package:eduma_web/core/presentation/eduma_link.dart:EdumaHistory"
+  }, dart.getMethodsImmediateTargets(dart.global.Object.getPrototypeOf(eduma_link.EdumaHistory))));
+  dart.setStaticMethodSignature(eduma_link.EdumaHistory, () => ['_ensureListening', 'markPush']);
+  dart.setStaticGetterSignature(eduma_link.EdumaHistory, () => ['canGoBack']);
+  dart.setLibraryUri(eduma_link.EdumaHistory, I[0]);
+  dart.setStaticFieldSignature(eduma_link.EdumaHistory, () => ['_depth', '_listening']);
+  dart.defineLazy(eduma_link.EdumaHistory, {
+    /*eduma_link.EdumaHistory._depth*/get _depth() {
+      return 0;
+    },
+    set _depth(value) {},
+    /*eduma_link.EdumaHistory._listening*/get _listening() {
+      return false;
+    },
+    set _listening(value) {}
+  });
+  eduma_link.edumaBack = function edumaBack(context, opts) {
+    let fallbackHref = opts && 'fallbackHref' in opts ? opts.fallbackHref : "/main";
+    if (eduma_link.EdumaHistory.canGoBack) {
+      js_util.getProperty(T.JSObject$1(), js_util.getProperty(T.JSObject(), dart.global, "window"), "history").back();
+    } else {
+      eduma_link.edumaNavigate(context, fallbackHref, {replace: true});
+    }
+  };
+  dart.lazyFn(eduma_link.edumaBack, () => T.BuildContext__Tovoid());
   eduma_link._isPlainPrimaryClick = function _isPlainPrimaryClick(rawEvent) {
     if (!(rawEvent !== null && js_interop['JSAnyUtilityExtension|instanceOfString'](rawEvent, "MouseEvent"))) return true;
     let event = rawEvent;
@@ -69,6 +126,7 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr_router/jaspr_router
             let router$ = router.Router.maybeOf(context);
             if (router$ != null) {
               event.preventDefault();
+              eduma_link.EdumaHistory.markPush();
               router$.push(to);
             }
           }, T.JSObjectTovoid()));
@@ -86,20 +144,21 @@ define(['dart_sdk', 'packages/jaspr/client', 'packages/jaspr_router/jaspr_router
       if (replace) {
         router$.replace(to);
       } else {
+        eduma_link.EdumaHistory.markPush();
         router$.push(to);
       }
       return;
     }
-    js_util.getProperty(T.JSObject(), js_util.getProperty(T.JSObject$1(), dart.global, "window"), "location").assign(to);
+    js_util.getProperty(T.JSObject$2(), js_util.getProperty(T.JSObject(), dart.global, "window"), "location").assign(to);
   };
   dart.lazyFn(eduma_link.edumaNavigate, () => T.BuildContextAndString__Tovoid());
   (function() {
   }).prototype = eduma_link;
-  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"core|int":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|num":{"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|Comparable":{"Comparable.T":"1"},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"jaspr__src__dom__html__html|a":{"jaspr__src__framework__framework|StatelessComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatelessComponent":{"jaspr__src__framework__framework|Component":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"jaspr__src__dom__html__html|Target":{"core|_Enum":[],"core|Enum":[]},"core|_Enum":{"core|Enum":[]}}'));
+  dart_rti._Universe.addRules(dart.typeUniverse, JSON.parse('{"core|int":{"core|num":[],"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|num":{"Comparable.T":"core|num","core|Comparable":["core|num"]},"core|Comparable":{"Comparable.T":"1"},"core|String":{"Comparable.T":"core|String","core|Comparable":["core|String"],"core|Pattern":[]},"_js_helper|IdentityMap":{"IdentityMap.K":"1","IdentityMap.V":"2","InternalMap.K":"1","InternalMap.V":"2","_js_helper|InternalMap":["1","2"],"MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"_js_helper|InternalMap":{"InternalMap.K":"1","InternalMap.V":"2","MapBase.K":"1","MapBase.V":"2","collection|MapBase":["1","2"],"LinkedHashMap.K":"1","LinkedHashMap.V":"2","collection|LinkedHashMap":["1","2"],"HashMap.K":"1","HashMap.V":"2","collection|HashMap":["1","2"],"Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|MapBase":{"MapBase.K":"1","MapBase.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|LinkedHashMap":{"LinkedHashMap.K":"1","LinkedHashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"collection|HashMap":{"HashMap.K":"1","HashMap.V":"2","Map.K":"1","Map.V":"2","core|Map":["1","2"]},"core|Map":{"Map.K":"1","Map.V":"2"},"jaspr__src__dom__html__html|a":{"jaspr__src__framework__framework|StatelessComponent":[],"jaspr__src__framework__framework|Component":[]},"jaspr__src__framework__framework|StatelessComponent":{"jaspr__src__framework__framework|Component":[]},"core|List":{"List.E":"1","Iterable.E":"1","core|Iterable":["1"],"_ListIterable.E":"1","core|_ListIterable":["1"],"EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"]},"core|Iterable":{"Iterable.E":"1"},"core|_ListIterable":{"_ListIterable.E":"1","EfficientLengthIterable.T":"1","_internal|EfficientLengthIterable":["1"],"HideEfficientLengthIterable.T":"1","_internal|HideEfficientLengthIterable":["1"],"Iterable.E":"1","core|Iterable":["1"]},"_internal|EfficientLengthIterable":{"EfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"_internal|HideEfficientLengthIterable":{"HideEfficientLengthIterable.T":"1","Iterable.E":"1","core|Iterable":["1"]},"jaspr__src__dom__html__html|Target":{"core|_Enum":[],"core|Enum":[]},"core|_Enum":{"core|Enum":[]}}'));
   dart.trackLibraries("packages/eduma_web/core/presentation/eduma_link", {
     "package:eduma_web/core/presentation/eduma_link.dart": eduma_link
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["eduma_link.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;kEAOoC;AAClC,oFAAc,QAAQ,kBAAe,MAAO;AACtC,gBAAQ,QAAQ;AACtB,UAAa,AAAO,AAGA,8BAHb,KAAK,gBAAW,MACZ,8BAAN,KAAK,iBACC,8BAAN,KAAK,iBACC,8BAAN,KAAK,kBACC,8BAAN,KAAK;EACZ;;;QAKkB;QACR;QACa;QACP;QACC;QACP;QACiB;AACrB,2CACK,QAAC;YAUE,OADI,OADH,OADD,OADF;AALF,uBAAW,AAAQ,AAAQ,OAAT;AAClB,qBAAS,AAAS,QAAD,YAAU,OAAO,AAAS,QAAD,aAAW,GAAG,AAAS,QAAD,UAAU,KAAK,QAAQ;AACvF,2BAAe,AAAG,AAAgB,EAAjB,cAAY,SAAS,AAAG,EAAD,cAAY,QAAU,MAAM,GAAC,EAAE,GAAI,EAAE;AAEnF,gBACQ,YAAY;gBACV,MAAM;gBACL,OAAO;gBACJ,UAAU;gBACd;;AACC,UADD,aACN,SAAS,QAAC;gBACR;2BAAO;4BAAP,OAAA,AAAS;AACT,gBAAI,AAAO,MAAD,KAAW,mBAAO;AAC5B,iBAAK,AAAG,EAAD,cAAY,QAAQ,AAAG,EAAD,cAAY,OAAO;AAChD,iBAAK,gCAAqB,KAAK,GAAG;AAC5B,0BAAgB,sBAAQ,OAAO;AACrC,gBAAI,OAAM;AACF,cAAN,KAAK;AACE,cAAP,OAAM,MAAM,EAAE;;;AAGlB,cAAI,aAAa,UAZX,AAYkC,aAAb,eAAe,aAAa;gBAZjD;;cALH,gBAmBL,QAAQ,SAlBF,eACE,gBACC,mBACG,eACJ;;EAiBb;;oDAIc,SACN;QACF;AAEC,kBAAgB,sBAAQ,OAAO;AACrC,QAAI,OAAM,YAAY,AAAG,EAAD,cAAY,SAAS,AAAG,EAAD,cAAY;AACzD,UAAI,OAAO;AACF,QAAP,OAAM,SAAS,EAAE;;AAEV,QAAP,OAAM,MAAM,EAAE;;AAEhB;;AAEkB,IAAT,kCAAP,+EAAuB,EAAE;EAC/B","file":"eduma_link.ddc.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["eduma_link.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAeI,UAAI,oCAAY;AAChB,2CAAa;AAGF,MAAP,0EACF,YAGG,uBAFF,QAAW;AACV,YAAI,iCAAS,GAAG,kEAAM;;IAG5B;;AAGE;AACA,wEAAM;IACR;;AAG6B,8CAAS;IAAC;;;;EACzC;;;;;;;;;;;;;MAvBa,8BAAM;YAAG;;;MACR,kCAAU;YAAG;;;;4CAyBC;QAAiB;AAC3C,QAAiB;AACI,MAAR,oCAAP;;AAEJ,+BAAc,OAAO,EAAE,YAAY,YAAW;;EAElD;;kEAEoC;AAClC,oFAAc,QAAQ,kBAAe,MAAO;AACtC,gBAAQ,QAAQ;AACtB,UAAa,AAAO,AAGA,8BAHb,KAAK,gBAAW,MACZ,8BAAN,KAAK,iBACC,8BAAN,KAAK,iBACC,8BAAN,KAAK,kBACC,8BAAN,KAAK;EACZ;;;QAKkB;QACR;QACa;QACP;QACC;QACP;QACiB;AACrB,2CACK,QAAC;YAUE,OADI,OADH,OADD,OADF;AALF,uBAAW,AAAQ,AAAQ,OAAT;AAClB,qBAAS,AAAS,QAAD,YAAU,OAAO,AAAS,QAAD,aAAW,GAAG,AAAS,QAAD,UAAU,KAAK,QAAQ;AACvF,2BAAe,AAAG,AAAgB,EAAjB,cAAY,SAAS,AAAG,EAAD,cAAY,QAAU,MAAM,GAAC,EAAE,GAAI,EAAE;AAEnF,gBACQ,YAAY;gBACV,MAAM;gBACL,OAAO;gBACJ,UAAU;gBACd;;AACC,UADD,aACN,SAAS,QAAC;gBACR;2BAAO;4BAAP,OAAA,AAAS;AACT,gBAAI,AAAO,MAAD,KAAW,mBAAO;AAC5B,iBAAK,AAAG,EAAD,cAAY,QAAQ,AAAG,EAAD,cAAY,OAAO;AAChD,iBAAK,gCAAqB,KAAK,GAAG;AAC5B,0BAAgB,sBAAQ,OAAO;AACrC,gBAAI,OAAM;AACF,cAAN,KAAK;AACQ;AACN,cAAP,OAAM,MAAM,EAAE;;;AAGlB,cAAI,aAAa,UAbX,AAakC,aAAb,eAAe,aAAa;gBAbjD;;cALH,gBAoBL,QAAQ,SAnBF,eACE,gBACC,mBACG,eACJ;;EAkBb;;oDAIc,SACN;QACF;AAEC,kBAAgB,sBAAQ,OAAO;AACrC,QAAI,OAAM,YAAY,AAAG,EAAD,cAAY,SAAS,AAAG,EAAD,cAAY;AACzD,UAAI,OAAO;AACF,QAAP,OAAM,SAAS,EAAE;;AAEJ;AACN,QAAP,OAAM,MAAM,EAAE;;AAEhB;;AAEkB,IAAT,oCAAP,6EAAuB,EAAE;EAC/B","file":"eduma_link.ddc.js"}');
   // Exports:
   return {
     eduma_web__core__presentation__eduma_link: eduma_link

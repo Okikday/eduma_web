@@ -6,8 +6,10 @@ import 'package:web/web.dart' as web;
 
 import '../../../../core/presentation/eduma_icons.dart';
 import '../../../../core/presentation/eduma_link.dart';
+import '../../../../core/presentation/flutter_embedded_page.dart';
 import '../../../auth/data/auth_api.dart';
 import 'main_home_helpers.dart';
+import 'web_dialog_helper.dart';
 
 /// Top-level tabs represented across desktop [MainNavRail] and mobile
 /// [MainBottomNavBar].
@@ -45,15 +47,49 @@ class MainHomeDesktopRail extends StatefulComponent {
 }
 
 class _MainHomeDesktopRailState extends State<MainHomeDesktopRail> {
-  static const _minWidth = 250;
-  static const _maxWidth = 380;
+  static const _minWidth = 200;
+  static const _maxWidth = 440;
 
-  bool _collapsed = false;
-  int _width = 264;
+  static const _widthKey = 'eduma.rail.width';
+  static const _collapsedKey = 'eduma.rail.collapsed';
+
+  // Shared by every screen's rail and kept across reloads, so a resized or
+  // collapsed rail stays that way when switching tabs.
+  bool _collapsed = _readCollapsed();
+  int _width = _readWidth();
   int? _activePointerId;
   double _pointerStartX = 0;
   int _widthAtPointerStart = 264;
   final _resizeHandleKey = GlobalNodeKey<web.HTMLDivElement>();
+
+  static int _readWidth() {
+    try {
+      final saved = int.tryParse(web.window.localStorage.getItem(_widthKey) ?? '');
+      if (saved != null) return saved.clamp(_minWidth, _maxWidth);
+    } catch (_) {}
+    return 264;
+  }
+
+  static bool _readCollapsed() {
+    try {
+      return web.window.localStorage.getItem(_collapsedKey) == 'true';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  void _saveWidth() {
+    try {
+      web.window.localStorage.setItem(_widthKey, '$_width');
+    } catch (_) {}
+  }
+
+  void _setCollapsed(bool collapsed) {
+    setState(() => _collapsed = collapsed);
+    try {
+      web.window.localStorage.setItem(_collapsedKey, '$collapsed');
+    } catch (_) {}
+  }
 
   void _startResize(web.PointerEvent event) {
     if (_collapsed || event.button != 0) return;
@@ -62,7 +98,7 @@ class _MainHomeDesktopRailState extends State<MainHomeDesktopRail> {
     final handle = _resizeHandleKey.currentNode;
     if (handle == null) return;
     _activePointerId = event.pointerId;
-    _pointerStartX = event.clientX.toDouble();
+    _pointerStartX = pointerClientX(event);
     _widthAtPointerStart = _width;
     handle.setPointerCapture(event.pointerId);
     setState(() {});
@@ -71,7 +107,7 @@ class _MainHomeDesktopRailState extends State<MainHomeDesktopRail> {
   void _resizeFromPointer(web.PointerEvent event) {
     if (_activePointerId != event.pointerId) return;
     event.preventDefault();
-    final delta = (event.clientX - _pointerStartX).round();
+    final delta = (pointerClientX(event) - _pointerStartX).round();
     final nextWidth = (_widthAtPointerStart + delta).clamp(_minWidth, _maxWidth);
     if (nextWidth != _width) {
       setState(() => _width = nextWidth);
@@ -82,6 +118,7 @@ class _MainHomeDesktopRailState extends State<MainHomeDesktopRail> {
     if (_activePointerId == event.pointerId) {
       _activePointerId = null;
       setState(() {});
+      _saveWidth();
     }
   }
 
@@ -98,6 +135,7 @@ class _MainHomeDesktopRailState extends State<MainHomeDesktopRail> {
     final clampedWidth = nextWidth.clamp(_minWidth, _maxWidth);
     if (clampedWidth != _width) {
       setState(() => _width = clampedWidth);
+      _saveWidth();
     }
   }
 
@@ -171,14 +209,15 @@ class _MainHomeDesktopRailState extends State<MainHomeDesktopRail> {
                   ),
               ],
             ),
-            edumaLink(
-              to: '/assistantChat',
+            button(
               classes: 'main-home__rail-ai-chat',
+              type: ButtonType.button,
               attributes: {
                 'aria-label': 'Start a new AI chat',
                 'title': 'New AI chat',
               },
-              children: [edumaIcon(EdumaIcons.messages2, size: 21)],
+              onClick: () => openAiChatOverlay(context),
+              [edumaIcon(EdumaIcons.sparkles, size: 21)],
             ),
             _profileAvatarLink(
               component.session,
@@ -219,7 +258,7 @@ class _MainHomeDesktopRailState extends State<MainHomeDesktopRail> {
             'aria-expanded': '${!_collapsed}',
             'title': _collapsed ? 'Expand navigation' : 'Collapse navigation',
           },
-          onClick: () => setState(() => _collapsed = !_collapsed),
+          onClick: () => _setCollapsed(!_collapsed),
           [edumaIcon(_collapsed ? EdumaIcons.panelLeftOpen : EdumaIcons.panelLeftClose, size: 16)],
         ),
       ],

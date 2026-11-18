@@ -164,6 +164,7 @@ class _MainHomeSpaceContextMenuDialogState extends State<MainHomeSpaceContextMen
         id: _dialogId,
         classes: 'main-home__dialog main-home__context-menu',
         attributes: {
+          ...WebDialogHelper.openAttr(space != null),
           'closedby': 'any',
           'aria-labelledby': 'main-space-ctx-title',
         },
@@ -341,8 +342,9 @@ class _MainHomeSpaceContextMenuDialogState extends State<MainHomeSpaceContextMen
           }),
         ),
       if (_reportSpace case final reportSpace?)
-        _SpaceReportDialog(
-          space: reportSpace,
+        SpaceReportDialog(
+          spaceId: reportSpace.id,
+          spaceTitle: reportSpace.title,
           onClose: () => setState(() => _reportSpace = null),
         ),
     ]);
@@ -373,17 +375,18 @@ Component _contextMenuProgress(MainSpaceChecklist checklist) => div(
   ],
 );
 
-class _SpaceReportDialog extends StatefulComponent {
-  const _SpaceReportDialog({required this.space, required this.onClose});
+class SpaceReportDialog extends StatefulComponent {
+  const SpaceReportDialog({required this.spaceId, required this.spaceTitle, required this.onClose, super.key});
 
-  final MainSpace space;
+  final String spaceId;
+  final String spaceTitle;
   final VoidCallback onClose;
 
   @override
-  State<_SpaceReportDialog> createState() => _SpaceReportDialogState();
+  State<SpaceReportDialog> createState() => _SpaceReportDialogState();
 }
 
-class _SpaceReportDialogState extends State<_SpaceReportDialog> {
+class _SpaceReportDialogState extends State<SpaceReportDialog> {
   static const _dialogId = 'main-home-space-report-dialog';
   static const _reasons = {
     'spam': 'Spam or scam',
@@ -408,9 +411,9 @@ class _SpaceReportDialogState extends State<_SpaceReportDialog> {
   }
 
   @override
-  void didUpdateComponent(covariant _SpaceReportDialog oldComponent) {
+  void didUpdateComponent(covariant SpaceReportDialog oldComponent) {
     super.didUpdateComponent(oldComponent);
-    if (oldComponent.space.id != component.space.id) {
+    if (oldComponent.spaceId != component.spaceId) {
       _reason = null;
       _details = '';
       _error = null;
@@ -431,7 +434,7 @@ class _SpaceReportDialogState extends State<_SpaceReportDialog> {
     });
     try {
       await SpaceDetailActions.reportSpace(
-        spaceId: component.space.id,
+        spaceId: component.spaceId,
         reason: reason,
         details: _details,
       );
@@ -459,7 +462,11 @@ class _SpaceReportDialogState extends State<_SpaceReportDialog> {
   Component build(BuildContext context) => dialog(
     id: _dialogId,
     classes: 'eduma-modal main-home__report-dialog',
-    attributes: {'aria-labelledby': 'main-home-space-report-title', 'closedby': 'any'},
+    attributes: {
+      ...WebDialogHelper.openAttr(true),
+      'aria-labelledby': 'main-home-space-report-title',
+      'closedby': 'any',
+    },
     events: {
       'close': (_) {
         WebDialogHelper.resetReturnValue(_dialogId);
@@ -470,7 +477,7 @@ class _SpaceReportDialogState extends State<_SpaceReportDialog> {
       div(classes: 'eduma-modal__header', [
         div(classes: 'eduma-modal__heading', [
           h2(id: 'main-home-space-report-title', [
-            .text(_submitted ? 'Report sent' : 'Report “${component.space.title}”'),
+            .text(_submitted ? 'Report sent' : 'Report “${component.spaceTitle}”'),
           ]),
           p([
             .text(

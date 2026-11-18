@@ -1,1 +1,1 @@
-{"isEntrypoint":true,"deps":["jaspr|lib/client.dart","eduma_web|lib/app.dart","eduma_web|lib/core/presentation/theme_controller.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":true}
+{"isEntrypoint":true,"deps":["jaspr|lib/client.dart","eduma_web|lib/app.dart","eduma_web|lib/core/presentation/flutter_host.dart","eduma_web|lib/core/presentation/theme_controller.dart","eduma_web|lib/features/auth/logic/auth_actions.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":true}
