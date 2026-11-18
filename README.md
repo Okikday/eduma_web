@@ -13,8 +13,19 @@ sh tool/jaspr_with_google.sh serve
 ```
 
 The development server is available at `http://localhost:8080`.
-The Jaspr-only development server does not include the embedded Flutter
-bundle; use the combined build below to test Canvas, Notes, or new AI chat.
+
+Canvas, Notes and the new AI chat come from the Flutter source app. Build it
+into `web/flutter/` (git-ignored) so the dev server serves it, then restart
+`jaspr serve` once so it picks up the directory:
+
+```sh
+sh tool/build_flutter_embed.sh
+```
+
+The app boots once in a hidden iframe shortly after sign-in and is reused for
+every embedded view (`lib/core/presentation/flutter_host.dart`), so opening
+a page doesn't reload it. The two apps talk over same-origin `postMessage`
+(`WebEmbedBridge` in the source's `lib/app/routes/core/web_embed/`).
 
 ## Configure and build
 
